@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="3/26/2018 10:17:33 AM"
+  DTS:CreationDate="3/26/2018 10:25:03 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS430619"
   DTS:CreatorName="CUYAHOGA\GreenG"
-  DTS:DTSID="{703DF9DB-2BF7-42D7-9734-67F3E36093CA}"
+  DTS:DTSID="{F6FD78DE-2520-4E76-AC3C-1B9B9514A482}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.92"
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
   DTS:VersionBuild="1"
-  DTS:VersionGUID="{EEAD21F5-F2DB-4F71-8F21-BCBE0243ECF1}">
+  DTS:VersionGUID="{174684BC-62B2-43A8-8CBF-25ACAEA0A62E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
