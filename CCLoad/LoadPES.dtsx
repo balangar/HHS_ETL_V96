@@ -12,12 +12,303 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{154FBFD5-C10A-43B5-9254-3531D1FA93D5}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{1C1F9EF1-36A6-48D8-B861-B3FEDEC3EF4F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Canonical Answers"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{AE5F6F22-1C67-4C54-B49C-535A4A47ECED}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Canonical Answers"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Canonical Answers\Answer JOIN Question"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Answer JOIN Question"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select 
+   a.*,q.LookupUID
+From
+        [CC-PE-Screening].dbo.Answer a
+        Join
+        [CC-PE-Screening].dbo.Question q
+        ON a.QuestionUID = q.uidQuestion
+    JOIN
+    [CC-PE-Screening].dbo.Interview iv
+    ON 
+		a.InterviewUid = iv.uidInterview And
+		 iv.start &gt; '6/30/2015'
+
+Where
+   iv.Start &gt; (
+        Select MAX(start) from 
+            [CC-PE-Screening].dbo.CanAnswers ca
+            JOIN
+            [CC-PE-Screening].dbo.Interview iv
+            ON ca.InterviewUid = iv.uidInterview)
+    
+order by
+     iv.Start</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Canonical Answers\Answer JOIN Question.Connections[IDbConnection]"
+                  connectionManagerID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CC-PE-Screening]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[uidAnswer]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[uidAnswer]"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[uidAnswer]"
+                      name="uidAnswer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[InterviewUid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[InterviewUid]"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[InterviewUid]"
+                      name="InterviewUid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[QuestionUid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[QuestionUid]"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[QuestionUid]"
+                      name="QuestionUid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[Answer]"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]"
+                      name="Answer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[LookupUID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[LookupUID]"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[LookupUID]"
+                      name="LookupUID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[uidAnswer]"
+                      dataType="i4"
+                      name="uidAnswer" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[InterviewUid]"
+                      dataType="i4"
+                      name="InterviewUid" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[QuestionUid]"
+                      dataType="i4"
+                      name="QuestionUid" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[Answer]"
+                      dataType="nText"
+                      name="Answer" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].ExternalColumns[LookupUID]"
+                      dataType="i4"
+                      name="LookupUID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[uidAnswer]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[uidAnswer]"
+                      name="uidAnswer" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[InterviewUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[InterviewUid]"
+                      name="InterviewUid" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[QuestionUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[QuestionUid]"
+                      name="QuestionUid" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[Answer]"
+                      dataType="nText"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[Answer]"
+                      name="Answer" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[LookupUID]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[LookupUID]"
+                      name="LookupUID" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Canonical Answers\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input].Columns[Answer]"
+                      cachedDataType="nText"
+                      cachedName="Answer"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Output].Columns[PTAnswer]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Output].Columns[PTAnswer]"
+                      name="PTAnswer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
+              endId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]"
+              name="ADO NET Source Output"
+              startId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Restore CC PES backup"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -37,6 +328,16 @@
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6D521916-4493-4678-B1CC-1432A68B21B6}"
+      DTS:From="Package\Restore CC PES backup"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Canonical Answers" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -48,13 +349,85 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Load Canonical Answers"
+          TopLeft="512,334" />
         <NodeLayout
           Size="189,42"
           Id="Package\Restore CC PES backup"
-          TopLeft="528,117" />
+          TopLeft="515,203" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="609,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Load Canonical Answers">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Load Canonical Answers\Answer JOIN Question"
+          TopLeft="421,92" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Load Canonical Answers\Data Conversion"
+          TopLeft="431,191" />
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
+          TopLeft="511.25,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Canonical Answers\Answer JOIN Question">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
