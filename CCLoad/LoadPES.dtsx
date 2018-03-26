@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{1C1F9EF1-36A6-48D8-B861-B3FEDEC3EF4F}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{ECD179AC-3335-45E7-BBF1-607CC29670C9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -223,19 +223,20 @@ order by
               </outputs>
             </component>
             <component
-              refId="Package\Load Canonical Answers\Data Conversion"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Data Conversion"
-              name="Data Conversion"
+              refId="Package\Load Canonical Answers\Convert Answer to ASCII"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Convert Answer to ASCII"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]"
-                  name="Data Conversion Input">
+                  refId="Package\Load Canonical Answers\Convert Answer to ASCII.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input].Columns[Answer]"
+                      refId="Package\Load Canonical Answers\Convert Answer to ASCII.Inputs[Derived Column Input].Columns[Answer]"
                       cachedDataType="nText"
                       cachedName="Answer"
                       lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]" />
@@ -245,52 +246,181 @@ order by
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Output]"
+                  refId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
-                  name="Data Conversion Output"
-                  synchronousInputId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]">
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Canonical Answers\Convert Answer to ASCII.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Output].Columns[PTAnswer]"
+                      refId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]"
                       codePage="1252"
-                      dataType="text"
-                      errorOrTruncationOperation="Conversion"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Output].Columns[PTAnswer]"
+                      length="8000"
+                      lineageId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]"
                       name="PTAnswer"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]}</property>
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,8000,1252)(DT_WSTR,8000)#{Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]}</property>
                         <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,8000,1252)(DT_WSTR,8000)Answer</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output]"
+                  refId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="Data Conversion Error Output"
-                  synchronousInputId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]">
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Canonical Answers\Convert Answer to ASCII.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      refId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Canonical Answers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Canonical Answers\Split passthru from lookup answers"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Split passthru from lookup answers"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input].Columns[LookupUID]"
+                      cachedDataType="i4"
+                      cachedName="LookupUID"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[LookupUID]" />
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input].Columns[PTAnswer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="PTAnswer"
+                      lineageId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[PassthruAnswers]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="PassthruAnswers"
+                  synchronousInputId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[LookupUID]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(LookupUID)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[EmptyAnswers]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="EmptyAnswers"
+                  synchronousInputId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]}) || [TRIM](#{Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]}) == ""</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(PTAnswer) || TRIM(PTAnswer) == ""</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[LookupAnswers]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="LookupAnswers"
+                  synchronousInputId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -302,9 +432,14 @@ order by
           <paths>
             <path
               refId="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
-              endId="Package\Load Canonical Answers\Data Conversion.Inputs[Data Conversion Input]"
+              endId="Package\Load Canonical Answers\Convert Answer to ASCII.Inputs[Derived Column Input]"
               name="ADO NET Source Output"
               startId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Load Canonical Answers.Paths[Derived Column Output]"
+              endId="Package\Load Canonical Answers\Split passthru from lookup answers.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -387,29 +522,55 @@ order by
     design-time-name="Package\Load Canonical Answers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="185,42"
           Id="Package\Load Canonical Answers\Answer JOIN Question"
           TopLeft="421,92" />
         <NodeLayout
-          Size="156,42"
-          Id="Package\Load Canonical Answers\Data Conversion"
-          TopLeft="431,191" />
+          Size="245,42"
+          Id="Package\Load Canonical Answers\Split passthru from lookup answers"
+          TopLeft="395,309" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Load Canonical Answers\Convert Answer to ASCII"
+          TopLeft="419,179" />
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
-          TopLeft="511.25,134">
+          TopLeft="515.25,134">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,57"
+              EndConnector="0,45"
               Start="0,0"
-              End="0,49.5">
+              End="0,37.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,49.5" />
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[Derived Column Output]"
+          TopLeft="517.25,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88"
+              Start="0,0"
+              End="0,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
