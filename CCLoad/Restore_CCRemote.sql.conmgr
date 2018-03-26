@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Restore_CCRemote.sql"
+  DTS:DTSID="{D7386AFE-2245-47BD-822E-F13B3CF47950}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="\\ms-cjfs-sis\Source\Production\Packages\ETL\EFS\PESLoad\Restore_CCRemote.sql" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
