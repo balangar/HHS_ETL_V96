@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CC-PE-Screening sa"
+  DTS:DTSID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-CJFS-AptSQL;User ID=sa;Initial Catalog=CC-PE-Screening;Persist Security Info=True;Application Name=SSIS-CCLoad-{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}MS-CJFS-AptSQL.CC-PE-Screening_Remote.Cuy_DataLoader;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="1gaeIiBXNFQ="
+        p4:IV="FT0imY6Y9u05FbbZllypHw=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">dXkzfHvILcUknwvIZNkiy22xFrxTLt/VMqUfVcayy2qvtQHZCR2eQW08HnJ/N6dmha1p0TC/AeduAttHPOQmJ1w8am/VmzJ4apKFnWDXTrXAxHjftIpd+zMfatGve3GqEi48jG7kIrobqv9Z2S9mHfeyODQ0y5+8n6PGJWwQnQ0=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
