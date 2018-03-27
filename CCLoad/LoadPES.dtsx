@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="3/26/2018 10:25:03 AM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{DF304F04-3A29-42EA-9427-45B0CB195482}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{94A88B99-23FD-403D-9F3B-B1A77308CE2A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -95,8 +95,8 @@ order by
               <connections>
                 <connection
                   refId="Package\Load Canonical Answers\Answer JOIN Question.Connections[IDbConnection]"
-                  connectionManagerID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[CC-PE-Screening sa]"
+                  connectionManagerID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:invalid"
+                  connectionManagerRefId="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -310,7 +310,7 @@ order by
               contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
               description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
               name="Create Lookup Rows"
-              version="11">
+              version="8">
               <properties>
                 <property
                   dataType="System.String"
@@ -1627,6 +1627,111 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Load Canonical Answers\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[uidAnswer]"
+                      cachedDataType="i4"
+                      cachedName="uidAnswer"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[uidAnswer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[InterviewUid]"
+                      cachedDataType="i4"
+                      cachedName="InterviewUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[InterviewUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[QuestionUid]"
+                      cachedDataType="i4"
+                      cachedName="QuestionUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[QuestionUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[LookupDataUid]"
+                      cachedDataType="i4"
+                      cachedName="LookupDataUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[LookupDataUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupDataUid]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]"
+                      name="uidAnswer" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]"
+                      name="InterviewUid" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]"
+                      name="QuestionUid" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupDataUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupDataUid]"
+                      name="LookupDataUid" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -1644,6 +1749,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               endId="Package\Load Canonical Answers\Create Lookup Rows.Inputs[Input 0]"
               name="LookupAnswers"
               startId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[LookupAnswers]" />
+            <path
+              refId="Package\Load Canonical Answers.Paths[LookupAnswers1]"
+              endId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1]"
+              name="LookupAnswers"
+              startId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1682,7 +1792,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -1726,7 +1836,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
     design-time-name="Package\Load Canonical Answers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="175,42"
           Id="Package\Load Canonical Answers\Create Lookup Rows"
@@ -1767,13 +1877,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[LookupAnswers]"
-          TopLeft="517.5,351">
+          TopLeft="607.5,351">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="254,135"
+              EndConnector="164,135"
               Start="0,0"
-              End="254,127.5">
+              End="164,127.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1784,20 +1894,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                     Point2="0,67.5"
                     Point3="4,67.5" />
                   <mssgle:LineSegment
-                    End="250,67.5" />
+                    End="160,67.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="250,67.5"
-                    Point2="254,67.5"
-                    Point3="254,71.5" />
+                    Point1="160,67.5"
+                    Point2="164,67.5"
+                    Point3="164,71.5" />
                   <mssgle:LineSegment
-                    End="254,127.5" />
+                    End="164,127.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="92.107421875,72.5,69.78515625,11.609375"
+              BoundingBox="47.107421875,72.5,69.78515625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1820,7 +1930,49 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8,32.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Load Canonical Answers\Union All"
+          TopLeft="467,688" />
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[LookupAnswers1]"
+          TopLeft="771.5,528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-244,160"
+              Start="0,0"
+              End="-244,152.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,76"
+                    Point2="0,80"
+                    Point3="-4,80" />
+                  <mssgle:LineSegment
+                    End="-240,80" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-240,80"
+                    Point2="-244,80"
+                    Point3="-244,84" />
+                  <mssgle:LineSegment
+                    End="-244,152.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-130,85,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

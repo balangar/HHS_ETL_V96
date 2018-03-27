@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="CC-PE-Screening_Remote sa"
   DTS:DTSID="{A5C58ACB-50A0-4381-BA35-507A18733BDE}"
@@ -9,9 +9,8 @@
       <DTS:Password
         DTS:Name="Password"
         Sensitive="1"
-        p4:Salt="tkihzLoDiww="
-        p4:IV="+Bb029u2I1i+QXL4luOQGA=="
-        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">2QTtunpf4SmPTXra0ryjlSzp0pPwk9ARoFixjdGZBVpwVWMm6s24HhdmwORbZLtiMGJPduG+vq1RmTOnRw0LtEBZC0Utggkjkn4685Z2QmPPIpx1Jruk8tlaYwTzwE/CYD3XDukFWqQrTC30GuizDS4IzK0VNTcecnZAvuYyOqc=</DTS:Password>
+        p4:Salt="B2bU1+PYTg=="
+        p4:IV="KUEpdTxuEQU=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">7db6/UE84YXupYPVDSmuTBITUO6LepQaSFF2GmggFmPmTJg31Kd9XZ9c8G9ZBrDvm3w5QuKExUqVQSzJWkMmjMhbQlcDTz9cc7sRyvQwo0aqpp8kv8VUmnLWhsMhVPSnYC1RRQySD+QsW5LwzNFUaVqMV9Z7ykQd</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
