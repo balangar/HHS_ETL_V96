@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="3/26/2018 10:25:03 AM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{94A88B99-23FD-403D-9F3B-B1A77308CE2A}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{F709C808-9E21-4818-8431-0C0842A63CB5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -95,8 +95,8 @@ order by
               <connections>
                 <connection
                   refId="Package\Load Canonical Answers\Answer JOIN Question.Connections[IDbConnection]"
-                  connectionManagerID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:invalid"
-                  connectionManagerRefId="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:invalid"
+                  connectionManagerID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CC-PE-Screening sa]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -310,7 +310,7 @@ order by
               contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
               description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
               name="Create Lookup Rows"
-              version="8">
+              version="9">
               <properties>
                 <property
                   dataType="System.String"
@@ -320,6 +320,18 @@ order by
                   state="cdata">
                   <arrayElements
                     arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
                     <arrayElement
                       dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
                     <arrayElement
@@ -994,10 +1006,10 @@ public class Variables
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
     <Compile Include="main.cs" />
     <Compile Include="BufferWrapper.cs" />
     <Compile Include="ComponentWrapper.cs" />
@@ -1033,12 +1045,37 @@ public class Variables
         <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
         <Host Name="ScriptComponent" GeneratedNamespace="SC_f73137e6dacf4cd3b2cdc8ab0924919f" IconIndex="0"></Host>
         <ProjectClient>
-          <HostIdentifier>SSIS_SC140</HostIdentifier>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_f73137e6dacf4cd3b2cdc8ab0924919f</msb:CodeName>
+		<msb:DisplayName>SC_f73137e6dacf4cd3b2cdc8ab0924919f</msb:DisplayName>
+		<msb:ProjectId>{9FB649F9-349D-44B4-B8FE-D5DE1F1881B0}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_f73137e6dacf4cd3b2cdc8ab0924919f.csproj"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
                     <arrayElement
                       dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
                     <arrayElement
@@ -1073,31 +1110,6 @@ namespace SC_f73137e6dacf4cd3b2cdc8ab0924919f.Properties {
 }
 ]]></arrayElement>
                     <arrayElement
-                      dataType="System.String"><![CDATA[Project]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-  <msb:PropertyGroup>
-    <msb:CodeName>SC_f73137e6dacf4cd3b2cdc8ab0924919f</msb:CodeName>
-    <msb:Language>msBuild</msb:Language>
-    <msb:DisplayName>SC_f73137e6dacf4cd3b2cdc8ab0924919f</msb:DisplayName>
-    <msb:ProjectId>{9FB649F9-349D-44B4-B8FE-D5DE1F1881B0}</msb:ProjectId>
-  </msb:PropertyGroup>
-  <msb:ItemGroup>
-    <msb:Project Include="SC_f73137e6dacf4cd3b2cdc8ab0924919f.csproj" />
-    <msb:File Include="ComponentWrapper.cs" />
-    <msb:File Include="Properties\Settings.Designer.cs" />
-    <msb:File Include="main.cs" />
-    <msb:File Include="BufferWrapper.cs" />
-    <msb:File Include="Properties\Settings.settings" />
-    <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
-    <msb:File Include="Properties\Resources.Designer.cs" />
-  </msb:ItemGroup>
-</c:Project>]]></arrayElement>
-                    <arrayElement
                       dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
                     <arrayElement
                       dataType="System.String"><![CDATA[UTF8]]></arrayElement>
@@ -1131,18 +1143,6 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 ]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></arrayElement>
                     <arrayElement
                       dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
                     <arrayElement
@@ -1230,7 +1230,7 @@ namespace SC_f73137e6dacf4cd3b2cdc8ab0924919f.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMdLuloAAAAAAAAAAOAAIiALATAAABwAAAAIAAAAAAAAvjoA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAON6u1oAAAAAAAAAAOAAIiALATAAABwAAAAIAAAAAAAAvjoA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGw6AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1295,8 +1295,8 @@ AJ8ASAEAACoETAEAAOwFUAEAAIUETAEAAAcGSAEAAK4ETAEAAMAASAEAAFkETAEAAJ8ASAEAACoE
 TAEAAH0ASAEAAPoDTAEAALoFVAEAAHcBWQEAAM4HXgECAAkAAwACAAoABQACAAsABwACAAwACQAC
 AA0ACwACAA4ADQACAA8ADwABABAADwACABEAEQABABIAEQABABYAEwABABcAFQABABgAFwABABkA
 GQABABoAGwABABsAHQABABwAHwABAB0AIQACACwAIwACAC0AJQABAC4AJQACAC8AJwA4AGQABIAA
-AAEAAAAAAAAAAAAAAAAAcAMAAAQAAAAAAAAAAAAAAMYALgAAAAAADgAAAAAAAAAAAAAAzwAQCAAA
-AAAOAAAAAAAAAAAAAADPAC0IAAAAAAQAAAAAAAAAAAAAAMYA0AQAAAAAAAAAAAEAAACHBgAAAAAA
+AAEAAAAAAAAAAAAAAAAAcAMAAAQAAAAAAAAAAAAAAMYALgAAAAAADAAAAAAAAAAAAAAAzwAQCAAA
+AAAMAAAAAAAAAAAAAADPAC0IAAAAAAQAAAAAAAAAAAAAAMYA0AQAAAAAAAAAAAEAAACHBgAAAAAA
 TGlzdGAxAEdldEludDMyADxNb2R1bGU+AElucHV0SUQAR2V0T3V0cHV0SUQAbXNjb3JsaWIAU3lz
 dGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMAQWRkAElucHV0c0ZpbmlzaGVkAE1hcmtPdXRwdXRzRmlu
 aXNoZWQAc2V0X0xvb2t1cERhdGFVaWQAZ2V0X1F1ZXN0aW9uVWlkAHNldF9RdWVzdGlvblVpZABn
@@ -1342,7 +1342,7 @@ ACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcAbgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgA
 ZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABlAGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAG0wAbwBv
 AGsAdQBwAEEAbgBzAHcAZQByAHMAAHFTAEMAXwBmADcAMwAxADMANwBlADYAZABhAGMAZgA0AGMA
 ZAAzAGIAMgBjAGQAYwA4AGEAYgAwADkAMgA0ADkAMQA5AGYALgBQAHIAbwBwAGUAcgB0AGkAZQBz
-AC4AUgBlAHMAbwB1AHIAYwBlAHMAAEepDkGVomFGtKrLBUJ2wlUABCABAQgDIAABBSABARERBCAB
+AC4AUgBlAHMAbwB1AHIAYwBlAHMAAPFompSzDQ9KoRqUsYjPqc8ABCABAQgDIAABBSABARERBCAB
 AQ4FIAEBEWEEAAECDgYAAgIOEAgDBwEIDAcFCBUSOQEOHQ4IDgUVEjkBDgQgAB0DCCACHQ4dAxF5
 BSABARMACAcCFRE9AQ4OCCAAFRE9ARMABRURPQEOBCAAEwADIAACCSADARJFHQgSSQMGEkUDBh0I
 BCABCAgEIAECCAQgAQ4IBSACAQgcByACAg4RgIUFIAEdCAgGAAIIEkkOCAABEoCJEYCNBSAAEoCR
@@ -1438,6 +1438,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                 <property
                   dataType="System.String"
                   name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">584fb9ca8649c7d6eb4bafc09b279e6193529e9a</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">bff7c6d261fa25870d9ef3d6aea6a163</property>
               </properties>
               <inputs>
                 <input
@@ -1498,6 +1508,166 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                       dataType="i4"
                       lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[LookupDataUid]"
                       name="LookupDataUid" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Canonical Answers\Lookup Answers"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Answers"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[LookupData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[LookupData]) [refTable]
+where [refTable].[uidLookupData] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="uidLookupData" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LookupUid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SortOrder" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[LookupDataUid]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Canonical Answers\Lookup Answers.Connections[OleDbConnection]"
+                  connectionManagerID="{CB82D79D-2F73-4B94-8F6B-5D16CDE247FE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CC-PE-Screening sa OLEDB]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input].Columns[LookupDataUid]"
+                      cachedDataType="i4"
+                      cachedName="LookupDataUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[LookupDataUid]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">uidLookupData</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Match Output].Columns[Answer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Match Output].Columns[Answer]"
+                      name="Answer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Name</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1627,111 +1797,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                 </output>
               </outputs>
             </component>
-            <component
-              refId="Package\Load Canonical Answers\Union All"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All"
-              version="1">
-              <inputs>
-                <input
-                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1]"
-                  name="Union All Input 1">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[uidAnswer]"
-                      cachedDataType="i4"
-                      cachedName="uidAnswer"
-                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[uidAnswer]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[InterviewUid]"
-                      cachedDataType="i4"
-                      cachedName="InterviewUid"
-                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[InterviewUid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[QuestionUid]"
-                      cachedDataType="i4"
-                      cachedName="QuestionUid"
-                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[QuestionUid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[LookupDataUid]"
-                      cachedDataType="i4"
-                      cachedName="LookupDataUid"
-                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[LookupDataUid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupDataUid]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 2">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]"
-                      dataType="i4"
-                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]"
-                      name="uidAnswer" />
-                    <outputColumn
-                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]"
-                      dataType="i4"
-                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]"
-                      name="InterviewUid" />
-                    <outputColumn
-                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]"
-                      dataType="i4"
-                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]"
-                      name="QuestionUid" />
-                    <outputColumn
-                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupDataUid]"
-                      dataType="i4"
-                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupDataUid]"
-                      name="LookupDataUid" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
           </components>
           <paths>
             <path
@@ -1751,7 +1816,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               startId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[LookupAnswers]" />
             <path
               refId="Package\Load Canonical Answers.Paths[LookupAnswers1]"
-              endId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1]"
+              endId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input]"
               name="LookupAnswers"
               startId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers]" />
           </paths>
@@ -1838,43 +1903,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="175,42"
-          Id="Package\Load Canonical Answers\Create Lookup Rows"
-          TopLeft="684,486" />
+          Size="196,42"
+          Id="Package\Load Canonical Answers\Convert Answer to ASCII"
+          TopLeft="419,179" />
         <NodeLayout
           Size="245,42"
           Id="Package\Load Canonical Answers\Split passthru from lookup answers"
           TopLeft="395,309" />
         <NodeLayout
+          Size="175,42"
+          Id="Package\Load Canonical Answers\Create Lookup Rows"
+          TopLeft="684,486" />
+        <NodeLayout
           Size="185,42"
           Id="Package\Load Canonical Answers\Answer JOIN Question"
           TopLeft="421,92" />
-        <NodeLayout
-          Size="196,42"
-          Id="Package\Load Canonical Answers\Convert Answer to ASCII"
-          TopLeft="419,179" />
-        <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
-          TopLeft="515.25,134">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,45"
-              Start="0,0"
-              End="0,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[LookupAnswers]"
           TopLeft="607.5,351">
@@ -1930,49 +1973,55 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,32.25,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="121,42"
-          Id="Package\Load Canonical Answers\Union All"
-          TopLeft="467,688" />
         <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[LookupAnswers1]"
-          TopLeft="771.5,528">
+          Id="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
+          TopLeft="515.25,134">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-244,160"
+              EndConnector="0,45"
               Start="0,0"
-              End="-244,152.5">
+              End="0,37.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,76" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,76"
-                    Point2="0,80"
-                    Point3="-4,80" />
-                  <mssgle:LineSegment
-                    End="-240,80" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-240,80"
-                    Point2="-244,80"
-                    Point3="-244,84" />
-                  <mssgle:LineSegment
-                    End="-244,152.5" />
+                    End="0,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-130,85,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Load Canonical Answers\Lookup Answers"
+          TopLeft="690,618" />
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[LookupAnswers1]"
+          TopLeft="769.75,528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90"
+              Start="0,0"
+              End="0,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1981,6 +2030,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
   <PipelineComponentMetadata
     design-time-name="Package\Load Canonical Answers\Answer JOIN Question">
     <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Canonical Answers\Lookup Answers">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[LookupData]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">1</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CC-PE-Screening sa OLEDB"
+  DTS:DTSID="{CB82D79D-2F73-4B94-8F6B-5D16CDE247FE}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-CJFS-AptSQL;User ID=sa;Initial Catalog=CC-PE-Screening;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="2o05uw19GQ=="
+        p4:IV="7sGXcMbJ264=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">ZBXgrl+57sLc92cLQWPMT2eGhPOvPsMyTcyYzKcvfugF5dguUv+Vpu+x+Qt8yd39N3pMmzoWegW1pVLBbNevCSC0jm8qZ55hMCYbN5M1InE5n7jufU546VzQg/YfV1tDcy4td7NaMEm2Yz6xfVCbLnivV/jnKDkI</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
