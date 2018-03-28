@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{F709C808-9E21-4818-8431-0C0842A63CB5}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{2CE88BC8-890D-47C9-A7DE-444707E8E2F8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -60,7 +60,7 @@ From
 		 iv.start &gt; '6/30/2015'
 
 Where
-   iv.Start &gt; (
+   iv.Start &gt;= (
         Select MAX(start) from 
             [CC-PE-Screening].dbo.CanAnswers ca
             JOIN
@@ -215,6 +215,133 @@ order by
                       refId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Canonical Answers\Canonical Answers"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Canonical Answers"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."CanAnswers"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Canonical Answers\Canonical Answers.Connections[IDbConnection]"
+                  connectionManagerID="{E953AD96-3E6C-4AEF-9BC6-73F72A2203F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CC-PE-Screening sa]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].Columns[uidAnswer]"
+                      cachedDataType="i4"
+                      cachedName="uidAnswer"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[uidAnswer]"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]" />
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].Columns[InterviewUid]"
+                      cachedDataType="i4"
+                      cachedName="InterviewUid"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[InterviewUid]"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]" />
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].Columns[QuestionUid]"
+                      cachedDataType="i4"
+                      cachedName="QuestionUid"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[QuestionUid]"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]" />
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].Columns[PTAnswer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="PTAnswer"
+                      externalMetadataColumnId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[Answer]"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[CAID]"
+                      dataType="i4"
+                      name="CAID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[uidAnswer]"
+                      dataType="i4"
+                      name="uidAnswer" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[InterviewUid]"
+                      dataType="i4"
+                      name="InterviewUid" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[QuestionUid]"
+                      dataType="i4"
+                      name="QuestionUid" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[Answer]"
+                      dataType="wstr"
+                      length="2147483647"
+                      name="Answer" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Canonical Answers.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Canonical Answers.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Canonical Answers.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1797,6 +1924,314 @@ where [refTable].[uidLookupData] = ?</property>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Load Canonical Answers\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[uidAnswer]"
+                      cachedDataType="i4"
+                      cachedName="uidAnswer"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[uidAnswer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[InterviewUid]"
+                      cachedDataType="i4"
+                      cachedName="InterviewUid"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[InterviewUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[QuestionUid]"
+                      cachedDataType="i4"
+                      cachedName="QuestionUid"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[QuestionUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[Answer]"
+                      cachedDataType="nText"
+                      cachedName="Answer"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[Answer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[LookupUID]"
+                      cachedDataType="i4"
+                      cachedName="LookupUID"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[LookupUID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupUID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1].Columns[PTAnswer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="PTAnswer"
+                      lineageId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2].Columns[uidAnswer]"
+                      cachedDataType="i4"
+                      cachedName="uidAnswer"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[uidAnswer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2].Columns[InterviewUid]"
+                      cachedDataType="i4"
+                      cachedName="InterviewUid"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[InterviewUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2].Columns[QuestionUid]"
+                      cachedDataType="i4"
+                      cachedName="QuestionUid"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[QuestionUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2].Columns[Answer]"
+                      cachedDataType="nText"
+                      cachedName="Answer"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[Answer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[Answer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2].Columns[LookupUID]"
+                      cachedDataType="i4"
+                      cachedName="LookupUID"
+                      lineageId="Package\Load Canonical Answers\Answer JOIN Question.Outputs[ADO NET Source Output].Columns[LookupUID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupUID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2].Columns[PTAnswer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="PTAnswer"
+                      lineageId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output].Columns[PTAnswer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3].Columns[uidAnswer]"
+                      cachedDataType="i4"
+                      cachedName="uidAnswer"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[uidAnswer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3].Columns[InterviewUid]"
+                      cachedDataType="i4"
+                      cachedName="InterviewUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[InterviewUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3].Columns[QuestionUid]"
+                      cachedDataType="i4"
+                      cachedName="QuestionUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[QuestionUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3].Columns[Answer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Answer"
+                      lineageId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Match Output].Columns[Answer]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3].Columns[LookupDataUid]"
+                      cachedDataType="i4"
+                      cachedName="LookupDataUid"
+                      lineageId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers].Columns[LookupDataUid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupUID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[uidAnswer]"
+                      name="uidAnswer" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[InterviewUid]"
+                      name="InterviewUid" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]"
+                      name="QuestionUid" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[Answer]"
+                      dataType="nText"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[Answer]"
+                      name="Answer" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupUID]"
+                      dataType="i4"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[LookupUID]"
+                      name="LookupUID" />
+                    <outputColumn
+                      refId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]"
+                      name="PTAnswer" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -1810,6 +2245,16 @@ where [refTable].[uidLookupData] = ?</property>
               name="Derived Column Output"
               startId="Package\Load Canonical Answers\Convert Answer to ASCII.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Load Canonical Answers.Paths[EmptyAnswers]"
+              endId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 1]"
+              name="EmptyAnswers"
+              startId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[EmptyAnswers]" />
+            <path
+              refId="Package\Load Canonical Answers.Paths[Lookup Match Output]"
+              endId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 3]"
+              name="Lookup Match Output"
+              startId="Package\Load Canonical Answers\Lookup Answers.Outputs[Lookup Match Output]" />
+            <path
               refId="Package\Load Canonical Answers.Paths[LookupAnswers]"
               endId="Package\Load Canonical Answers\Create Lookup Rows.Inputs[Input 0]"
               name="LookupAnswers"
@@ -1819,6 +2264,16 @@ where [refTable].[uidLookupData] = ?</property>
               endId="Package\Load Canonical Answers\Lookup Answers.Inputs[Lookup Input]"
               name="LookupAnswers"
               startId="Package\Load Canonical Answers\Create Lookup Rows.Outputs[LookupAnswers]" />
+            <path
+              refId="Package\Load Canonical Answers.Paths[PassthruAnswers]"
+              endId="Package\Load Canonical Answers\Union All.Inputs[Union All Input 2]"
+              name="PassthruAnswers"
+              startId="Package\Load Canonical Answers\Split passthru from lookup answers.Outputs[PassthruAnswers]" />
+            <path
+              refId="Package\Load Canonical Answers.Paths[Union All Output 1]"
+              endId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1863,7 +2318,7 @@ where [refTable].[uidLookupData] = ?</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="193,42"
           Id="Package\Load Canonical Answers"
@@ -1877,7 +2332,7 @@ where [refTable].[uidLookupData] = ?</property>
           TopLeft="609,245">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,89"
               Start="0,0"
               End="0,81.5">
@@ -1901,15 +2356,15 @@ where [refTable].[uidLookupData] = ?</property>
     design-time-name="Package\Load Canonical Answers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="196,42"
           Id="Package\Load Canonical Answers\Convert Answer to ASCII"
           TopLeft="419,179" />
         <NodeLayout
-          Size="245,42"
-          Id="Package\Load Canonical Answers\Split passthru from lookup answers"
-          TopLeft="395,309" />
+          Size="156,42"
+          Id="Package\Load Canonical Answers\Lookup Answers"
+          TopLeft="690,618" />
         <NodeLayout
           Size="175,42"
           Id="Package\Load Canonical Answers\Create Lookup Rows"
@@ -1918,48 +2373,16 @@ where [refTable].[uidLookupData] = ?</property>
           Size="185,42"
           Id="Package\Load Canonical Answers\Answer JOIN Question"
           TopLeft="421,92" />
-        <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[LookupAnswers]"
-          TopLeft="607.5,351">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="164,135"
-              Start="0,0"
-              End="164,127.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,63.5"
-                    Point2="0,67.5"
-                    Point3="4,67.5" />
-                  <mssgle:LineSegment
-                    End="160,67.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="160,67.5"
-                    Point2="164,67.5"
-                    Point3="164,71.5" />
-                  <mssgle:LineSegment
-                    End="164,127.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="47.107421875,72.5,69.78515625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Load Canonical Answers\Split passthru from lookup answers"
+          TopLeft="395,309" />
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[Derived Column Output]"
           TopLeft="517.25,221">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,88"
               Start="0,0"
               End="0,80.5">
@@ -1981,7 +2404,7 @@ where [refTable].[uidLookupData] = ?</property>
           TopLeft="515.25,134">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,45"
               Start="0,0"
               End="0,37.5">
@@ -1998,16 +2421,12 @@ where [refTable].[uidLookupData] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Load Canonical Answers\Lookup Answers"
-          TopLeft="690,618" />
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[LookupAnswers1]"
           TopLeft="769.75,528">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,90"
               Start="0,0"
               End="0,82.5">
@@ -2024,24 +2443,208 @@ where [refTable].[uidLookupData] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[LookupAnswers]"
+          TopLeft="515.5,351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="256,135"
+              Start="0,0"
+              End="256,127.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,63.5"
+                    Point2="0,67.5"
+                    Point3="4,67.5" />
+                  <mssgle:LineSegment
+                    End="252,67.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="252,67.5"
+                    Point2="256,67.5"
+                    Point3="256,71.5" />
+                  <mssgle:LineSegment
+                    End="256,127.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="93.107421875,69.5,69.78515625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Load Canonical Answers\Union All"
+          TopLeft="445,725" />
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[EmptyAnswers]"
+          TopLeft="475.75,351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,374"
+              Start="0,0"
+              End="0,366.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,366.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.0242447916667,200.887595878461,65.71515625,11.2822265625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[PassthruAnswers]"
+          TopLeft="515.75,351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,374"
+              Start="0,0"
+              End="0,366.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,366.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-32.9842447916667,200.887595878461,75.63515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[Lookup Match Output]"
+          TopLeft="768,660">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-243.666666666667,65"
+              Start="0,0"
+              End="-243.666666666667,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4910277324633" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.4910277324633"
+                    Point2="0,28.4910277324633"
+                    Point3="-4,28.4910277324633" />
+                  <mssgle:LineSegment
+                    End="-239.666666666667,28.4910277324633" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-239.666666666667,28.4910277324633"
+                    Point2="-243.666666666667,28.4910277324633"
+                    Point3="-243.666666666667,32.4910277324633" />
+                  <mssgle:LineSegment
+                    End="-243.666666666667,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-169.524720052083,55.9265905383361,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Load Canonical Answers\Canonical Answers"
+          TopLeft="426,846" />
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[Union All Output 1]"
+          TopLeft="507.5,767">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Empty"
+          ParentId="Package\Load Canonical Answers"
+          Size="60,60"
+          Id="7ad0c0f3-0ad1-4077-840e-a47d7594bd56"
+          TopLeft="410,464">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Passthru"
+          ParentId="Package\Load Canonical Answers"
+          Size="71,60"
+          Id="89e70113-d811-445f-9cd5-36e9bdb37bb0"
+          TopLeft="520,463">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Lookup"
+          ParentId="Package\Load Canonical Answers"
+          Size="64,60"
+          Id="f6cc27dc-6b93-4e65-977f-89f4ac1ab368"
+          TopLeft="663,379">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Canonical Answers\Answer JOIN Question">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Canonical Answers\Lookup Answers">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2051,8 +2654,24 @@ where [refTable].[uidLookupData] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">1</Value>
+          type="q4:string">1</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Canonical Answers\Answer JOIN Question">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Canonical Answers\Canonical Answers">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
