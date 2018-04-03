@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{2CE88BC8-890D-47C9-A7DE-444707E8E2F8}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{F4ECF5CB-BD0E-4BCA-9D1C-4C24F1A0E98D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -60,7 +60,7 @@ From
 		 iv.start &gt; '6/30/2015'
 
 Where
-   iv.Start &gt;= (
+   iv.Start &gt; (
         Select MAX(start) from 
             [CC-PE-Screening].dbo.CanAnswers ca
             JOIN
@@ -290,13 +290,11 @@ order by
                       externalMetadataColumnId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[QuestionUid]"
                       lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[QuestionUid]" />
                     <inputColumn
-                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].Columns[PTAnswer]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="8000"
-                      cachedName="PTAnswer"
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].Columns[Answer]"
+                      cachedDataType="nText"
+                      cachedName="Answer"
                       externalMetadataColumnId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[Answer]"
-                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[PTAnswer]" />
+                      lineageId="Package\Load Canonical Answers\Union All.Outputs[Union All Output 1].Columns[Answer]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -321,6 +319,10 @@ order by
                       dataType="wstr"
                       length="2147483647"
                       name="Answer" />
+                    <externalMetadataColumn
+                      refId="Package\Load Canonical Answers\Canonical Answers.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2366,39 +2368,25 @@ where [refTable].[uidLookupData] = ?</property>
           Id="Package\Load Canonical Answers\Lookup Answers"
           TopLeft="690,618" />
         <NodeLayout
+          Size="167,42"
+          Id="Package\Load Canonical Answers\Canonical Answers"
+          TopLeft="426,846" />
+        <NodeLayout
           Size="175,42"
           Id="Package\Load Canonical Answers\Create Lookup Rows"
           TopLeft="684,486" />
         <NodeLayout
-          Size="185,42"
-          Id="Package\Load Canonical Answers\Answer JOIN Question"
-          TopLeft="421,92" />
-        <NodeLayout
           Size="245,42"
           Id="Package\Load Canonical Answers\Split passthru from lookup answers"
           TopLeft="395,309" />
-        <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[Derived Column Output]"
-          TopLeft="517.25,221">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,88"
-              Start="0,0"
-              End="0,80.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,80.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Load Canonical Answers\Union All"
+          TopLeft="445,725" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Load Canonical Answers\Answer JOIN Question"
+          TopLeft="421,92" />
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[ADO NET Source Output]"
           TopLeft="515.25,134">
@@ -2419,6 +2407,52 @@ where [refTable].[uidLookupData] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[Union All Output 1]"
+          TopLeft="507.5,767">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[PassthruAnswers]"
+          TopLeft="515.75,351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,374"
+              Start="0,0"
+              End="0,366.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,366.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-32.9842447916667,200.887595878461,75.63515625,9.7490234375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2479,58 +2513,6 @@ where [refTable].[uidLookupData] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="121,42"
-          Id="Package\Load Canonical Answers\Union All"
-          TopLeft="445,725" />
-        <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[EmptyAnswers]"
-          TopLeft="475.75,351">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,374"
-              Start="0,0"
-              End="0,366.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,366.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-28.0242447916667,200.887595878461,65.71515625,11.2822265625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[PassthruAnswers]"
-          TopLeft="515.75,351">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,374"
-              Start="0,0"
-              End="0,366.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,366.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-32.9842447916667,200.887595878461,75.63515625,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Canonical Answers.Paths[Lookup Match Output]"
           TopLeft="768,660">
@@ -2567,24 +2549,44 @@ where [refTable].[uidLookupData] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Load Canonical Answers\Canonical Answers"
-          TopLeft="426,846" />
         <EdgeLayout
-          Id="Package\Load Canonical Answers.Paths[Union All Output 1]"
-          TopLeft="507.5,767">
+          Id="Package\Load Canonical Answers.Paths[EmptyAnswers]"
+          TopLeft="475.75,351">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,79"
+              EndConnector="0,374"
               Start="0,0"
-              End="0,71.5">
+              End="0,366.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,71.5" />
+                    End="0,366.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.0242447916667,200.887595878461,65.71515625,11.2822265625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Canonical Answers.Paths[Derived Column Output]"
+          TopLeft="517.25,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,88"
+              Start="0,0"
+              End="0,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2596,7 +2598,7 @@ where [refTable].[uidLookupData] = ?</property>
         <AnnotationLayout
           Text="Empty"
           ParentId="Package\Load Canonical Answers"
-          Size="60,60"
+          Size="60,37"
           Id="7ad0c0f3-0ad1-4077-840e-a47d7594bd56"
           TopLeft="410,464">
           <AnnotationLayout.FontInfo>
@@ -2610,7 +2612,7 @@ where [refTable].[uidLookupData] = ?</property>
         <AnnotationLayout
           Text="Passthru"
           ParentId="Package\Load Canonical Answers"
-          Size="71,60"
+          Size="71,37"
           Id="89e70113-d811-445f-9cd5-36e9bdb37bb0"
           TopLeft="520,463">
           <AnnotationLayout.FontInfo>
@@ -2624,7 +2626,7 @@ where [refTable].[uidLookupData] = ?</property>
         <AnnotationLayout
           Text="Lookup"
           ParentId="Package\Load Canonical Answers"
-          Size="64,60"
+          Size="64,37"
           Id="f6cc27dc-6b93-4e65-977f-89f4ac1ab368"
           TopLeft="663,379">
           <AnnotationLayout.FontInfo>
@@ -2662,7 +2664,7 @@ where [refTable].[uidLookupData] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Canonical Answers\Answer JOIN Question">
+    design-time-name="Package\Load Canonical Answers\Canonical Answers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2670,7 +2672,7 @@ where [refTable].[uidLookupData] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Canonical Answers\Canonical Answers">
+    design-time-name="Package\Load Canonical Answers\Answer JOIN Question">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
