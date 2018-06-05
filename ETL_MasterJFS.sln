@@ -7,8 +7,6 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CCLoad", "CCLoad\CCLoad.dtp
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LoadHVR", "SafetyNetLoad\LoadHVR.dtproj", "{8DEAA0FC-6DE8-46D0-AAFB-866A234DF2A2}"
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SetsIVRLoad", "SetsIVRLoad\SetsIVRLoad.dtproj", "{AB2260D1-DE52-486E-B6F0-3D81027282B1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
@@ -18,8 +16,6 @@ Global
 		{22330D71-D7E8-4D2F-B42E-A0D4AED8F13D}.Development|Default.Build.0 = Development
 		{8DEAA0FC-6DE8-46D0-AAFB-866A234DF2A2}.Development|Default.ActiveCfg = Development
 		{8DEAA0FC-6DE8-46D0-AAFB-866A234DF2A2}.Development|Default.Build.0 = Development
-		{AB2260D1-DE52-486E-B6F0-3D81027282B1}.Development|Default.ActiveCfg = Development
-		{AB2260D1-DE52-486E-B6F0-3D81027282B1}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
