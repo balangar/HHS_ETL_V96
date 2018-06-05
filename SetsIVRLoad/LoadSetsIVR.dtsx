@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadSetsIVR"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{829FE199-9584-4A43-9717-EF9C09E2AA09}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{38688B26-E44E-4613-873E-8BC1479F96E3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -45,11 +45,25 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task"
           TopLeft="462,123" />
+        <AnnotationLayout
+          Text="Test"
+          ParentId="Package"
+          Size="50,60"
+          Id="f4c09677-198e-46c2-a9aa-b6be95c2566c"
+          TopLeft="213,84">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
