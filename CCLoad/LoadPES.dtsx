@@ -12,27 +12,12 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{8772E878-2BAE-4814-856B-117BC1AEE44C}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{FFB1D1F1-0426-432F-8315-7982CC45B0EA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{3F8F25B9-30CB-40E8-A9A3-31A8D2E616CA}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1" />
-      </DTS:ObjectData>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load Canonical Answers"
       DTS:CreationName="Microsoft.Pipeline"
@@ -2366,10 +2351,6 @@ where [refTable].[uidLookupData] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="151,42"
-          Id="Package\Data Flow Task"
-          TopLeft="688,495" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
