@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Notifications_Template"
+  DTS:DTSID="{86C54F99-76FC-411B-BF74-F7AE246C1EB4}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="\\ms-cjfs-sis\source\Production\Packages\ETL\EFS\LoadHVR\Notifications_Template.xls" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

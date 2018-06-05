@@ -1,0 +1,1931 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/1/2017 10:58:31 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS403300"
+  DTS:CreatorName="CCEFS\greeng"
+  DTS:DTSID="{4B2F8C93-24FB-46FA-94E3-54DA310ED1BD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ProcessQAToReferrals"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{C12601A6-EE5F-4952-AC4B-9C633E80A385}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9CE81E25-8B96-433A-818C-74D1B1981056}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="MaxQARecordCounter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6F99EB48-75E5-4005-8F0C-E98BA28EBBDF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="MinQARecordCounter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy Approved QA To Referrals"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{86FEE70E-3637-4048-98B7-D7116B46FA7F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Approved QA To Referrals"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Approved QA To Referrals\Filter Current and Approved"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Filter Current and Approved"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input].Columns[RowEndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="RowEndDate"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RowEndDate]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input].Columns[QACode]"
+                      cachedDataType="i2"
+                      cachedName="QACode"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QACode]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[CurrentAndApproved]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="CurrentAndApproved"
+                  synchronousInputId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RowEndDate]} == (DT_DATE)"9999-12-31" &amp;&amp; (#{Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QACode]} == 1 || #{Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QACode]} == 4)</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">RowEndDate == (DT_DATE)"9999-12-31" &amp;&amp; (QACode == 1 || QACode == 4)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Approved QA To Referrals\Referrals"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Referrals"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Referrals"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Approved QA To Referrals\Referrals.Connections[IDbConnection]"
+                  connectionManagerID="{6EF07193-CB11-4422-ABB6-3C3E7C21C789}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SafetyNet]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[CaseLoad]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CaseLoad"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[CaseLoad]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[CaseLoad]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[RecipientNo]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="RecipientNo"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[RecipientNo]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RecipientNo]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MI"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[BirthDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="BirthDate"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[CaseNo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CaseNo"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[CaseNo]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[CaseNo]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[ADCCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="ADCCategory"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[ADCCategory]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[ADCCategory]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[SeqNo]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="SeqNo"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SeqNo]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SeqNo]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[AssistanceGroup]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="AssistanceGroup"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AssistanceGroup]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AssistanceGroup]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[PhoneNo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PhoneNo"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[PhoneNo]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[PhoneNo]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[AlternatePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="AlternatePhone"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AlternatePhone]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AlternatePhone]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[StreetAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StreetAddress"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[StreetAddress]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[StreetAddress]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[Zip]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Zip"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[Zip]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[Zip]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[MailAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MailAddress"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailAddress]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailAddress]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[MailCity]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="MailCity"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailCity]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailCity]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[MailState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="MailState"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailState]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailState]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[MailZip]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="MailZip"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailZip]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailZip]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[WorkerLastName]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="WorkerLastName"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerLastName]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerLastName]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[WorkerFirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="WorkerFirstName"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerFirstName]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerFirstName]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[WorkerPhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="WorkerPhone"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerPhone]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerPhone]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[WorkerEMail]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WorkerEMail"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerEMail]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerEMail]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[FlagChildUnder6]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="FlagChildUnder6"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[FlagChildUnder6]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FlagChildUnder6]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[Month34AsOf]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Month34AsOf"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[Month34AsOf]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[Month34AsOf]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[SanctionLevel]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="SanctionLevel"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionLevel]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionLevel]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[SanctionComment]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SanctionComment"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionComment]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionComment]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[FlagSanctionWorkRelated]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="FlagSanctionWorkRelated"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[FlagSanctionWorkRelated]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FlagSanctionWorkRelated]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[SanctionBeginDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SanctionBeginDate"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionBeginDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionBeginDate]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[SanctionEndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SanctionEndDate"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionEndDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionEndDate]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[AppraisalWindowStartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="AppraisalWindowStartDate"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AppraisalWindowStartDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AppraisalWindowStartDate]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[AppraisalWindowEndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="AppraisalWindowEndDate"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AppraisalWindowEndDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AppraisalWindowEndDate]" />
+                    <inputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].Columns[RecordCounter]"
+                      cachedDataType="i4"
+                      cachedName="RecordCounter"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[QAReferralKey]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RecordCounter]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="guid"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[RecordCounter]"
+                      dataType="i4"
+                      name="RecordCounter" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[QAReferralKey]"
+                      dataType="i4"
+                      name="QAReferralKey" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertUser]"
+                      dataType="wstr"
+                      length="15"
+                      name="SysInsertUser" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[DateNotified]"
+                      dataType="dbTimeStamp"
+                      name="DateNotified" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[DateReferred]"
+                      dataType="dbTimeStamp"
+                      name="DateReferred" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SysUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="SysUpdateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SysUpdateUser]"
+                      dataType="wstr"
+                      length="15"
+                      name="SysUpdateUser" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[DispositionDate]"
+                      dataType="dbTimeStamp"
+                      name="DispositionDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[DispositionKey]"
+                      dataType="i4"
+                      name="DispositionKey" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[DispositionComments]"
+                      dataType="wstr"
+                      length="255"
+                      name="DispositionComments" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[CaseLoad]"
+                      dataType="wstr"
+                      length="6"
+                      name="CaseLoad" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[RecipientNo]"
+                      dataType="wstr"
+                      length="12"
+                      name="RecipientNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[CaseNo]"
+                      dataType="wstr"
+                      length="10"
+                      name="CaseNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[ADCCategory]"
+                      dataType="wstr"
+                      length="4"
+                      name="ADCCategory" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SeqNo]"
+                      dataType="wstr"
+                      length="2"
+                      name="SeqNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AssistanceGroup]"
+                      dataType="wstr"
+                      length="16"
+                      name="AssistanceGroup" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[PhoneNo]"
+                      dataType="wstr"
+                      length="10"
+                      name="PhoneNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AlternatePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="AlternatePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[StreetAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="StreetAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="19"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[Zip]"
+                      dataType="wstr"
+                      length="10"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="MailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailCity]"
+                      dataType="wstr"
+                      length="25"
+                      name="MailCity" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailState]"
+                      dataType="wstr"
+                      length="2"
+                      name="MailState" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[MailZip]"
+                      dataType="wstr"
+                      length="10"
+                      name="MailZip" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerLastName]"
+                      dataType="wstr"
+                      length="25"
+                      name="WorkerLastName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerFirstName]"
+                      dataType="wstr"
+                      length="25"
+                      name="WorkerFirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerPhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="WorkerPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[WorkerEMail]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkerEMail" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[FlagChildUnder6]"
+                      dataType="wstr"
+                      length="1"
+                      name="FlagChildUnder6" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[Month34AsOf]"
+                      dataType="wstr"
+                      length="6"
+                      name="Month34AsOf" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionLevel]"
+                      dataType="wstr"
+                      length="1"
+                      name="SanctionLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionComment]"
+                      dataType="wstr"
+                      length="255"
+                      name="SanctionComment" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[FlagSanctionWorkRelated]"
+                      dataType="wstr"
+                      length="1"
+                      name="FlagSanctionWorkRelated" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionBeginDate]"
+                      dataType="dbTimeStamp"
+                      name="SanctionBeginDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[SanctionEndDate]"
+                      dataType="dbTimeStamp"
+                      name="SanctionEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AppraisalWindowStartDate]"
+                      dataType="dbTimeStamp"
+                      name="AppraisalWindowStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input].ExternalColumns[AppraisalWindowEndDate]"
+                      dataType="dbTimeStamp"
+                      name="AppraisalWindowEndDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Approved QA To Referrals\Referrals.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Approved QA To Referrals\Referrals QA"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Referrals QA"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Referrals_QA"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Approved QA To Referrals\Referrals QA.Connections[IDbConnection]"
+                  connectionManagerID="{6EF07193-CB11-4422-ABB6-3C3E7C21C789}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SafetyNet]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RecordCounter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RecordCounter]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RecordCounter]"
+                      name="RecordCounter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[StagingReferralKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[StagingReferralKey]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[StagingReferralKey]"
+                      name="StagingReferralKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      length="30"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      name="SysInsertUser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      name="SysInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RowStartDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RowStartDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RowStartDate]"
+                      name="RowStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RowEndDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RowEndDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RowEndDate]"
+                      name="RowEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QACode]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[QACode]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QACode]"
+                      name="QACode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QAComments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[QAComments]"
+                      length="255"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[QAComments]"
+                      name="QAComments"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[CaseLoad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[CaseLoad]"
+                      length="6"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[CaseLoad]"
+                      name="CaseLoad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RecipientNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RecipientNo]"
+                      length="12"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[RecipientNo]"
+                      name="RecipientNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="15"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="15"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MI]"
+                      name="MI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[CaseNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[CaseNo]"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[CaseNo]"
+                      name="CaseNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[ADCCategory]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[ADCCategory]"
+                      length="4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[ADCCategory]"
+                      name="ADCCategory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SeqNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SeqNo]"
+                      length="2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SeqNo]"
+                      name="SeqNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AssistanceGroup]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AssistanceGroup]"
+                      length="16"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AssistanceGroup]"
+                      name="AssistanceGroup"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[PhoneNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[PhoneNo]"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[PhoneNo]"
+                      name="PhoneNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AlternatePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AlternatePhone]"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AlternatePhone]"
+                      name="AlternatePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[StreetAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[StreetAddress]"
+                      length="50"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[StreetAddress]"
+                      name="StreetAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[City]"
+                      length="19"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[State]"
+                      length="2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[Zip]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[Zip]"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[Zip]"
+                      name="Zip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailAddress]"
+                      length="50"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailAddress]"
+                      name="MailAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailCity]"
+                      length="25"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailCity]"
+                      name="MailCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailState]"
+                      length="2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailState]"
+                      name="MailState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailZip]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailZip]"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[MailZip]"
+                      name="MailZip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerLastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerLastName]"
+                      length="25"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerLastName]"
+                      name="WorkerLastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerFirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerFirstName]"
+                      length="25"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerFirstName]"
+                      name="WorkerFirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerPhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerPhone]"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerPhone]"
+                      name="WorkerPhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerEMail]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerEMail]"
+                      length="255"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[WorkerEMail]"
+                      name="WorkerEMail"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FlagChildUnder6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[FlagChildUnder6]"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FlagChildUnder6]"
+                      name="FlagChildUnder6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[Month34AsOf]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[Month34AsOf]"
+                      length="6"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[Month34AsOf]"
+                      name="Month34AsOf"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionLevel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionLevel]"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionLevel]"
+                      name="SanctionLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionComment]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionComment]"
+                      length="255"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionComment]"
+                      name="SanctionComment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FlagSanctionWorkRelated]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[FlagSanctionWorkRelated]"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[FlagSanctionWorkRelated]"
+                      name="FlagSanctionWorkRelated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionBeginDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionBeginDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionBeginDate]"
+                      name="SanctionBeginDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionEndDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionEndDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[SanctionEndDate]"
+                      name="SanctionEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AppraisalWindowStartDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AppraisalWindowStartDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AppraisalWindowStartDate]"
+                      name="AppraisalWindowStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AppraisalWindowEndDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AppraisalWindowEndDate]"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].Columns[AppraisalWindowEndDate]"
+                      name="AppraisalWindowEndDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RecordCounter]"
+                      dataType="i4"
+                      name="RecordCounter" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[StagingReferralKey]"
+                      dataType="i4"
+                      name="StagingReferralKey" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      dataType="wstr"
+                      length="30"
+                      name="SysInsertUser" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RowStartDate]"
+                      dataType="dbTimeStamp"
+                      name="RowStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RowEndDate]"
+                      dataType="dbTimeStamp"
+                      name="RowEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[QACode]"
+                      dataType="i2"
+                      name="QACode" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[QAComments]"
+                      dataType="wstr"
+                      length="255"
+                      name="QAComments" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[CaseLoad]"
+                      dataType="wstr"
+                      length="6"
+                      name="CaseLoad" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[RecipientNo]"
+                      dataType="wstr"
+                      length="12"
+                      name="RecipientNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[CaseNo]"
+                      dataType="wstr"
+                      length="10"
+                      name="CaseNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[ADCCategory]"
+                      dataType="wstr"
+                      length="4"
+                      name="ADCCategory" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SeqNo]"
+                      dataType="wstr"
+                      length="2"
+                      name="SeqNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AssistanceGroup]"
+                      dataType="wstr"
+                      length="16"
+                      name="AssistanceGroup" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[PhoneNo]"
+                      dataType="wstr"
+                      length="10"
+                      name="PhoneNo" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AlternatePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="AlternatePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[StreetAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="StreetAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="19"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[Zip]"
+                      dataType="wstr"
+                      length="10"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="MailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailCity]"
+                      dataType="wstr"
+                      length="25"
+                      name="MailCity" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailState]"
+                      dataType="wstr"
+                      length="2"
+                      name="MailState" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[MailZip]"
+                      dataType="wstr"
+                      length="10"
+                      name="MailZip" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerLastName]"
+                      dataType="wstr"
+                      length="25"
+                      name="WorkerLastName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerFirstName]"
+                      dataType="wstr"
+                      length="25"
+                      name="WorkerFirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerPhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="WorkerPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[WorkerEMail]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkerEMail" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[FlagChildUnder6]"
+                      dataType="wstr"
+                      length="1"
+                      name="FlagChildUnder6" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[Month34AsOf]"
+                      dataType="wstr"
+                      length="6"
+                      name="Month34AsOf" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionLevel]"
+                      dataType="wstr"
+                      length="1"
+                      name="SanctionLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionComment]"
+                      dataType="wstr"
+                      length="255"
+                      name="SanctionComment" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[FlagSanctionWorkRelated]"
+                      dataType="wstr"
+                      length="1"
+                      name="FlagSanctionWorkRelated" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionBeginDate]"
+                      dataType="dbTimeStamp"
+                      name="SanctionBeginDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[SanctionEndDate]"
+                      dataType="dbTimeStamp"
+                      name="SanctionEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AppraisalWindowStartDate]"
+                      dataType="dbTimeStamp"
+                      name="AppraisalWindowStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output].ExternalColumns[AppraisalWindowEndDate]"
+                      dataType="dbTimeStamp"
+                      name="AppraisalWindowEndDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RecordCounter]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RecordCounter]"
+                      name="RecordCounter" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[StagingReferralKey]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[StagingReferralKey]"
+                      name="StagingReferralKey" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      name="SysInsertUser" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RowStartDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RowStartDate]"
+                      name="RowStartDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RowEndDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RowEndDate]"
+                      name="RowEndDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[QACode]"
+                      dataType="i2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[QACode]"
+                      name="QACode" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[QAComments]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[QAComments]"
+                      name="QAComments" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[CaseLoad]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[CaseLoad]"
+                      name="CaseLoad" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RecipientNo]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[RecipientNo]"
+                      name="RecipientNo" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[CaseNo]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[CaseNo]"
+                      name="CaseNo" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[ADCCategory]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[ADCCategory]"
+                      name="ADCCategory" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SeqNo]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SeqNo]"
+                      name="SeqNo" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AssistanceGroup]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AssistanceGroup]"
+                      name="AssistanceGroup" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[PhoneNo]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[PhoneNo]"
+                      name="PhoneNo" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AlternatePhone]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AlternatePhone]"
+                      name="AlternatePhone" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[StreetAddress]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[StreetAddress]"
+                      name="StreetAddress" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="19"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[Zip]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[Zip]"
+                      name="Zip" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailAddress]"
+                      name="MailAddress" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailCity]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailCity]"
+                      name="MailCity" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailState]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailState]"
+                      name="MailState" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailZip]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[MailZip]"
+                      name="MailZip" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerLastName]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerLastName]"
+                      name="WorkerLastName" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerFirstName]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerFirstName]"
+                      name="WorkerFirstName" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerPhone]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerPhone]"
+                      name="WorkerPhone" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerEMail]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[WorkerEMail]"
+                      name="WorkerEMail" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[FlagChildUnder6]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[FlagChildUnder6]"
+                      name="FlagChildUnder6" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[Month34AsOf]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[Month34AsOf]"
+                      name="Month34AsOf" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionLevel]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionLevel]"
+                      name="SanctionLevel" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionComment]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionComment]"
+                      name="SanctionComment" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[FlagSanctionWorkRelated]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[FlagSanctionWorkRelated]"
+                      name="FlagSanctionWorkRelated" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionBeginDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionBeginDate]"
+                      name="SanctionBeginDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionEndDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[SanctionEndDate]"
+                      name="SanctionEndDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AppraisalWindowStartDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AppraisalWindowStartDate]"
+                      name="AppraisalWindowStartDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AppraisalWindowEndDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[AppraisalWindowEndDate]"
+                      name="AppraisalWindowEndDate" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Approved QA To Referrals.Paths[ADO NET Source Output]"
+              endId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Inputs[Conditional Split Input]"
+              name="ADO NET Source Output"
+              startId="Package\Copy Approved QA To Referrals\Referrals QA.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Copy Approved QA To Referrals.Paths[CurrentAndApproved]"
+              endId="Package\Copy Approved QA To Referrals\Referrals.Inputs[ADO NET Destination Input]"
+              name="CurrentAndApproved"
+              startId="Package\Copy Approved QA To Referrals\Filter Current and Approved.Outputs[CurrentAndApproved]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set New QARecords Ceiling"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8D61D1D3-D91E-460C-BF42-BF7169A6EC21}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set New QARecords Ceiling"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6EF07193-CB11-4422-ABB6-3C3E7C21C789}"
+          SQLTask:SqlStatementSource="Select&#xA;    Max(RecordCounter) As MaxQARecordCounter&#xA;From&#xA;   SafetyNet.dbo.Referrals_QA&#xA;Where&#xA;    StagingReferralKey &gt; 0"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::MaxQARecordCounter" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set New QARecords Floor"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F299F92C-72AC-4E73-AB21-C318170E5032}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set New QARecords Floor"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6EF07193-CB11-4422-ABB6-3C3E7C21C789}"
+          SQLTask:SqlStatementSource="Select&#xA;    Min(RecordCounter) As MinQARecordCounter&#xA;From&#xA;   SafetyNet.dbo.Referrals_QA&#xA;Where&#xA;    StagingReferralKey &gt; 0"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::MinQARecordCounter" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update QA Approved"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F9A0E9E9-5372-47B8-8CC4-890315A7B95A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update QA Approved"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6EF07193-CB11-4422-ABB6-3C3E7C21C789}"
+          SQLTask:SqlStatementSource="Update [SafetyNet].[dbo].[Referrals_QA]&#xA;&#x9;Set&#xA;&#x9;&#x9;RowEndDate =                                            Tools.dbo.DateOnly(getdate()),&#xA;&#x9;&#x9;QACode = 0,&#xA;&#x9;&#x9;StagingReferralKey = &#xA;                                        -1 * RecordCounter&#xA;&#x9;Where&#xA;&#x9;&#x9;RecordCounter Between @QARecordFloor and @QARecordCeiling And&#xA;&#x9;&#x9;QACode In (1,4)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@QARecordFloor"
+            SQLTask:DtsVariableName="User::MinQARecordCounter"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="8" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@QARecordCeiling"
+            SQLTask:DtsVariableName="User::MaxQARecordCounter"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="8" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E401DAF-26BE-4E13-8159-30F2BA43B118}"
+      DTS:From="Package\Set New QARecords Floor"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy Approved QA To Referrals" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F481F45B-26C4-4EAE-9A07-7488A6C18F94}"
+      DTS:From="Package\Set New QARecords Ceiling"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Copy Approved QA To Referrals" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{868EB86B-F04B-44A0-86B5-DB3068B08D35}"
+      DTS:From="Package\Copy Approved QA To Referrals"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update QA Approved" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Set New QARecords Floor"
+          TopLeft="257,92" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Set New QARecords Ceiling"
+          TopLeft="512,96" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Copy Approved QA To Referrals"
+          TopLeft="377,262" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="358,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97,128"
+              Start="0,0"
+              End="97,120.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.2694300518135" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,72.2694300518135"
+                    Point2="0,76.2694300518135"
+                    Point3="4,76.2694300518135" />
+                  <mssgle:LineSegment
+                    End="93,76.2694300518135" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93,76.2694300518135"
+                    Point2="97,76.2694300518135"
+                    Point3="97,80.2694300518135" />
+                  <mssgle:LineSegment
+                    End="97,120.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="616.5,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-122.5,124"
+              Start="0,0"
+              End="-122.5,116.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.8860103626943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.8860103626943"
+                    Point2="0,60.8860103626943"
+                    Point3="-4,60.8860103626943" />
+                  <mssgle:LineSegment
+                    End="-118.5,60.8860103626943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-118.5,60.8860103626943"
+                    Point2="-122.5,60.8860103626943"
+                    Point3="-122.5,64.8860103626943" />
+                  <mssgle:LineSegment
+                    End="-122.5,116.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Update QA Approved"
+          TopLeft="397,389" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="489.5,304">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85"
+              Start="0,0"
+              End="0,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy Approved QA To Referrals">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Copy Approved QA To Referrals\Referrals QA"
+          TopLeft="577,90" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Copy Approved QA To Referrals\Filter Current and Approved"
+          TopLeft="543,222" />
+        <EdgeLayout
+          Id="Package\Copy Approved QA To Referrals.Paths[ADO NET Source Output]"
+          TopLeft="648,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90"
+              Start="0,0"
+              End="0,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Copy Approved QA To Referrals\Referrals"
+          TopLeft="582,388" />
+        <EdgeLayout
+          Id="Package\Copy Approved QA To Referrals.Paths[CurrentAndApproved]"
+          TopLeft="646.25,264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,124"
+              Start="0,0"
+              End="0,116.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,116.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-46.4755078125,52.4453125,92.951015625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Approved QA To Referrals\Referrals QA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Approved QA To Referrals\Referrals">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

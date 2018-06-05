@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WorkingNotifications"
+  DTS:DTSID="{C852AF46-6474-4020-8F92-FB1587AEF907}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="\\Ms-cjfs-sis\source\Production\Working\LoadHVR\Notifications.xlsx" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

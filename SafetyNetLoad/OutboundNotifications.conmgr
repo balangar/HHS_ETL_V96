@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OutboundNotifications"
+  DTS:DTSID="{FFB530E0-792A-4586-A022-D8E38A1EC52C}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="\\Ms-cjfs-sis\source\Production\Outbound\LoadHVR\Notifications.xls" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
