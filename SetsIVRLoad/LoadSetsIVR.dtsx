@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadSetsIVR"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{38688B26-E44E-4613-873E-8BC1479F96E3}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{C1411E1C-1B31-44D8-B561-C329A5787CC8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -53,9 +53,23 @@
         <AnnotationLayout
           Text="Test"
           ParentId="Package"
-          Size="50,60"
+          Size="50,37"
           Id="f4c09677-198e-46c2-a9aa-b6be95c2566c"
           TopLeft="213,84">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Test who?"
+          ParentId="Package"
+          Size="79,60"
+          Id="8cf1ffe1-5c95-4b86-892b-44549d574f52"
+          TopLeft="230,168">
           <AnnotationLayout.FontInfo>
             <mssge:FontInfo>
               <mssge:FontInfo.TextDecorations>
