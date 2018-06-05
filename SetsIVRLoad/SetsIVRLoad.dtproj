@@ -12,11 +12,11 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{38378dff-9f17-4075-a9ae-043846371136}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">SetsIVRLoad</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionComments">
@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMHyO/+MznUiIu3tNH4Wv4AAAAAACAAAAAAADZgAAwAAAABAAAABJnJWUvsnokSNNRNHgcFVZAAAAAASAAACgAAAAEAAAAFwC1//yv+g7YggO8HzK0vGIAAAARlk6+rUYYdZxdp4raHt9U3O1Isih/a+4R1h1FcdaVriH9OrXcv8O0kIzCTJFwXgD39RkpHzBQvSW7slBEqOvI5Kle6PXixXHsUFfYHt4Vwewy1vpotp4gggtQ6EbiKZt4AMb4WNOhK24f3lkVXqd3SyxI+gJ5jogIKdqxGdD5Aa88cov0H0JUxQAAADdRmIEILM0+/vkjJpmpCD0l+q/zA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="KVs/ybQfm+c=" SSIS:IV="I7zvOAcJtqY5jB1s5EHoeg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">r3xtmmB3o+SQpBQ0dR6vAktUitQExFJ7ylDhqeT1PldIhruJhgLZok0lUEjMj+ElBFFN1F1SRfNbtK4oFlM2Qt2X5IkPYnvc5UFvhk9ZOY1610xqQl9l3DU/C4zmvmOenNtG0K6/YOsC5Ngwjfi/D8jNksYfDj6RzvoyNoZYH3pNYB37XAQgo1wTikie10b2</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -38,18 +38,18 @@
           <SSIS:PackageInfo>
             <SSIS:PackageMetaData SSIS:Name="LoadSetsIVR.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{F2E66F49-C0D8-4E3E-982C-7E7B81918B8D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{D3BDC418-57DD-47E7-9F8F-55DC6A944E79}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">LoadSetsIVR</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{6448AEA9-648C-4163-8497-5EAD657B8E19}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{07244BAF-A311-4948-A0F7-866617568EC1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
