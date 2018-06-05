@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadSetsIVR"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{3C143BCA-873F-4A02-95FE-46850E000D88}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{58591A86-1397-4FC9-B394-50525784C206}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -70,20 +70,6 @@
           Size="79,37"
           Id="8cf1ffe1-5c95-4b86-892b-44549d574f52"
           TopLeft="230,168">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo>
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
-        <AnnotationLayout
-          Text="Me, that's who."
-          ParentId="Package"
-          Size="104,60"
-          Id="70712809-40bb-4560-9c1e-0b706471c813"
-          TopLeft="231,225">
           <AnnotationLayout.FontInfo>
             <mssge:FontInfo>
               <mssge:FontInfo.TextDecorations>
