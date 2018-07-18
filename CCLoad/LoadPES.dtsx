@@ -12,8 +12,8 @@
   DTS:ObjectName="LoadPES"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{626F06A6-28C0-4513-910D-C3C8DFE5AC46}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{6B98A0CB-FD80-4D3A-9088-6D64113D83B5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2320,7 +2320,7 @@ where [refTable].[uidLookupData] = ?</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="193,42"
           Id="Package\Load Canonical Answers"
@@ -2334,7 +2334,7 @@ where [refTable].[uidLookupData] = ?</property>
           TopLeft="609,245">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,89"
               Start="0,0"
               End="0,81.5">
@@ -2351,20 +2351,6 @@ where [refTable].[uidLookupData] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="wonder if this will work -- commit and push"
-          ParentId="Package"
-          Size="240,60"
-          Id="1810a02b-5e53-4d41-85cb-b303222fd225"
-          TopLeft="1039,170">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo>
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
