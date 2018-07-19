@@ -1,0 +1,1 @@
+sqlcmd -S MS-DCFS-PSQL1 -U sa -P reference#coffe8e -i RunAllSacwiscuyQueries.sql
