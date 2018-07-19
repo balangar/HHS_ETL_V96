@@ -1,0 +1,34 @@
+use SacwisCuy
+go
+
+truncate table Case_Participant
+go
+
+insert into Case_Participant
+select 
+CASE_PARTICIPANT_ID
+, CASE_ID
+, PERSON_ID
+, REFERENCE_PERSON_FLAG
+, CREATED_BY
+, CREATED_DATE
+, MODIFIED_BY
+, MODIFIED_DATE
+, CURRENT_STATUS_CODE
+, APP_VERSION_NBR
+
+from openquery(adhoc_sacrpt,'
+select 
+CASE_PARTICIPANT_ID
+, CASE_ID
+, PERSON_ID
+, REFERENCE_PERSON_FLAG
+, CREATED_BY
+, CREATED_DATE
+, MODIFIED_BY
+, MODIFIED_DATE
+, CURRENT_STATUS_CODE
+, APP_VERSION_NBR
+from sacwis.Case_Participant
+-- where 
+')

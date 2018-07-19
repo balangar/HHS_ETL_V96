@@ -1,0 +1,733 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/29/2017 10:58:04 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS410232"
+  DTS:CreatorName="CUYAHOGA\couchc"
+  DTS:DTSID="{A577AB46-0AD0-4EA4-99FC-CE5397DEAF9F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="PopulateTablesForExport"
+  DTS:PackageType="5"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{0E2DC8A2-F041-445D-B873-26D5338F492B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Address"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a351166f-b5fb-4f89-bb6d-2a907b66ff60}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Address"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CAREMATCH;&#xA;&#xA;TRUNCATE TABLE CARE_MATCH_CASE_ADDRESS;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_CASE_ADDRESS&#xA;&#xA;SELECT &#xA;  CASE_ID&#xA;, ADDRESS_ID&#xA;, STREET_NBR&#xA;, PRE_DIRECTIONAL_CODE&#xA;, STREET_NAME&#xA;, STREET_SUFFIX_CODE&#xA;, POST_DIRECTIONAL_CODE&#xA;, CITY_NAME&#xA;, STATE_CODE&#xA;, ZIP5_CODE&#xA;FROM&#xA;&#x9;&#x9;(SELECT &#xA;&#x9;&#x9;&#x9;count(CMCB.case_id) over(partition by CMCB.case_id order by pa.address_id desc) as RowNumber&#xA;&#x9;&#x9;&#x9;,CMCB.CASE_ID&#xA;&#x9;&#x9;--, CP.PERSON_ID &#xA;&#x9;&#x9;--, P.PARTY_ID&#xA;&#x9;&#x9;, PA.ADDRESS_ID&#xA;&#x9;&#x9;, A.STREET_NBR&#xA;&#x9;&#x9;, A.PRE_DIRECTIONAL_CODE&#xA;&#x9;&#x9;, A.STREET_NAME&#xA;&#x9;&#x9;, A.STREET_SUFFIX_CODE&#xA;&#x9;&#x9;, A.POST_DIRECTIONAL_CODE&#xA;&#x9;&#x9;, A.CITY_NAME&#xA;&#x9;&#x9;, A.STATE_CODE&#xA;&#x9;&#x9;, A.ZIP5_CODE&#xA;&#xA;&#x9;&#x9;FROM &#xA;&#xA;&#x9;&#x9;ETL_CAREMATCH.DBO.CARE_MATCH_CASE_BASE CMCB&#xA;&#xA;&#x9;&#x9;INNER JOIN SACWISCUY.DBO.CASE_PARTICIPANT CP&#xA;&#x9;&#x9;ON  CMCB.CASE_ID = CP.CASE_ID&#xA;&#x9;&#x9;AND CP.REFERENCE_PERSON_FLAG = 1&#xA;&#xA;&#x9;&#x9;INNER JOIN SACWISCUY.DBO.PERSON P&#xA;&#x9;&#x9;ON  CP.PERSON_ID = P.PERSON_ID&#xA;&#xA;&#x9;&#x9;INNER JOIN SACWISCUY.DBO.PARTY_ADDRESS PA&#xA;&#x9;&#x9;ON  P.PARTY_ID = PA.PARTY_ID&#xA;&#x9;&#x9;AND PA.PRIMARY_ADDRESS_FLAG = 1&#xA;&#x9;&#x9;AND PA.END_EFF_DATE IS NULL&#xA;&#xA;&#x9;&#x9;INNER JOIN SACWISCUY.DBO.[ADDRESS] A&#xA;&#x9;&#x9;ON  PA.ADDRESS_ID = A.ADDRESS_ID) PrimaryCaseAddress&#xA;&#xA;WHERE RowNumber = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Case_Base"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{04033414-2e43-436e-a812-e75941a85e90}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Case_Base"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CAREMATCH;&#xA;&#xA;TRUNCATE TABLE CARE_MATCH_CASE_BASE;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_CASE_BASE &#xA;SELECT&#xA;  DISTINCT&#xA;  CMCP.CASE_ID&#xA;, CB.FIRST_NAME&#xA;, CB.MIDDLE_NAME&#xA;, CB.LAST_NAME&#xA;, CB.PRIMARY_CARETAKER_CODE&#xA;, CB.SECONDARY_CARETAKER_CODE&#xA;, CB.CREATED_BY&#xA;, CB.CREATED_DATE&#xA;, CB.MODIFIED_BY&#xA;, CB.MODIFIED_DATE&#xA;&#xA;FROM&#xA;&#xA;ETL_CAREMATCH.DBO.CARE_MATCH_CASE_PARTICIPANT CMCP&#xA;&#xA;INNER JOIN SACWISCUY.DBO.CASE_BASE CB&#xA;ON CMCP.CASE_ID = CB.CASE_ID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Case_Part_Status"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2b08e747-79ae-4e56-a916-65aada058e4f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Case_Part_Status"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CAREMATCH&#xA;&#xA;TRUNCATE TABLE CARE_MATCH_CASE_PART_STATUS;&#xA;&#xA;&#xA;INSERT INTO CARE_MATCH_CASE_PART_STATUS&#xA;SELECT&#xA;  DISTINCT&#xA;  CMCP.CHILD_ID&#xA;, CMCP.CASE_ID&#xA;, CMCP.CASE_PARTICIPANT_ID&#xA;, CPS.CASE_PARTICIPANT_STATUS_ID&#xA;, CPS.CASE_PARTICIPANT_STATUS_CODE&#xA;, CPS.BEGIN_EFF_DATE&#xA;, CPS.END_EFF_DATE&#xA;, CPS.CREATED_BY&#xA;, CPS.CREATED_DATE&#xA;, CPS.MODIFIED_BY&#xA;, CPS.MODIFIED_DATE&#xA;&#xA;FROM&#xA;ETL_CAREMATCH.DBO.CARE_MATCH_CASE_PARTICIPANT CMCP&#xA;&#xA;INNER JOIN SACWISCUY.DBO.CASE_PARTICIPANT_STATUS CPS&#xA;ON  CMCP.CASE_PARTICIPANT_ID = CPS.CASE_PARTICIPANT_ID&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Case_Person_Reln"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{76fe71b0-000a-456d-9f95-0e04d6c0c788}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Case_Person_Reln"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CAREMATCH;&#xA;&#xA;TRUNCATE TABLE CARE_MATCH_PERSON_RELN;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_PERSON_RELN&#xA;SELECT&#xA;  DISTINCT&#xA;  CMCP.CHILD_ID&#xA;--, CPR.SOURCE_PERSON_ID  &#xA;, CPR.CASE_PARTICIPANT_RELN_ID&#xA;, CPR.CASE_ID&#xA;, CPR.RELATIONSHIP_CODE&#xA;, RD.SHORT_DESC RELATIONSHIP&#xA;--, RD.DOMAIN_CODE&#xA;, CPR.DEST_PERSON_ID&#xA;, UPPER(P.FIRST_NAME + ' ' + P.LAST_NAME) AS DEST_PERSON_NAME&#xA;, CPR.CREATED_BY&#xA;, CPR.CREATED_DATE&#xA;, CPR.MODIFIED_BY&#xA;, CPR.MODIFIED_DATE&#xA;&#xA;FROM&#xA;ETL_CAREMATCH.DBO.CARE_MATCH_CASE_PARTICIPANT CMCP&#xA;&#xA;INNER JOIN SACWISCUY.DBO.CASE_PARTICIPANT_RELN CPR&#xA;ON  CMCP.CHILD_ID = CPR.SOURCE_PERSON_ID AND&#xA;&#x9;CMCP.CASE_ID = CPR.CASE_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PERSON P&#xA;ON  CPR.DEST_PERSON_ID = P.PERSON_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.REF_DATA RD&#xA;ON  CPR.RELATIONSHIP_CODE = RD.REF_DATA_CODE&#xA;AND RD.DOMAIN_CODE = 'Relationship'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_DCFS_FH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a8e172d6-2312-4217-a480-14399e29782d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_DCFS_FH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch;&#xA;&#xA;TRUNCATE TABLE ETL_CAREMATCH.DBO.CARE_MATCH_DCFS_FH;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_DCFS_FH &#xA;SELECT DISTINCT&#xA;  PT.AGENCY_ID&#xA;, 'DCFS' AGENCY_NAME&#xA;, PL.PROVIDER_ID&#xA;, PN.NAME_TEXT PROVIDER_NAME&#xA;, PARTY_ADDRESS.ADDRESS_ID&#xA;, A.STREET_NBR&#xA;, A.PRE_DIRECTIONAL_CODE&#xA;, A.STREET_NAME&#xA;, A.STREET_SUFFIX_CODE&#xA;, A.POST_DIRECTIONAL_CODE&#xA;, A.CITY_NAME&#xA;, A.STATE_CODE&#xA;, A.ZIP5_CODE&#xA; &#xA;FROM&#xA;&#xA;  SACWISCUY.DBO.PROVIDER_LICENSE PL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  PL.PROVIDER_TYPE_ID = PT.PROVIDER_TYPE_ID &#xA;AND PT.AGENCY_ID = 10017  &#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN&#xA;ON  PT.PROVIDER_ID = PN.PROVIDER_ID&#xA;AND PN.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_STATUS PS&#xA;ON PN.PROVIDER_ID = PS.PROVIDER_ID&#xA;AND PS.STATUS_CODE = 'ACTIVE'&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER&#xA;ON PT.PROVIDER_ID = PROVIDER.PROVIDER_ID&#xA;&#xA;LEFT JOIN SACWISCUY.DBO.PARTY_ADDRESS&#xA;ON  PROVIDER.PARTY_ID = PARTY_ADDRESS.PARTY_ID&#xA;AND PARTY_ADDRESS.END_EFF_DATE IS NULL&#xA;AND PARTY_ADDRESS.PRIMARY_ADDRESS_FLAG = 1&#xA;&#xA;LEFT JOIN SACWISCUY.DBO.[ADDRESS] A&#xA;ON PARTY_ADDRESS.ADDRESS_ID = A.ADDRESS_ID&#xA;&#xA;WHERE&#xA;    PL.LICENSE_EXPIRATION_DATE &gt; GETDATE()&#xA;AND PL.LICENSED_LEVEL_OF_CARE_CODE IN ('FAMILYFOSTERHOME','MEDFRAGILEFOSTERHOME','TREATMENTFOSTERHOME')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Group_CRC"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9c5adb73-2744-4449-9c81-c4c6f1aed561}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Group_CRC"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch;&#xA;&#xA;TRUNCATE table ETL_CAREMATCH.DBO.CARE_MATCH_GROUP_CRC;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_GROUP_CRC&#xA;SELECT&#xA;  distinct&#xA;-- C.CONTRACT_ID&#xA;--,C.AGENCY_ID CONTRACT_AGENCY_ID&#xA;--,C.CONTRACT_TYPE_CODE&#xA;--,C.CONTRACT_STATUS_CODE&#xA;--C.PROVIDER_ID CONTRACT_PROVIDER_ID&#xA;  PT.AGENCY_ID AGENCY_ID&#xA;, PN.NAME_TEXT AGENCY_NAME&#xA;, ACL.PROVIDER_ID&#xA;, PN1.NAME_TEXT PROVIDER_NAME&#xA;--, PT.TYPE_CODE&#xA;--, PT1.TYPE_CODE&#xA;--, AC.AGENCY_CERTIFICATION_ID&#xA;--,PN.NAME_TEXT&#xA;--, PS.STATUS_CODE&#xA;, PARTY_ADDRESS.ADDRESS_ID&#xA;, A.STREET_NBR&#xA;, A.PRE_DIRECTIONAL_CODE&#xA;, A.STREET_NAME&#xA;, A.STREET_SUFFIX_CODE&#xA;, A.POST_DIRECTIONAL_CODE&#xA;, A.CITY_NAME&#xA;, A.STATE_CODE&#xA;, A.ZIP5_CODE&#xA;&#xA;FROM&#xA;&#xA;  SACWISCUY.DBO.[CONTRACT] C&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN&#xA;ON C.PROVIDER_ID = PN.PROVIDER_ID&#xA;AND PN.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER P&#xA;ON  PN.PROVIDER_ID = P.PROVIDER_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  P.PROVIDER_ID = PT.PROVIDER_ID&#xA;--AND ACL.PROVIDER_ID = PT.PROVIDER_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY_CERTIFICATION AC&#xA;ON  C.PROVIDER_ID = AC.AGENCY_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY_CERT_PROVIDER_LINK ACL&#xA;ON  AC.AGENCY_CERTIFICATION_ID = ACL.AGENCY_CERTIFICATION_ID&#xA;&#xA;--INNER JOIN SACWIS.PROVIDER_NAME@ADHOC_SACRPT PN&#xA;--ON  ACL.PROVIDER_ID = PN.PROVIDER_ID&#xA;--AND PN.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT1&#xA;ON  ACL.PROVIDER_ID = PT1.PROVIDER_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN1&#xA;ON PT1.PROVIDER_ID = PN1.PROVIDER_ID&#xA;AND PN1.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_STATUS PS&#xA;ON  PN1.PROVIDER_ID = PS.PROVIDER_ID&#xA;AND PS.STATUS_CODE = 'ACTIVE'&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER&#xA;ON PN1.PROVIDER_ID = PROVIDER.PROVIDER_ID&#xA;&#xA;LEFT JOIN SACWISCUY.DBO.PARTY_ADDRESS&#xA;ON  PROVIDER.PARTY_ID = PARTY_ADDRESS.PARTY_ID&#xA;AND PARTY_ADDRESS.END_EFF_DATE IS NULL&#xA;AND PARTY_ADDRESS.PRIMARY_ADDRESS_FLAG = 1&#xA;&#xA;LEFT JOIN SACWISCUY.DBO.[ADDRESS] A&#xA;ON PARTY_ADDRESS.ADDRESS_ID = A.ADDRESS_ID&#xA;&#xA;INNER JOIN&#xA;&#xA;(select&#xA; ps.provider_id&#xA;,max(ps.provider_status_id) AS PROVIDER_STATUS_ID&#xA;from&#xA;SACWISCUY.DBO.provider_status ps&#xA;group by ps.provider_id)MPS&#xA;&#xA;ON PS.PROVIDER_STATUS_ID = MPS.PROVIDER_STATUS_ID&#xA;&#xA;&#xA;WHERE&#xA;    C.AGENCY_ID = 10017&#xA;AND C.CONTRACT_STATUS_CODE = 'ACTIVE'&#xA;AND C.CONTRACT_TYPE_CODE   = 'PLACEMENT'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Network_FH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1107070f-941b-49de-8929-34985de810eb}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Network_FH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch;&#xA;&#xA;TRUNCATE table  ETL_CAREMATCH.DBO.CARE_MATCH_NETWORK_FH;&#xA;&#xA;&#xA;--add in address data&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_NETWORK_FH&#xA;SELECT&#xA;  A.*&#xA;, PA.ADDRESS_ID&#xA;, AD.STREET_NBR&#xA;, AD.PRE_DIRECTIONAL_CODE&#xA;, AD.STREET_NAME&#xA;, AD.STREET_SUFFIX_CODE&#xA;, AD.POST_DIRECTIONAL_CODE&#xA;, AD.CITY_NAME&#xA;, AD.STATE_CODE&#xA;, AD.ZIP5_CODE&#xA;&#xA;FROM&#xA;--distinct providers with an active/approved licens&#xA;--where liscense expiration date is &gt; sysdate&#xA;--and where the agency_id is in the list of &#xA;--agency_id(s) from providers with contracts&#xA;(SELECT&#xA;  DISTINCT&#xA;  PT.AGENCY_ID&#xA;, AG.AGENCY_NAME&#xA;, PL.PROVIDER_ID&#xA;, PN.NAME_TEXT&#xA;&#xA;FROM SACWISCUY.DBO.PROVIDER_LICENSE PL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  PL.PROVIDER_ID = PT.PROVIDER_ID&#xA;AND PT.CURRENT_STATUS_CODE IN ('ACTIVE','APPROVED','CERTIFIED')&#xA;AND PT.END_DATE IS NULL&#xA;AND PT.AGENCY_ID != 10017&#xA;AND PT.AGENCY_ID != 10076&#xA;AND PT.AGENCY_ID != 10008&#xA;AND PT.AGENCY_ID != 10030&#xA;AND PT.AGENCY_ID != 10024&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY  AG&#xA;ON  PT.AGENCY_ID = AG.AGENCY_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN&#xA;ON PT.PROVIDER_ID = PN.PROVIDER_ID&#xA;AND PN.END_DATE IS NULL&#xA;&#xA;WHERE&#xA;    PL.LICENSE_STATUS_CODE IN ('ACTIVE','APPROVED')&#xA;AND PL.LICENSE_EXPIRATION_DATE &gt; GETDATE()    &#xA;&#xA;AND AG.AGENCY_ID IN&#xA;&#xA;--list of agencies with current placement contracts with DCFS&#xA;(&#xA;select &#xA;DISTINCT&#xA;--    C.CONTRACT_ID&#xA;--,   C.PROVIDER_ID&#xA;--,   PN.NAME_TEXT&#xA;      PT.AGENCY_ID&#xA; --   PT.STATUS_END_DATE&#xA;--  , PT.TYPE_CODE&#xA;--  , PT.PROVIDER_TYPE_ID&#xA;--  , C.AGENCY_ID&#xA;--  , A.AGENCY_NAME&#xA;--  , PL.PROVIDER_ID&#xA;&#xA;from &#xA;&#xA;  SACWISCUY.DBO.[contract] C&#xA;  &#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  C.PROVIDER_ID = PT.PROVIDER_ID&#xA;and PT.CURRENT_STATUS_CODE IN ('ACTIVE','APPROVED','CERTIFIED')&#xA;AND PT.END_DATE IS  NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY A&#xA;ON PT.AGENCY_ID = A.AGENCY_ID&#xA;&#xA;where   C.agency_id = 10017&#xA;and     C.contract_status_code = 'ACTIVE'&#xA;and     C.contract_type_code = 'PLACEMENT'&#xA;AND     C.CONTRACT_END_DATE &gt; GETDATE()&#xA;)&#xA;) A&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.PROVIDER P&#xA;ON A.PROVIDER_ID = P.PROVIDER_ID&#xA;&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.PARTY_ADDRESS PA&#xA;ON  P.PARTY_ID = PA.PARTY_ID&#xA;AND PA.END_EFF_DATE IS NULL&#xA;AND PA.PRIMARY_ADDRESS_FLAG = 1&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.[ADDRESS] AD&#xA;ON PA.ADDRESS_ID = AD.ADDRESS_ID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Participant"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0a9a0a1d-7b20-44ef-845e-9612ec52f7ca}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Participant"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch&#xA;&#xA;TRUNCATE TABLE ETL_CAREMATCH.DBO.CARE_MATCH_PARTICIPANT&#xA;&#xA;&#xA;-- select most recently entered active record and if no active records, use most recently entered&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_PARTICIPANT&#xA;SELECT&#xA;  CHILD_ID&#xA;, CASE_PARTICIPANT_ID&#xA;, CASE_ID&#xA;, CREATED_BY&#xA;, CREATED_DATE&#xA;, MODIFIED_BY&#xA;, MODIFIED_DATE&#xA;, CURRENT_STATUS_CODE&#xA;&#xA;FROM    &#xA;&#x9;&#x9;(SELECT&#xA;&#x9;&#x9;  ROW_NUMBER() over(partition by CMP.CHILD_ID order by current_status_code, cp.created_date desc) as RowNumber&#xA;&#x9;&#x9;,  CMP.CHILD_ID&#xA;&#x9;&#x9;, CP.CASE_PARTICIPANT_ID&#xA;&#x9;&#x9;, CP.CASE_ID&#xA;&#x9;&#x9;, CP.CREATED_BY&#xA;&#x9;&#x9;, CP.CREATED_DATE&#xA;&#x9;&#x9;, CP.MODIFIED_BY&#xA;&#x9;&#x9;, CP.MODIFIED_DATE&#xA;&#x9;&#x9;, CP.CURRENT_STATUS_CODE&#xA;&#xA;&#x9;&#x9;FROM&#xA;&#x9;&#x9;ETL_CAREMATCH.DBO.CARE_MATCH_PERSON CMP&#xA;&#xA;&#x9;&#x9;INNER JOIN SACWISCUY.DBO.CASE_PARTICIPANT CP&#xA;&#x9;&#x9;ON  CMP.CHILD_ID = CP.PERSON_ID) MostRecent&#xA;&#xA;WHERE RowNumber = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Person"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7E4694BD-7A60-4635-8EFC-151D6AD888E3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Person"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="use ETL_CareMatch&#xA;&#xA;truncate table ETL_CareMatch.dbo.Care_Match_Person&#xA;&#xA;insert into ETL_CareMatch.dbo.Care_Match_Person&#xA;SELECT&#xA;  DISTINCT&#xA;  A.CHILD_ID &#xA;, P.PARTY_ID&#xA;, P.PREFIX_CODE&#xA;, P.FIRST_NAME&#xA;, P.MIDDLE_NAME&#xA;, P.LAST_NAME&#xA;, P.SUFFIX_CODE&#xA;, P.GENDER_CODE&#xA;, P.SSN&#xA;, P.BIRTH_DATE&#xA;, P.HISPANIC_LATINO_CODE&#xA;, P.INDIAN_TRIBE1&#xA;, P.INDIAN_TRIBE2&#xA;, P.OTHER_RACE_DESC&#xA;, P.OTHER_ETHNICITY_DESC&#xA;, P.OTHER_LANGUAGE_DESC&#xA;, P.CREATED_BY&#xA;, P.CREATED_DATE&#xA;, P.MODIFIED_BY&#xA;, P.MODIFIED_DATE&#xA;&#xA;FROM&#xA;&#xA;(&#xA;--all children in plmt within the past 3 years where&#xA;--current age is &lt; 18&#xA;SELECT&#xA;DISTINCT&#xA;PS.CHILD_ID&#xA;FROM&#xA;SACWISCUY.DBO.PLACEMENT_SETTING PS&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PERSON P&#xA;ON PS.CHILD_ID = P.PERSON_ID&#xA;AND DATEDIFF(DAY,P.BIRTH_DATE,GETDATE())/365 &lt; 18  --CRC--((GETDATE() - P.BIRTH_DATE)/365) &lt; 18&#xA;&#xA;WHERE&#xA;PS.AGENCY_ID = 10017&#xA;AND ISNULL(PS.END_DATE,GETDATE()) &gt;= DATEADD(DAY,-1095,GETDATE())  --CRC-- NVL(PS.END_DATE,SYSDATE) &gt;= SYSDATE - 1095&#xA;&#xA;UNION &#xA;&#xA;--all children currently in placment who are age 18 or &gt;&#xA;&#xA;SELECT&#xA;PS.CHILD_ID&#xA;&#xA;FROM&#xA;SACWISCUY.DBO.PLACEMENT_SETTING PS&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PERSON P&#xA;ON PS.CHILD_ID = P.PERSON_ID&#xA;AND DATEDIFF(DAY,P.BIRTH_DATE,GETDATE())/365 &gt;=18   --CRC-- ((GETDATE() - P.BIRTH_DATE)/365) &gt;=18&#xA;&#xA;WHERE&#xA;PS.AGENCY_ID = 10017&#xA;AND PS.END_DATE IS NULL&#xA;&#xA;UNION &#xA;&#xA;--all children who have been an active case participant&#xA;--in the past 3 years and where age is &lt; 18&#xA;&#xA;SELECT DISTINCT&#xA;P.PERSON_ID CHILD_ID&#xA;&#xA;FROM&#xA;&#xA;SACWISCUY.DBO.CASE_STATUS CS&#xA;&#xA;INNER JOIN SACWISCUY.DBO.CASE_AGENCY_LINK CAL&#xA;ON  CS.CASE_ID = CAL.CASE_ID&#xA;AND CAL.LOCAL_AGENCY_ID = 10017&#xA;AND ISNULL(CAL.END_EFF_DATE,GETDATE()) &gt;= DATEADD(DAY,-1095,GETDATE())    --crc-- AND ISNULL(CAL.END_EFF_DATE,GETDATE()) &gt;= GETDATE() - 1095&#xA;&#xA;INNER JOIN SACWISCUY.DBO.CASE_PARTICIPANT CP&#xA;ON CS.CASE_ID = CP.CASE_ID&#xA;&#xA;INNER  JOIN SACWISCUY.DBO.CASE_PARTICIPANT_STATUS CPS&#xA;ON CP.CASE_PARTICIPANT_ID = CPS.CASE_PARTICIPANT_ID&#xA;AND ISNULL(CPS.END_EFF_DATE,GETDATE()) &gt;= DATEADD(DAY,-1095,GETDATE())     --crc-- AND ISNULL(CPS.END_EFF_DATE,GETDATE()) &gt;= GETDATE() - 1095&#xA;AND CPS.CASE_PARTICIPANT_STATUS_CODE = 'ACTIVE'&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PERSON P&#xA;ON CP.PERSON_ID = P.PERSON_ID&#xA;AND DATEDIFF(DAY,P.BIRTH_DATE,GETDATE())/365 &lt; 18    --crc  AND ((GETDATE() - P.BIRTH_DATE)/365) &lt; 18&#xA;&#xA;WHERE&#xA;ISNULL(CS.END_EFF_DATE, GETDATE()) &gt;= DATEADD(DAY,-1095,GETDATE())    --crc--  ISNULL(CS.END_EFF_DATE, GETDATE()) &gt;= GETDATE() - 1095&#xA;AND CS.CASE_STATUS_CODE = 'OPEN'&#xA;) A&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PERSON P&#xA;ON A.CHILD_ID = P.PERSON_ID&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Plmt_Criteria"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6582de31-968e-4c28-9764-4c19e54eb4c6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Plmt_Criteria"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch&#xA;&#xA;TRUNCATE TABLE ETL_CAREMATCH.DBO.CARE_MATCH_PROVIDER_PLMT_CRITERIA&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_PROVIDER_PLMT_CRITERIA&#xA;SELECT --DISTINCT&#xA;  A.PROVIDER_ID&#xA;, PPC.PROVIDER_PLCMNT_CRITERIA_ID&#xA;, PCD.PRVDR_PLCM_CRIT_DETAIL_ID&#xA;, PPC.PROVIDER_TYPE_CODE&#xA;, PCD.MINIMUM_AGE_YEARS_NBR&#xA;, PCD.MAXIMUM_AGE_YEARS_NBR&#xA;, PCD.GENDER_CODE&#xA;, PCD.NUMBER_OF_CHILDREN_NBR&#xA;&#xA;&#xA;FROM&#xA;&#xA;(SELECT&#xA;  DISTINCT&#xA;  PT.AGENCY_ID&#xA;, AG.AGENCY_NAME&#xA;, PL.PROVIDER_ID&#xA;, PN.NAME_TEXT&#xA;&#xA;FROM SACWISCUY.DBO.PROVIDER_LICENSE PL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  PL.PROVIDER_ID = PT.PROVIDER_ID&#xA;AND PT.CURRENT_STATUS_CODE IN ('ACTIVE','APPROVED','CERTIFIED')&#xA;AND PT.END_DATE IS NULL&#xA;AND PT.AGENCY_ID != 10017&#xA;AND PT.AGENCY_ID != 10076&#xA;AND PT.AGENCY_ID != 10008&#xA;AND PT.AGENCY_ID != 10030&#xA;AND PT.AGENCY_ID != 10024&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY  AG&#xA;ON  PT.AGENCY_ID = AG.AGENCY_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN&#xA;ON PT.PROVIDER_ID = PN.PROVIDER_ID&#xA;AND PN.END_DATE IS NULL&#xA;&#xA;WHERE&#xA;    PL.LICENSE_STATUS_CODE IN ('ACTIVE','APPROVED')&#xA;AND PL.LICENSE_EXPIRATION_DATE &gt; GETDATE()    &#xA;--and pl.provider_id = 9224696&#xA;AND AG.AGENCY_ID IN&#xA;&#xA;--list of agencies with current placement contracts with DCFS&#xA;(&#xA;select &#xA;--DISTINCT&#xA;--    C.CONTRACT_ID&#xA;--,   C.PROVIDER_ID&#xA;--,   PN.NAME_TEXT&#xA;      PT.AGENCY_ID&#xA; --   PT.STATUS_END_DATE&#xA;--  , PT.TYPE_CODE&#xA;--  , PT.PROVIDER_TYPE_ID&#xA;--  , C.AGENCY_ID&#xA;--  , A.AGENCY_NAME&#xA;--  , PL.PROVIDER_ID&#xA;&#xA;from &#xA;&#xA;  SACWISCUY.DBO.[contract] C&#xA;  &#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  C.PROVIDER_ID = PT.PROVIDER_ID&#xA;and PT.CURRENT_STATUS_CODE IN ('ACTIVE','APPROVED','CERTIFIED')&#xA;AND PT.END_DATE IS  NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY A&#xA;ON PT.AGENCY_ID = A.AGENCY_ID&#xA;&#xA;where   C.agency_id = 10017&#xA;and     C.contract_status_code = 'ACTIVE'&#xA;and     C.contract_type_code = 'PLACEMENT'&#xA;AND     C.CONTRACT_END_DATE &gt; GETDATE()&#xA;&#xA;)&#xA;) A&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_PLACEMENT_CRITERIA PPC&#xA;ON  A.PROVIDER_ID = PPC.PROVIDER_ID&#xA;--AND PPC.PROVIDER_ID = 5058584&#xA;AND PPC.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PRVDR_PLCMNT_CRITERIA_DETAIL PCD&#xA;ON  PPC.PROVIDER_PLCMNT_CRITERIA_ID = PCD.PROVIDER_PLCMNT_CRITERIA_ID&#xA;&#xA;UNION&#xA;&#xA;-- &#xA;&#xA;SELECT&#xA;DISTINCT&#xA;  A.PROVIDER_ID&#xA;, PPC.PROVIDER_PLCMNT_CRITERIA_ID&#xA;, PCD.PRVDR_PLCM_CRIT_DETAIL_ID&#xA;, PPC.PROVIDER_TYPE_CODE&#xA;, PCD.MINIMUM_AGE_YEARS_NBR&#xA;, PCD.MAXIMUM_AGE_YEARS_NBR&#xA;, PCD.GENDER_CODE&#xA;, PCD.NUMBER_OF_CHILDREN_NBR&#xA;&#xA;FROM&#xA;&#xA;(SELECT DISTINCT&#xA;  PL.PROVIDER_ID&#xA; &#xA;FROM&#xA;&#xA;  SACWISCUY.DBO.PROVIDER_LICENSE PL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_TYPE PT&#xA;ON  PL.PROVIDER_TYPE_ID = PT.PROVIDER_TYPE_ID &#xA;AND PT.AGENCY_ID = 10017  &#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN&#xA;ON  PT.PROVIDER_ID = PN.PROVIDER_ID&#xA;AND PN.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_STATUS PS&#xA;ON PN.PROVIDER_ID = PS.PROVIDER_ID&#xA;AND PS.STATUS_CODE = 'ACTIVE'&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER&#xA;ON PT.PROVIDER_ID = PROVIDER.PROVIDER_ID&#xA;&#xA;LEFT JOIN SACWISCUY.DBO.PARTY_ADDRESS&#xA;ON  PROVIDER.PARTY_ID = PARTY_ADDRESS.PARTY_ID&#xA;AND PARTY_ADDRESS.END_EFF_DATE IS NULL&#xA;AND PARTY_ADDRESS.PRIMARY_ADDRESS_FLAG = 1&#xA;&#xA;LEFT JOIN SACWISCUY.DBO.ADDRESS A&#xA;ON PARTY_ADDRESS.ADDRESS_ID = A.ADDRESS_ID&#xA;&#xA;WHERE&#xA;    PL.LICENSE_EXPIRATION_DATE &gt; GETDATE()&#xA;AND PL.LICENSED_LEVEL_OF_CARE_CODE IN ('FAMILYFOSTERHOME','MEDFRAGILEFOSTERHOME','TREATMENTFOSTERHOME')&#xA;&#xA;--AND PT.CURRENT_STATUS_CODE IN&#xA;--('ACTIVE', 'APPROVED', 'CERTIFIED') &#xA;&#xA;) A&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PROVIDER_PLACEMENT_CRITERIA PPC&#xA;ON  A.PROVIDER_ID = PPC.PROVIDER_ID&#xA;--AND PPC.PROVIDER_ID = 5058584&#xA;AND PPC.END_DATE IS NULL&#xA;&#xA;INNER JOIN SACWISCUY.DBO.PRVDR_PLCMNT_CRITERIA_DETAIL PCD&#xA;ON  PPC.PROVIDER_PLCMNT_CRITERIA_ID = PCD.PROVIDER_PLCMNT_CRITERIA_ID;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Plmt_Episode"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{af8e6cea-03df-4e9c-94a3-6608262ad3aa}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Plmt_Episode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch;&#xA;&#xA;&#xA;TRUNCATE TABLE ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_EPISODE;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_EPISODE&#xA;SELECT&#xA;  PE.LEGAL_STATUS_INFO_ID&#xA;, PE.CHILD_ID&#xA;, PE.PLACEMENT_EPISODE_ID&#xA;, PE.REMOVED_DATE&#xA;, PE.REMOVAL_CIRCUMSTANCE_CODE&#xA;, PE.RESPONSIBLE_SCHL_DISTRICT_CODE&#xA;, RD2.SHORT_DESC RESPONSIBLE_SCHOOL_DIST_NAME&#xA;, PE.CARETAKER_STRUCTURE_CODE&#xA;, PE.PRIMARY_CARETAKER_ID&#xA;, PE.SECONDARY_CARETAKER_ID&#xA;, PE.REMOVAL_REASON_TEXT&#xA;, PE.REMOVAL_PREVENTION_EFFORT_TEXT&#xA;, PE.REMOVAL_COURT_SUPPORT_TEXT&#xA;, PE.DISCHARGE_DATE&#xA;, PE.DISCHARGE_REASON_CODE&#xA;, RD.SHORT_DESC DISCHARGE_REASON_DESC&#xA;, PE.CREATED_BY&#xA;, PE.CREATED_DATE&#xA;, PE.MODIFIED_BY&#xA;, PE.MODIFIED_DATE&#xA;, PE.OTHER_SCHL_DISTRICT_NAME&#xA;, PE.SYSTEM_DISCHARGE_DATE&#xA;, PE.AWOL_AT_REMOVAL_FLAG&#xA;, PE.REMOVAL_SCHOOL_TEXT&#xA;, PE.NOT_OF_SCHOOL_AGE_FLAG&#xA;, PE.CHILD_REMAINED_AT_SCHOOL_FLAG&#xA;, PE.PRIMARY_REMOVAL_REASON_CODE&#xA;, RD1.SHORT_DESC REMOVAL_REASON_DESC&#xA;--, RD1.DOMAIN_CODE&#xA;&#xA;FROM&#xA;&#xA;  ETL_CAREMATCH.DBO.CARE_MATCH_PERSON CMP&#xA;  &#xA;INNER JOIN SACWISCUY.DBO.PLACEMENT_EPISODE PE&#xA;ON  CMP.CHILD_ID = PE.CHILD_ID&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.REF_DATA RD&#xA;ON  PE.DISCHARGE_REASON_CODE = RD.REF_DATA_CODE&#xA;AND RD.DOMAIN_CODE = 'DISCHARGEREASONS'&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.REF_DATA RD1&#xA;ON  PE.PRIMARY_REMOVAL_REASON_CODE = RD1.REF_DATA_CODE&#xA;AND RD1.DOMAIN_CODE = 'REMOVAL REASONS'&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.REF_DATA RD2&#xA;ON  PE.RESPONSIBLE_SCHL_DISTRICT_CODE = RD2.REF_DATA_CODE&#xA;AND RD2.DOMAIN_CODE = 'SCHOOLDISTRICTNAME'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Plmt_Leave"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3334c14d-69c2-4daf-b846-275f1c79fb39}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Plmt_Leave"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch&#xA;&#xA;TRUNCATE TABLE ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_LEAVE;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_LEAVE&#xA;SELECT &#xA;  PS.PLACEMENT_SETTING_ID&#xA;,PL.PLACEMENT_LEAVE_ID&#xA;,PL.ESTIMATED_RETURN_DATE&#xA;,PL.LEAVE_DATE&#xA;,PL.LEAVE_TYPE_CODE&#xA;,PL.LOCATION_DETAIL_TEXT&#xA;,PL.LOCATION_TYPE_CODE&#xA;,PL.RETURN_DATE&#xA;,PL.PROVIDER_ID&#xA;,PL.CREATED_BY&#xA;,PL.CREATED_DATE&#xA;,PL.MODIFIED_BY&#xA;,PL.MODIFIED_DATE&#xA;&#xA;FROM &#xA;  ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_SETTING PS&#xA;  &#xA;INNER JOIN SACWISCUY.DBO.PLACEMENT_LEAVE PL&#xA;ON PS.PLACEMENT_SETTING_ID=PL.PLACEMENT_SETTING_ID&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.REF_DATA RD1&#xA;ON PL.LOCATION_TYPE_CODE=RD1.REF_DATA_CODE&#xA;AND RD1.DOMAIN_CODE='PLACEMENT LOCATION TYPE'&#xA;&#xA;LEFT OUTER JOIN SACWISCUY.DBO.REF_DATA RD2&#xA;ON PL.LEAVE_TYPE_CODE=RD2.REF_DATA_CODE&#xA;AND RD2.DOMAIN_CODE='PLACEMENT LEAVE TYPE'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Care_Match_Plmt_Setting"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{88ce5d6b-9246-47a1-9cb0-c57222f8e40b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Care_Match_Plmt_Setting"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="8">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CB10C9A7-ED67-4F99-8935-ACC296DBC8AA}"
+          SQLTask:SqlStatementSource="USE ETL_CareMatch&#xA;&#xA;TRUNCATE TABLE ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_SETTING;&#xA;&#xA;&#xA;INSERT INTO ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_SETTING  &#xA;SELECT &#xA;  CMP.CHILD_ID&#xA;, PS.PLACEMENT_SETTING_ID  &#xA;, PS.PLACEMENT_EPISODE_ID&#xA;, PS.PLACEMENT_REQUEST_ID&#xA;, PS.SERVICE_ID&#xA;, PS.SERVICE_PROVIDER_ID&#xA;, PS.BEGIN_DATE&#xA;, PS.END_DATE&#xA;, PS.ESTIMATED_END_DATE&#xA;, PS.CREATED_BY&#xA;, PS.CREATED_DATE&#xA;, PS.MODIFIED_BY&#xA;, PS.MODIFIED_DATE&#xA;, PS.STATUS_CODE&#xA;, PS.PROVIDER_RELATIONSHIP_CODE&#xA;, PS.END_REASON_CODE&#xA;, PS.SECONDARY_END_REASON_CODE&#xA;, PS.ADDITIONAL_COMMENT_TEXT&#xA;, PS.END_CIRCUMSTANCE_TEXT&#xA;, PS.EMERGENCY_PLACEMENT_FLAG&#xA;, PS.AFTERHOURS_PLACEMENT_FLAG&#xA;, PN.NAME_TEXT&#xA;, PS.PLACEMENT_TYPE_CODE&#xA;, AG.AGENCY_NAME&#xA;, RD.SHORT_DESC AS PLACEMENT_TYPE_DESC&#xA;  &#xA;FROM&#xA;   ETL_CAREMATCH.DBO.CARE_MATCH_PERSON CMP&#xA;&#xA;   INNER JOIN SACWISCUY.DBO.PLACEMENT_SETTING PS&#xA;   ON CMP.CHILD_ID=PS.CHILD_ID&#xA;&#xA;   INNER JOIN SACWISCUY.DBO.PROVIDER_NAME PN&#xA;   ON PS.SERVICE_PROVIDER_ID = PN.PROVIDER_ID&#xA;   AND PN.END_DATE IS NULL&#xA;&#xA;   INNER JOIN SACWISCUY.DBO.REF_DATA RD&#xA;ON  PS.PLACEMENT_TYPE_CODE = RD.REF_DATA_CODE&#xA;AND RD.DOMAIN_CODE = 'CPPlacementType'&#xA;   &#xA;INNER JOIN SACWISCUY.DBO.SERVICE_TYPE ST&#xA;ON PS.SERVICE_ID=ST.SERVICE_ID&#xA;&#xA;INNER JOIN SACWISCUY.DBO.AGENCY AG&#xA;ON ST.AGENCY_ID=AG.AGENCY_ID;&#xA;&#xA;UPDATE ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_SETTING&#xA;&#x9;SET PLACEMENT_TYPE_DESC = 'NETWORK FOSTER HOME'&#xA;FROM ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_SETTING CMPS&#xA;&#x9;JOIN &#xA;&#x9;&#x9;(SELECT DISTINCT&#xA;&#x9;&#x9;PT1.provider_id&#xA;&#x9;&#x9;&#x9;FROM SACWISCUY.DBO.provider_type pt1,&#xA;&#x9;&#x9;&#x9;&#x9;SACWISCUY.DBO.agency a,&#xA;&#x9;&#x9;&#x9;&#x9;SACWISCUY.DBO.provider_type pt2&#xA;&#x9;&#x9;&#x9;WHERE &#xA;&#x9;&#x9;&#x9;pt1.type_code &lt;&gt; 'NETWORKPRVDR'&#xA;&#x9;&#x9;&#x9;AND pt1.end_date IS NULL&#xA;&#x9;&#x9;&#x9;AND pt1.agency_id = a.agency_id&#xA;&#x9;&#x9;&#x9;AND a.public_agency_flag = 0&#xA;&#x9;&#x9;&#x9;AND a.agency_id = pt2.provider_id&#xA;&#x9;&#x9;&#x9;AND pt2.type_code = 'NETWORKPRVDR'&#xA;&#x9;&#x9;&#x9;AND pt2.end_date IS NULL&#xA;&#xA;&#x9;&#x9;&#x9;UNION &#xA;&#xA;&#x9;&#x9;SELECT DISTINCT&#xA;&#x9;&#x9;PT1.provider_id&#xA;&#x9;&#x9;&#x9;FROM SACWISCUY.DBO.provider_type pt1,&#xA;&#x9;&#x9;&#x9;&#x9;SACWISCUY.DBO.agency a,&#xA;&#x9;&#x9;&#x9;&#x9;SACWISCUY.DBO.provider_type pt2&#xA;&#x9;&#x9;&#x9;WHERE  &#xA;&#x9;&#x9;&#x9;pt1.type_code &lt;&gt; 'NETWORKPRVDR'&#xA;&#x9;&#x9;&#x9;AND pt1.end_date IS NULL&#xA;&#x9;&#x9;&#x9;AND pt1.agency_id = a.agency_id&#xA;&#x9;&#x9;&#x9;AND a.public_agency_flag = 0&#xA;&#x9;&#x9;&#x9;AND a.agency_id = pt2.agency_id&#xA;&#x9;&#x9;&#x9;AND pt2.agency_id &lt;&gt; pt2.provider_id&#xA;&#x9;&#x9;&#x9;AND pt2.type_code = 'NETWORKPRVDR'&#xA;&#x9;&#x9;&#x9;AND pt2.end_date IS NULL) NP&#xA;&#x9;&#x9;&#x9;ON CMPS.SERVICE_PROVIDER_ID = NP.PROVIDER_ID&#xA;WHERE CMPS.PLACEMENT_TYPE_CODE = 'CERTIFIEDFOSTERHOME';&#xA;&#x9;&#x9;&#xA;UPDATE ETL_CAREMATCH.DBO.CARE_MATCH_PLMT_SETTING&#xA;&#x9;SET PLACEMENT_TYPE_DESC = 'DCFS FOSTER HOME'&#xA;WHERE PLACEMENT_TYPE_CODE = 'CERTIFIEDFOSTERHOME' AND&#xA;&#x9;PLACEMENT_TYPE_DESC &lt;&gt; 'NETWORK FOSTER HOME';&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{95E2E0F1-2585-4E5E-AD6C-3B8D4791A026}"
+      DTS:From="Package\Load Care_Match_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Care_Match_Participant" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F1D58E4B-5547-4DAE-9C6C-16AE66F5ED1B}"
+      DTS:From="Package\Load Care_Match_Participant"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Care_Match_Case_Part_Status" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{469D6465-03F2-4004-84A1-46B9D5F9B74F}"
+      DTS:From="Package\Load Care_Match_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Load Care_Match_Plmt_Episode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F8B2F92F-12F0-4061-A142-DB985B0ACA20}"
+      DTS:From="Package\Load Care_Match_Participant"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Care_Match_Case_Base" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{F1570B90-CF1B-439C-9AEC-A440FE6FAF7B}"
+      DTS:From="Package\Load Care_Match_Participant"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load Care_Match_Case_Person_Reln" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9043910E-B2CA-438F-A3BC-1899B70497B7}"
+      DTS:From="Package\Load Care_Match_Case_Base"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Load Care_Match_Address" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{5E1A5912-D8F5-4F65-B7CE-86ACD74E4B7B}"
+      DTS:From="Package\Load Care_Match_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Load Care_Match_Plmt_Setting" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{2420677D-226E-4A4E-B51A-F7FBACB9D726}"
+      DTS:From="Package\Load Care_Match_Plmt_Setting"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Load Care_Match_Plmt_Leave" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{457E1804-A845-4144-A6B7-FF3F3D739474}"
+      DTS:From="Package\Load Care_Match_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Load Care_Match_DCFS_FH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{35F7D415-EA53-45CE-A11F-AB6632E500AB}"
+      DTS:From="Package\Load Care_Match_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Load Care_Match_Network_FH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{2ECC8BAC-A49C-4672-B356-E619D63D5CD7}"
+      DTS:From="Package\Load Care_Match_Person"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Load Care_Match_Group_CRC" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="316,42"
+          Id="Package\Load Care_Match_Address"
+          TopLeft="1112.9880952381,269" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Load Care_Match_Case_Base"
+          TopLeft="722.321428571429,272" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Load Care_Match_Case_Part_Status"
+          TopLeft="722.321428571429,78" />
+        <NodeLayout
+          Size="316,42"
+          Id="Package\Load Care_Match_Case_Person_Reln"
+          TopLeft="722.321428571429,173.5" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Load Care_Match_DCFS_FH"
+          TopLeft="418.378571428571,567.613636363636" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Load Care_Match_Group_CRC"
+          TopLeft="418.378571428571,701.25" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Load Care_Match_Network_FH"
+          TopLeft="418.378571428571,636.704545454545" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Load Care_Match_Participant"
+          TopLeft="418.378571428571,179.285714285714" />
+        <NodeLayout
+          Size="200,64"
+          Id="Package\Load Care_Match_Person"
+          TopLeft="153.392857142857,462.214285714286" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Load Care_Match_Plmt_Criteria"
+          TopLeft="153.392857142857,782" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Load Care_Match_Plmt_Episode"
+          TopLeft="418.392857142857,388" />
+        <NodeLayout
+          Size="316,42"
+          Id="Package\Load Care_Match_Plmt_Leave"
+          TopLeft="722.321428571429,476.363636363636" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Load Care_Match_Plmt_Setting"
+          TopLeft="418.378571428571,471.428571428571" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="253.392857142857,462.214285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="194.652380952381,-240.928571428572"
+              Start="0,0"
+              End="194.652380952381,-233.428571428572">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-137.886341141538" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-137.886341141538"
+                    Point2="0,-141.886341141538"
+                    Point3="4,-141.886341141538" />
+                  <mssgle:LineSegment
+                    End="190.652380952381,-141.886341141538" />
+                  <mssgle:CubicBezierSegment
+                    Point1="190.652380952381,-141.886341141538"
+                    Point2="194.652380952381,-141.886341141538"
+                    Point3="194.652380952381,-145.886341141538" />
+                  <mssgle:LineSegment
+                    End="194.652380952381,-233.428571428572" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="460.878571428571,179.285714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="385.942857142858,-59.285714285714"
+              Start="0,0"
+              End="385.942857142858,-51.785714285714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-25.642857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-25.642857142857"
+                    Point2="0,-29.642857142857"
+                    Point3="4,-29.642857142857" />
+                  <mssgle:LineSegment
+                    End="381.942857142858,-29.642857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="381.942857142858,-29.642857142857"
+                    Point2="385.942857142858,-29.642857142857"
+                    Point3="385.942857142858,-33.642857142857" />
+                  <mssgle:LineSegment
+                    End="385.942857142858,-51.785714285714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="285.392857142857,462.214285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="247.5,-32.214285714286"
+              Start="0,0"
+              End="247.5,-24.714285714286">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-9.03911564625862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-9.03911564625862"
+                    Point2="0,-13.0391156462586"
+                    Point3="4,-13.0391156462586" />
+                  <mssgle:LineSegment
+                    End="243.5,-13.0391156462586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="243.5,-13.0391156462586"
+                    Point2="247.5,-13.0391156462586"
+                    Point3="247.5,-17.0391156462586" />
+                  <mssgle:LineSegment
+                    End="247.5,-24.714285714286" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="473.711904761904,221.285714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="357.109523809525,50.714285714286"
+              Start="0,0"
+              End="357.109523809525,43.214285714286">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.8479049818543" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.8479049818543"
+                    Point2="0,20.8479049818543"
+                    Point3="4,20.8479049818543" />
+                  <mssgle:LineSegment
+                    End="353.109523809525,20.8479049818543" />
+                  <mssgle:CubicBezierSegment
+                    Point1="353.109523809525,20.8479049818543"
+                    Point2="357.109523809525,20.8479049818543"
+                    Point3="357.109523809525,24.8479049818543" />
+                  <mssgle:LineSegment
+                    End="357.109523809525,43.214285714286" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="503.378571428571,197.392857142857">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="218.942857142858,0"
+              Start="0,0"
+              End="211.442857142858,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="211.442857142858,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="939.321428571429,291.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="173.666666666671,0"
+              Start="0,0"
+              End="166.166666666671,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="166.166666666671,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="353.392857142857,493.321428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.9857142857139,0"
+              Start="0,0"
+              End="57.4857142857139,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.4857142857139,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="644.378571428571,494.896103896104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.9428571428571,0"
+              Start="0,0"
+              End="70.4428571428571,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="70.4428571428571,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="253.392857142857,526.214285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="277.985714285714,41.39935064935"
+              Start="0,0"
+              End="277.985714285714,33.89935064935">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.699675324675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.699675324675"
+                    Point2="0,20.699675324675"
+                    Point3="4,20.699675324675" />
+                  <mssgle:LineSegment
+                    End="273.985714285714,20.699675324675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="273.985714285714,20.699675324675"
+                    Point2="277.985714285714,20.699675324675"
+                    Point3="277.985714285714,24.699675324675" />
+                  <mssgle:LineSegment
+                    End="277.985714285714,33.89935064935" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="253.392857142857,526.214285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="277.985714285714,110.490259740259"
+              Start="0,0"
+              End="277.985714285714,102.990259740259">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.2451298701295" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.2451298701295"
+                    Point2="0,55.2451298701295"
+                    Point3="4,55.2451298701295" />
+                  <mssgle:LineSegment
+                    End="273.985714285714,55.2451298701295" />
+                  <mssgle:CubicBezierSegment
+                    Point1="273.985714285714,55.2451298701295"
+                    Point2="277.985714285714,55.2451298701295"
+                    Point3="277.985714285714,59.2451298701295" />
+                  <mssgle:LineSegment
+                    End="277.985714285714,102.990259740259" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="253.392857142857,526.214285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="277.985714285714,175.035714285714"
+              Start="0,0"
+              End="277.985714285714,167.535714285714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.517857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,83.517857142857"
+                    Point2="0,87.517857142857"
+                    Point3="4,87.517857142857" />
+                  <mssgle:LineSegment
+                    End="273.985714285714,87.517857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="273.985714285714,87.517857142857"
+                    Point2="277.985714285714,87.517857142857"
+                    Point3="277.985714285714,91.517857142857" />
+                  <mssgle:LineSegment
+                    End="277.985714285714,167.535714285714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="(when i last went to "
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="136,40"
+          Id="660bd312-d5c9-442d-98e2-fc50e0bf77e3"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

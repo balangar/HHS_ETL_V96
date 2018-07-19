@@ -1,0 +1,39 @@
+use SacwisCuy
+go
+
+truncate table Provider_Type
+go
+
+insert into Provider_Type
+select 
+PROVIDER_ID
+, PROVIDER_TYPE_ID
+, TYPE_CODE
+, EFFECTIVE_DATE
+, END_DATE
+, AGENCY_ID
+, CURRENT_STATUS_CODE
+, CREATED_BY
+, CREATED_DATE
+, MODIFIED_BY
+, MODIFIED_DATE
+, APP_VERSION_NBR
+
+from openquery(adhoc_sacrpt,'
+select
+PROVIDER_ID
+, PROVIDER_TYPE_ID
+, TYPE_CODE
+, EFFECTIVE_DATE
+, END_DATE
+, AGENCY_ID
+, CURRENT_STATUS_CODE
+, CREATED_BY
+, CREATED_DATE
+, MODIFIED_BY
+, MODIFIED_DATE
+, APP_VERSION_NBR
+
+from sacwis.Provider_Type
+-- where 
+')

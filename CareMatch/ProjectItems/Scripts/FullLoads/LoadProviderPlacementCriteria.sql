@@ -1,0 +1,38 @@
+use SacwisCuy
+go
+
+truncate table Provider_Placement_Criteria
+go
+
+insert into Provider_Placement_Criteria
+select 
+PROVIDER_PLCMNT_CRITERIA_ID
+, PROVIDER_TYPE_CODE
+, EFFECTIVE_DATE
+, END_DATE
+, STATUS_CODE
+, PROVIDER_ID
+, CREATED_BY
+, CREATED_DATE
+, MODIFIED_BY
+, MODIFIED_DATE
+, TOTAL_NUMBER_OF_CHILDREN
+, APP_VERSION_NBR
+
+from openquery(adhoc_sacrpt,'
+select 
+PROVIDER_PLCMNT_CRITERIA_ID
+, PROVIDER_TYPE_CODE
+, EFFECTIVE_DATE
+, END_DATE
+, STATUS_CODE
+, PROVIDER_ID
+, CREATED_BY
+, CREATED_DATE
+, MODIFIED_BY
+, MODIFIED_DATE
+, TOTAL_NUMBER_OF_CHILDREN
+, APP_VERSION_NBR
+from sacwis.Provider_Placement_Criteria
+-- where 
+')
