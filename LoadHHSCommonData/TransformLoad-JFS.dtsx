@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-JFS"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{B056B91B-255E-4D07-A67F-08E58B36F0F4}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{1DC1B615-BFAD-49F0-AA15-6D3DE4BEA8AA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -34,7 +34,33 @@
           SQLTask:SqlStatementSource="MERGE &#xA;&#x9;HHS_MasterData.JFS.CRISE As Target &#xA;&#x9;USING HHS_Staging.JFS.CRISE As [Source]&#xA;&#x9;ON &#xA;&#x9;&#x9;Target.SocSecNo = [Source].SocSecNo&#xA;&#x9;WHEN&#xA;&#x9;&#x9;MATCHED And&#xA;&#x9;&#x9;[Source].IsValid = 1 And [Source].IsCleansed = 1 And &#xA;&#x9;&#x9;Target.LastModifiedDate &lt; [Source].SysInsertDate And [Target].Signature != [Source].Signature&#xA;&#x9;THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;&#x9;SET&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastModifiedDate = Source.SysInsertDate,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.SocSecNo = Source.SocSecNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.RecipientNo = Source.RecipientNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.BirthDate = Source.BirthDate,&#xA;&#x9;&#x9;&#x9;&#x9;Target.Age = Source.Age,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastName = Source.LastName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.FirstName = Source.FirstName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.MI = Source.Mi,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.HomePhone = Source.HomePhone,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine1 = Source.ResAddrLine1,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine2 = Source.ResAddrLine2,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine3 = Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrCity = Source.ResAddrCleansedCity,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrState = Source.ResAddrState,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrZipCode = Source.ResAddrCleansedZipCode,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.InCounty = Source.InCounty,&#xA;&#x9;&#x9;&#x9;&#x9;Target.InState = Source.InState&#xA;&#xA;&#x9;WHEN &#xA;&#x9;&#x9;NOT MATCHED BY TARGET AND [Source].IsValid = 1 And [Source].IsCleansed = 1 &#xA;&#x9;THEN&#xA;&#x9;&#x9;INSERT &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;LastModifiedDate, &#xA;&#x9;&#x9;&#x9;SocSecNo, RecipientNo, BirthDate, Age,&#xA;&#x9;&#x9;&#x9;LastName, FirstName, MI,&#xA;&#x9;&#x9;&#x9;HomePhone, ResAddrLine1, ResAddrLine2, ResAddrLine3,&#xA;&#x9;&#x9;&#x9;ResAddrCity, ResAddrState, ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;InState, InCounty&#xA;&#x9;&#x9;) &#xA;&#x9;&#x9;VALUES &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;Source.SysInsertDate, &#xA;&#x9;&#x9;&#x9;Source.SocSecNo, Source.RecipientNo, Source.BirthDate, Source.Age,&#xA;&#x9;&#x9;&#x9;Source.LastName, Source.FirstName, Source.MI,&#xA;&#x9;&#x9;&#x9;Source.HomePhone, Source.ResAddrLine1, Source.ResAddrLine2, Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;Source.ResAddrCleansedCity, Source.ResAddrState, Source.ResAddrCleansedZipCode,&#xA;&#x9;&#x9;&#x9;Source.InState, Source.InCounty&#xA;&#x9;&#x9;)&#xA;;&#xA;&#xA;&#x9;&#x9;&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load OBWP Medicaid Persons"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{82A9612A-40C2-47A6-8254-31A3B9CB5A7F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load OBWP Medicaid Persons"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="With CleanValidStagedMedicaid As&#xA;(&#xA;SELECT &#xA;&#x9;[ID],[SysInsertDate],[Signature],&#xA;    [SocSecNo],[ApplicantID], [CaseNumber],&#xA;&#x9;[LastName],[FirstName],[MI],&#xA;    [BirthDate],[Age],&#xA;    [HomePhone],&#xA;&#x9;[ResAddrLine1],[ResAddrLine2],[ResAddrLine3],[ResAddrCity],[ResAddrCleansedCity],&#xA;&#x9;[ResAddrState],[ResAddrZipCode],[ResAddrCleansedZipCode],[ResAddrPlus4],[ResAddrZipPlus4],&#xA;&#x9;[ProgramName],[ServiceType],[ServiceDescription],[DataSource],&#xA;&#x9;[InCounty],[InState],&#xA;&#x9;[IsValid],[IsCleansed],[IsDuplicate],&#xA;    [Comments]&#xA;  FROM &#xA;&#x9;[HHS_Staging].[JFS].[Medicaid]&#xA;  Where&#xA;&#x9;IsValid = 1 and IsCleansed = 1 &#xA;),&#xA;UniqueCVSMedicaid AS&#xA;(&#xA;SELECT &#xA;&#x9;[ID],[SysInsertDate],[Signature],&#xA;    [SocSecNo],[ApplicantID], [CaseNumber],&#xA;&#x9;[LastName],[FirstName],[MI],&#xA;    [BirthDate],[Age],&#xA;    [HomePhone],&#xA;&#x9;[ResAddrLine1],[ResAddrLine2],[ResAddrLine3],[ResAddrCity],[ResAddrCleansedCity],&#xA;&#x9;[ResAddrState],[ResAddrZipCode],[ResAddrCleansedZipCode],[ResAddrPlus4],[ResAddrZipPlus4],&#xA;&#x9;[ProgramName],[ServiceType],[ServiceDescription],[DataSource],&#xA;&#x9;[InCounty],[InState],&#xA;&#x9;[IsValid],[IsCleansed],[IsDuplicate],&#xA;    [Comments]&#xA;  FROM &#xA;&#x9;&#x9;CleanValidStagedMedicaid cvs&#xA;  Where&#xA;&#x9;ID = (Select Min(ID) from CleanValidStagedMedicaid c Where c.SocSecNo = cvs.SocSecNo)&#xA;)&#xA;MERGE &#xA;&#x9;HHS_MasterData.JFS.Medicaid As Target &#xA;&#x9;USING UniqueCVSMedicaid As [Source]&#xA;&#x9;ON &#xA;&#x9;&#x9;Target.SocSecNo = [Source].SocSecNo&#xA;&#x9;WHEN&#xA;&#x9;&#x9;MATCHED And&#xA;&#x9;&#x9;[Source].IsValid = 1 And [Source].IsCleansed = 1 And &#xA;&#x9;&#x9;Target.LastModifiedDate &lt; [Source].SysInsertDate And [Target].Signature != [Source].Signature&#xA;&#x9;THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;&#x9;SET&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastModifiedDate = Source.SysInsertDate,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.SocSecNo = Source.SocSecNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ApplicantID = Source.ApplicantID,&#xA;&#x9;&#x9;&#x9;&#x9;Target.CaseNumber = Source.CaseNumber,&#xA;&#x9;&#x9;&#x9;&#x9;Target.BirthDate = Source.BirthDate,&#xA;&#x9;&#x9;&#x9;&#x9;Target.Age = Source.Age,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastName = Source.LastName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.FirstName = Source.FirstName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.MI = Source.Mi,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.HomePhone = Source.HomePhone,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine1 = Source.ResAddrLine1,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine2 = Source.ResAddrLine2,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine3 = Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrCity = Source.ResAddrCleansedCity,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrState = Source.ResAddrState,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrZipCode = Source.ResAddrCleansedZipCode,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.InCounty = Source.InCounty,&#xA;&#x9;&#x9;&#x9;&#x9;Target.InState = Source.InState&#xA;&#xA;&#x9;WHEN &#xA;&#x9;&#x9;NOT MATCHED BY TARGET AND [Source].IsValid = 1 And [Source].IsCleansed = 1 &#xA;&#x9;THEN&#xA;&#x9;&#x9;INSERT &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;LastModifiedDate, &#xA;&#x9;&#x9;&#x9;SocSecNo, ApplicantID, CaseNumber,&#xA;&#x9;&#x9;&#x9;BirthDate, Age,&#xA;&#x9;&#x9;&#x9;LastName, FirstName, MI,&#xA;&#x9;&#x9;&#x9;HomePhone, ResAddrLine1, ResAddrLine2, ResAddrLine3,&#xA;&#x9;&#x9;&#x9;ResAddrCity, ResAddrState, ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;InState, InCounty&#xA;&#x9;&#x9;) &#xA;&#x9;&#x9;VALUES &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;Source.SysInsertDate, &#xA;&#x9;&#x9;&#x9;Source.SocSecNo, Source.ApplicantID, Source.CaseNumber,&#xA;&#x9;&#x9;&#x9;Source.BirthDate, Source.Age,&#xA;&#x9;&#x9;&#x9;Source.LastName, Source.FirstName, Source.MI,&#xA;&#x9;&#x9;&#x9;Source.HomePhone, Source.ResAddrLine1, Source.ResAddrLine2, Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;Source.ResAddrCleansedCity, Source.ResAddrState, Source.ResAddrCleansedZipCode,&#xA;&#x9;&#x9;&#x9;Source.InState, Source.InCounty&#xA;&#x9;&#x9;)&#xA;;&#xA;&#xA;&#x9;&#x9;&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B76EC606-6094-4CDE-940F-609AAD9C61F5}"
+      DTS:From="Package\Load CRISE Persons"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load OBWP Medicaid Persons" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -46,11 +72,37 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="174,42"
           Id="Package\Load CRISE Persons"
           TopLeft="590,132" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Load OBWP Medicaid Persons"
+          TopLeft="564,252" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="675.25,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,78"
+              Start="0,0"
+              End="0,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>

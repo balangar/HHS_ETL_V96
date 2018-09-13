@@ -1,0 +1,2360 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/4/2018 10:40:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{10BD47B6-80BB-4328-A14D-896CECDCDFF2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Stage-OBWP-Medicaid"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{0B14F012-64EE-4849-A4E3-E0EBA030F5D1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract and validate OBWP Medicaid data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F17639F1-932A-4F07-A92B-FAA56733D0B3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract and validate OBWP Medicaid data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Extracted OBWP Medicaid"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select
+	CASE
+		When LEN(LTRIM(RTRIM(SocSecNo))) = 7 Then '00' + SUBSTRING(LTRIM(RTRIM(SocSecNo)),1, 7)
+		When LEN(LTRIM(RTRIM(SocSecNo))) = 8 Then '0' + SUBSTRING(LTRIM(RTRIM(SocSecNo)), 1, 8)
+		ELSE SUBSTRING(LTRIM(RTRIM(SocSecNo)), 1, 9)
+	END as SocSecNo,
+	CaseNumber, ApplicantID,
+    SUBSTRING(LTRIM(RTRIM(UPPER([FirstName]))), 1, 15) As FirstName,
+    SUBSTRING(LTRIM(RTRIM(UPPER([LastName]))), 1, 15) As LastName,
+	BirthDate,
+	SUBSTRING(LTRIM(RTRIM(HomePhone)), 1, 10) As HomePhone,
+	SUBSTRING(LTRIM(RTRIM(ResAddrLine1)), 1, 45) As ResAddrLine1,
+	SUBSTRING(LTRIM(RTRIM(ResAddrLine2)), 1, 45) As ResAddrLine2,
+	SUBSTRING(LTRIM(RTRIM(UPPER(ResAddrCity))), 1, 24) As ResAddrCity,
+    SUBSTRING(LTRIM(RTRIM(ResAddrState)), 1, 2) As ResAddrState,
+	SUBSTRING(LTRIM(RTRIM(ResAddrZipCode)), 1, 10) As ResAddrZipCode,
+	SUBSTRING(LTRIM(RTRIM(AidCodeDescription)), 1, 255) As ServiceDescription,
+	AidCodeBeginDate As ServiceBeginDate, AidCodeEndDate As ServiceEndDate,
+    IsValid = 1,
+    Comments = '                                                                                                                                '
+From
+	HHS_Staging.tmp.Medicaid
+Where
+	[Status] =  'AC' AND
+	ISNULL(AidCodeEndDate, CAST('12/31/9999' As Date)) &gt;= CAST(getdate() As Date)</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[CaseNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[CaseNumber]"
+                      length="10"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[CaseNumber]"
+                      name="CaseNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ApplicantID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ApplicantID]"
+                      length="12"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ApplicantID]"
+                      name="ApplicantID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="15"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="15"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      length="10"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      name="HomePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      length="45"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      length="45"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      length="24"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      name="ResAddrCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      length="2"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      name="ResAddrState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      length="10"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ServiceDescription]"
+                      length="255"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceDescription]"
+                      name="ServiceDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceBeginDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ServiceBeginDate]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceBeginDate]"
+                      name="ServiceBeginDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceEndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ServiceEndDate]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceEndDate]"
+                      name="ServiceEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="128"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[CaseNumber]"
+                      dataType="wstr"
+                      length="10"
+                      name="CaseNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ApplicantID]"
+                      dataType="wstr"
+                      length="12"
+                      name="ApplicantID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      dataType="dbDate"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ServiceDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServiceDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ServiceBeginDate]"
+                      dataType="dbDate"
+                      name="ServiceBeginDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[ServiceEndDate]"
+                      dataType="dbDate"
+                      name="ServiceEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="128"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[CaseNumber]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[CaseNumber]"
+                      name="CaseNumber" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ApplicantID]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ApplicantID]"
+                      name="ApplicantID" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ServiceDescription]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ServiceDescription]"
+                      name="ServiceDescription" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ServiceBeginDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ServiceBeginDate]"
+                      name="ServiceBeginDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ServiceEndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ServiceEndDate]"
+                      name="ServiceEndDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="HHS Staging JFS Medicaid"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"JFS"."Medicaid"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[CaseNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CaseNumber"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[CaseNumber]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[CaseNumber]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ApplicantID]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="ApplicantID"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ApplicantID]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ApplicantID]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="HomePhone"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[HomePhone]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="ResAddrCity"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ResAddrZipCode"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ServiceDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ServiceDescription"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceDescription]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ServiceBeginDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ServiceBeginDate"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceBeginDate]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceBeginDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[ServiceEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ServiceEndDate"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceEndDate]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceEndDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="Comments"
+                      externalMetadataColumnId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[Comments]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[Signature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="Signature" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[CaseNumber]"
+                      dataType="wstr"
+                      length="10"
+                      name="CaseNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ApplicantID]"
+                      dataType="wstr"
+                      length="12"
+                      name="ApplicantID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine3]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine3" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="ResAddrCleansedCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrCleansedZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrPlus4]"
+                      dataType="wstr"
+                      length="4"
+                      name="ResAddrPlus4" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipPlus4]"
+                      dataType="wstr"
+                      length="14"
+                      name="ResAddrZipPlus4" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
+                      dataType="wstr"
+                      length="7"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      dataType="wstr"
+                      length="7"
+                      name="ServiceType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServiceDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceBeginDate]"
+                      dataType="dbTimeStamp"
+                      name="ServiceBeginDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceEndDate]"
+                      dataType="dbTimeStamp"
+                      name="ServiceEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[DataSource]"
+                      dataType="wstr"
+                      length="15"
+                      name="DataSource" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[InCounty]"
+                      dataType="bool"
+                      name="InCounty" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[InState]"
+                      dataType="bool"
+                      name="InState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[IsCleansed]"
+                      dataType="bool"
+                      name="IsCleansed" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[IsDuplicate]"
+                      dataType="bool"
+                      name="IsDuplicate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="255"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and validate OBWP Medicaid data\Validate fields"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Validate fields"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        #region Validation
+        /* Validation rules
+         * Regular expressions from RegexLib.com
+         * Validate ZipCode
+         *  ^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$
+         *  
+         * Validate Name
+            ^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$
+ 
+         *  Validate SocSecNo. Reference:  http://regexlib.com/Search.aspx?k=Social+Security+Number&c=-1&m=-1&ps=50  NB:  Modified below.  
+           (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+
+         *  Possible Phone no:  http://regexlib.com/Search.aspx?k=&c=7&m=-1&ps=50  
+         *       NB:  This one doesn't quite work.  It disallows phone numbers with no punctuation which is how we normally store them. I'm saving it for possible future reference[geg]
+             (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+ 
+         *   Letters only.
+         *   ("^[a-zA-Z]{1,25}$")
+         */
+        #endregion
+        Regex validZipCode = new Regex(@"^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$");
+
+        //Regular exxpression for SocSecNo modified to allow 1-8 in first position per https://www.ssa.gov/kc/SSAFactSheet--IssuingSSNs.pdf
+        Regex validSocSecNo = new Regex(@"(^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-8]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])");
+        Regex validName = new Regex(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z][.]*)*$"); // Modified to allow a "." at the end.  For example, Galworthy, Jr.
+        Regex lettersOnly = new Regex("^[a-zA-Z]{1,25}$");
+
+        Match rMatch;
+
+        string runningComments = string.Empty;
+        bool runningValid = true;
+        long dumbPhone = 0;
+
+        switch (Row.ResAddrZipCode_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " ZipCode required.";
+                break;
+
+            case false:
+                rMatch = validZipCode.Match(Row.ResAddrZipCode);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += "Malformed Zip Code.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  ZipCode must be either null or not null.");
+                break;
+        }
+
+        switch (Row.SocSecNo_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " SocSecNo required.";
+                break;
+
+            case false:
+                rMatch = validSocSecNo.Match(Row.SocSecNo);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += " Malformed SocSecNo.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  SocSecNo must be either null or not null.");
+                break;
+        }
+
+        switch (Row.FirstName_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " First Name required.";
+                break;
+
+            case false:
+                rMatch = validName.Match(Row.FirstName);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += " Malformed First Name.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  FirstName must be either null or not null.");
+                break;
+        }
+
+        switch (Row.LastName_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " Last Name Required.";
+                break;
+
+            case false:
+                rMatch = validName.Match(Row.LastName);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += " Malformed Last Name.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  LastName must be either null or not null.");
+                break;
+        }
+        // Birthdate is a required field.  Also requires a sanity check.
+        switch (Row.BirthDate_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " BirthDate required.";
+                break;
+
+            case false:
+                if (Row.BirthDate < DateTime.Today.AddYears(-100))
+                {
+                    runningValid = false;
+                    runningComments += " Invalid BirthDate. Age is 100 or more.";
+                }
+                else if (Row.BirthDate >= DateTime.Today)
+                {
+                    runningValid = false;
+                    runningComments += " Invalid BirthDate.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  BirthDate must be either null or not null.");
+                break;
+        }
+
+        switch (Row.ResAddrState_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " ResAddrState required.";
+                break;
+
+            default:
+                break;
+        }
+
+
+        Row.IsValid = (runningValid ? 1 : 0);
+        Row.Comments = runningComments;  // NB: I played a _horrible_ game with the data source which feeds this.  I set "Comments" = to 130 spaces to preallocate the row buffer some respectable size.  If, for any reason, the comments get bigger than that, this statement will BLOW UP with "buffer too small".  I apologize to all future maintainers of this code. Until I can think of something better.  [geg] 2018-01-30
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String SocSecNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String CaseNumber
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool CaseNumber_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String ApplicantID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool ApplicantID_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[5]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String ResAddrCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String ResAddrState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String ServiceDescription
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool ServiceDescription_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public DateTime ServiceBeginDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[12]);
+        }
+    }
+    public bool ServiceBeginDate_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public DateTime ServiceEndDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[13]);
+        }
+    }
+    public bool ServiceEndDate_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+    }
+
+    public Int32 IsValid
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[14]);
+        }
+        set
+        {
+            this[14] = value;
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        get
+        {
+            return IsNull(14);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(14);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[15]);
+        }
+        set
+        {
+            this[15] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(15);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(15);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3a7501936500494e9c82439ccb16530b.Properties.Settings.get_Default():SC_3a7501936500494e9c82439ccb16530b.Properties.Sett" +
+    "ings")]
+
+namespace SC_3a7501936500494e9c82439ccb16530b.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_3a7501936500494e9c82439ccb16530b.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2ff066c3-899a-41e4-ab60-bb3f47f02c8b}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_3a7501936500494e9c82439ccb16530b</RootNamespace>
+    <AssemblyName>SC_3a7501936500494e9c82439ccb16530b</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_3a7501936500494e9c82439ccb16530b" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_3a7501936500494e9c82439ccb16530b</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_3a7501936500494e9c82439ccb16530b</msb:DisplayName>
+		<msb:ProjectId>{0593A2B7-F878-42B6-8EA4-1C48E6C5791B}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_3a7501936500494e9c82439ccb16530b.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_3a7501936500494e9c82439ccb16530b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_3a7501936500494e9c82439ccb16530b")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3a7501936500494e9c82439ccb16530b.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3a7501936500494e9c82439ccb16530b.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3a7501936500494e9c82439ccb16530b.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_3a7501936500494e9c82439ccb16530b.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_3a7501936500494e9c82439ccb16530b.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_3a7501936500494e9c82439ccb16530b.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAG4n/FoAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAgkAA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAADBAAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAiCAAAAAgAAAAIgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABk
+QAAAAAAAAEgAAAACAAUAeCUAAAAaAAABAAAAAAAAAHg/AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAwDoAQAAAQAAEXIBAABwcxAAAAoKcoEAAHBzEAAACgty
+0gEAcHMQAAAKDHIuAgBwcxAAAAomfhEAAAoNFxMEA28ZAAAGEwURBSwWEQUXMzMWEwQJclACAHAo
+EgAACg0rIgYDbxgAAAZvEwAACm8UAAAKLQ8WEwQJcnYCAHAoEgAACg0DbwUAAAYTBREFLBYRBRcz
+MxYTBAlyngIAcCgSAAAKDSsiBwNvBAAABm8TAAAKbxQAAAotDxYTBAlyxgIAcCgSAAAKDQNvDQAA
+BhMFEQUsFhEFFzMzFhMECXLwAgBwKBIAAAoNKyIIA28MAAAGbxMAAApvFAAACi0PFhMECXIcAwBw
+KBIAAAoNA28LAAAGEwURBSwWEQUXMzMWEwQJckoDAHAoEgAACg0rIggDbwoAAAZvEwAACm8UAAAK
+LQ8WEwQJcnQDAHAoEgAACg0Dbw8AAAYTBREFLBYRBRczYBYTBAlyoAMAcCgSAAAKDStPA28OAAAG
+KBUAAAoTBhIGH5woFgAACigXAAAKLBEWEwQJcsoDAHAoEgAACg0rIQNvDgAABigVAAAKKBgAAAos
+DxYTBAlyGgQAcCgSAAAKDQNvFwAABhMFEQUXMw8WEwQJckIEAHAoEgAACg0DEQQtAxYrARdvIQAA
+BgMJbyUAAAYqHgIoKgAABioqAgMEBSgZAAAKKlICexoAAAoCexsAAAoWlG8cAAAKKiICFigdAAAK
+KlICexoAAAoCexsAAAoXlG8cAAAKKiICFygdAAAKKlICexoAAAoCexsAAAoYlG8cAAAKKiICGCgd
+AAAKKlICexoAAAoCexsAAAoZlG8cAAAKKiICGSgdAAAKKlICexoAAAoCexsAAAoalG8cAAAKKiIC
+GigdAAAKKlICexoAAAoCexsAAAoblG8eAAAKKiICGygdAAAKKlICexoAAAoCexsAAAoclG8cAAAK
+KiICHCgdAAAKKlICexoAAAoCexsAAAodlG8cAAAKKiICHSgdAAAKKlICexoAAAoCexsAAAoelG8c
+AAAKKiICHigdAAAKKlYCexoAAAoCexsAAAofCZRvHAAACiomAh8JKB0AAAoqVgJ7GgAACgJ7GwAA
+Ch8KlG8cAAAKKiYCHwooHQAACipWAnsaAAAKAnsbAAAKHwuUbxwAAAoqJgIfCygdAAAKKlYCexoA
+AAoCexsAAAofDJRvHgAACiomAh8MKB0AAAoqVgJ7GgAACgJ7GwAACh8NlG8eAAAKKiYCHw0oHQAA
+CipWAnsaAAAKAnsbAAAKHw6Ubx8AAAoqPgIfDgOMHwAAASggAAAKKiYCHw4oHQAACipeAywJAh8O
+KCEAAAoqcnIEAHBzIgAACnpWAnsaAAAKAnsbAAAKHw+UbxwAAAoqKgIfDwMoIAAACiomAh8PKB0A
+AAoqXgMsCQIfDyghAAAKKnJyBABwcyIAAAp6HgIoIwAACioeAigkAAAKKn4CKCUAAAoCAnMuAAAG
+fQEAAAQCAnMvAAAGfQIAAAQqkgRyDwUAcBpvJgAACiwVAgUCAygnAAAKDgRzAwAABm8sAAAGKkor
+BwIDby0AAAYDbygAAAYt8SoGKjoCKCgAAAoCA30DAAAEKjoCKCgAAAoCA30EAAAEKh4CKCgAAAoq
+rn4FAAAELR5yHwUAcNAHAAACKCkAAApvKgAACnMrAAAKgAUAAAR+BQAABCoafgYAAAQqHgKABgAA
+BCoafgcAAAQqHgIoLAAACiouczUAAAaABwAABCoAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5
+AAAAAAUAbAAAANgIAAAjfgAARAkAACwJAAAjU3RyaW5ncwAAAABwEgAAlAUAACNVUwAEGAAAEAAA
+ACNHVUlEAAAAFBgAAOwBAAAjQmxvYgAAAAAAAAACAAABVxWiAQkBAAAA+gEzABYAAAEAAAAkAAAA
+CAAAAAcAAAA2AAAAEQAAACwAAAAQAAAAAQAAAAMAAAAjAAAAKAAAAAEAAAAEAAAAAQAAAAAAywMB
+AAAAAAAGAL0C6QYGAFED6QYGAAkC1gYPAF0HAAAGADYC8gUGAKAC8gUGAIEC8gUGADgD8gUGAN0C
+8gUGAPYC8gUGAE0C8gUGAGgCdQMKABEDBwEOAPkI2gcGAP4AngUKAKgGBwESAJkGBwEKAF8GBwEK
+AHgIBwEGADsIngUGAOwB1gYGALkGCQcGAFMG3QUOAKsBtQMOAB0CtQMOAFUByAUGANEB6QYGAJID
+ngUOAJkD2gcOAHcG2gcGABUAngUGAAQGngUGADUGngUGACgBngUGALUAngUGAA0J8gUAAAAALAAA
+AAAAAQABAAEAEAC9BQAAEAABAAEAAQAQAIwGAABBAAEAAwABABAAWggAAE0AAQAqAAEAEAD5BwAA
+UQADAC4AAQAQAJsHAABRAAQALwAAABAAEAdsB1EABQAwAAABEADKB2wHaQAHADQABgD5B60ABgCb
+B7EAAQBoCLUAAQBoCLUAEQClBbkAEQBFAb0AEQCSAMEAUCAAAAAAxgDaCMUAAQBEIgAAAACGGMkG
+BgACAEwiAAAAAIYYyQZPAAIAVyIAAAAAhghGBssABQBsIgAAAACGCCQFOAAFAHUiAAAAAIYIfQbL
+AAUAiiIAAAAAhgg4BTgABQCTIgAAAACGCDUAywAFAKgiAAAAAIYIIwQ4AAUAsSIAAAAAhgjZAMsA
+BQDGIgAAAACGCHoEOAAFAM8iAAAAAIYI5gDLAAUA5CIAAAAAhgiOBDgABQDtIgAAAACGCIABzwAF
+AAIjAAAAAIYIvQQ4AAUACyMAAAAAhggBAMsABQAgIwAAAACGCPMDOAAFACkjAAAAAIYIGwDLAAUA
+PiMAAAAAhggLBDgABQBHIwAAAACGCBYJywAFAFwjAAAAAIYIdgU4AAUAZSMAAAAAhgjAAcsABQB7
+IwAAAACGCO4EOAAFAIUjAAAAAIYIogDLAAUAmyMAAAAAhghgBDgABQClIwAAAACGCB4GywAFALsj
+AAAAAIYIBgU4AAUAxSMAAAAAhgiOAc8ABQDbIwAAAACGCNIEOAAFAOUjAAAAAIYIbQHPAAUA+yMA
+AAAAhgijBDgABQAFJAAAAACGCHoA1AAFABskAAAAAIYIhgABAAUAKyQAAAAAhgg6BDgABgA1JAAA
+AACGCE0E2AAGAE0kAAAAAIYIGgjLAAcAYyQAAAAAhggnCBAABwBuJAAAAACGCE4FOAAIAHgkAAAA
+AIYIYgXYAAgAkCQAAAAAhgDxCDgACQCYJAAAAACGAEIIOAAJAKAkAAAAAIYYyQYGAAkAwCQAAAAA
+xgDNCN0ACQDlJAAAAADGAcYIxQANAPgkAAAAAMYB2gjFAA4A+iQAAAAAhhjJBucADwAJJQAAAACG
+GMkG5wAQABglAAAAAIMYyQYGABEAICUAAAAAkwi1Bu0AEQBMJQAAAACTCC0B8gARAFMlAAAAAJMI
+OQH3ABEAWyUAAAAAlghOCP0AEgBiJQAAAACGGMkGBgASAGolAAAAAJEYzwYCARIAAAABAPUIAAAB
+AK4GAAACAKUHAAADAG0GAAABAG8DAAABAG8DAAABAG8DAAABAG8DAAABAEUAAAACAPQAAAADAK4G
+AAAEAG0GAAABAK4GAAABAPUIAAABAH4IAAABAH4IAAABAG8DCQDJBgEAEQDJBgYAGQDJBgoAKQDJ
+BhAAMQDJBhAAOQDJBhAAQQDJBhAASQDJBhAAUQDJBhAAWQDJBhAAYQDJBhAAaQDJBgYAqQDJBgYA
+yQDJBhUA2QDJBgYAcQDJBhAA4QAmCSkA4QA0CCwAcQCZAzIA8QAOCDgAeQD/CDwAeQAFCEEAeQCx
+BUcAeQCfA0cAgQDJBk8AgQCuBlkAgQClB10AiQCPA2EAgQCGBWYAiQCjAUEAiQASAGsAgQCVBXAA
+gQCNBQEAAQHJBhAAgQDxCDgAgQBCCDgAmQDJBgYA4QDTB3YAmQC5B34AoQDJBgYAEQHHAIQAEQEJ
+CY0AsQDJBpMA0QDJBgYALgALACYBLgATAC8BLgAbAE4BLgAjAFcBLgArAIABLgAzAIABLgA7AIAB
+LgBDAFcBLgBLAIYBLgBTAIABLgBbAJ0BQwBjAOUB4QB7AOUB4wBrAOUBKQRzAE4BSQRzAE4BGwAD
+AAEABwAhAAgAIwAAAEoGBgEAACgFCgEAAIEGBgEAADwFCgEAADkABgEAACcECgEAAN0ABgEAAH4E
+CgEAAOoABgEAAJIECgEAAIQBDgEAAMEECgEAAAUABgEAAPcDCgEAAB8ABgEAAA8ECgEAABoJBgEA
+AHoFCgEAAMQBBgEAAPIECgEAAKYABgEAAGQECgEAACIGBgEAAAoFCgEAAJIBDgEAANYECgEAAHEB
+DgEAAKcECgEAAIoAEwEAAFEECgEAACsIBgEAAGYFCgEAALkGFwEAAE0BHAEAAFIIIQECAAQAAwAC
+AAUABQACAAYABwACAAcACQACAAgACwACAAkADQACAAoADwACAAsAEQACAAwAEwACAA0AFQACAA4A
+FwACAA8AGQACABAAGwACABEAHQACABIAHwACABMAIQACABQAIwACABUAJQACABYAJwACABcAKQAC
+ABgAKwACABkALQACABoALwACABsAMQACABwAMwACAB0ANQACAB4ANwACAB8AOQACACAAOwABACEA
+OwACACIAPQABACMAPQACACQAPwABACUAPwACACYAQQABACcAQQACADEAQwACADIARQABADMARQAC
+ADQARwAEgAAAAQAAADYaVz0AAAAAAABNAAAABAAAAAAAAAAAAAAAmwBxAAAAAAAMAAAAAAAAAAAA
+AACkAIgIAAAAAAQAAAAAAAAAAAAAAJsAngUAAAAADAAAAAAAAAAAAAAApAClCAAAAAAAAAAAAQAA
+ABoHAAAAAAAAAGdldF9SZXNBZGRyTGluZTEAR2V0SW50MzIAZ2V0X1Jlc0FkZHJMaW5lMgA8TW9k
+dWxlPgBnZXRfQXBwbGljYW50SUQASW5wdXRJRABTQ18zYTc1MDE5MzY1MDA0OTRlOWM4MjQzOWNj
+YjE2NTMwYgBtc2NvcmxpYgBnZXRfSXNWYWxpZABzZXRfSXNWYWxpZABkZWZhdWx0SW5zdGFuY2UA
+Z2V0X1Jlc0FkZHJaaXBDb2RlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAGdl
+dF9MYXN0TmFtZQBnZXRfRmlyc3ROYW1lAElucHV0TmFtZQBEYXRlVGltZQBNaWNyb3NvZnQuU3Fs
+U2VydmVyLkR0cy5QaXBlbGluZQBUeXBlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNl
+Q3VsdHVyZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBnZXRfU2VydmljZUVuZERhdGUAZ2V0X0Jp
+cnRoRGF0ZQBnZXRfU2VydmljZUJlZ2luRGF0ZQBHZXREYXRlAEVkaXRvckJyb3dzYWJsZVN0YXRl
+AGdldF9SZXNBZGRyU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25V
+c2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJp
+YnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRh
+cmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNz
+ZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRl
+AEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lT
+U2NyaXB0Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1
+dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUuVmVy
+c2lvbmluZwBHZXRTdHJpbmcATWF0Y2gAb3BfR3JlYXRlclRoYW5PckVxdWFsAFN5c3RlbS5Db21w
+b25lbnRNb2RlbABTQ18zYTc1MDE5MzY1MDA0OTRlOWM4MjQzOWNjYjE2NTMwYi5kbGwAZ2V0X1Jl
+c0FkZHJMaW5lMV9Jc051bGwAZ2V0X1Jlc0FkZHJMaW5lMl9Jc051bGwAZ2V0X0FwcGxpY2FudElE
+X0lzTnVsbABnZXRfSXNWYWxpZF9Jc051bGwAc2V0X0lzVmFsaWRfSXNOdWxsAGdldF9SZXNBZGRy
+WmlwQ29kZV9Jc051bGwAZ2V0X0xhc3ROYW1lX0lzTnVsbABnZXRfRmlyc3ROYW1lX0lzTnVsbABn
+ZXRfU2VydmljZUVuZERhdGVfSXNOdWxsAGdldF9CaXJ0aERhdGVfSXNOdWxsAGdldF9TZXJ2aWNl
+QmVnaW5EYXRlX0lzTnVsbABnZXRfUmVzQWRkclN0YXRlX0lzTnVsbABnZXRfU2VydmljZURlc2Ny
+aXB0aW9uX0lzTnVsbABnZXRfU29jU2VjTm9fSXNOdWxsAGdldF9DYXNlTnVtYmVyX0lzTnVsbABn
+ZXRfQ29tbWVudHNfSXNOdWxsAHNldF9Db21tZW50c19Jc051bGwAZ2V0X1Jlc0FkZHJDaXR5X0lz
+TnVsbABTZXROdWxsAHNldF9JdGVtAFN5c3RlbQByZXNvdXJjZU1hbgBvcF9MZXNzVGhhbgBTY3Jp
+cHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3RlbS5S
+ZWZsZWN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24AZ2V0X1NlcnZpY2VEZXNjcmlwdGlv
+bgBTdHJpbmdDb21wYXJpc29uAGdldF9Tb2NTZWNObwBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFw
+AE91dHB1dE1hcABHcm91cABnZXRfQ2FzZU51bWJlcgBJbnB1dDBCdWZmZXIAUGlwZWxpbmVCdWZm
+ZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0b3IALmNjdG9yAFN5c3RlbS5E
+aWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJj
+ZXMAU0NfM2E3NTAxOTM2NTAwNDk0ZTljODI0MzljY2IxNjUzMGIuUHJvcGVydGllcy5SZXNvdXJj
+ZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNDXzNhNzUwMTkzNjUwMDQ5NGU5YzgyNDM5Y2Ni
+MTY1MzBiLlByb3BlcnRpZXMAVmFyaWFibGVzAEJ1ZmZlckNvbHVtbkluZGV4ZXMAR2V0Q29sdW1u
+SW5kZXhlcwBTZXR0aW5ncwBFcXVhbHMAU3lzdGVtLlRleHQuUmVndWxhckV4cHJlc3Npb25zAENv
+bm5lY3Rpb25zAEFkZFllYXJzAGdldF9TdWNjZXNzAGdldF9Db21tZW50cwBzZXRfQ29tbWVudHMA
+Q29uY2F0AE9iamVjdABFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29tcG9uZW50AFBhcmVu
+dENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZlci5UeFNjcmlwdABN
+aWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vzc0lucHV0AElucHV0
+MF9Qcm9jZXNzSW5wdXRSb3cATmV4dFJvdwBSZWdleABnZXRfVG9kYXkAZ2V0X0Fzc2VtYmx5AGdl
+dF9SZXNBZGRyQ2l0eQBFbXB0eQAAf14AKAA/ACEAMAAwADAAMAAwACkAKAA/ADwAegBpAHAAPgAo
+AD8APAB6AGkAcAA1AD4AXABkAHsANQB9ACkAKAA/ADoAWwAgAC0AXQAoAD8APQBcAGQAKQApAD8A
+KAA/ADwAegBpAHAANAA+AFwAZAB7ADQAfQApAD8AKQAkAAGBTygAXgB8AFwAcwApACgAMAAwAFsA
+MQAtADkAXQB8ADAAWwAxAC0AOQBdADAAfAAwAFsAMQAtADkAXQBbADEALQA5AF0AfABbADEALQA4
+AF0AXABkAHsAMgB9AHwANwBbADAALQA2AF0AXABkAHwANwA3AFsAMAAtADIAXQApACgALQA/AHwA
+WwBcAC4AIABdACkAKABbADEALQA5AF0AMAB8ADAAWwAxAC0AOQBdAHwAWwAxAC0AOQBdAFsAMQAt
+ADkAXQApAFwAMwAoAFwAZAB7ADMAfQBbADEALQA5AF0AfABbADEALQA5AF0AXABkAHsAMwB9AHwA
+XABkAFsAMQAtADkAXQBcAGQAewAyAH0AfABcAGQAewAyAH0AWwAxAC0AOQBdAFwAZAApACgAJAB8
+AFwAcwB8AFsAOwA6ACwAIQBcAC4AXAA/AF0AKQABW14AWwBhAC0AegBBAC0AWgBdACsAKAAoAFsA
+JwAsAC4AIAAtAF0AWwBhAC0AegBBAC0AWgAgAF0AKQA/AFsAYQAtAHoAQQAtAFoAXQBbAC4AXQAq
+ACkAKgAkAAEhXgBbAGEALQB6AEEALQBaAF0AewAxACwAMgA1AH0AJAABJSAAWgBpAHAAQwBvAGQA
+ZQAgAHIAZQBxAHUAaQByAGUAZAAuAAAnTQBhAGwAZgBvAHIAbQBlAGQAIABaAGkAcAAgAEMAbwBk
+AGUALgAAJyAAUwBvAGMAUwBlAGMATgBvACAAcgBlAHEAdQBpAHIAZQBkAC4AACkgAE0AYQBsAGYA
+bwByAG0AZQBkACAAUwBvAGMAUwBlAGMATgBvAC4AACsgAEYAaQByAHMAdAAgAE4AYQBtAGUAIABy
+AGUAcQB1AGkAcgBlAGQALgAALSAATQBhAGwAZgBvAHIAbQBlAGQAIABGAGkAcgBzAHQAIABOAGEA
+bQBlAC4AACkgAEwAYQBzAHQAIABOAGEAbQBlACAAUgBlAHEAdQBpAHIAZQBkAC4AACsgAE0AYQBs
+AGYAbwByAG0AZQBkACAATABhAHMAdAAgAE4AYQBtAGUALgAAKSAAQgBpAHIAdABoAEQAYQB0AGUA
+IAByAGUAcQB1AGkAcgBlAGQALgAATyAASQBuAHYAYQBsAGkAZAAgAEIAaQByAHQAaABEAGEAdABl
+AC4AIABBAGcAZQAgAGkAcwAgADEAMAAwACAAbwByACAAbQBvAHIAZQAuAAAnIABJAG4AdgBhAGwA
+aQBkACAAQgBpAHIAdABoAEQAYQB0AGUALgAALyAAUgBlAHMAQQBkAGQAcgBTAHQAYQB0AGUAIABy
+AGUAcQB1AGkAcgBlAGQALgAAgJtJAHMATgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBu
+AG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAA
+YQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBk
+AC4AAA9JAG4AcAB1AHQAIAAwAABxUwBDAF8AMwBhADcANQAwADEAOQAzADYANQAwADAANAA5ADQA
+ZQA5AGMAOAAyADQAMwA5AGMAYwBiADEANgA1ADMAMABiAC4AUAByAG8AcABlAHIAdABpAGUAcwAu
+AFIAZQBzAG8AdQByAGMAZQBzAAAAAAAI4tbWY6FPQL1urUUq9QOOAAQgAQEIAyAAAQUgAQEREQQg
+AQEOBSABARFhDQcHEjkSORI5DgICET0CBg4FAAIODg4FIAESdQ4DIAACBAAAET0FIAERPQgHAAIC
+ET0RPQkgAwESRR0IEkkDBhJFAwYdCAQgAQ4IBCABAggEIAEICAUgAgEIHAcgAgIOEYCFBSABHQgI
+CAABEoCJEYCNBSAAEoCRByACAQ4SgJEIt3pcVhk04IkIiYRdzYCAzJEDBhIUAwYSGAMGEk0DBhJZ
+AwYSXQMGEiAFIAEBEgwDIAAOBCAAET0DIAAIBCABAQIJIAQBCA4SRRJJBSABARJNBAAAElkEAAAS
+XQUAAQESXQQAABIgAwAAAQMoAA4DKAACBCgAET0DKAAIBAgAElkECAASXQQIABIgCAEACAAAAAAA
+HgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTQ18zYTc1MDE5MzY1
+MDA0OTRlOWM4MjQzOWNjYjE2NTMwYgAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDE4AABHAQAa
+Lk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEC5ORVQg
+RnJhbWV3b3JrIDQEAQAAAAAAtAAAAM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291
+cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1
+YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVz
+b3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAFhAAAAAAAAAAAAAAHJAAAAAIAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAABkQAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/
+JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
+AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
+ABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
+AAABAAAAAQBXPTYaAAABAFc9Nho/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
+sAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAwADAANABi
+ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEA
+bQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBf
+ADMAYQA3ADUAMAAxADkAMwA2ADUAMAAwADQAOQA0AGUAOQBjADgAMgA0ADMAOQBjAGMAYgAxADYA
+NQAzADAAYgAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADcAMQAw
+AC4AMQA1ADcAMAAzAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADMA
+YQA3ADUAMAAxADkAMwA2ADUAMAAwADQAOQA0AGUAOQBjADgAMgA0ADMAOQBjAGMAYgAxADYANQAz
+ADAAYgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAA
+eQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBt
+AGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAA
+UwBDAF8AMwBhADcANQAwADEAOQAzADYANQAwADAANAA5ADQAZQA5AGMAOAAyADQAMwA5AGMAYwBi
+ADEANgA1ADMAMABiAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMA
+QwBfADMAYQA3ADUAMAAxADkAMwA2ADUAMAAwADQAOQA0AGUAOQBjADgAMgA0ADMAOQBjAGMAYgAx
+ADYANQAzADAAYgAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4A
+NgA3ADEAMAAuADEANQA3ADAAMwAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANgA3ADEAMAAuADEANQA3ADAAMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAACEMAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_3a7501936500494e9c82439ccb16530b</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">e653cf1665896f3ede87d80fe600fe57</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">71205715d2ef348267de469ab765d0c98d7dd222</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[CaseNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CaseNumber"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[CaseNumber]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ApplicantID]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="ApplicantID"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ApplicantID]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ServiceDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ServiceDescription"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceDescription]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ServiceBeginDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ServiceBeginDate"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceBeginDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[ServiceEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ServiceEndDate"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[ServiceEndDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="Comments"
+                      lineageId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output].Columns[Comments]"
+                      usageType="readWrite" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate OBWP Medicaid data\Validate fields.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract and validate OBWP Medicaid data.Paths[ADO NET Source Output]"
+              endId="Package\Extract and validate OBWP Medicaid data\Validate fields.Inputs[Input 0]"
+              name="ADO NET Source Output"
+              startId="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Extract and validate OBWP Medicaid data.Paths[Output 0]"
+              endId="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid.Inputs[ADO NET Destination Input]"
+              name="Output 0"
+              startId="Package\Extract and validate OBWP Medicaid data\Validate fields.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate HHS Staging JFS Medicaid"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EA46C05B-CEE3-4D13-AF44-061B86A38DBD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate HHS Staging JFS Medicaid"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="Truncate Table HHS_Staging.JFS.Medicaid;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0FD43DA0-D6AE-4313-A8C9-1C9E0924E9B9}"
+      DTS:From="Package\Truncate HHS Staging JFS Medicaid"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract and validate OBWP Medicaid data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="273,42"
+          Id="Package\Extract and validate OBWP Medicaid data"
+          TopLeft="583,188" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Truncate HHS Staging JFS Medicaid"
+          TopLeft="592,86" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="717.5,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract and validate OBWP Medicaid data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Extract and validate OBWP Medicaid data\Validate fields"
+          TopLeft="644,192" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid"
+          TopLeft="621,315" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid"
+          TopLeft="621,79" />
+        <EdgeLayout
+          Id="Package\Extract and validate OBWP Medicaid data.Paths[Output 0]"
+          TopLeft="719,234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract and validate OBWP Medicaid data.Paths[ADO NET Source Output]"
+          TopLeft="718.5,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and validate OBWP Medicaid data\HHS Staging JFS Medicaid">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and validate OBWP Medicaid data\Extracted OBWP Medicaid">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
