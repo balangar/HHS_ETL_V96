@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/24/2018 10:12:11 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS403300"
+  DTS:CreatorName="CCEFS\greeng"
+  DTS:DTSID="{51F0D18B-3C7B-4F2A-A5E7-DD4151BBFC39}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0800.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Master-DetectDuplicates"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{5C1108C7-C021-4564-929E-B025A9D74C8C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Mark Duplicates"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9B316732-2ADB-4424-8037-3882D4902C67}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mark Duplicates"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="With HHS_Duplicates(SocSecNo, BirthDate, PartialLastName)&#xA;AS&#xA;(&#xA;&#x9;Select&#xA;&#x9;&#x9;SocSecNo, BirthDate, SUBSTRING(LastName, 1,5)--, ResAddrCleansedZipCode&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.JFS.CRISE&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 AND&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#xA;&#x9;INTERSECT&#xA;&#x9;Select&#xA;&#x9;&#x9;SocSecNo, BirthDate, SUBSTRING(LastName, 1,5)--, ResAddrCleansedZipCode&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons&#xA;&#x9;Where&#xA;&#x9;&#x9;isvalid = 1 and&#xA;&#x9;&#x9;iscleansed = 1&#xA;)&#xA;UPDATE j&#xA;&#x9;Set&#xA;&#x9;&#x9;j.IsDuplicate = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.JFS.CRISE j&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;HHS_Duplicates d&#xA;&#x9;&#x9;ON&#xA;&#x9;&#x9;&#x9;j.SocSecNo = d.SocSecNo AND&#xA;&#x9;&#x9;&#x9;j.BirthDate = d.BirthDate&#xA;&#x9;Where&#xA;&#x9;&#x9;j.IsValid = 1 and j.isCleansed = 1&#xA;GO&#xA;&#xA;With HHS_Duplicates(SocSecNo, BirthDate, PartialLastName)&#xA;AS&#xA;(&#xA;&#x9;Select&#xA;&#x9;&#x9;SocSecNo, BirthDate, SUBSTRING(LastName, 1,5)--, ResAddrCleansedZipCode&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.JFS.CRISE&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 AND&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#xA;&#x9;INTERSECT&#xA;&#x9;Select&#xA;&#x9;&#x9;SocSecNo, BirthDate, SUBSTRING(LastName, 1,5)--, ResAddrCleansedZipCode&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons&#xA;&#x9;Where&#xA;&#x9;&#x9;isvalid = 1 and&#xA;&#x9;&#x9;iscleansed = 1&#xA;)&#xA;UPDATE j&#xA;&#x9;Set&#xA;&#x9;&#x9;j.IsDuplicate = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons j&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;HHS_Duplicates d&#xA;&#x9;&#x9;ON&#xA;&#x9;&#x9;&#x9;j.SocSecNo = d.SocSecNo AND&#xA;&#x9;&#x9;&#x9;j.BirthDate = d.BirthDate&#xA;&#x9;Where&#xA;&#x9;&#x9;j.IsValid = 1 and j.isCleansed = 1&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Mark Duplicates"
+          TopLeft="468,68" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

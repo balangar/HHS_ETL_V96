@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="HHS_Staging_OLEDB"
+  DTS:DTSID="{5668FC3E-530E-4DD1-9824-413AF272DFC1}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=HHS_Staging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="dyewsTZhWA=="
+        p4:IV="wNO16veFTdA=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">qJyVgMySt8pA1UAIyTSAfMIaZtUIBQDZph0/f0LwKevhBVo8HmMcMwBhAexfVaCyAmA1MgPoQpuxxJxVzAen10E5j6pearP6rdMwlqbf1EFjlXkyMkOtOPA6VRT8VLlFmjnyhbS1Galy4DezRJeuIrZTtYkyQPPEltMgc2JH8nnZpWx97T69vg==</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

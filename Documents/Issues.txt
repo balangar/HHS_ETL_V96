@@ -1,0 +1,18 @@
+19 Apr 2018		Don't have Sacwis Case Id (Case Number?)
+					For the time being, will just assign "Unavailable"
+
+				Sacwis Staging data -- multiple records for the same person (<SocSecNo, Name, BirthDate>) with (possibly) distinct addresses
+					** No one lives at multiple addresses at the same time **
+					For now, I force unique record by picking just one.
+
+23 Feb 2018		Need better SacwisID.  Right now, just making it up.
+				Need better (and traceable) HHSID.  Right now, just making it up.
+				Need better Address Cleansing. Right now, just Cuy county ... and not very good at that.
+
+				*** Need structure for MDM.  Right now, extracting from HHS_Staging ***	
+					Resolved 20 Apr 2018.  [geg]
+
+07 Feb 2018		Just running HHS_Staging (JFS-Benefits and DCFS.Persons) into DIPT.  Longer term, need ... a different database, more of a data warehouse/star schema 
+
+07 Feb 2018		Multiple records in HHS_Staging.DCFS.Persons with same SocSecNo and BirthDate.  
+Supporting material: Select SocSecNo, Count(SocSecNo) From HHS_Staging.DCFS.Persons group by SocSecNo, IsValid, IsCleansed, isduplicate having count(SocSecNo) > 1 And IsValid = 1 and IsCleansed = 1 and isduplicate = 1 Order by count(SocSecNo) desc

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="HHS_MasterData"
+  DTS:DTSID="{15DAE4C9-1605-45CE-A077-9C7743C63C08}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=sa;Initial Catalog=HHS_MasterData;Application Name=SSIS-LoadHHSCommonData-{15DAE4C9-1605-45CE-A077-9C7743C63C08}MS-DCFS-PSQL1.HHS_MasterData.sa;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="sxW2drCp/Q=="
+        p4:IV="sNMBpgOqTsI=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">yjhG8TkvCdtctfNMtYY7T5GAXJuewv03lYgUV8jC2mIp9t/CW1diChR65JkXKpVaa262vkD1m7ZMpYFUAs3GvtanqL+Sh4md5RjAQ8YG/nN3snKEXnGqWWSxmGBRjzYWlGT2IvUuRnC3SXlYO3Y/ChUn+wXp4b2W+HTzkVdWLSE=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="MS-CUYIC-DB02 SystemJobs"
+  DTS:DTSID="{870CA562-3BDD-4C04-9226-FCE9138BD363}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-CUYIC-DB02;User ID=Cuy_DataLoader;Initial Catalog=SystemJobs;Persist Security Info=True;Application Name=SSIS-ExtractHHSCommonData-{870CA562-3BDD-4C04-9226-FCE9138BD363}MS-CUYIC-DB02.SystemJobs.sa;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAF66emhWOsUSipYNIdLeQtAAAAAACAAAAAAADZgAAwAAAABAAAABUXQBuuGXHaFkGTFikE44VAAAAAASAAACgAAAAEAAAADSg30wBOT+OlHFdRhDUKpSAAAAAmVZtxWFYw+r5Xk/vkQBIdNKJqK+9Y/jStpFUfhSgI47NdBzFhAp+vR9X+UMXLFym/MObu17JeUMyWVqbujhOWW/EZvnKqMGEUZcBtMkcXi7Rezu5PDNATOXyuybJJAzodipxmBlCh038uT1F/n2AktO0lR7j+nCQjRg1LLaC5dgUAAAAQsVwWk35NXymSZ1h5tqy2zTwzEI=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

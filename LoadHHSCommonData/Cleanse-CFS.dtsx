@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/6/2018 1:33:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS403300"
+  DTS:CreatorName="CCEFS\greeng"
+  DTS:DTSID="{04E69101-688B-4A41-9AD2-51315F5AC64C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0800.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Cleanse-CFS"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{41A1C42A-0E91-45DF-9741-9DD172F597D6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cleanse DCFS Persons Addresses"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{723AAB35-505B-4F84-9572-504D4CEE1666}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cleanse DCFS Persons Addresses"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="/* Addresses Probes&#xA;Select * from HHS_Staging.DCFS.Persons Where ResAddrCity != ResAddrCleansedCity And ResAddrZipCode = ResAddrCleansedZipCode and LTRIM(RTRIM(ResAddrLine3)) = '' And IsValid = 1&#xA;&#xA;Select * From HHS_Staging.DCFS.Persons jc Where IsValid = 1 AND ResAddrZipCode != ResAddrCleansedZipCode&#xA;&#xA;Select * from HHS_Staging.DCFS.Persons Where IsValid = 1 And ResAddrCleansedZipCode IS NULL&#xA;*/&#xA;&#xA;/* Trivial Cases */&#xA;-- Non Ohio addresses&#xA;UPDATE HHS_Staging.DCFS.Persons&#xA;&#x9;Set&#xA;&#x9;&#x9;ResAddrCleansedCity = ResAddrCity,&#xA;&#x9;&#x9;ResAddrCleansedZipCode = ResAddrZipCode,&#xA;&#x9;&#x9;InCounty = 0,&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 And IsCleansed = 0 And&#xA;&#x9;&#x9;ResAddrState IS NOT NULL And&#xA;&#x9;&#x9;ResAddrState != 'OH'&#xA;GO&#xA;-- Non-Cuyahoga Ohio addresses&#xA;UPDATE HHS_Staging.DCFS.Persons&#xA;&#x9;Set&#xA;&#x9;&#x9;ResAddrCleansedCity = ResAddrCity,&#xA;&#x9;&#x9;ResAddrCleansedZipCode = ResAddrZipCode,&#xA;&#x9;&#x9;InCounty = 0,&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 and IsCleansed = 0 And InState =1 And&#xA;&#x9;&#x9;ResAddrZipCode NOT IN (Select ZipCode From [MS-CUYIC-DB02].CommonTables.dbo.Cuyahoga_Zip_Muni_Xref)&#xA;GO&#xA;&#xA;/* Cleansed Zip Code is null -- Fix Single City Zip Codes */&#xA;WITH SingleCityZips&#xA;AS&#xA;(&#xA;Select &#xA;&#x9;[Name] As City, ZipCode&#xA;From&#xA;&#x9;[MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Municipalities cm&#xA;&#x9;JOIN&#xA;&#x9;[MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Zip_Muni_Xref x&#xA;&#x9;ON cm.CuyahCitiesPK = x.CuyahCitiesPK&#xA;Where&#xA;&#x9;CAST(SingleCityZip As bit) = 1&#xA;)&#xA;UPDATE jc&#xA;&#x9;SET&#xA;&#x9;&#x9;jc.ResAddrCleansedCity = cm.City,&#xA;&#x9;&#x9;jc.ResAddrCleansedZipCode = cm.ZipCode,&#xA;&#x9;&#x9;jc.ResAddrLine2 = cm.City + ' ' + jc.ResAddrState + ' ' + cm.ZipCode,&#xA;&#x9;&#x9;InCounty = 1,&#xA;&#x9;&#x9;jc.IsCleansed = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons JC&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;SingleCityZips cm&#xA;&#x9;&#x9;ON jc.ResAddrZipCode = cm.ZipCode&#xA;&#x9;Where&#xA;&#x9;&#x9;jc.IsValid = 1 And jc.IsCleansed = 0 And &#xA;&#x9;&#x9;jc.ResAddrCleansedZipCode IS NULL  &#xA;GO&#xA;&#xA;&#x9;&#xA;/* Cleansed Zip Code is null -- Fix MultiCity Zip Codes ..  */&#xA;-- Where ResAddrCity is in %Heights and with ResAddrLine3 = ''&#xA;WITH MultiCityZips&#xA;AS&#xA;(&#xA;Select &#xA;&#x9;[Name] As City, ZipCode&#xA;From&#xA;&#x9;[MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Municipalities cm&#xA;&#x9;JOIN&#xA;&#x9;[MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Zip_Muni_Xref x&#xA;&#x9;ON cm.CuyahCitiesPK = x.CuyahCitiesPK&#xA;Where&#xA;&#x9;CAST(SingleCityZip As bit) != 1&#xA;)&#xA;UPDATE jc&#xA;&#x9;SET&#xA;&#x9;&#x9;jc.ResAddrCleansedCity = cm.City,&#xA;&#x9;&#x9;jc.ResAddrCleansedZipCode = cm.ZipCode,&#xA;&#x9;&#x9;jc.ResAddrLine2 = cm.City + ' ' + jc.ResAddrState + ' ' + cm.ZipCode,&#xA;&#x9;&#x9;InCounty = 1,&#xA;&#x9;&#x9;jc.IsCleansed = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons JC&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;MultiCityZips cm&#xA;&#x9;&#x9;ON &#xA;&#x9;&#x9;&#x9;jc.ResAddrZipCode = cm.ZipCode AND&#xA;&#x9;&#x9;&#x9;SUBSTRING(ResAddrCity, 1, 4) = SUBSTRING(cm.City, 1, 4)  And&#xA;&#x9;&#x9;&#x9;ResAddrCity Like '% H%' And &#xA;&#x9;&#x9;&#x9;cm.City Like '%HTS.'&#xA;&#x9;Where&#xA;&#x9;&#x9;jc.IsValid = 1 And jc.IsCleansed = 0 And &#xA;&#x9;&#x9;jc.ResAddrCleansedZipCode IS NULL&#xA;GO&#xA;&#xA;/* Cleansed Zip Code is null -- Fix MultiCity Zip Codes  */&#xA;--Where ResAddrLine3 = ''&#xA;WITH MultiCityZips&#xA;AS&#xA;(&#xA;Select &#xA;&#x9;[Name] As City, ZipCode&#xA;From&#xA;&#x9;[MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Municipalities cm&#xA;&#x9;JOIN&#xA;&#x9;[MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Zip_Muni_Xref x&#xA;&#x9;ON cm.CuyahCitiesPK = x.CuyahCitiesPK&#xA;Where&#xA;&#x9;CAST(SingleCityZip As bit) != 1&#xA;)&#xA;UPDATE jc&#xA;&#x9;SET&#xA;&#x9;&#x9;jc.ResAddrCleansedCity = cm.City,&#xA;&#x9;&#x9;jc.ResAddrCleansedZipCode = cm.ZipCode,&#xA;&#x9;&#x9;jc.ResAddrLine2 = cm.City + ' ' + jc.ResAddrState + ' ' + cm.ZipCode,&#xA;&#x9;&#x9;InCounty = 1,&#xA;&#x9;&#x9;jc.IsCleansed = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons JC&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;MultiCityZips cm&#xA;&#x9;&#x9;ON &#xA;&#x9;&#x9;&#x9;jc.ResAddrZipCode = cm.ZipCode AND&#xA;&#x9;&#x9;&#x9;SUBSTRING(ResAddrCity, 1, 5) = SUBSTRING(cm.City, 1, 5)&#xA;&#x9;Where&#xA;&#x9;&#x9;jc.IsValid = 1 And jc.IsCleansed = 0 And &#xA;&#x9;&#x9;jc.ResAddrCleansedZipCode IS NULL&#xA;GO&#xA;&#xA;&#xA;/* Valid rows with Cuyahoga County Zip Codes that haven't been caught previously */&#xA;UPDATE HHS_Staging.JFS.CRISE &#xA;&#x9;Set&#xA;&#x9;&#x9;ResAddrCleansedCity = 'Cleveland',&#xA;&#x9;&#x9;ResAddrCleansedZipCode = ResAddrZipCode,&#xA;&#x9;&#x9;ResAddrLine2 = 'Cleveland' + ' ' + ResAddrState + ' ' + ResAddrZipCode,&#xA;&#x9;&#x9;InCounty = 1,&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 and IsCleansed = 0 And&#xA;&#x9;&#x9;ResAddrZipCode IN (Select ZipCode From [MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Zip_Muni_Xref) &#xA;GO&#xA;&#x9;&#x9;&#x9;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="237,42"
+          Id="Package\Cleanse DCFS Persons Addresses"
+          TopLeft="523,104" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

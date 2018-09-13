@@ -1,0 +1,2345 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/30/2018 1:07:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS403300"
+  DTS:CreatorName="CCEFS\greeng"
+  DTS:DTSID="{0B077E74-4513-4BC5-A0E5-C1AFCA24DCD8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract-JFS-Benefits"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{4732F4CB-52C6-4A25-A433-3611B340E71A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract and validate JFS Benefits data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{117BE030-C5A8-4061-9FD7-62D21069A54A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract and validate JFS Benefits data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="HHS_Staging JFS CRISE"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"JFS"."CRISE"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[RecipientNo]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="RecipientNo"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[RecipientNo]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[RecipientNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MI"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="HomePhone"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[HomePhone]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrLine3]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine3"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine3]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine3]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ResAddrCity"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrCleansedCity]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="ResAddrCleansedCity"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedCity]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrCleansedZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrCleansedZipCode"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedZipCode]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="130"
+                      cachedName="Comments"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[Comments]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[Signature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="Signature" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[RecipientNo]"
+                      dataType="wstr"
+                      length="12"
+                      name="RecipientNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine3]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine3" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="ResAddrCleansedCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrCleansedZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrPlus4]"
+                      dataType="wstr"
+                      length="4"
+                      name="ResAddrPlus4" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipPlus4]"
+                      dataType="wstr"
+                      length="9"
+                      name="ResAddrZipPlus4" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
+                      dataType="wstr"
+                      length="7"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      dataType="wstr"
+                      length="7"
+                      name="ServiceType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServiceDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[DataSource]"
+                      dataType="wstr"
+                      length="15"
+                      name="DataSource" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[InCounty]"
+                      dataType="bool"
+                      name="InCounty" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[InState]"
+                      dataType="bool"
+                      name="InState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[IsCleansed]"
+                      dataType="bool"
+                      name="IsCleansed" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[IsDuplicate]"
+                      dataType="bool"
+                      name="IsDuplicate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="255"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and validate JFS Benefits data\JFS Benefits"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="JFS Benefits"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select DISTINCT
+	r.SocSecNo, CAST(r.BirthDate As DATE) As BirthDate, r.RecipientNo,
+	r.LName As LastName, r.FName As FirstName, r.MInit As MI,
+	cs.PhoneNo As HomePhone,
+	cs.ResAddrLine1, cs.ResAddrLine2, cs.ResAddrLine3,
+	cs.ResAddrCity, LTRIM(RTRIM(SUBSTRING(cs.ResAddrCleanCity,1, 24))) As ResAddrCleansedCity,
+	LTRIM(RTRIM(SUBSTRING(cs.ResAddrZipCode, 1, 5))) As ResAddrCleansedZipCode,
+	cs.ResAddrState, LTRIM(RTRIM(SUBSTRING(cs.ResAddrZipCode, 1, 5))) As ResAddrZipCode,
+	IsValid = 1, 
+    Comments = '                                                                                                                                  '
+From
+				[MS-CUYIC-DB02].ClientInfo.dbo.CaseRecipients_Active_VW cra
+				JOIN
+				[MS-CUYIC-DB02].ClientInfo.dbo.Recipients r
+				ON cra.RecipientKey = r.RecipientKey
+			JOIN
+			[MS-CUYIC-DB02].ClientInfo.dbo.Cases cs
+			ON cra.CaseKey = cs.CaseKey
+	JOIN
+	[MS-CUYIC-DB02].ClientInfo.dbo.AssistanceGroups ag
+	ON
+		cra.AssistanceGroupKey = ag.AssistanceGroupKey AND
+		ag.IsOpen = 1
+Where
+	ResAddrCleanCity != 'No Match'
+Order by
+    LastName, FirstName</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[RecipientNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[RecipientNo]"
+                      length="12"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[RecipientNo]"
+                      name="RecipientNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="15"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="15"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[MI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      length="1"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[MI]"
+                      name="MI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      length="10"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      name="HomePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      length="45"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      length="45"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine3]"
+                      length="45"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine3]"
+                      name="ResAddrLine3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      length="15"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      name="ResAddrCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCleansedCity]"
+                      length="19"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedCity]"
+                      name="ResAddrCleansedCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedZipCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCleansedZipCode]"
+                      length="5"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedZipCode]"
+                      name="ResAddrCleansedZipCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      length="2"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      name="ResAddrState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      length="5"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="130"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      dataType="dbDate"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[RecipientNo]"
+                      dataType="wstr"
+                      length="12"
+                      name="RecipientNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine3]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine3" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCleansedCity]"
+                      dataType="wstr"
+                      length="19"
+                      name="ResAddrCleansedCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCleansedZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrCleansedZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="130"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[RecipientNo]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[RecipientNo]"
+                      name="RecipientNo" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrLine3]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrLine3]"
+                      name="ResAddrLine3" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrCleansedCity]"
+                      dataType="wstr"
+                      length="19"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrCleansedCity]"
+                      name="ResAddrCleansedCity" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrCleansedZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrCleansedZipCode]"
+                      name="ResAddrCleansedZipCode" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="130"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and validate JFS Benefits data\Validate Fields"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Validate Fields"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using System.Text.RegularExpressions;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    /// 
+/* Validation rules
+ * Regular expressions from RegexLib.com
+ * Validate ZipCode
+ *  ^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$
+ *  
+ * Validate Name
+    ^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$
+
+*  Validate SocSecNo. Reference:  http://regexlib.com/Search.aspx?k=Social+Security+Number&c=-1&m=-1&ps=50  NB:  Modified below.  
+    (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+
+*  Possible Phone no:  http://regexlib.com/Search.aspx?k=&c=7&m=-1&ps=50  
+*       NB:  This one doesn't quite work.  It disallows phone numbers with no punctuation which is how we normally store them. I'm saving it for possible future reference[geg]
+    (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+ */
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        Regex validZipCode = new Regex(@"^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$");
+
+        //Regular exxpression for SocSecNo modified to allow 1-8 in first position per https://www.ssa.gov/kc/SSAFactSheet--IssuingSSNs.pdf
+        Regex validSocSecNo = new Regex(@"(^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-8]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])");
+
+        Regex validName = new Regex(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z][.]*)*$"); // Modified to allow a "." at the end.  For example, Galworthy, Jr.
+
+        Match rMatch;
+
+        string runningComments = string.Empty;
+        bool runningValid = true;
+        long dumbPhone = 0;
+
+        rMatch = validZipCode.Match(Row.ResAddrZipCode);
+        if (!rMatch.Success)
+        {
+            runningValid = false;
+            runningComments += "Malformed Zip Code.";
+        }
+
+        rMatch = validSocSecNo.Match(Row.SocSecNo);
+        if (!rMatch.Success)
+        {
+            runningValid = false;
+            runningComments += " Malformed SocSecNo.";
+        }
+
+        rMatch = validName.Match(Row.FirstName);
+        if (!rMatch.Success)
+        {
+            runningValid = false;
+            runningComments += " Malformed First Name.";
+        }
+
+        rMatch = validName.Match(Row.LastName);
+        if (!rMatch.Success)
+        {
+            runningValid = false;
+            runningComments += " Malformed Last Name.";
+        }
+
+        // HonePhone may be blank but, if not, must have only numeric characters and be either exactly 7 or exactly 10 characters long.  [geg]
+        if (!(Row.HomePhone.Trim() == string.Empty || (long.TryParse(Row.HomePhone, out dumbPhone) && (Row.HomePhone.Length == 7 || Row.HomePhone.Length == 10))))
+        {
+            runningValid = false;
+            runningComments += " Malformed Home Phone Number.";
+        }
+
+        // Sanity check on BirthDate
+        if(!Row.BirthDate_IsNull && Row.BirthDate < DateTime.Today.AddYears(-100))
+        {
+            runningValid = false;
+            runningComments += " Invalid BirthDate. Age is 100 or more.";
+        }
+        else if(!Row.BirthDate_IsNull && Row.BirthDate >= DateTime.Today)
+        {
+            runningValid = false;
+            runningComments += " Invalid BirthDate.";
+        }
+
+        Row.IsValid = (runningValid ? 1 : 0);
+        Row.Comments = runningComments;  // NB: I played a _horrible_ game with the data source which feeds this.  I set "Comments" = to 130 spaces to preallocate the row buffer some respectable size.  If, for any reason, the comments get bigger than that, this statement will BLOW UP with "buffer too small".  I apologize to all future maintainers of this code. Until I can think of something better.  [geg] 2018-01-30
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String SocSecNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[1]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String RecipientNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool RecipientNo_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String MI
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool MI_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String HomePhone
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool HomePhone_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String ResAddrLine3
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool ResAddrLine3_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String ResAddrCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String ResAddrCleansedCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool ResAddrCleansedCity_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public String ResAddrState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[12]);
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[13]);
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+    }
+
+    public Int32 IsValid
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[14]);
+        }
+        set
+        {
+            this[14] = value;
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        get
+        {
+            return IsNull(14);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(14);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[15]);
+        }
+        set
+        {
+            this[15] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(15);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(15);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrCleansedZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[16]);
+        }
+    }
+    public bool ResAddrCleansedZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(16);
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties.Settings.get_Default():SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties.Sett" +
+    "ings")]
+
+namespace SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_3b202fbbe5c4450f9d8fe0b103e4d339.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6ffe3db0-7e52-419f-a801-4812927743eb}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_3b202fbbe5c4450f9d8fe0b103e4d339</RootNamespace>
+    <AssemblyName>SC_3b202fbbe5c4450f9d8fe0b103e4d339</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_3b202fbbe5c4450f9d8fe0b103e4d339" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_3b202fbbe5c4450f9d8fe0b103e4d339</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_3b202fbbe5c4450f9d8fe0b103e4d339</msb:DisplayName>
+		<msb:ProjectId>{9021F151-A0A2-4784-89D5-4A3B8330C77F}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_3b202fbbe5c4450f9d8fe0b103e4d339.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_3b202fbbe5c4450f9d8fe0b103e4d339")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_3b202fbbe5c4450f9d8fe0b103e4d339")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_3b202fbbe5c4450f9d8fe0b103e4d339.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_3b202fbbe5c4450f9d8fe0b103e4d339.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAB+0eVoAAAAAAAAAAOAAIiALATAAACAAAAAIAAAAAAAA6j8A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAJg/AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA8B8AAAAgAAAAIAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAiAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAKAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADM
+PwAAAAAAAEgAAAACAAUAICUAAMAZAAABAAAAAAAAAOA+AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAwByAQAAAQAAEXIBAABwcxAAAApygQAAcHMQAAAKCnLS
+AQBwcxAAAAoLfhEAAAoMFw0WahMEA28eAAAGbxIAAApvEwAACi0OFg0Ici4CAHAoFAAACgwGA28E
+AAAGbxIAAApvEwAACi0OFg0IclYCAHAoFAAACgwHA28MAAAGbxIAAApvEwAACi0OFg0IcoACAHAo
+FAAACgwHA28KAAAGbxIAAApvEwAACi0OFg0Icq4CAHAoFAAACgwDbxAAAAZvFQAACn4RAAAKKBYA
+AAotOgNvEAAABhIEKBcAAAosHQNvEAAABm8YAAAKHS4dA28QAAAGbxgAAAofCi4OFg0IctoCAHAo
+FAAACgwDbwcAAAYtLQNvBgAABigZAAAKEwUSBR+cKBoAAAooGwAACiwQFg0IchYDAHAoFAAACgwr
+KANvBwAABi0gA28GAAAGKBkAAAooHAAACiwOFg0IcmYDAHAoFAAACgwDCS0DFisBF28hAAAGAwhv
+JQAABioeAigsAAAGKioCAwQFKB0AAAoqUgJ7HgAACgJ7HwAAChaUbyAAAAoqIgIWKCEAAAoqUgJ7
+HgAACgJ7HwAACheUbyIAAAoqIgIXKCEAAAoqUgJ7HgAACgJ7HwAAChiUbyAAAAoqIgIYKCEAAAoq
+UgJ7HgAACgJ7HwAAChmUbyAAAAoqIgIZKCEAAAoqUgJ7HgAACgJ7HwAAChqUbyAAAAoqIgIaKCEA
+AAoqUgJ7HgAACgJ7HwAAChuUbyAAAAoqIgIbKCEAAAoqUgJ7HgAACgJ7HwAAChyUbyAAAAoqIgIc
+KCEAAAoqUgJ7HgAACgJ7HwAACh2UbyAAAAoqIgIdKCEAAAoqUgJ7HgAACgJ7HwAACh6UbyAAAAoq
+IgIeKCEAAAoqVgJ7HgAACgJ7HwAACh8JlG8gAAAKKiYCHwkoIQAACipWAnseAAAKAnsfAAAKHwqU
+byAAAAoqJgIfCighAAAKKlYCex4AAAoCex8AAAofC5RvIAAACiomAh8LKCEAAAoqVgJ7HgAACgJ7
+HwAACh8MlG8gAAAKKiYCHwwoIQAACipWAnseAAAKAnsfAAAKHw2UbyAAAAoqJgIfDSghAAAKKlYC
+ex4AAAoCex8AAAofDpRvIwAACio+Ah8OA4wgAAABKCQAAAoqJgIfDighAAAKKl4DLAkCHw4oJQAA
+CipyjgMAcHMmAAAKelYCex4AAAoCex8AAAofD5RvIAAACioqAh8PAygkAAAKKiYCHw8oIQAACipe
+AywJAh8PKCUAAAoqco4DAHBzJgAACnpWAnseAAAKAnsfAAAKHxCUbyAAAAoqJgIfECghAAAKKh4C
+KCcAAAoqHgIoKAAACip+AigpAAAKAgJzMAAABn0BAAAEAgJzMQAABn0CAAAEKpIEcisEAHAabyoA
+AAosFQIFAgMoKwAACg4EcwMAAAZvLgAABipKKwcCA28vAAAGA28qAAAGLfEqBio6AigsAAAKAgN9
+AwAABCo6AigsAAAKAgN9BAAABCoeAigsAAAKKq5+BQAABC0ecjsEAHDQBwAAAigtAAAKby4AAApz
+LwAACoAFAAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQqGn4HAAAEKh4CKDAAAAoqLnM3AAAGgAcAAAQq
+QlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAKAkAACN+AACUCQAAdAkAACNTdHJp
+bmdzAAAAAAgTAACwBAAAI1VTALgXAAAQAAAAI0dVSUQAAADIFwAA+AEAACNCbG9iAAAAAAAAAAIA
+AAFXFaIBCQEAAAD6ATMAFgAAAQAAACUAAAAIAAAABwAAADgAAAARAAAAMAAAABAAAAABAAAAAwAA
+ACUAAAAqAAAAAQAAAAQAAAABAAAAAADuAwEAAAAAAAYA1QINBwYAaQMNBwYAIQL6Bg8AgQcAAAYA
+TgIsBgYAuAIsBgYAmQIsBgYAUAMsBgYA9QIsBgYADgMsBgYAZQIsBgYAgAKNAwoAKQMwAQ4AHQn+
+BwYAJwHTBQoAzAYwARIAvQYwAQoAkgYwAQoAnAgwAQYAXwjTBQYABAL6BgYA3QYtBwYAhgYXBg4A
+wwHYAw4ANQLYAw4AjAECBgYA6QENBwYAqgPTBQ4AsQP+Bw4Aqgb+BwYAPQDTBQYAFQDTBQYAPgbT
+BQYAWAbTBQYAXwHTBQYA3gDTBQYAMQksBgAAAABnAAAAAAABAAEAAQAQAPcFAAAQAAEAAQABABAA
+sAYAAEEAAQADAAEAEAB+CAAATQABACwAAQAQAB0IAABRAAMAMAABABAAvwcAAFEABAAxAAAAEAA0
+B5AHUQAFADIAAAEQAO4HkAdpAAcANgAGAB0IwAAGAL8HxAABAIwIyAABAIwIyAARAN8FzAARAHwB
+0AARAKAA1ABQIAAAAADGAP4I2AABAM4hAAAAAIYY7QYGAAIA1iEAAAAAhhjtBmIAAgDhIQAAAACG
+CGkGOgAFAPYhAAAAAIYIOQUwAAUA/yEAAAAAhgitAd4ABQAUIgAAAACGCAwFMAAFAB0iAAAAAIYI
+dgY6AAUAMiIAAAAAhghNBTAABQA7IgAAAACGCAIBOgAFAFAiAAAAAIYIzgQwAAUAWSIAAAAAhggP
+AToABQBuIgAAAACGCOIEMAAFAHciAAAAAIYIeAA6AAUAjCIAAAAAhgheBDAABQCVIgAAAACGCFEB
+OgAFAKoiAAAAAIYI9wQwAAUAsyIAAAAAhggBADoABQDIIgAAAACGCBYEMAAFANEiAAAAAIYIGwA6
+AAUA5iIAAAAAhgguBDAABQDvIgAAAACGCCwAOgAFAAUjAAAAAIYIRgQwAAUADyMAAAAAhghSCToA
+BQAlIwAAAACGCKsFMAAFAC8jAAAAAIYIOgk6AAUARSMAAAAAhgiMBTAABQBPIwAAAACGCNgBOgAF
+AGUjAAAAAIYIIQUwAAUAbyMAAAAAhgjLADoABQCFIwAAAACGCLQEMAAFAI8jAAAAAIYIiABLAAUA
+pSMAAAAAhgiUAAEABQC1IwAAAACGCGwEMAAGAL8jAAAAAIYIfwTjAAYA1yMAAAAAhgg+CDoABwDt
+IwAAAACGCEsIEAAHAPgjAAAAAIYIZAUwAAgAAiQAAAAAhgh4BeMACAAaJAAAAACGCLAAOgAJADAk
+AAAAAIYIkgQwAAkAOiQAAAAAhgAVCTAACQBCJAAAAACGAGYIMAAJAEokAAAAAIYY7QYGAAkAaiQA
+AAAAxgDxCOgACQCPJAAAAADGAeoI2AANAKIkAAAAAMYB/gjYAA4ApCQAAAAAhhjtBvIADwCzJAAA
+AACGGO0G8gAQAMIkAAAAAIMY7QYGABEAyiQAAAAAkwjZBvgAEQD2JAAAAACTCGQB/QARAP0kAAAA
+AJMIcAECAREABSUAAAAAlghyCAgBEgAMJQAAAACGGO0GBgASABQlAAAAAJEY8wYNARIAAAABABkJ
+AAABANIGAAACAMkHAAADAKAGAAABAIcDAAABAIcDAAABAIcDAAABAIcDAAABAHAAAAACAB0BAAAD
+ANIGAAAEAKAGAAABANIGAAABABkJAAABAKIIAAABAKIIAAABAIcDCQDtBgEAEQDtBgYAGQDtBgoA
+KQDtBhAAMQDtBhAAOQDtBhAAQQDtBhAASQDtBhAAUQDtBhAAWQDtBhAAYQDtBhAAaQDtBgYAqQDt
+BgYAyQDtBhUA2QDtBgYAcQDtBhAA4QBuCScAcQCxAyoA8QAyCDAA4QBYCDQA4QDaBToA4QBiCT4A
++QCkAUQA4QC3A0sAeQAjCU8AeQApCFQAeQDrBVoAeQDCA1oAgQDtBmIAgQDSBmwAgQDJB3AAiQCn
+A3QAgQC7BXkAiQC7AVQAiQASAH4AgQDKBYMAgQDCBQEACQHtBhAAgQAVCTAAgQBmCDAAmQDtBgYA
+4QD3B4kAmQDdB5EAoQDtBgYAGQHwAJcAGQEtCaAAsQDtBqYA0QDtBgYALgALADEBLgATADoBLgAb
+AFkBLgAjAGIBLgArAIsBLgAzAIsBLgA7AIsBLgBDAGIBLgBLAJEBLgBTAIsBLgBbAKgBQwBjAPAB
+4QB7APAB4wBrAPABaQRzAFkBiQRzAFkBGwADAAEABwAjAAgAJQAAAG0GEQEAAD0FFQEAALEBGQEA
+ABAFFQEAAHoGEQEAAFEFFQEAAAYBEQEAANIEFQEAABMBEQEAAOYEFQEAAHwAEQEAAGIEFQEAAFUB
+EQEAAPsEFQEAAAUAEQEAABoEFQEAAB8AEQEAADIEFQEAADAAEQEAAEoEFQEAAFYJEQEAAK8FFQEA
+AD4JEQEAAJAFFQEAANwBEQEAACUFFQEAAM8AEQEAALgEFQEAAJgAHgEAAIMEFQEAAE8IEQEAAHwF
+FQEAALQAEQEAAJYEFQEAAN0GIgEAAIQBJwEAAHYILAECAAQAAwACAAUABQACAAYABwACAAcACQAC
+AAgACwACAAkADQACAAoADwACAAsAEQACAAwAEwACAA0AFQACAA4AFwACAA8AGQACABAAGwACABEA
+HQACABIAHwACABMAIQACABQAIwACABUAJQACABYAJwACABcAKQACABgAKwACABkALQACABoALwAC
+ABsAMQACABwAMwACAB0ANQACAB4ANwACAB8AOQACACAAOwABACEAOwACACIAPQABACMAPQACACQA
+PwABACUAPwACACYAQQABACcAQQACACgAQwACACkARQACADMARwACADQASQABADUASQACADYASwAE
+gAAAAQAAANMZ5z4AAAAAAABDAAAABAAAAAAAAAAAAAAArgB/AAAAAAAMAAAAAAAAAAAAAAC3AKwI
+AAAAAAQAAAAAAAAAAAAAAK4A0wUAAAAADAAAAAAAAAAAAAAAtwDJCAAAAAAAAAAAAQAAAD4HAAAA
+AABnZXRfUmVzQWRkckxpbmUxAEdldEludDMyAGdldF9SZXNBZGRyTGluZTIAZ2V0X1Jlc0FkZHJM
+aW5lMwBJbnQ2NABTQ18zYjIwMmZiYmU1YzQ0NTBmOWQ4ZmUwYjEwM2U0ZDMzOQA8TW9kdWxlPgBJ
+bnB1dElEAGdldF9NSQBtc2NvcmxpYgBnZXRfSXNWYWxpZABzZXRfSXNWYWxpZABkZWZhdWx0SW5z
+dGFuY2UAZ2V0X1Jlc0FkZHJDbGVhbnNlZFppcENvZGUAZ2V0X1Jlc0FkZHJaaXBDb2RlAFJ1bnRp
+bWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAGdldF9MYXN0TmFtZQBnZXRfRmlyc3ROYW1l
+AElucHV0TmFtZQBEYXRlVGltZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBnZXRf
+SG9tZVBob25lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAEFw
+cGxpY2F0aW9uU2V0dGluZ3NCYXNlAFRyeVBhcnNlAGdldF9CaXJ0aERhdGUAR2V0RGF0ZQBFZGl0
+b3JCcm93c2FibGVTdGF0ZQBnZXRfUmVzQWRkclN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmli
+dXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0
+b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRl
+bWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0
+aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxh
+eGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmln
+aHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1i
+bHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAHZhbHVlAFN5
+c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAR2V0U3RyaW5nAE1hdGNoAGdldF9MZW5ndGgAb3BfR3Jl
+YXRlclRoYW5PckVxdWFsAFN5c3RlbS5Db21wb25lbnRNb2RlbABTQ18zYjIwMmZiYmU1YzQ0NTBm
+OWQ4ZmUwYjEwM2U0ZDMzOS5kbGwAZ2V0X1Jlc0FkZHJMaW5lMV9Jc051bGwAZ2V0X1Jlc0FkZHJM
+aW5lMl9Jc051bGwAZ2V0X1Jlc0FkZHJMaW5lM19Jc051bGwAZ2V0X01JX0lzTnVsbABnZXRfSXNW
+YWxpZF9Jc051bGwAc2V0X0lzVmFsaWRfSXNOdWxsAGdldF9SZXNBZGRyQ2xlYW5zZWRaaXBDb2Rl
+X0lzTnVsbABnZXRfUmVzQWRkclppcENvZGVfSXNOdWxsAGdldF9MYXN0TmFtZV9Jc051bGwAZ2V0
+X0ZpcnN0TmFtZV9Jc051bGwAZ2V0X0hvbWVQaG9uZV9Jc051bGwAZ2V0X0JpcnRoRGF0ZV9Jc051
+bGwAZ2V0X1Jlc0FkZHJTdGF0ZV9Jc051bGwAZ2V0X1NvY1NlY05vX0lzTnVsbABnZXRfUmVjaXBp
+ZW50Tm9fSXNOdWxsAGdldF9Db21tZW50c19Jc051bGwAc2V0X0NvbW1lbnRzX0lzTnVsbABnZXRf
+UmVzQWRkckNsZWFuc2VkQ2l0eV9Jc051bGwAZ2V0X1Jlc0FkZHJDaXR5X0lzTnVsbABTZXROdWxs
+AHNldF9JdGVtAFN5c3RlbQBUcmltAHJlc291cmNlTWFuAG9wX0xlc3NUaGFuAFNjcmlwdE1haW4A
+U3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rp
+b24ASW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBTdHJpbmdDb21wYXJpc29uAGdldF9Tb2NTZWNO
+bwBnZXRfUmVjaXBpZW50Tm8AQ3VsdHVyZUluZm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAAR3Jv
+dXAASW5wdXQwQnVmZmVyAFBpcGVsaW5lQnVmZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VN
+YW5hZ2VyAC5jdG9yAC5jY3RvcgBTeXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29t
+cGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzNiMjAyZmJiZTVjNDQ1MGY5ZDhmZTBi
+MTAzZTRkMzM5LlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBT
+Q18zYjIwMmZiYmU1YzQ0NTBmOWQ4ZmUwYjEwM2U0ZDMzOS5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBC
+dWZmZXJDb2x1bW5JbmRleGVzAEdldENvbHVtbkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAFN5c3Rl
+bS5UZXh0LlJlZ3VsYXJFeHByZXNzaW9ucwBDb25uZWN0aW9ucwBBZGRZZWFycwBnZXRfU3VjY2Vz
+cwBnZXRfQ29tbWVudHMAc2V0X0NvbW1lbnRzAENvbmNhdABPYmplY3QARW5kT2ZSb3dzZXQAZ2V0
+X0RlZmF1bHQAVXNlckNvbXBvbmVudABQYXJlbnRDb21wb25lbnQAU2NyaXB0Q29tcG9uZW50AE1p
+Y3Jvc29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWljcm9zb2Z0LlNxbFNlcnZlci5QaXBlbGluZUhv
+c3QASW5wdXQwX1Byb2Nlc3NJbnB1dABJbnB1dDBfUHJvY2Vzc0lucHV0Um93AE5leHRSb3cAUmVn
+ZXgAZ2V0X1RvZGF5AGdldF9Bc3NlbWJseQBnZXRfUmVzQWRkckNsZWFuc2VkQ2l0eQBnZXRfUmVz
+QWRkckNpdHkAb3BfRXF1YWxpdHkARW1wdHkAAH9eACgAPwAhADAAMAAwADAAMAApACgAPwA8AHoA
+aQBwAD4AKAA/ADwAegBpAHAANQA+AFwAZAB7ADUAfQApACgAPwA6AFsAIAAtAF0AKAA/AD0AXABk
+ACkAKQA/ACgAPwA8AHoAaQBwADQAPgBcAGQAewA0AH0AKQA/ACkAJAABgU8oAF4AfABcAHMAKQAo
+ADAAMABbADEALQA5AF0AfAAwAFsAMQAtADkAXQAwAHwAMABbADEALQA5AF0AWwAxAC0AOQBdAHwA
+WwAxAC0AOABdAFwAZAB7ADIAfQB8ADcAWwAwAC0ANgBdAFwAZAB8ADcANwBbADAALQAyAF0AKQAo
+AC0APwB8AFsAXAAuACAAXQApACgAWwAxAC0AOQBdADAAfAAwAFsAMQAtADkAXQB8AFsAMQAtADkA
+XQBbADEALQA5AF0AKQBcADMAKABcAGQAewAzAH0AWwAxAC0AOQBdAHwAWwAxAC0AOQBdAFwAZAB7
+ADMAfQB8AFwAZABbADEALQA5AF0AXABkAHsAMgB9AHwAXABkAHsAMgB9AFsAMQAtADkAXQBcAGQA
+KQAoACQAfABcAHMAfABbADsAOgAsACEAXAAuAFwAPwBdACkAAVteAFsAYQAtAHoAQQAtAFoAXQAr
+ACgAKABbACcALAAuACAALQBdAFsAYQAtAHoAQQAtAFoAIABdACkAPwBbAGEALQB6AEEALQBaAF0A
+WwAuAF0AKgApACoAJAABJ00AYQBsAGYAbwByAG0AZQBkACAAWgBpAHAAIABDAG8AZABlAC4AACkg
+AE0AYQBsAGYAbwByAG0AZQBkACAAUwBvAGMAUwBlAGMATgBvAC4AAC0gAE0AYQBsAGYAbwByAG0A
+ZQBkACAARgBpAHIAcwB0ACAATgBhAG0AZQAuAAArIABNAGEAbABmAG8AcgBtAGUAZAAgAEwAYQBz
+AHQAIABOAGEAbQBlAC4AADsgAE0AYQBsAGYAbwByAG0AZQBkACAASABvAG0AZQAgAFAAaABvAG4A
+ZQAgAE4AdQBtAGIAZQByAC4AAE8gAEkAbgB2AGEAbABpAGQAIABCAGkAcgB0AGgARABhAHQAZQAu
+ACAAQQBnAGUAIABpAHMAIAAxADAAMAAgAG8AcgAgAG0AbwByAGUALgAAJyAASQBuAHYAYQBsAGkA
+ZAAgAEIAaQByAHQAaABEAGEAdABlAC4AAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0AHkA
+IABjAGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBp
+AGcAbgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMA
+dABlAGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAcVMAQwBfADMAYgAyADAAMgBmAGIAYgBlADUAYwA0
+ADQANQAwAGYAOQBkADgAZgBlADAAYgAxADAAMwBlADQAZAAzADMAOQAuAFAAcgBvAHAAZQByAHQA
+aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAAAAvhG1j/t/D0ST7GtfyHCBsQAEIAEBCAMgAAEF
+IAEBEREEIAEBDgUgAQERYQsHBhI5EjkOAgoRPQIGDgUgARJ1DgMgAAIFAAIODg4DIAAOBQACAg4O
+BgACAg4QCgMgAAgEAAARPQUgARE9CAcAAgIRPRE9CSADARJFHQgSSQMGEkUDBh0IBCABDggEIAEC
+CAQgAQgIBSACAQgcByACAg4RgIkFIAEdCAgIAAESgI0RgJEFIAASgJUHIAIBDhKAlQi3elxWGTTg
+iQiJhF3NgIDMkQMGEhQDBhIYAwYSTQMGElkDBhJdAwYSIAUgAQESDAQgABE9BCABAQIJIAQBCA4S
+RRJJBSABARJNBAAAElkEAAASXQUAAQESXQQAABIgAwAAAQMoAA4DKAACBCgAET0DKAAIBAgAElkE
+CAASXQQIABIgCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAA
+ACgBACNTQ18zYjIwMmZiYmU1YzQ0NTBmOWQ4ZmUwYjEwM2U0ZDMzOQAABQEAAAAAFgEAEUNvcHly
+aWdodCBAICAyMDE4AABHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29y
+a0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQEAQAAAAAAALQAAADOyu++AQAAAJEAAABsU3lz
+dGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwg
+Q3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5S
+ZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAADAPwAAAAAA
+AAAAAADaPwAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzD8AAAAAAAAAAAAAAABfQ29yRGxsTWFp
+bgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQ
+AAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhA
+AAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv
+/gAAAQAAAAEA5z7TGQAAAQDnPtMZPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYA
+YQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAA
+ALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAAMAAwADQA
+YgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBh
+AG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMA
+XwAzAGIAMgAwADIAZgBiAGIAZQA1AGMANAA0ADUAMABmADkAZAA4AGYAZQAwAGIAMQAwADMAZQA0
+AGQAMwAzADkAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgA2ADEA
+MQAuADEANgAxADAAMwAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwAz
+AGIAMgAwADIAZgBiAGIAZQA1AGMANAA0ADUAMABmADkAZAA4AGYAZQAwAGIAMQAwADMAZQA0AGQA
+MwAzADkALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBw
+AHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEAOAAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUA
+bQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAA
+AFMAQwBfADMAYgAyADAAMgBmAGIAYgBlADUAYwA0ADQANQAwAGYAOQBkADgAZgBlADAAYgAxADAA
+MwBlADQAZAAzADMAOQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABT
+AEMAXwAzAGIAMgAwADIAZgBiAGIAZQA1AGMANAA0ADUAMABmADkAZAA4AGYAZQAwAGIAMQAwADMA
+ZQA0AGQAMwAzADkAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAu
+ADYANgAxADEALgAxADYAMQAwADMAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMA
+aQBvAG4AAAAxAC4AMAAuADYANgAxADEALgAxADYAMQAwADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAA7D8AAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_3b202fbbe5c4450f9d8fe0b103e4d339</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">1489aba9044695f3a38e8a4d9be8cd1a</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[RecipientNo]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="RecipientNo"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[RecipientNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MI"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="HomePhone"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[HomePhone]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine3]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine3"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrLine3]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrCleansedCity]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="ResAddrCleansedCity"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="130"
+                      cachedName="Comments"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[Comments]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0].Columns[ResAddrCleansedZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrCleansedZipCode"
+                      lineageId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output].Columns[ResAddrCleansedZipCode]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate JFS Benefits data\Validate Fields.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract and validate JFS Benefits data.Paths[ADO NET Source Output]"
+              endId="Package\Extract and validate JFS Benefits data\Validate Fields.Inputs[Input 0]"
+              name="ADO NET Source Output"
+              startId="Package\Extract and validate JFS Benefits data\JFS Benefits.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Extract and validate JFS Benefits data.Paths[Output 0]"
+              endId="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE.Inputs[ADO NET Destination Input]"
+              name="Output 0"
+              startId="Package\Extract and validate JFS Benefits data\Validate Fields.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate HHS_Staging JFS CRISE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9939CC14-51AC-45D4-B514-A1B0E20BC4DF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate HHS_Staging JFS CRISE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="Truncate Table HHS_Staging.JFS.CRISE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3D13E18C-BC49-4418-A874-EDABDDFE917C}"
+      DTS:From="Package\Truncate HHS_Staging JFS CRISE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract and validate JFS Benefits data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Extract and validate JFS Benefits data"
+          TopLeft="612,196" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Truncate HHS_Staging JFS CRISE"
+          TopLeft="628,79" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="744.5,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract and validate JFS Benefits data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Extract and validate JFS Benefits data\JFS Benefits"
+          TopLeft="471,93" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE"
+          TopLeft="447,314" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Extract and validate JFS Benefits data\Validate Fields"
+          TopLeft="467,199" />
+        <EdgeLayout
+          Id="Package\Extract and validate JFS Benefits data.Paths[Output 0]"
+          TopLeft="542.75,241">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract and validate JFS Benefits data.Paths[ADO NET Source Output]"
+          TopLeft="540.75,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and validate JFS Benefits data\JFS Benefits">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and validate JFS Benefits data\HHS_Staging JFS CRISE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

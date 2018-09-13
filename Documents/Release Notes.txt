@@ -1,0 +1,18 @@
+Release 1.0 -- 04 May 2018
+	This is the final 'Pilot' release ... or the first 'Production' release depending on your POV.
+
+	Starting with this release:
+		Each person will have a permanent synthetic id 
+		SacwisID will be real 
+
+	Going forward, only new or modified records will be extracted for loading into Infor CRM.
+	
+	Features
+		Modifications made to both staging and "actual" tables to detet when a change occurs.
+
+Release 0.1 -- dd mmm yyyy
+	o First full data release for "Pilot".  Still a test release.
+		Intent is for TAI to overwrite all previously supplied data
+	o "PersonID" is synthetic but generating mechanism not yet fully defined
+		So will likely change for final "Pilot" release
+	o SACWIS ID  (Person ID) not available so using placeholder.
