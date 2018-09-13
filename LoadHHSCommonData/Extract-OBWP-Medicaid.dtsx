@@ -1,0 +1,1050 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/1/2018 11:03:15 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{1F7006E7-FE90-48A4-B31F-6B7003B26891}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract-OBWP-Medicaid"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{DDC91E15-24ED-4867-A1A5-BC1DE0A6C839}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract OBWP Medicaid"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A9B16737-A356-4278-8BD8-425CCFB5CD01}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract OBWP Medicaid"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract OBWP Medicaid\OBWP Medicaid"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="OBWP Medicaid"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Connections[FlatFileConnection]"
+                  connectionManagerID="{A6E10C07-EF9E-42CB-A4ED-3F93FE46DB0A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OBWP_Medicaid_CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Status]"
+                      length="2"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Case Number]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Case Number]"
+                      length="50"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Case Number]"
+                      name="Case Number"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Applicant ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Applicant ID]"
+                      length="12"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Applicant ID]"
+                      name="Applicant ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[First Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[First Name]"
+                      length="15"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[First Name]"
+                      name="First Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Last Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Last Name]"
+                      length="18"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Last Name]"
+                      name="Last Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[SSN]"
+                      length="9"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[SSN]"
+                      name="SSN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[DoB]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[DoB]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[DoB]"
+                      name="DoB"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Age]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Age]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Age]"
+                      name="Age"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Caseworker]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Caseworker]"
+                      length="10"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Caseworker]"
+                      name="Caseworker"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Caseworker Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Caseworker Name]"
+                      length="20"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Caseworker Name]"
+                      name="Caseworker Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Line 1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address Line 1]"
+                      length="42"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Line 1]"
+                      name="Home Address Line 1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Line 2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address Line 2]"
+                      length="42"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Line 2]"
+                      name="Home Address Line 2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address City]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address City]"
+                      length="20"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address City]"
+                      name="Home Address City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address State]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address State]"
+                      length="2"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address State]"
+                      name="Home Address State"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Zip Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address Zip Code]"
+                      length="50"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Zip Code]"
+                      name="Home Address Zip Code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Aid Code]"
+                      length="3"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code]"
+                      name="Aid Code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code Description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Aid Code Description]"
+                      length="8000"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code Description]"
+                      name="Aid Code Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code Begin Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Aid Code Begin Date]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code Begin Date]"
+                      name="Aid Code Begin Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[AId Code End Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[AId Code End Date]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[AId Code End Date]"
+                      name="AId Code End Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[County]"
+                      dataType="i8"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Case Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Case Number" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Applicant ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="Applicant ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Case Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="33"
+                      name="Case Name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[First Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="First Name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Last Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Last Name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="SSN" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[DoB]"
+                      dataType="date"
+                      name="DoB" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Age]"
+                      dataType="i8"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Caseworker]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Caseworker" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Caseworker Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Caseworker Name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address Line 1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="42"
+                      name="Home Address Line 1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address Line 2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="42"
+                      name="Home Address Line 2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Home Address City" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address State]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Home Address State" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Home Address Zip Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Home Address Zip Code" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Aid Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Aid Code" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Aid Code Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Aid Code Description" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[Aid Code Begin Date]"
+                      dataType="date"
+                      name="Aid Code Begin Date" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].ExternalColumns[AId Code End Date]"
+                      dataType="date"
+                      name="AId Code End Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract OBWP Medicaid\TMP Medicaid"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="TMP Medicaid"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"tmp"."Medicaid"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract OBWP Medicaid\TMP Medicaid.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[SSN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="SSN"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[SSN]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[CaseStatus]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Applicant ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="Applicant ID"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ApplicantID]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Applicant ID]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Last Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Last Name"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Last Name]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[First Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="First Name"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[First Name]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[DoB]"
+                      cachedDataType="date"
+                      cachedName="DoB"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[DoB]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Home Address Line 1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="42"
+                      cachedName="Home Address Line 1"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Line 1]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Home Address Line 2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="42"
+                      cachedName="Home Address Line 2"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Line 2]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Home Address City]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Home Address City"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address City]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Home Address State]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Home Address State"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address State]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Home Address Zip Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Home Address Zip Code"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Home Address Zip Code]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Aid Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Aid Code"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Aid Code Description]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Aid Code Description"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code Description]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[Aid Code Begin Date]"
+                      cachedDataType="date"
+                      cachedName="Aid Code Begin Date"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceBeginDate]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[Aid Code Begin Date]" />
+                    <inputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].Columns[AId Code End Date]"
+                      cachedDataType="date"
+                      cachedName="AId Code End Date"
+                      externalMetadataColumnId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceEndDate]"
+                      lineageId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output].Columns[AId Code End Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[CaseStatus]"
+                      dataType="wstr"
+                      length="64"
+                      name="CaseStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[CaseNumber]"
+                      dataType="wstr"
+                      length="10"
+                      name="CaseNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ApplicantID]"
+                      dataType="wstr"
+                      length="12"
+                      name="ApplicantID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="64"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="64"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="64"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="64"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine3]"
+                      dataType="wstr"
+                      length="64"
+                      name="ResAddrLine3" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="64"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="64"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="64"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
+                      dataType="wstr"
+                      length="7"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      dataType="wstr"
+                      length="7"
+                      name="ServiceType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      dataType="wstr"
+                      length="8000"
+                      name="ServiceDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceBeginDate]"
+                      dataType="dbTimeStamp"
+                      name="ServiceBeginDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input].ExternalColumns[ServiceEndDate]"
+                      dataType="dbTimeStamp"
+                      name="ServiceEndDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract OBWP Medicaid\TMP Medicaid.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract OBWP Medicaid\TMP Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract OBWP Medicaid\TMP Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract OBWP Medicaid\TMP Medicaid.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract OBWP Medicaid.Paths[Flat File Source Output]"
+              endId="Package\Extract OBWP Medicaid\TMP Medicaid.Inputs[ADO NET Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Extract OBWP Medicaid\OBWP Medicaid.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate TMP Medicaid"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A9F1CD4C-B059-4366-BF9A-C51D33C1C201}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate TMP Medicaid"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="Truncate Table HHS_Staging.tmp.Medicaid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{37D09B60-39A1-48E7-8979-73FD56E3C753}"
+      DTS:From="Package\Truncate TMP Medicaid"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract OBWP Medicaid" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Extract OBWP Medicaid"
+          TopLeft="534,182" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Truncate TMP Medicaid"
+          TopLeft="539,83" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="631,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract OBWP Medicaid">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Extract OBWP Medicaid\OBWP Medicaid"
+          TopLeft="641,146" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Extract OBWP Medicaid\TMP Medicaid"
+          TopLeft="648,274" />
+        <EdgeLayout
+          Id="Package\Extract OBWP Medicaid.Paths[Flat File Source Output]"
+          TopLeft="718.75,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract OBWP Medicaid\TMP Medicaid">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2520 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/5/2018 11:22:58 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS403300"
+  DTS:CreatorName="CCEFS\greeng"
+  DTS:DTSID="{30B62E20-0AEC-4E0C-9295-999044BB7236}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract-CFS"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{18C4D545-2EA5-4D6D-BBA7-D96FFE1F3613}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract and Validate DCFS SACWIS data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A4D48CB1-1D0F-468A-82B0-92D9265AF59A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract and Validate DCFS SACWIS data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="HHS Staging DCFS Persons"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"DCFS"."Persons"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MI"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ResAddrCity"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="HomePhone"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[HomePhone]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="Comments"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[Comments]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[program_name]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="program_name"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[program_name]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[service_type]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="service_type"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[service_type]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].Columns[SacwisID]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="SacwisID"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[SacwisID]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SacwisID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[Signature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="Signature" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[SacwisID]"
+                      dataType="wstr"
+                      length="12"
+                      name="SacwisID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine3]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine3" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="ResAddrCleansedCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCleansedZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrCleansedZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrPlus4]"
+                      dataType="wstr"
+                      length="4"
+                      name="ResAddrPlus4" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipPlus4]"
+                      dataType="wstr"
+                      length="9"
+                      name="ResAddrZipPlus4" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServiceType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServiceDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[DataSource]"
+                      dataType="wstr"
+                      length="15"
+                      name="DataSource" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[InCounty]"
+                      dataType="bool"
+                      name="InCounty" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[InState]"
+                      dataType="bool"
+                      name="InState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsCleansed]"
+                      dataType="bool"
+                      name="IsCleansed" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsDuplicate]"
+                      dataType="bool"
+                      name="IsDuplicate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="255"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="SacwisCuy data"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select distinct
+                  LTRIM(RTRIM(CAST(e.PERSON_ID as varchar(12)))) as SacwisID
+	,SUBSTRING(LTRIM(RTRIM(e.first_name)), 1, 15) As FirstName
+	, SUBSTRING(LTRIM(RTRIM(e.middle_initial)), 1, 1) As MI
+	, SUBSTRING(LTRIM(RTRIM(e.last_name)), 1, 15) As LastName
+	, SUBSTRING(LTRIM(RTRIM(e.street_address)), 1, 45) As ResAddrLine1
+	--, e.unit_nbr addr_line_2
+	, SUBSTRING(LTRIM(RTRIM(e.address_line_2)), 1, 45) As ResAddrLine2
+	, SUBSTRING(LTRIM(RTRIM(e.city_name)), 1, 15)  As ResAddrCity
+	, SUBSTRING(LTRIM(RTRIM(e.[state])), 1, 2) As ResAddrState
+	, SUBSTRING(LTRIM(RTRIM(e.zip5_code)), 1, 5)  As ResAddrZipCode
+	, SUBSTRING(LTRIM(RTRIM(e.ssn)), 1, 9) As SocSecNo
+	, e.birth_date As BirthDate
+	, HomePhone = ''
+	, 'DCFS' program_name
+	, e.case_category_code service_type
+    ,  IsValid = 1 
+    , Comments = '                                                                                                                                '
+from
+(
+	select
+		  d.*
+		 ,(ad.street_nbr + ' ' + ad.street_name + ' ' + ad.street_suffix_code) street_address
+		 ,ad.street_suffix_code
+		 ,(ad.unit_name_code + ' ' + ad.unit_nbr)address_line_2
+		 ,upper(ad.city_name)city_name
+		 ,upper(ad.state_code)state
+		 ,zip5_code
+	 from
+	(
+		select
+			 a.*
+			,c.address_id
+		from
+		(
+			select
+				  cp.person_id
+				, cp.case_id
+				, cc.case_category_code
+				, upper(p.first_name)first_name
+				, p.middle_name middle_initial
+				, upper(p.last_name)last_name
+				, p.birth_date
+				, p.ssn
+			from
+								dbo.case_status cs
+								inner join 
+								dbo.case_agency_link cal
+								on  
+									cs.case_id = cal.case_id
+									and cal.local_agency_id = 10017
+									and cal.end_eff_date is null
+							inner join 
+							dbo.case_category cc
+							on  
+								cal.case_id = cc.case_id
+								and cc.end_eff_date is null
+					inner join 
+					dbo.case_participant cp
+					on 
+						cc.case_id = cp.case_id
+						and cp.current_status_code = 'ACTIVE'
+				inner join 
+				dbo.person p
+				on cp.person_id = p.person_id
+			where
+				cs.case_status_code = 'OPEN'
+				and cs.end_eff_date is null
+		) a
+	left outer join
+	(
+		select distinct
+			 b.person_id
+			,b.case_id
+			,b.party_id
+			,pa.address_id
+		from
+		(
+			select
+				a.*
+				, cp.person_id
+				, p.party_id
+				, cp.reference_person_flag
+			from
+			(
+				select
+					  cs.case_id
+					, cc.case_category_code
+				from
+						dbo.case_status cs
+						inner join 
+						dbo.case_agency_link cal
+						on  
+							cs.case_id = cal.case_id
+							and cal.local_agency_id = 10017
+							and cal.end_eff_date is null
+					inner join dbo.case_category cc
+					on  
+						cal.case_id = cc.case_id
+						and cc.end_eff_date is null
+				where
+				  cs.case_status_code = 'OPEN'
+				and cs.end_eff_date is null  
+	) a
+
+		inner join 
+		dbo.case_participant cp
+		on  
+			a.case_id = cp.case_id
+			and cp.current_status_code = 'ACTIVE'
+		inner join 
+		dbo.person p
+		on  cp.person_id = p.person_id
+	) b
+
+		left outer join 
+		dbo.party_address pa
+		on 
+			b.party_id = pa.party_id
+			and pa.primary_address_flag = 1
+		where 
+			b.reference_person_flag = 1
+	) c
+
+	on a.case_id = c.case_id
+	) d
+
+	left outer join dbo.address ad
+	on d.address_id= ad.address_id
+	) e</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"DCFS"."Persons"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Connections[IDbConnection]"
+                  connectionManagerID="{821C35E5-A21C-4D4F-B058-9924F918DD96}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SACWISCuy_ReadOnly]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SacwisID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[SacwisID]"
+                      length="12"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SacwisID]"
+                      name="SacwisID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="15"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[MI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      length="1"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[MI]"
+                      name="MI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="15"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      length="45"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      length="45"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      length="15"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      name="ResAddrCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      length="2"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      name="ResAddrState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      length="5"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      length="1"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      name="HomePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[program_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[program_name]"
+                      length="4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[program_name]"
+                      name="program_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[service_type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[service_type]"
+                      length="30"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[service_type]"
+                      name="service_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="128"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[SacwisID]"
+                      dataType="wstr"
+                      length="12"
+                      name="SacwisID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      dataType="dbDate"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="1"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[program_name]"
+                      dataType="wstr"
+                      length="4"
+                      name="program_name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[service_type]"
+                      dataType="wstr"
+                      length="30"
+                      name="service_type" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="128"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[SacwisID]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[SacwisID]"
+                      name="SacwisID" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[program_name]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[program_name]"
+                      name="program_name" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[service_type]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[service_type]"
+                      name="service_type" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Validate Fields"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+ /* Validation rules
+ * Regular expressions from RegexLib.com
+ * Validate ZipCode
+ *  ^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$
+ *  
+ * Validate Name
+    ^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$
+
+*  Validate SocSecNo. Reference:  http://regexlib.com/Search.aspx?k=Social+Security+Number&c=-1&m=-1&ps=50  NB:  Modified below.  
+    (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+
+*  Possible Phone no:  http://regexlib.com/Search.aspx?k=&c=7&m=-1&ps=50  
+*       NB:  This one doesn't quite work.  It disallows phone numbers with no punctuation which is how we normally store them. I'm saving it for possible future reference[geg]
+    (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+
+*   Letters only.
+*   ("^[a-zA-Z]{1,25}$")
+ */
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        Regex validZipCode = new Regex(@"^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$");
+
+        //Regular exxpression for SocSecNo modified to allow 1-8 in first position per https://www.ssa.gov/kc/SSAFactSheet--IssuingSSNs.pdf
+        Regex validSocSecNo = new Regex(@"(^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-8]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])");
+
+        Regex validName = new Regex(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z][.]*)*$"); // Modified to allow a "." at the end.  For example, Galworthy, Jr.
+
+        Regex lettersOnly = new Regex("^[a-zA-Z]{1,25}$");
+
+        Match rMatch;
+
+        string runningComments = string.Empty;
+        bool runningValid = true;
+        long dumbPhone = 0;
+
+        switch (Row.ResAddrZipCode_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " ZipCode required.";
+                break;
+
+            case false:
+                rMatch = validZipCode.Match(Row.ResAddrZipCode);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += "Malformed Zip Code.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  ZipCode must be either null or not null.");
+                break;
+        }
+
+        switch (Row.SocSecNo_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " SocSecNo required.";
+                break;
+
+            case false:
+                rMatch = validSocSecNo.Match(Row.SocSecNo);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += " Malformed SocSecNo.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  SocSecNo must be either null or not null.");
+                break;
+        }
+
+        switch (Row.FirstName_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " First Name required.";
+                break;
+
+            case false:
+                rMatch = validName.Match(Row.FirstName);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += " Malformed First Name.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  FirstName must be either null or not null.");
+                break;
+        }
+
+        switch (Row.LastName_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " Last Name Required.";
+                break;
+
+            case false:
+                rMatch = validName.Match(Row.LastName);
+                if (!rMatch.Success)
+                {
+                    runningValid = false;
+                    runningComments += " Malformed Last Name.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  LastName must be either null or not null.");
+                break;
+        }
+
+        switch (Row.HomePhone_IsNull)
+        {
+            case true:
+                break;
+
+            case false:     // HonePhone may be blank but, if not, must have only numeric characters and be either exactly 7 or exactly 10 characters long.  [geg]
+
+                if (!(Row.HomePhone.Trim() == string.Empty || (long.TryParse(Row.HomePhone, out dumbPhone) && (Row.HomePhone.Length == 7 || Row.HomePhone.Length == 10))))
+                {
+                    runningValid = false;
+                    runningComments += " Malformed Home Phone Number.";
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        // Sanity check on MI.  Field is not required but, if present, just be a single character.
+        switch (Row.MI_IsNull)
+        {
+            case false:
+                {
+                    if (Row.MI.Length > 1)
+                    {
+                        runningValid = false;
+                        runningComments += " Max MI length is 1.";
+                    }
+                    rMatch = lettersOnly.Match(Row.MI);
+                    if (!rMatch.Success)
+                    {
+                        runningValid = false;
+                        runningComments += " MI not strictly alpha.";
+                    }
+                    break;
+                }
+            default:
+                break;
+        }
+        // Sanity check on BirthDate (also, BirthDate is a required field)
+        switch (Row.BirthDate_IsNull)
+        {
+            case true:
+                runningValid = false;
+                runningComments += " BirthDate required.";
+                break;
+
+            case false:
+                if (Row.BirthDate < DateTime.Today.AddYears(-100))
+                {
+                    runningValid = false;
+                    runningComments += " Invalid BirthDate. Age is 100 or more.";
+                }
+                else if (Row.BirthDate >= DateTime.Today)
+                {
+                    runningValid = false;
+                    runningComments += " Invalid BirthDate.";
+                }
+                break;
+
+            default:
+                Debug.Assert(false, "Invalid.  BirthDate must be either null or not null.");
+                break;
+        }
+
+        Row.IsValid = (runningValid ? 1 : 0);
+        Row.Comments = runningComments;  // NB: I played a _horrible_ game with the data source which feeds this.  I set "Comments" = to 130 spaces to preallocate the row buffer some respectable size.  If, for any reason, the comments get bigger than that, this statement will BLOW UP with "buffer too small".  I apologize to all future maintainers of this code. Until I can think of something better.  [geg] 2018-01-30
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String MI
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool MI_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String ResAddrCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String ResAddrState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String SocSecNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[9]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String HomePhone
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool HomePhone_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String programname
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool programname_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public String servicetype
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[12]);
+        }
+    }
+    public bool servicetype_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public Int32 IsValid
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[13]);
+        }
+        set
+        {
+            this[13] = value;
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(13);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[14]);
+        }
+        set
+        {
+            this[14] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(14);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(14);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String SacwisID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[15]);
+        }
+    }
+    public bool SacwisID_IsNull
+    {
+        get
+        {
+            return IsNull(15);
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties.Settings.get_Default():SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties.Sett" +
+    "ings")]
+
+namespace SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_9ac75e440f9047c68bbf5f6c2be390fd.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45194a16-9f6d-4811-a449-bfd4a1b0aed0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_9ac75e440f9047c68bbf5f6c2be390fd</RootNamespace>
+    <AssemblyName>SC_9ac75e440f9047c68bbf5f6c2be390fd</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_9ac75e440f9047c68bbf5f6c2be390fd" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_9ac75e440f9047c68bbf5f6c2be390fd</msb:CodeName>
+		<msb:DisplayName>SC_9ac75e440f9047c68bbf5f6c2be390fd</msb:DisplayName>
+		<msb:ProjectId>{4FB3F42E-113C-443D-9EC8-B886CD18E8DA}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_9ac75e440f9047c68bbf5f6c2be390fd.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_9ac75e440f9047c68bbf5f6c2be390fd")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_9ac75e440f9047c68bbf5f6c2be390fd")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_9ac75e440f9047c68bbf5f6c2be390fd.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_9ac75e440f9047c68bbf5f6c2be390fd.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMVe41oAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAukEA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGhBAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAwCEAAAAgAAAAIgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACc
+QQAAAAAAAEgAAAACAAUALCYAAIQaAAABAAAAAAAAALBAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAwCeAgAAAQAAEXIBAABwcxAAAAoKcoEAAHBzEAAACgty
+0gEAcHMQAAAKDHIuAgBwcxAAAAoNfhEAAAoTBBcTBRZqEwYDbxMAAAYTBxEHLBgRBxczNxYTBREE
+clACAHAoEgAAChMEKyQGA28SAAAGbxMAAApvFAAACi0RFhMFEQRydgIAcCgSAAAKEwQDbxUAAAYT
+BxEHLBgRBxczNxYTBREEcp4CAHAoEgAAChMEKyQHA28UAAAGbxMAAApvFAAACi0RFhMFEQRyxgIA
+cCgSAAAKEwQDbwUAAAYTBxEHLBgRBxczNxYTBREEcvACAHAoEgAAChMEKyQIA28EAAAGbxMAAApv
+FAAACi0RFhMFEQRyHAMAcCgSAAAKEwQDbwkAAAYTBxEHLBgRBxczNxYTBREEckoDAHAoEgAAChME
+KyQIA28IAAAGbxMAAApvFAAACi0RFhMFEQRydAMAcCgSAAAKEwQDbxkAAAYTBxEHLAcRBxcuVitU
+A28YAAAGbxUAAAp+EQAACigWAAAKLT0DbxgAAAYSBigXAAAKLB0DbxgAAAZvGAAACh0uIANvGAAA
+Bm8YAAAKHwouERYTBREEcqADAHAoEgAAChMEA28HAAAGEwcRBy1DA28GAAAGbxgAAAoXMREWEwUR
+BHLcAwBwKBIAAAoTBAkDbwYAAAZvEwAACm8UAAAKLREWEwURBHIGBABwKBIAAAoTBANvFwAABhMH
+EQcsGBEHFzNmFhMFEQRyNgQAcCgSAAAKEwQrUwNvFgAABigZAAAKEwgSCB+cKBoAAAooGwAACiwT
+FhMFEQRyYAQAcCgSAAAKEwQrIwNvFgAABigZAAAKKBwAAAosERYTBREEcrAEAHAoEgAAChMEAxEF
+LQMWKwEXbx8AAAYDEQRvIwAABioeAigqAAAGKioCAwQFKB0AAAoqUgJ7HgAACgJ7HwAAChaUbyAA
+AAoqIgIWKCEAAAoqUgJ7HgAACgJ7HwAACheUbyAAAAoqIgIXKCEAAAoqUgJ7HgAACgJ7HwAAChiU
+byAAAAoqIgIYKCEAAAoqUgJ7HgAACgJ7HwAAChmUbyAAAAoqIgIZKCEAAAoqUgJ7HgAACgJ7HwAA
+ChqUbyAAAAoqIgIaKCEAAAoqUgJ7HgAACgJ7HwAAChuUbyAAAAoqIgIbKCEAAAoqUgJ7HgAACgJ7
+HwAAChyUbyAAAAoqIgIcKCEAAAoqUgJ7HgAACgJ7HwAACh2UbyAAAAoqIgIdKCEAAAoqUgJ7HgAA
+CgJ7HwAACh6UbyAAAAoqIgIeKCEAAAoqVgJ7HgAACgJ7HwAACh8JlG8iAAAKKiYCHwkoIQAACipW
+AnseAAAKAnsfAAAKHwqUbyAAAAoqJgIfCighAAAKKlYCex4AAAoCex8AAAofC5RvIAAACiomAh8L
+KCEAAAoqVgJ7HgAACgJ7HwAACh8MlG8gAAAKKiYCHwwoIQAACipWAnseAAAKAnsfAAAKHw2UbyMA
+AAoqPgIfDQOMIAAAASgkAAAKKiYCHw0oIQAACipeAywJAh8NKCUAAAoqctgEAHBzJgAACnpWAnse
+AAAKAnsfAAAKHw6UbyAAAAoqKgIfDgMoJAAACiomAh8OKCEAAAoqXgMsCQIfDiglAAAKKnLYBABw
+cyYAAAp6VgJ7HgAACgJ7HwAACh8PlG8gAAAKKiYCHw8oIQAACioeAignAAAKKh4CKCgAAAoqfgIo
+KQAACgICcy4AAAZ9AQAABAICcy8AAAZ9AgAABCqSBHJ1BQBwGm8qAAAKLBUCBQIDKCsAAAoOBHMD
+AAAGbywAAAYqSisHAgNvLQAABgNvKAAABi3xKgYqOgIoLAAACgIDfQMAAAQqOgIoLAAACgIDfQQA
+AAQqHgIoLAAACiqufgUAAAQtHnKFBQBw0AcAAAIoLQAACm8uAAAKcy8AAAqABQAABH4FAAAEKhp+
+BgAABCoeAoAGAAAEKhp+BwAABCoeAigwAAAKKi5zNQAABoAHAAAEKkJTSkIBAAEAAAAAAAwAAAB2
+NC4wLjMwMzE5AAAAAAUAbAAAAPQIAAAjfgAAYAkAACAJAAAjU3RyaW5ncwAAAACAEgAA+AUAACNV
+UwB4GAAAEAAAACNHVUlEAAAAiBgAAPwBAAAjQmxvYgAAAAAAAAACAAABVxWiAQkBAAAA+gEzABYA
+AAEAAAAlAAAACAAAAAcAAAA2AAAAEQAAADAAAAAQAAAAAQAAAAMAAAAjAAAAKAAAAAEAAAAEAAAA
+AQAAAAAA7wMBAAAAAAAGANYC0AYGAGoD0AYGACICvQYPAEQHAAAGAE8C/wUGALkC/wUGAJoC/wUG
+AFED/wUGAPYC/wUGAA8D/wUGAGYC/wUGAIECjgMKACoDIQEOAOAIwQcGABgBpgUKAI8GIQESAIAG
+IQEKAFUGIQEKAF8IIQEGACIIpgUGAAUCvQYGAKAG8AYGAEkG6gUOAMQB2QMOADYC2QMOAI0B1QUG
+AOoB0AYGAKsDpgUOALIDwQcOAG0GwQcGACwApgUGABUApgUGABEGpgUGACsGpgUGAFABpgUGAL8A
+pgUGAPQI/wUAAAAAMgAAAAAAAQABAAEAEADKBQAAEAABAAEAAQAQAHMGAABBAAEAAwABABAAQQgA
+AE0AAQAqAAEAEADgBwAAUQADAC4AAQAQAIIHAABRAAQALwAAABAA9wZTB1EABQAwAAABEACxB1MH
+aQAHADQABgDgB8UABgCCB8kAAQBPCM0AAQBPCM0AEQCyBdEAEQB9AdUAEQCcANkAUCAAAAAAxgDB
+CN0AAQD6IgAAAACGGLAGBgACAAIjAAAAAIYYsAZnAAIADSMAAAAAhgjwAD8ABQAiIwAAAACGCL0E
+OwAFACsjAAAAAIYIUAA/AAUAQCMAAAAAhghbBDsABQBJIwAAAACGCOMAPwAFAF4jAAAAAIYIqQQ7
+AAUAZyMAAAAAhggBAD8ABQB8IwAAAACGCBcEOwAFAIUjAAAAAIYIGwA/AAUAmiMAAAAAhggvBDsA
+BQCjIwAAAACGCP0IPwAFALgjAAAAAIYIfgU7AAUAwSMAAAAAhgjZAT8ABQDWIwAAAACGCCoFOwAF
+AN8jAAAAAIYIrAA/AAUA9CMAAAAAhgiPBDsABQD9IwAAAACGCDwGPwAFABIkAAAAAIYIQgU7AAUA
+GyQAAAAAhgiuAeMABQAxJAAAAACGCBUFOwAFADskAAAAAIYIQgE/AAUAUSQAAAAAhgjpBDsABQBb
+JAAAAACGCAgBPwAFAHEkAAAAAIYI0gQ7AAUAeyQAAAAAhghVAT8ABQCRJAAAAACGCP4EOwAFAJsk
+AAAAAIYIhABQAAUAsSQAAAAAhgiQAAEABQDBJAAAAACGCGkEOwAGAMskAAAAAIYIfAToAAYA4yQA
+AAAAhggBCD8ABwD5JAAAAACGCA4IEAAHAAQlAAAAAIYIVgU7AAgADiUAAAAAhghqBegACAAmJQAA
+AACGCDsAPwAJADwlAAAAAIYIRwQ7AAkARiUAAAAAhgDYCDsACQBOJQAAAACGACkIOwAJAFYlAAAA
+AIYYsAYGAAkAdiUAAAAAxgC0CO0ACQCbJQAAAADGAa0I3QANAK4lAAAAAMYBwQjdAA4AsCUAAAAA
+hhiwBvcADwC/JQAAAACGGLAG9wAQAM4lAAAAAIMYsAYGABEA1iUAAAAAkwicBv0AEQACJgAAAACT
+CGUBAgERAAkmAAAAAJMIcQEHAREAESYAAAAAlgg1CA0BEgAYJgAAAACGGLAGBgASACAmAAAAAJEY
+tgYSARIAAAABANwIAAABAJUGAAACAIwHAAADAGMGAAABAIgDAAABAIgDAAABAIgDAAABAIgDAAAB
+AEgAAAACAP4AAAADAJUGAAAEAGMGAAABAJUGAAABANwIAAABAGUIAAABAGUIAAABAIgDCQCwBgEA
+EQCwBgYAGQCwBgoAKQCwBhAAMQCwBhAAOQCwBhAAQQCwBhAASQCwBhAAUQCwBhAAWQCwBhAAYQCw
+BhAAaQCwBgYAqQCwBgYAyQCwBhUA2QCwBgYAcQCwBhAA4QAZCSwA4QAbCC8AcQCyAzUA8QD1BzsA
+4QCtBT8A4QANCUMA+QClAUkA4QC4A1AAeQDmCFQAeQDsB1kAeQC+BV8AeQDDA18AgQCwBmcAgQCV
+BnEAgQCMB3UAiQCoA3kAgQCOBX4AiQC8AVkAiQASAIMAgQCdBYgAgQCVBQEACQGwBhAAgQDYCDsA
+gQApCDsAmQCwBgYA4QC6B44AmQCgB5YAoQCwBgYAGQHRAJwAGQHwCKUAsQCwBqsA0QCwBgYALgAL
+ADYBLgATAD8BLgAbAF4BLgAjAGcBLgArAJABLgAzAJABLgA7AJABLgBDAGcBLgBLAJYBLgBTAJAB
+LgBbAK0BQwBjAPUB4QB7APUB4wBrAPUBKQRzAF4BSQRzAF4BGwADAAEABwAhAAgAIwAAAPQAFgEA
+AMEEGgEAAFQAFgEAAF8EGgEAAOcAFgEAAK0EGgEAAAUAFgEAABsEGgEAAB8AFgEAADMEGgEAAAEJ
+FgEAAIIFGgEAAN0BFgEAAC4FGgEAALAAFgEAAJMEGgEAAEAGFgEAAEYFGgEAALIBHgEAABkFGgEA
+AEYBFgEAAO0EGgEAAAwBFgEAANYEGgEAAFkBFgEAAAIFGgEAAJQAIwEAAIAEGgEAABIIFgEAAG4F
+GgEAAD8AFgEAAEsEGgEAAKAGJwEAAIUBLAEAADkIMQECAAQAAwACAAUABQACAAYABwACAAcACQAC
+AAgACwACAAkADQACAAoADwACAAsAEQACAAwAEwACAA0AFQACAA4AFwACAA8AGQACABAAGwACABEA
+HQACABIAHwACABMAIQACABQAIwACABUAJQACABYAJwACABcAKQACABgAKwACABkALQACABoALwAC
+ABsAMQACABwAMwACAB0ANQACAB4ANwABAB8ANwACACAAOQABACEAOQACACIAOwABACMAOwACACQA
+PQABACUAPQACACYAPwACACcAQQACADEAQwACADIARQABADMARQACADQARwAEgAAAAQAAACMaQl8A
+AAAAAABgAAAABAAAAAAAAAAAAAAAswBXAAAAAAAMAAAAAAAAAAAAAAC8AG8IAAAAAAQAAAAAAAAA
+AAAAALMApgUAAAAADAAAAAAAAAAAAAAAvACMCAAAAAAAAAAAAQAAAAEHAAAAAABnZXRfUmVzQWRk
+ckxpbmUxAEdldEludDMyAGdldF9SZXNBZGRyTGluZTIASW50NjQAPE1vZHVsZT4AZ2V0X1NhY3dp
+c0lEAElucHV0SUQAZ2V0X01JAG1zY29ybGliAFNDXzlhYzc1ZTQ0MGY5MDQ3YzY4YmJmNWY2YzJi
+ZTM5MGZkAGdldF9Jc1ZhbGlkAHNldF9Jc1ZhbGlkAGRlZmF1bHRJbnN0YW5jZQBnZXRfUmVzQWRk
+clppcENvZGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAZ2V0X0xhc3ROYW1l
+AGdldF9GaXJzdE5hbWUASW5wdXROYW1lAGdldF9wcm9ncmFtbmFtZQBEYXRlVGltZQBNaWNyb3Nv
+ZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBnZXRfSG9tZVBob25lAFR5cGUAZ2V0X3NlcnZpY2V0
+eXBlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBBcHBsaWNhdGlvblNl
+dHRpbmdzQmFzZQBUcnlQYXJzZQBnZXRfQmlydGhEYXRlAEdldERhdGUARWRpdG9yQnJvd3NhYmxl
+U3RhdGUAZ2V0X1Jlc0FkZHJTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dl
+ck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxl
+QXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1
+dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0
+ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRy
+aWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRl
+AFNTSVNTY3JpcHRDb21wb25lbnRFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0
+dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQB2YWx1ZQBTeXN0ZW0uUnVudGlt
+ZS5WZXJzaW9uaW5nAEdldFN0cmluZwBNYXRjaABnZXRfTGVuZ3RoAG9wX0dyZWF0ZXJUaGFuT3JF
+cXVhbABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU0NfOWFjNzVlNDQwZjkwNDdjNjhiYmY1ZjZjMmJl
+MzkwZmQuZGxsAGdldF9SZXNBZGRyTGluZTFfSXNOdWxsAGdldF9SZXNBZGRyTGluZTJfSXNOdWxs
+AGdldF9TYWN3aXNJRF9Jc051bGwAZ2V0X01JX0lzTnVsbABnZXRfSXNWYWxpZF9Jc051bGwAc2V0
+X0lzVmFsaWRfSXNOdWxsAGdldF9SZXNBZGRyWmlwQ29kZV9Jc051bGwAZ2V0X0xhc3ROYW1lX0lz
+TnVsbABnZXRfRmlyc3ROYW1lX0lzTnVsbABnZXRfcHJvZ3JhbW5hbWVfSXNOdWxsAGdldF9Ib21l
+UGhvbmVfSXNOdWxsAGdldF9zZXJ2aWNldHlwZV9Jc051bGwAZ2V0X0JpcnRoRGF0ZV9Jc051bGwA
+Z2V0X1Jlc0FkZHJTdGF0ZV9Jc051bGwAZ2V0X1NvY1NlY05vX0lzTnVsbABnZXRfQ29tbWVudHNf
+SXNOdWxsAHNldF9Db21tZW50c19Jc051bGwAZ2V0X1Jlc0FkZHJDaXR5X0lzTnVsbABTZXROdWxs
+AHNldF9JdGVtAFN5c3RlbQBUcmltAHJlc291cmNlTWFuAG9wX0xlc3NUaGFuAFNjcmlwdE1haW4A
+U3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rp
+b24ASW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBTdHJpbmdDb21wYXJpc29uAGdldF9Tb2NTZWNO
+bwBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABHcm91cABJbnB1dDBCdWZmZXIA
+UGlwZWxpbmVCdWZmZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0b3IALmNj
+dG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5
+c3RlbS5SZXNvdXJjZXMAU0NfOWFjNzVlNDQwZjkwNDdjNjhiYmY1ZjZjMmJlMzkwZmQuUHJvcGVy
+dGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNDXzlhYzc1ZTQ0MGY5MDQ3
+YzY4YmJmNWY2YzJiZTM5MGZkLlByb3BlcnRpZXMAVmFyaWFibGVzAEJ1ZmZlckNvbHVtbkluZGV4
+ZXMAR2V0Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBFcXVhbHMAU3lzdGVtLlRleHQuUmVndWxhckV4
+cHJlc3Npb25zAENvbm5lY3Rpb25zAEFkZFllYXJzAGdldF9TdWNjZXNzAGdldF9Db21tZW50cwBz
+ZXRfQ29tbWVudHMAQ29uY2F0AE9iamVjdABFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29t
+cG9uZW50AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZl
+ci5UeFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vz
+c0lucHV0AElucHV0MF9Qcm9jZXNzSW5wdXRSb3cATmV4dFJvdwBSZWdleABnZXRfVG9kYXkAZ2V0
+X0Fzc2VtYmx5AGdldF9SZXNBZGRyQ2l0eQBvcF9FcXVhbGl0eQBFbXB0eQAAAH9eACgAPwAhADAA
+MAAwADAAMAApACgAPwA8AHoAaQBwAD4AKAA/ADwAegBpAHAANQA+AFwAZAB7ADUAfQApACgAPwA6
+AFsAIAAtAF0AKAA/AD0AXABkACkAKQA/ACgAPwA8AHoAaQBwADQAPgBcAGQAewA0AH0AKQA/ACkA
+JAABgU8oAF4AfABcAHMAKQAoADAAMABbADEALQA5AF0AfAAwAFsAMQAtADkAXQAwAHwAMABbADEA
+LQA5AF0AWwAxAC0AOQBdAHwAWwAxAC0AOABdAFwAZAB7ADIAfQB8ADcAWwAwAC0ANgBdAFwAZAB8
+ADcANwBbADAALQAyAF0AKQAoAC0APwB8AFsAXAAuACAAXQApACgAWwAxAC0AOQBdADAAfAAwAFsA
+MQAtADkAXQB8AFsAMQAtADkAXQBbADEALQA5AF0AKQBcADMAKABcAGQAewAzAH0AWwAxAC0AOQBd
+AHwAWwAxAC0AOQBdAFwAZAB7ADMAfQB8AFwAZABbADEALQA5AF0AXABkAHsAMgB9AHwAXABkAHsA
+MgB9AFsAMQAtADkAXQBcAGQAKQAoACQAfABcAHMAfABbADsAOgAsACEAXAAuAFwAPwBdACkAAVte
+AFsAYQAtAHoAQQAtAFoAXQArACgAKABbACcALAAuACAALQBdAFsAYQAtAHoAQQAtAFoAIABdACkA
+PwBbAGEALQB6AEEALQBaAF0AWwAuAF0AKgApACoAJAABIV4AWwBhAC0AegBBAC0AWgBdAHsAMQAs
+ADIANQB9ACQAASUgAFoAaQBwAEMAbwBkAGUAIAByAGUAcQB1AGkAcgBlAGQALgAAJ00AYQBsAGYA
+bwByAG0AZQBkACAAWgBpAHAAIABDAG8AZABlAC4AACcgAFMAbwBjAFMAZQBjAE4AbwAgAHIAZQBx
+AHUAaQByAGUAZAAuAAApIABNAGEAbABmAG8AcgBtAGUAZAAgAFMAbwBjAFMAZQBjAE4AbwAuAAAr
+IABGAGkAcgBzAHQAIABOAGEAbQBlACAAcgBlAHEAdQBpAHIAZQBkAC4AAC0gAE0AYQBsAGYAbwBy
+AG0AZQBkACAARgBpAHIAcwB0ACAATgBhAG0AZQAuAAApIABMAGEAcwB0ACAATgBhAG0AZQAgAFIA
+ZQBxAHUAaQByAGUAZAAuAAArIABNAGEAbABmAG8AcgBtAGUAZAAgAEwAYQBzAHQAIABOAGEAbQBl
+AC4AADsgAE0AYQBsAGYAbwByAG0AZQBkACAASABvAG0AZQAgAFAAaABvAG4AZQAgAE4AdQBtAGIA
+ZQByAC4AACkgAE0AYQB4ACAATQBJACAAbABlAG4AZwB0AGgAIABpAHMAIAAxAC4AAC8gAE0ASQAg
+AG4AbwB0ACAAcwB0AHIAaQBjAHQAbAB5ACAAYQBsAHAAaABhAC4AACkgAEIAaQByAHQAaABEAGEA
+dABlACAAcgBlAHEAdQBpAHIAZQBkAC4AAE8gAEkAbgB2AGEAbABpAGQAIABCAGkAcgB0AGgARABh
+AHQAZQAuACAAQQBnAGUAIABpAHMAIAAxADAAMAAgAG8AcgAgAG0AbwByAGUALgAAJyAASQBuAHYA
+YQBsAGkAZAAgAEIAaQByAHQAaABEAGEAdABlAC4AAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUA
+cgB0AHkAIABjAGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABB
+AHMAcwBpAGcAbgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAA
+aQBuAHMAdABlAGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAcVMAQwBfADkAYQBjADcANQBlADQANAAw
+AGYAOQAwADQANwBjADYAOABiAGIAZgA1AGYANgBjADIAYgBlADMAOQAwAGYAZAAuAFAAcgBvAHAA
+ZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAANDg8Ye+CvtOuMKUQfxMHRUABCABAQgD
+IAABBSABARERBCABAQ4FIAEBEWEQBwkSORI5EjkSOQ4CCgIRPQIGDgUAAg4ODgUgARJ1DgMgAAID
+IAAOBQACAg4OBgACAg4QCgMgAAgEAAARPQUgARE9CAcAAgIRPRE9CSADARJFHQgSSQMGEkUDBh0I
+BCABDggEIAECCAQgAQgIBSACAQgcByACAg4RgIkFIAEdCAgIAAESgI0RgJEFIAASgJUHIAIBDhKA
+lQi3elxWGTTgiQiJhF3NgIDMkQMGEhQDBhIYAwYSTQMGElkDBhJdAwYSIAUgAQESDAQgABE9BCAB
+AQIJIAQBCA4SRRJJBSABARJNBAAAElkEAAASXQUAAQESXQQAABIgAwAAAQMoAA4DKAACBCgAET0D
+KAAIBAgAElkECAASXQQIABIgCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dz
+AQgBAAIAAAAAACgBACNTQ185YWM3NWU0NDBmOTA0N2M2OGJiZjVmNmMyYmUzOTBmZAAABQEAAAAA
+FgEAEUNvcHlyaWdodCBAICAyMDE4AABHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQO
+FEZyYW1ld29ya0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQEAQAAAAAAtAAAAM7K774BAAAA
+kQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00
+LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkj
+U3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAA
+AJBBAAAAAAAAAAAAAKpBAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACcQQAAAAAAAAAAAAAAAF9D
+b3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
+AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
+ABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
+AAABAAAAAQBCXyMaAAABAEJfIxo/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
+sAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAwADAANABi
+ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEA
+bQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBf
+ADkAYQBjADcANQBlADQANAAwAGYAOQAwADQANwBjADYAOABiAGIAZgA1AGYANgBjADIAYgBlADMA
+OQAwAGYAZAAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADYAOQAx
+AC4AMgA0ADMAOAA2AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADkA
+YQBjADcANQBlADQANAAwAGYAOQAwADQANwBjADYAOABiAGIAZgA1AGYANgBjADIAYgBlADMAOQAw
+AGYAZAAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAA
+eQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBt
+AGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAA
+UwBDAF8AOQBhAGMANwA1AGUANAA0ADAAZgA5ADAANAA3AGMANgA4AGIAYgBmADUAZgA2AGMAMgBi
+AGUAMwA5ADAAZgBkAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMA
+QwBfADkAYQBjADcANQBlADQANAAwAGYAOQAwADQANwBjADYAOABiAGIAZgA1AGYANgBjADIAYgBl
+ADMAOQAwAGYAZAAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4A
+NgA2ADkAMQAuADIANAAzADgANgAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANgA2ADkAMQAuADIANAAzADgANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAAC8MQAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_9ac75e440f9047c68bbf5f6c2be390fd</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">473f95147814d267388f525f028fb0d1</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">b0d3ff3ac6f84e4ade6c5939b5f40380dfc1138b</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MI"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="HomePhone"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[HomePhone]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[program_name]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="program_name"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[program_name]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[service_type]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="service_type"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[service_type]" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="Comments"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[Comments]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0].Columns[SacwisID]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="SacwisID"
+                      lineageId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output].Columns[SacwisID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract and Validate DCFS SACWIS data.Paths[ADO NET Source Output]"
+              endId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Inputs[Input 0]"
+              name="ADO NET Source Output"
+              startId="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Extract and Validate DCFS SACWIS data.Paths[Output 0]"
+              endId="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons.Inputs[ADO NET Destination Input]"
+              name="Output 0"
+              startId="Package\Extract and Validate DCFS SACWIS data\Validate Fields.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate HHS_Staging DCFS Persons"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C1FD3C02-E06A-4D2B-9AFB-10918736476E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate HHS_Staging DCFS Persons"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="Truncate Table HHS_Staging.DCFS.Persons" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{19734F36-E40D-4CE9-AAA3-0E5929592912}"
+      DTS:From="Package\Truncate HHS_Staging DCFS Persons"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract and Validate DCFS SACWIS data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="269,42"
+          Id="Package\Extract and Validate DCFS SACWIS data"
+          TopLeft="563,193" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Truncate HHS_Staging DCFS Persons"
+          TopLeft="571,74" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="698.25,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract and Validate DCFS SACWIS data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data"
+          TopLeft="627,81" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons"
+          TopLeft="600,347" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Extract and Validate DCFS SACWIS data\Validate Fields"
+          TopLeft="625,216" />
+        <EdgeLayout
+          Id="Package\Extract and Validate DCFS SACWIS data.Paths[Output 0]"
+          TopLeft="701.75,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract and Validate DCFS SACWIS data.Paths[ADO NET Source Output]"
+          TopLeft="701.75,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,93"
+              Start="0,0"
+              End="0,85.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and Validate DCFS SACWIS data\SacwisCuy data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and Validate DCFS SACWIS data\HHS Staging DCFS Persons">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

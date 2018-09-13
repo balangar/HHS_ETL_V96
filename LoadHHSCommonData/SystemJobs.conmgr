@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SystemJobs"
+  DTS:DTSID="{427C3780-0FA3-47B0-A68D-14E6424A3463}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-CUYIC-DB02;User ID=sa;Initial Catalog=SystemJobs;Application Name=SSIS-LoadHHSCommonData-{427C3780-0FA3-47B0-A68D-14E6424A3463}MS-CUYIC-DB02.SystemJobs.sa;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="RLqy4yojrQ=="
+        p4:IV="nFMTWXFDeFQ=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">5RQnGm1xbLEjvAN3AVdiG01N+UF7RGeHJRDmfs1L+SHDPxxYskgYS1mZ1phv3IE38Gpo8BRwLAt5ne5EHIbkWHpnwI0GvMwDrof2+wnngv4hMWIpFMPKuLZoM9vCwY0tRvFryThLxnQcyEyUkNO0na9SeWZxANRx</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

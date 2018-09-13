@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SACWISCuy_ReadOnly"
+  DTS:DTSID="{821C35E5-A21C-4D4F-B058-9924F918DD96}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_ReadAllData;Initial Catalog=SACWISCUY;Persist Security Info=True;Application Name=SSIS-LoadHHSCommonData-{821C35E5-A21C-4D4F-B058-9924F918DD96}MS-DCFS-PSQL1.SACWISCUY.Cuy_ReadAllData;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="FLwJlbN6qQ=="
+        p4:IV="GwAk/m6qcVk=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">XUw+EIxtM1A00LsTibEaai3RUhArLgWsTT4Yyg9SDkAovF90k978hNCvY10/Nnk64kEx6L7HwTCtvO8fLsrEOSdM6L/tf+DsMuwY+61mYjAajipkSWC8R9m/4aDosRpJl25ZOFb6/dmLZrEFHf5E+PGDpjC17TzFoeT+SWMgRCT9dBerL+Sy3ko+cJobu7Khkba1ianvhgk=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

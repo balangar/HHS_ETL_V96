@@ -1,0 +1,7 @@
+24 Apr 2018
+In case you're tempted to reorg Extract-CRM to separate data streams based on the number of service
+(N1Service, N2Service, etc.) -- DON'T.
+
+Each service is different when it comes to determining confidentiality.  For instance,
+o JFS CRISE uses caseload structure (and so will need to join with DB02 CommonInfo)
+o CFS SACWIS -- not sure what it uses but so far just age.
