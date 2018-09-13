@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ClientInfo"
+  DTS:DTSID="{B067D9B4-FD9C-484B-9446-6AF4A513C8AB}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-CUYIC-DB02;User ID=Cuy_DataLoader;Initial Catalog=ClientInfo;Persist Security Info=True;Application Name=SSIS-LoadHHSCommonData-{B067D9B4-FD9C-484B-9446-6AF4A513C8AB}MS-CUYIC-DB02.ClientInfo.sa;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="NVqkE1GpXQ=="
+        p4:IV="+nRvvJutFlc=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">Z9M57GUVfK9qnc2LE16e3+/5oQ9mzoKrpQjf1HZ8dNXDpnonQzd5VebKxuArBsIZHbWFtX+eoP9aefAWgFVEKk2IyBxWdoV+OBRFQH6Oatl/aQXQjoxlAr3KMKvSeLfe/RA4PFdT1yGAjSkB/fZnzE89mVsRwW1iEaR3CVt/EC/WGxisRnArGA==</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

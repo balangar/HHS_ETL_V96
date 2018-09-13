@@ -1,0 +1,50 @@
+Field validation
+o The following fields are required to be present and syntactically valid (used during duplicate detection; ZipCode also used for address cleansing.:
+	-- ZipCode
+	-- SocSecNo
+	-- BirthDate
+	-- Last Name
+
+
+Validate US zip codes. Matches all zip codes of exactly 5 digits except 00000. Optionally, matches zip5+zip4 where zip5 is exactly 5 digits, zip4 is exactly 4 digits, and zip5 and zip4 are, optionally, separated by a single space or hyphen. Captures zip5 and zip4 to named groups to facilitate program manipulation.
+^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$
+
+Validate Name
+^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$
+
+Validate SocSecNo. Reference:  http://regexlib.com/Search.aspx?k=Social+Security+Number&c=-1&m=-1&ps=50
+(^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+
+
+Possible Phone no:  http://regexlib.com/Search.aspx?k=&c=7&m=-1&ps=50  (Not used for first extract.  2/2/2018 [geg])
+^(1?(-?\d{3})-?)?(\d{3})(-?\d{4})$
+
+Also, doing sanity check on BirthDate:
+	Invalid if Age >= 100; Invalid if Birthdate >= Today
+
+
+o Address cleansing
+	-- All non-Ohio addresses with syntactically valid ZipCodes are considered OK.
+	-- All non-Cuyahoga Ohio addresses with syntactically valid ZipCodes are considered OK.
+	-- Only Cuyahoga addresses (as determined by ZipCode) are cleansed
+		-- Only attempting to reconcile (cleanse) city and Zip code.
+		-- Cleansing on a "best effort" basis.
+		-- Where I can't determine which city of a multi-city ZipCode is intended, I use "Cleveland"
+		-- In general, I leave ResAddr* alone; Modifications, if any, to staged data are made only to ResAddrCleansedCity, ResAddrCleansedZipCode, ResAddrLine2 or ResAddrLine3.
+
+o Some cleansed addresses are already available for JFS-Benefits.  See [MS-CUYIC-DB02].CommonTables.dbo.FOD_CrisERecipients_VW
+o The staging table HHS_Staging.JFS.CRISE has columns for "ResAddrCleansedCity" and "ResAddrCleansedZipCode"
+	-- The cleansing process populates these columns and modifieds ResAddrLine2 or ResAddrline3 as required.
+o Address cleansing proceeds as follows (NB: I'm using tables [MS-CUYIC-DB02].CommonInfo.dbo.Cuyahoga_Municipalities_VW and Cuyahoga_MunicipalityZips_VW for Cuyahoga Zip Code and City info):
+	-- Trival Case(s)
+		o All syntactically valid non-Ohio addresses.
+		o All syntactically valid non-Cuyahoga addresses.
+		o For JFS-Benefits: If ResAddrCity = ResAddrCleansedCity  and ResAddrZipCode = ResAddrZipCode Then mark record as "cleansed"
+	-- Where ResAddrCleansedZipcode doesn't exist and ResAddrZipCode is one of the "single city" zip Codes:
+		o Replace ResAddrCleansedCity, ResAddrCleansedZipCode  and either ResAddrLine2 or ResAddrLine3 using info from CommonInfo lookup table.
+	-- Where ResAddrCleansedZipCode doesn't exist and ResAddrZipCode is one of the "multi city zip codes":
+		o If there's a sufficiently good match between ResAddrCity and City in CommonInfo lookup table (basically a match in the first 4 or 5 characters)
+			-- Replace ResAddrCleansedZipCode, ResAddrCleansedCity and either ResAddrLine2 or ResAddrLine3 using info from CommonInfo lookup table.
+
+Filtering
+	JFS (Benefits) -- exclude recipients in confidential caseloads (3100 - 3199, 3811, 3812)

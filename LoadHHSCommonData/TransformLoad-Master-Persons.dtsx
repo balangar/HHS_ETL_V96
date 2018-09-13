@@ -1,0 +1,174 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/18/2018 10:30:52 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{1C8A0178-0890-4E6D-B110-813220B39516}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TransformLoad-Master-Persons"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{488A65BE-07F0-4233-952D-ED70EE7494B8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load DCFS SACWIS Persons"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BB0FEA48-079F-4270-941D-EE80C154CFC6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load DCFS SACWIS Persons"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{15DAE4C9-1605-45CE-A077-9C7743C63C08}"
+          SQLTask:SqlStatementSource="With UnseenSacwis AS&#xA;(&#xA;SELECT &#xA;&#x9;s.[ID],s.[LastModifiedDate],s.[Signature],s.[SocSecNo],s.[BirthDate],s.[Age],&#xA;&#x9;[SacwisID],&#xA;&#x9;s.[LastName],s.[FirstName],s.[MI],&#xA;&#x9;s.[HomePhone],&#xA;&#x9;s.[ResAddrLine1],s.[ResAddrLine2],s.[ResAddrLine3],s.[ResAddrCity],s.[ResAddrState],&#xA;&#x9;s.[ResAddrZipCode],[ResAddrPlus4],[ResAddrZipPlus4],&#xA;&#x9;[ProgramName],[ServiceType],[ServiceDescription],[DataSource],&#xA;&#x9;[InState],[InCounty]&#xA;FROM &#xA;&#x9;[HHS_MasterData].[DCFS].[SACWIS] s&#xA;&#x9;LEFT JOIN&#xA;&#x9;[HHS_MasterData].dbo.Persons p&#xA;&#x9;ON s.SocSecNo = p.SocSecNo&#xA;WHERE&#xA;&#x9;p.SocSecNo IS NULL&#xA;), &#xA;ModifiedSacwisOnly As&#xA;(&#xA;SELECT &#xA;&#x9;s.[ID],s.[LastModifiedDate],s.[Signature],s.[SocSecNo],s.[BirthDate],s.[Age],&#xA;&#x9;s.[SacwisID],&#xA;&#x9;s.[LastName],s.[FirstName],s.[MI],&#xA;&#x9;s.[HomePhone],&#xA;&#x9;s.[ResAddrLine1],s.[ResAddrLine2],s.[ResAddrLine3],s.[ResAddrCity],s.[ResAddrState],&#xA;&#x9;s.[ResAddrZipCode],s.[ResAddrPlus4],s.[ResAddrZipPlus4],&#xA;&#x9;s.[ProgramName],s.[ServiceType],s.[ServiceDescription],s.[DataSource],&#xA;&#x9;s.[InState],s.[InCounty]&#xA;FROM &#xA;&#x9;&#x9;[HHS_MasterData].[DCFS].[SACWIS] s&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;[HHS_MasterData].dbo.Persons mp&#xA;&#x9;&#x9;ON&#xA;&#x9;&#x9;&#x9;s.SocSecNo = mp.SocSecNo And&#xA;&#x9;&#x9;&#x9;CAST(mp.LastModifiedDate As Date) &lt; CAST(s.LastModifiedDate As Date) And&#xA;&#x9;&#x9;&#x9;s.Signature != mp.Signature&#xA;&#x9;JOIN&#xA;&#x9;HHS_Staging.DCFS.Persons sp&#xA;&#x9;ON&#xA;&#x9;&#x9;sp.SocSecNo = s.SocSecNo AND&#xA;&#x9;&#x9;sp.IsDuplicate = 0&#xA;),&#xA;MasterSacwisPersons AS&#xA;(&#xA;SELECT &#xA;&#x9;s.[ID],s.[LastModifiedDate],s.[Signature],s.[SocSecNo],s.[BirthDate],s.[Age],&#xA;&#x9;[SacwisID],&#xA;&#x9;s.[LastName],s.[FirstName],s.[MI],&#xA;&#x9;s.[HomePhone],&#xA;&#x9;s.[ResAddrLine1],s.[ResAddrLine2],s.[ResAddrLine3],s.[ResAddrCity],s.[ResAddrState],&#xA;&#x9;s.[ResAddrZipCode],[ResAddrPlus4],[ResAddrZipPlus4],&#xA;&#x9;[ProgramName],[ServiceType],[ServiceDescription],[DataSource],&#xA;&#x9;[InState],[InCounty]&#xA;FROM&#xA;&#x9;UnseenSacwis s&#xA;UNION&#xA;SELECT &#xA;&#x9;s.[ID],s.[LastModifiedDate],s.[Signature],s.[SocSecNo],s.[BirthDate],s.[Age],&#xA;&#x9;s.[SacwisID],&#xA;&#x9;s.[LastName],s.[FirstName],s.[MI],&#xA;&#x9;s.[HomePhone],&#xA;&#x9;s.[ResAddrLine1],s.[ResAddrLine2],s.[ResAddrLine3],s.[ResAddrCity],s.[ResAddrState],&#xA;&#x9;s.[ResAddrZipCode],s.[ResAddrPlus4],s.[ResAddrZipPlus4],&#xA;&#x9;s.[ProgramName],s.[ServiceType],s.[ServiceDescription],s.[DataSource],&#xA;&#x9;s.[InState],s.[InCounty]&#xA;FROM&#xA;&#x9;ModifiedSacwisOnly s&#xA;)&#xA;MERGE &#xA;&#x9;HHS_MasterData.dbo.Persons As Target &#xA;&#x9;USING MasterSacwisPersons  As [Source]&#xA;&#x9;ON &#xA;&#x9;&#x9;Target.SocSecNo = [Source].SocSecNo&#xA;&#x9;WHEN&#xA;&#x9;&#x9;MATCHED And&#xA;&#x9;&#x9;Target.LastModifiedDate &lt; [Source].LastModifiedDate And [Target].Signature != [Source].Signature And&#xA;&#x9;&#x9;[Source].SocSecNo NOT IN (Select SocSecNo From HHS_MasterData.dbo.Persons)&#xA;&#x9;THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;&#x9;SET&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastModifiedDate = Source.LastModifiedDate,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.SocSecNo = Source.SocSecNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.BirthDate = Source.BirthDate,&#xA;&#x9;&#x9;&#x9;&#x9;Target.Age = Source.Age,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastName = Source.LastName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.FirstName = Source.FirstName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.MI = Source.Mi,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.HomePhone = Source.HomePhone,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine1 = Source.ResAddrLine1,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine2 = Source.ResAddrLine2,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine3 = Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrCity = Source.ResAddrCity,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrState = Source.ResAddrState,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrZipCode = Source.ResAddrZipCode,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.IsInCounty = Source.InCounty,&#xA;&#x9;&#x9;&#x9;&#x9;Target.IsInState = Source.InState&#xA;&#xA;&#x9;WHEN &#xA;&#x9;&#x9;NOT MATCHED BY TARGET &#xA;&#x9;THEN&#xA;&#x9;&#x9;INSERT &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;LastModifiedDate, &#xA;&#x9;&#x9;&#x9;SocSecNo, BirthDate, Age,&#xA;&#x9;&#x9;&#x9;LastName, FirstName, MI,&#xA;&#x9;&#x9;&#x9;HomePhone, ResAddrLine1, ResAddrLine2, ResAddrLine3,&#xA;&#x9;&#x9;&#x9;ResAddrCity, ResAddrState, ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;IsInState, IsInCounty&#xA;&#x9;&#x9;) &#xA;&#x9;&#x9;VALUES &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;Source.LastModifiedDate, &#xA;&#x9;&#x9;&#x9;Source.SocSecNo, Source.BirthDate, Source.Age,&#xA;&#x9;&#x9;&#x9;Source.LastName, Source.FirstName, Source.MI,&#xA;&#x9;&#x9;&#x9;Source.HomePhone, Source.ResAddrLine1, Source.ResAddrLine2, Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;Source.ResAddrCity, Source.ResAddrState, Source.ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;Source.InState, Source.InCounty&#xA;&#x9;&#x9;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load JFS CRISE Persons"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{80110600-FAC1-4771-B477-92B6514890ED}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load JFS CRISE Persons"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{15DAE4C9-1605-45CE-A077-9C7743C63C08}"
+          SQLTask:SqlStatementSource="MERGE &#xA;&#x9;HHS_MasterData.dbo.Persons As Target &#xA;&#x9;USING HHS_MasterData.JFS.CRISE As [Source]&#xA;&#x9;ON &#xA;&#x9;&#x9;Target.SocSecNo = [Source].SocSecNo&#xA;&#x9;WHEN&#xA;&#x9;&#x9;MATCHED And&#xA;&#x9;&#x9;Target.LastModifiedDate &lt; [Source].LastModifiedDate And [Target].Signature != [Source].Signature&#xA;&#x9;THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;&#x9;SET&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastModifiedDate = Source.LastModifiedDate,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.SocSecNo = Source.SocSecNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.BirthDate = Source.BirthDate,&#xA;&#x9;&#x9;&#x9;&#x9;Target.Age = Source.Age,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastName = Source.LastName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.FirstName = Source.FirstName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.MI = Source.Mi,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.HomePhone = Source.HomePhone,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine1 = Source.ResAddrLine1,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine2 = Source.ResAddrLine2,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine3 = Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrCity = Source.ResAddrCity,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrState = Source.ResAddrState,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrZipCode = Source.ResAddrZipCode,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.IsInCounty = Source.InCounty,&#xA;&#x9;&#x9;&#x9;&#x9;Target.IsInState = Source.InState&#xA;&#xA;&#x9;WHEN &#xA;&#x9;&#x9;NOT MATCHED BY TARGET &#xA;&#x9;THEN&#xA;&#x9;&#x9;INSERT &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;LastModifiedDate, &#xA;&#x9;&#x9;&#x9;SocSecNo, BirthDate, Age,&#xA;&#x9;&#x9;&#x9;LastName, FirstName, MI,&#xA;&#x9;&#x9;&#x9;HomePhone, ResAddrLine1, ResAddrLine2, ResAddrLine3,&#xA;&#x9;&#x9;&#x9;ResAddrCity, ResAddrState, ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;IsInState, IsInCounty&#xA;&#x9;&#x9;) &#xA;&#x9;&#x9;VALUES &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;Source.LastModifiedDate, &#xA;&#x9;&#x9;&#x9;Source.SocSecNo, Source.BirthDate, Source.Age,&#xA;&#x9;&#x9;&#x9;Source.LastName, Source.FirstName, Source.MI,&#xA;&#x9;&#x9;&#x9;Source.HomePhone, Source.ResAddrLine1, Source.ResAddrLine2, Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;Source.ResAddrCity, Source.ResAddrState, Source.ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;Source.InState, Source.InCounty&#xA;&#x9;&#x9;)&#xA;;&#xA;&#xA;&#x9;&#x9;&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load PersonServices bridge table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E483DF35-BBC0-406F-A67F-E3F0D257194F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load PersonServices bridge table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{15DAE4C9-1605-45CE-A077-9C7743C63C08}"
+          SQLTask:SqlStatementSource="Truncate Table HHS_MasterData.dbo.PersonServices;&#xA;GO&#xA;INSERT INTO HHS_MasterData.dbo.PersonServices(MasterPersonKey, ServiceType, Ordinal, ServicePersonKey, ServiceDescription)&#xA;Select&#xA;&#x9;mp.ID As MasterPersonKey,&#xA;&#x9;'CRISE' As ServiceType, 1 As Ordinal,&#xA;&#x9;jc.ID As ServicePersonKey,&#xA;&#x9;'JFS -- CRISE' As ServiceDescription&#xA;From&#xA;&#x9;HHS_MasterData.dbo.Persons mp&#xA;&#x9;JOIN&#xA;&#x9;HHS_MasterData.JFS.CRISE jc&#xA;&#x9;ON mp.SocSecNo = jc.SocSecNo&#xA;UNION&#xA;&#x9;Select&#xA;&#x9;mp.ID As MasterPersonKey,&#xA;&#x9;'SACWIS' As ServiceType, 2 As Ordinal,&#xA;&#x9;jc.ID As ServicePersonKey,&#xA;&#x9;'CFS -- SACWIS' As ServiceDescription&#xA;From&#xA;&#x9;HHS_MasterData.dbo.Persons mp&#xA;&#x9;JOIN&#xA;&#x9;HHS_MasterData.DCFS.SACWIS jc&#xA;&#x9;ON mp.SocSecNo = jc.SocSecNo&#xA;&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A690CB8-FC9D-4209-8902-02F2AEE003CD}"
+      DTS:From="Package\Load JFS CRISE Persons"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load DCFS SACWIS Persons" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{578CDDAA-1CCA-4482-897A-192253780883}"
+      DTS:From="Package\Load DCFS SACWIS Persons"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load PersonServices bridge table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Load DCFS SACWIS Persons"
+          TopLeft="498,230" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Load JFS CRISE Persons"
+          TopLeft="505,119" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Load PersonServices bridge table"
+          TopLeft="491,345" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="602.75,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="606.25,272">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="For now, I'm giving preference to CRIS-E data for Master Person record&#xA;2018-04-18. [geg]"
+          ParentId="Package"
+          Size="377,51"
+          Id="014ffd43-3496-4a8a-8889-aa9bc86150cb"
+          TopLeft="704,115">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

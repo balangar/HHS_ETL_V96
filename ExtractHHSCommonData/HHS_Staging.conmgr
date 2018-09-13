@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="HHS_Staging"
+  DTS:DTSID="{67AA0B24-1A2D-4171-B5D9-14ACE7D26265}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=HHS_Staging;Persist Security Info=True;Application Name=SSIS-ExtractHHSCommonData-{67AA0B24-1A2D-4171-B5D9-14ACE7D26265}MS-DCFS-PSQL1.HHS_Staging.Cuy_DataLoader;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAF66emhWOsUSipYNIdLeQtAAAAAACAAAAAAADZgAAwAAAABAAAAAKfVmi4bN+BOfvyISoO7P1AAAAAASAAACgAAAAEAAAAPr1ZxTfs6ERIENB8+SeeyGAAAAArYSjWcxvbf7ZLEPNC+OqJrazMYb6Q4tueRdS68IWDdb6cq+NnlhkRdpaXZSsu0R6cRb9zliJGUpYZHvfBRZSWIhSYkGDzm1jsPPTkTV7cGty38F8lFd8rJdvEw0FQ/AvmmJLVZcBxGehK7aVXc6zbshLlt7VYdNDcJRoMqesUmAUAAAAWzjJB1MMwejCTiK9QW9o2nBboxw=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

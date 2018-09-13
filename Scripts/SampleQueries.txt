@@ -1,0 +1,33 @@
+WIP:  detect duplicates.  A query I don't want to lose:
+With HHS_Duplicates(SocSecNo, BirthDate, PartialLastName)
+AS
+(
+	Select
+		SocSecNo, BirthDate, SUBSTRING(LastName, 1,5)--, ResAddrCleansedZipCode
+	From
+		HHS_Staging.JFS.CRISE
+	Where
+		IsValid = 1 AND
+		IsCleansed = 1
+
+	INTERSECT
+	Select
+		SocSecNo, BirthDate, SUBSTRING(LastName, 1,5)--, ResAddrCleansedZipCode
+	From
+		HHS_Staging.DCFS.Persons
+	Where
+		isvalid = 1 and
+		iscleansed = 1
+)
+Select
+	*
+From
+	JFS.CRISE j
+	JOIN
+	HHS_Duplicates d
+	ON
+		j.SocSecNo = d.SocSecNo AND
+		j.BirthDate = d.BirthDate
+
+
+Select * from jfs.CRISE where SocSecNo = '287223478' ; Select * from DCFS.Persons Where SocSecNo = '287223478'

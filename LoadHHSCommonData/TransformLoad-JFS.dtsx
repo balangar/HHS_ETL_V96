@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/16/2018 10:36:08 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{46B10BB2-578F-472B-9227-8189CE0F4CF4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TransformLoad-JFS"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{B056B91B-255E-4D07-A67F-08E58B36F0F4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load CRISE Persons"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{47CA0D6E-D882-428C-B248-1A1DC3B2C936}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load CRISE Persons"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="MERGE &#xA;&#x9;HHS_MasterData.JFS.CRISE As Target &#xA;&#x9;USING HHS_Staging.JFS.CRISE As [Source]&#xA;&#x9;ON &#xA;&#x9;&#x9;Target.SocSecNo = [Source].SocSecNo&#xA;&#x9;WHEN&#xA;&#x9;&#x9;MATCHED And&#xA;&#x9;&#x9;[Source].IsValid = 1 And [Source].IsCleansed = 1 And &#xA;&#x9;&#x9;Target.LastModifiedDate &lt; [Source].SysInsertDate And [Target].Signature != [Source].Signature&#xA;&#x9;THEN&#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;&#x9;SET&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastModifiedDate = Source.SysInsertDate,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.SocSecNo = Source.SocSecNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.RecipientNo = Source.RecipientNo,&#xA;&#x9;&#x9;&#x9;&#x9;Target.BirthDate = Source.BirthDate,&#xA;&#x9;&#x9;&#x9;&#x9;Target.Age = Source.Age,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.LastName = Source.LastName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.FirstName = Source.FirstName,&#xA;&#x9;&#x9;&#x9;&#x9;Target.MI = Source.Mi,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.HomePhone = Source.HomePhone,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine1 = Source.ResAddrLine1,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine2 = Source.ResAddrLine2,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrLine3 = Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrCity = Source.ResAddrCleansedCity,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrState = Source.ResAddrState,&#xA;&#x9;&#x9;&#x9;&#x9;Target.ResAddrZipCode = Source.ResAddrCleansedZipCode,&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;Target.InCounty = Source.InCounty,&#xA;&#x9;&#x9;&#x9;&#x9;Target.InState = Source.InState&#xA;&#xA;&#x9;WHEN &#xA;&#x9;&#x9;NOT MATCHED BY TARGET AND [Source].IsValid = 1 And [Source].IsCleansed = 1 &#xA;&#x9;THEN&#xA;&#x9;&#x9;INSERT &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;LastModifiedDate, &#xA;&#x9;&#x9;&#x9;SocSecNo, RecipientNo, BirthDate, Age,&#xA;&#x9;&#x9;&#x9;LastName, FirstName, MI,&#xA;&#x9;&#x9;&#x9;HomePhone, ResAddrLine1, ResAddrLine2, ResAddrLine3,&#xA;&#x9;&#x9;&#x9;ResAddrCity, ResAddrState, ResAddrZipCode,&#xA;&#x9;&#x9;&#x9;InState, InCounty&#xA;&#x9;&#x9;) &#xA;&#x9;&#x9;VALUES &#xA;&#x9;&#x9;(&#xA;&#x9;&#x9;&#x9;Source.SysInsertDate, &#xA;&#x9;&#x9;&#x9;Source.SocSecNo, Source.RecipientNo, Source.BirthDate, Source.Age,&#xA;&#x9;&#x9;&#x9;Source.LastName, Source.FirstName, Source.MI,&#xA;&#x9;&#x9;&#x9;Source.HomePhone, Source.ResAddrLine1, Source.ResAddrLine2, Source.ResAddrLine3,&#xA;&#x9;&#x9;&#x9;Source.ResAddrCleansedCity, Source.ResAddrState, Source.ResAddrCleansedZipCode,&#xA;&#x9;&#x9;&#x9;Source.InState, Source.InCounty&#xA;&#x9;&#x9;)&#xA;;&#xA;&#xA;&#x9;&#x9;&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Load CRISE Persons"
+          TopLeft="590,132" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2 @@
+Create DACPAC from cli:
+c:\Program Files (x86)\Microsoft SQL Server\110\DAC\bin>SqlPackage /a:Extract /tf:"C:\Temp\Tools.dacpac" /of:True /ssn:"MS-CUYIC-DB02" /sdn:"Tools"

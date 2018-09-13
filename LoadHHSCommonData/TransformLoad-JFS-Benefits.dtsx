@@ -1,0 +1,1951 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/13/2018 8:57:38 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS403300"
+  DTS:CreatorName="CCEFS\greeng"
+  DTS:DTSID="{C6FA8A81-F8E5-4021-B386-133743D9833B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0800.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TransformLoad-JFS-Benefits"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{CDDA4D92-B5D1-49C2-A126-2E4CE583B328}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Extract-CRM]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{70BE6090-DB77-449C-B19D-6118292E6288}"
+      DTS:ObjectName="Extract-CRM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="\\ms-cjfs-sis\Source\Development\Working\Extract-CRM" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy CRM Extract Template To Working"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{BCC499DE-A1CF-47DC-8662-C2E918DBDB8B}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy CRM Extract Template To Working"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="{FC6B4D02-4899-4CAD-A5AA-1C9461BA2D9C}"
+          TaskDestinationPath="{9D76321E-B488-4993-98DC-68DC6F929E10}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Copy CRM Extract to Outbound"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{58AB11BF-3531-4A4D-9451-8D813E96B7BE}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy CRM Extract to Outbound"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="{9D76321E-B488-4993-98DC-68DC6F929E10}"
+          TaskDestinationPath="{C494FD94-C9D5-457A-A511-E2706C6A3BB0}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\JFS Benefits Extract"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C8D8AB49-96BB-4BC6-BDC2-5BD042485B53}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="JFS Benefits Extract"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\JFS Benefits Extract\CRM Extract Working"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="CRM Extract Working">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\JFS Benefits Extract\CRM Extract Working.Connections[FlatFileConnection]"
+                  connectionManagerID="{9D76321E-B488-4993-98DC-68DC6F929E10}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CRM Extract Working]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[HHSID]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="HHSID"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[HHSID]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSID]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[FIRSTNAME]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[LASTNAME]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[MiddleName]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MiddleName"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[MIDDLENAME]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MiddleName]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[Owner]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Owner"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[OWNER]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Owner]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[ContractManagerID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ContractManagerID"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CONTRACTMANAGERID]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[ContractManagerID]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[HHSAlert]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="HHSAlert"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[HHSALERT]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSAlert]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[BirthDay]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDay"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[BIRTHDAY]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[BirthDay]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[CASE_MGMT_SYSTEM_01]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="CASE_MGMT_SYSTEM_01"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_MGMT_SYSTEM_01]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[CASE_NUM_01]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="CASE_NUM_01"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_01]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_NUM_01]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[Contact_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Contact_Type"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CONTACT_TYPE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Contact_Type]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[CREATEDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="CREATEDATE"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CREATEDATE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATEDATE]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[CREATESOURCE]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="CREATESOURCE"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CREATESOURCE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATESOURCE]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="HomePhone"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[HOMEPHONE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HomePhone]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[MODIFYDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="MODIFYDATE"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[MODIFYDATE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MODIFYDATE]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[STATUS]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[AddressType]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="AddressType"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSTYPE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressType]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[Address1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="Address1"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESS1]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address1]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[Address2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="Address2"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESS2]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address2]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[Address3]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="Address3"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESS3]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address3]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[AddressDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="AddressDescription"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSDESCRIPTION]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressDescription]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[AddressCity]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="AddressCity"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSCITY]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressCity]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[POSTALCODE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[STATE]"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[State]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[HHSID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[PREFIX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PREFIX" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[FIRSTNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FIRSTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[MIDDLENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MIDDLENAME" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[LASTNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LASTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[SUFFIX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SUFFIX" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[OWNER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OWNER" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CONTRACTMANAGERID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CONTRACTMANAGERID" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[HHSALERT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="HHSALERT" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SSN" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[BIRTHDAY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BIRTHDAY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_01" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_02]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_02" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_03]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_03" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_04]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_04" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_05]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_05" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_06]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_06" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_01]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_01" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_02]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_02" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_03]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_03" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_04]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_04" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_05]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_05" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CASE_NUM_06]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_06" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CONTACT_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CONTACT_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CREATEDATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CREATEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[CREATESOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CREATESOURCE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GENDER" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[MARITALSTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MARITALSTATUS" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[HOMEPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="HOMEPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[MOBILE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MOBILE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[OTHERPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OTHERPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[FAX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FAX" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[WORKPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WORKPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[MODIFYDATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MODIFYDATE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[NATIONALITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NATIONALITY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[PRIMARYLANGUAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PRIMARYLANGUAGE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[OTHER_LANGUAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OTHER_LANGUAGE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[PREFERRED_CONTACT_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PREFERRED_CONTACT_METHOD" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[PREFERREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PREFERREDNAME" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESS1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESS1" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESS2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESS2" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESS3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESS3" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSDESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSCITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSCITY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[OTHERCITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OTHERCITY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[OHCOUNTY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OHCOUNTY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[ADDRESSCOUNTY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSCOUNTY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[COUNTRY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[POSTALCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="POSTALCODE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input].ExternalColumns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="STATE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Cuyahoga JFS Benefits Only by RecipientNumber"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select Top 10
+	FORMAT(ROW_NUMBER() OVER(ORDER BY ID), '180000000000000#') As HHSID,
+	FirstName, LastName, MiddleName =
+		CASE
+			When MI IS NULL or LTRIM(RTRIM(MI)) = '' Then NULL
+			Else MI
+		End,
+	[Owner] = 'HHS All', ContractManagerID = 'Admin', HHSAlert ='F',
+	SocSecNo, BirthDay = BirthDate,
+	CASE_MGMT_SYSTEM_01 = 'OBWP/JFS', CASE_NUM_01 = RecipientNo,
+	Contact_Type = 'Client', CREATEDATE = CAST(getdate() As Date), CREATESOURCE = 'For Future Use',
+	HomePhone, MODIFYDATE = CAST(getdate() As Date),
+	[Status] = 'Active', 
+	AddressType = 'Home', Address1 = ResAddrLine1, Address2 = ResAddrLine2, 
+	Address3 = 
+		Case
+			When ResAddrLine3 Is NULL or LTRIM(RTRIM(ResAddrLine3)) = '' Then NULL
+			Else ResAddrLine3
+		End,
+	AddressDescription = 'Home',
+	AddressCity = ResAddrCleansedCity,
+	PostalCode = ResAddrCleansedZipCode,
+	[State] = ResAddrState
+From
+	HHS_Staging.JFS.CRISE a
+Where
+	IsValid = 1 And IsCleansed = 1 And IsDuplicate = 0 And
+	ResAddrCleansedCity NOT LIKE '% HTS.' --And ResAddrState != 'OH'
+Order by
+	RecipientNo</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."CarematchLOCExport"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      length="4000"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      name="HHSID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="15"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="15"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[MiddleName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[MiddleName]"
+                      length="1"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[MiddleName]"
+                      name="MiddleName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Owner]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Owner]"
+                      length="7"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Owner]"
+                      name="Owner"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[ContractManagerID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[ContractManagerID]"
+                      length="5"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[ContractManagerID]"
+                      name="ContractManagerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HHSAlert]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[HHSAlert]"
+                      length="1"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HHSAlert]"
+                      name="HHSAlert"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[BirthDay]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[BirthDay]"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[BirthDay]"
+                      name="BirthDay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CASE_MGMT_SYSTEM_01]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      length="8"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CASE_MGMT_SYSTEM_01]"
+                      name="CASE_MGMT_SYSTEM_01"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CASE_NUM_01]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CASE_NUM_01]"
+                      length="12"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CASE_NUM_01]"
+                      name="CASE_NUM_01"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Contact_Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Contact_Type]"
+                      length="6"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Contact_Type]"
+                      name="Contact_Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CREATEDATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CREATEDATE]"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CREATEDATE]"
+                      name="CREATEDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CREATESOURCE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CREATESOURCE]"
+                      length="14"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CREATESOURCE]"
+                      name="CREATESOURCE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      length="10"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      name="HomePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[MODIFYDATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[MODIFYDATE]"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[MODIFYDATE]"
+                      name="MODIFYDATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Status]"
+                      length="6"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[AddressType]"
+                      length="4"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressType]"
+                      name="AddressType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Address1]"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address1]"
+                      name="Address1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Address2]"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address2]"
+                      name="Address2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Address3]"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address3]"
+                      name="Address3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[AddressDescription]"
+                      length="4"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressDescription]"
+                      name="AddressDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[AddressCity]"
+                      length="24"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressCity]"
+                      name="AddressCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[PostalCode]"
+                      length="5"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[State]"
+                      length="2"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      dataType="wstr"
+                      length="4000"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[MiddleName]"
+                      dataType="wstr"
+                      length="1"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Owner]"
+                      dataType="wstr"
+                      length="7"
+                      name="Owner" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[ContractManagerID]"
+                      dataType="wstr"
+                      length="5"
+                      name="ContractManagerID" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[HHSAlert]"
+                      dataType="wstr"
+                      length="1"
+                      name="HHSAlert" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[BirthDay]"
+                      dataType="dbDate"
+                      name="BirthDay" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      dataType="wstr"
+                      length="8"
+                      name="CASE_MGMT_SYSTEM_01" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CASE_NUM_01]"
+                      dataType="wstr"
+                      length="12"
+                      name="CASE_NUM_01" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Contact_Type]"
+                      dataType="wstr"
+                      length="6"
+                      name="Contact_Type" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CREATEDATE]"
+                      dataType="dbDate"
+                      name="CREATEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[CREATESOURCE]"
+                      dataType="wstr"
+                      length="14"
+                      name="CREATESOURCE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[MODIFYDATE]"
+                      dataType="dbDate"
+                      name="MODIFYDATE" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="6"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[AddressType]"
+                      dataType="wstr"
+                      length="4"
+                      name="AddressType" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Address1]"
+                      dataType="wstr"
+                      length="45"
+                      name="Address1" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Address2]"
+                      dataType="wstr"
+                      length="45"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[Address3]"
+                      dataType="wstr"
+                      length="45"
+                      name="Address3" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[AddressDescription]"
+                      dataType="wstr"
+                      length="4"
+                      name="AddressDescription" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[AddressCity]"
+                      dataType="wstr"
+                      length="24"
+                      name="AddressCity" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="2"
+                      name="State" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      name="HHSID" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[MiddleName]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[MiddleName]"
+                      name="MiddleName" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Owner]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Owner]"
+                      name="Owner" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[ContractManagerID]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[ContractManagerID]"
+                      name="ContractManagerID" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[HHSAlert]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[HHSAlert]"
+                      name="HHSAlert" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[BirthDay]"
+                      dataType="dbDate"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[BirthDay]"
+                      name="BirthDay" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CASE_MGMT_SYSTEM_01]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CASE_MGMT_SYSTEM_01]"
+                      name="CASE_MGMT_SYSTEM_01" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CASE_NUM_01]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CASE_NUM_01]"
+                      name="CASE_NUM_01" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Contact_Type]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Contact_Type]"
+                      name="Contact_Type" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CREATEDATE]"
+                      dataType="dbDate"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CREATEDATE]"
+                      name="CREATEDATE" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CREATESOURCE]"
+                      dataType="wstr"
+                      length="14"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[CREATESOURCE]"
+                      name="CREATESOURCE" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[MODIFYDATE]"
+                      dataType="dbDate"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[MODIFYDATE]"
+                      name="MODIFYDATE" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Status]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[AddressType]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[AddressType]"
+                      name="AddressType" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Address1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Address1]"
+                      name="Address1" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Address2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Address2]"
+                      name="Address2" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Address3]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[Address3]"
+                      name="Address3" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[AddressDescription]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[AddressDescription]"
+                      name="AddressDescription" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[AddressCity]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[AddressCity]"
+                      name="AddressCity" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\JFS Benefits Extract\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[HHSID]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="HHSID"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HHSID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[FirstName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[LastName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[LastName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[MiddleName]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MiddleName"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[MiddleName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MiddleName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[Owner]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Owner"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Owner]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Owner]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[ContractManagerID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ContractManagerID"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[ContractManagerID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[ContractManagerID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[HHSAlert]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="HHSAlert"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HHSAlert]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSAlert]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[SocSecNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[BirthDay]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDay"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[BirthDay]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[BirthDay]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[CASE_MGMT_SYSTEM_01]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="CASE_MGMT_SYSTEM_01"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CASE_MGMT_SYSTEM_01]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_MGMT_SYSTEM_01]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[CASE_NUM_01]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="CASE_NUM_01"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CASE_NUM_01]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_NUM_01]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[Contact_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Contact_Type"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Contact_Type]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Contact_Type]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[CREATEDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="CREATEDATE"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CREATEDATE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATEDATE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[CREATESOURCE]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="CREATESOURCE"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[CREATESOURCE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATESOURCE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="HomePhone"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[HomePhone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HomePhone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[MODIFYDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="MODIFYDATE"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[MODIFYDATE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MODIFYDATE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Status"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Status]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Status]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[AddressType]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="AddressType"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressType]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressType]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[Address1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="Address1"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address1]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address1]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[Address2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="Address2"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address2]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address2]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[Address3]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="Address3"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[Address3]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address3]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[AddressDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="AddressDescription"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressDescription]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressDescription]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[AddressCity]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="AddressCity"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[AddressCity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressCity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="PostalCode"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[PostalCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[PostalCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      lineageId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output].Columns[State]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[State]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSID]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSID]"
+                      name="HHSID" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MiddleName]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MiddleName]"
+                      name="MiddleName" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Owner]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Owner]"
+                      name="Owner" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[ContractManagerID]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[ContractManagerID]"
+                      name="ContractManagerID" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSAlert]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HHSAlert]"
+                      name="HHSAlert" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[BirthDay]"
+                      dataType="dbDate"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[BirthDay]"
+                      name="BirthDay" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_MGMT_SYSTEM_01]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_MGMT_SYSTEM_01]"
+                      name="CASE_MGMT_SYSTEM_01" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_NUM_01]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CASE_NUM_01]"
+                      name="CASE_NUM_01" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Contact_Type]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Contact_Type]"
+                      name="Contact_Type" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATEDATE]"
+                      dataType="dbDate"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATEDATE]"
+                      name="CREATEDATE" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATESOURCE]"
+                      dataType="wstr"
+                      length="14"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[CREATESOURCE]"
+                      name="CREATESOURCE" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MODIFYDATE]"
+                      dataType="dbDate"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[MODIFYDATE]"
+                      name="MODIFYDATE" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Status]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressType]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressType]"
+                      name="AddressType" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address1]"
+                      name="Address1" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address2]"
+                      name="Address2" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address3]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[Address3]"
+                      name="Address3" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressDescription]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressDescription]"
+                      name="AddressDescription" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressCity]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[AddressCity]"
+                      name="AddressCity" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[State]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1].Columns[State]"
+                      name="State" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\JFS Benefits Extract.Paths[ADO NET Source Output]"
+              endId="Package\JFS Benefits Extract\Union All.Inputs[Union All Input 1]"
+              name="ADO NET Source Output"
+              startId="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\JFS Benefits Extract.Paths[Union All Output 1]"
+              endId="Package\JFS Benefits Extract\CRM Extract Working.Inputs[Flat File Destination Input]"
+              name="Union All Output 1"
+              startId="Package\JFS Benefits Extract\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DEE8F65C-5405-4B2F-8CDD-22765B04D074}"
+      DTS:From="Package\Copy CRM Extract Template To Working"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\JFS Benefits Extract" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5EC7ABDD-C0A0-460A-A765-F69B671835BB}"
+      DTS:From="Package\JFS Benefits Extract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Copy CRM Extract to Outbound" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="270,42"
+          Id="Package\Copy CRM Extract Template To Working"
+          TopLeft="600,81" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Copy CRM Extract to Outbound"
+          TopLeft="628,326" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\JFS Benefits Extract"
+          TopLeft="652,203" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="737,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80"
+              Start="0,0"
+              End="0,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="740.5,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\JFS Benefits Extract">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\JFS Benefits Extract\CRM Extract Working"
+          TopLeft="500,409" />
+        <NodeLayout
+          Size="311,42"
+          Id="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber"
+          TopLeft="127,82" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\JFS Benefits Extract\Union All"
+          TopLeft="530,231" />
+        <EdgeLayout
+          Id="Package\JFS Benefits Extract.Paths[ADO NET Source Output]"
+          TopLeft="282.5,124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="309,107"
+              Start="0,0"
+              End="309,99.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49.5"
+                    Point2="0,53.5"
+                    Point3="4,53.5" />
+                  <mssgle:LineSegment
+                    End="305,53.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="305,53.5"
+                    Point2="309,53.5"
+                    Point3="309,57.5" />
+                  <mssgle:LineSegment
+                    End="309,99.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\JFS Benefits Extract.Paths[Union All Output 1]"
+          TopLeft="591,273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,136"
+              Start="0,0"
+              End="0,128.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,128.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Need:  Other Ohio Addresses&#xD;&#xA;Non Ohio addresses"
+          ParentId="Package\JFS Benefits Extract"
+          FontInfo="{assembly:Null}"
+          Size="185,60"
+          Id="7eef45ef-ee8e-494a-8fad-972d335aec3f"
+          TopLeft="658,65" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\JFS Benefits Extract\Cuyahoga JFS Benefits Only by RecipientNumber">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
