@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS403300</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAr+KmPHMep0auu3enNlmzkgAAAAACAAAAAAADZgAAwAAAABAAAACtkbsCNta7lTrHSgAY9ZjFAAAAAASAAACgAAAAEAAAAPt5HEYay96mGnvjd80mUbaIAAAAUhh3x9PzB2AodOGHghH6T7wzQBpFAZdDTfwOzxDNPkguQpMfwYbzrRywfMrtnq8rfpAfZGyVYF0G3/Twmnq2pehvi7e4/FgE0cCDN4LTNCu5fOMRdsL1t/Y9JyQsR+TrSq1yfOERNBtCMY4CuqKjOCLYTlYCkjldn5CRwYFOEZEefI2jIXP5BhQAAAAG+PTX8CD71bLC0QEm+wT9YtEzgg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAr+KmPHMep0auu3enNlmzkgAAAAACAAAAAAADZgAAwAAAABAAAAD95yBAGiZ0msr8YqToksmzAAAAAASAAACgAAAAEAAAAPZ4Y0I3k9UlsDLErTecRgCIAAAArl0WEE196WW8Y++UUS+uH+RKFFoc07/oEgJBnERj+bCa2jAvnlBol42p3mxfCus21Y/S+U//YKlIHwKD+DP4GumHS2VWJvqTQXO6Xc6tRpjmnHHDDwXH7JsV7A2OrO9BptlwLEgsSSJ0j2oKKxis3D+Jag/lmm+a5/zmkqoW7mNUPJJhTKkBhxQAAABe7fkjfZuJtr2eBr9OUcNXxVA6xw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -773,32 +773,16 @@
                 <SSIS:Property SSIS:Name="Name">Extract-CRM</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">50</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">68</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{283D9BFD-4317-4006-98D4-5A69A37AE561}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{122E17DF-9EE5-438A-932A-EF91AE7B083B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
-              <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="CM.Extract-CRM.ConnectionString">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">\\ms-cjfs-sis\Source\Development\Working\Extract-CRM</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-              </SSIS:Parameters>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
