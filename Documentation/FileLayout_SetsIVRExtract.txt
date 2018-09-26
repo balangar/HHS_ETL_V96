@@ -1,0 +1,66 @@
+      *************************************************************
+      *                                                           *
+      *09-25-18  WMAA  SR_5304  Mods by geg per Marc A. email.    *
+      *************************************************************
+       01  QWQSF948-CLIENT-REC.
+           05  QWQSF948-REC-TYPE           PIC 9(01)      VALUE 1.
+           05  QWQSF948-SSN                PIC 9(09).
+           05  QWQSF948-ORDER-NUM          PIC X(12).
+           05  QWQSF948-DTE-RECV-PAY       PIC 9(08).
+           05  QWQSF948-AMT-RECV-PAY       PIC 9(09)V99.
+
+           05  QWQSF948-DTE-PRINT-DISB     PIC 9(08).
+           05  QWQSF948-TYPE-DISB          PIC X(01).
+           05  QWQSF948-AMT-DISB           PIC 9(09)V99.
+           05  QWQSF948-DTE-ASOF-ARRG      PIC 9(08).
+           05  QWQSF948-AMT-ARRG           PIC 9(09)V99.
+           05  QWQSF948-DTE-DISR           PIC 9(08).
+           05  QWQSF948-AMT-DISR           PIC 9(09)V99.
+           05  QWQSF948-NBR-COUNTY         PIC 9(02).
+           05  QWQSF948-NBR-PARTIC         PIC 9(12).
+			   Caretaker Type			   PIC X(03).
+           05  QWQSF948-NBR-CASE           PIC 9(10).
+           05  QWQSF948-NBR-ORDER-2ND-PART PIC X(05).
+           05  QWQSF948-NBR-SAT            PIC X(01).
+           05  QWQSF948-DTE-ASOF-CREDIT    PIC 9(08).
+           05  QWQSF948-AMT-TOT-CREDIT     PIC 9(07)V99.
+
+           05  QWQSF948-CASE-GRP-STAT      PIC X(02).
+           05  QWSF500A-TRAN-CODE          PIC X(06).
+
+           05  QWQSF948-DTE-SCHD-HEARING   PIC 9(08).
+
+           05  QWQSF948-DRV-LIC-ERR-CDE    PIC X(03).
+           05  QWQSF948-DRV-LIC-RSLT-CDE   PIC X(03).
+
+           05  QWQSF948-PROF-LIC-ERR-CDE   PIC X(03).
+           05  QWQSF948-PROF-LIC-RSLT-CDE  PIC X(03).
+
+           05  QWQSF948-RECR-LIC-ERR-CDE   PIC X(03).
+           05  QWQSF948-RECR-LIC-RSLT-CDE  PIC X(03).
+
+           05  QWQSF948-EMAIL-ADDRESS      PIC X(50).
+           05  QWQSF948-WEB-PORTAL-SW      PIC X(01).
+
+           05  QWQSF948-CELL-PHONE.
+               10  QWQSF948-CELL-PHONE-AREA     PIC 9(03).
+               10  QWQSF948-CELL-PHONE-PRX      PIC 9(03).
+               10  QWQSF948-CELL-PHONE-SFX      PIC 9(04).
+
+           05  QWQSF948-HOME-PHONE.
+               10  QWQSF948-HOME-PHONE-AREA     PIC 9(03).
+               10  QWQSF948-HOME-PHONE-PRX      PIC 9(03).
+               10  QWQSF948-HOME-PHONE-SFX      PIC 9(04).
+
+           05  QWQSF948-CHD-NAM-LAST       PIC X(15).
+           05  QWQSF948-CHD-NAM-FIRST      PIC X(15).
+           05  QWQSF948-CHD-NAM-MI         PIC X(01).
+           05  QWQSF948-CHILD-DATE-BIRTH   PIC 9(08).
+           05  QWQSF948-CHD-EXP-EMANC-DTE  PIC 9(08).
+
+           05  QWQSF948-PART-NAM-LAST      PIC X(15).
+           05  QWQSF948-PART-NAM-FIRST     PIC X(15).
+           05  QWQSF948-PART-NAM-MI        PIC X(01).
+
+           05  FILLER                      PIC X(20)      VALUE SPACES.
+
