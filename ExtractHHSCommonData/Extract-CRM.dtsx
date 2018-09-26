@@ -11,23 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Extract-CRM"
   DTS:PackageType="5"
-  DTS:VersionBuild="67"
-  DTS:VersionGUID="{36F25518-B434-4816-A1AA-0AAD21FA1278}">
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{2F9C0417-EC39-4B87-B824-58FD4F319222}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Extract-CRM]"
-      DTS:CreationName="FILE"
-      DTS:DTSID="{41ADC572-5A61-4D4A-B8AF-2907E40B8900}"
-      DTS:ObjectName="Extract-CRM">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:FileUsageType="2"
-          DTS:ConnectionString="\\ms-cjfs-sis\Source\Development\Working\Extract-CRM" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -74,13 +61,13 @@
       DTS:ExecutableType="Microsoft.FileSystemTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Copy CRM Extract to Outbound"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <FileSystemData
           TaskOverwriteDestFile="True"
           TaskSourcePath="{74170171-FFDC-44C5-B89E-24A8E232FD0B}"
-          TaskDestinationPath="{F0A5B98A-D624-49A6-BBE3-4ABA513B5D99}" />
+          TaskDestinationPath="{DEAD23F6-6B08-4F1B-82FB-52DB460D8EDB}" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -5889,6 +5876,2349 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Import CRM Outbound into XTR CRM"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D90EE363-7C57-41AA-9621-DA24B93A2E08}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import CRM Outbound into XTR CRM"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="CRM Outbound"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Connections[FlatFileConnection]"
+                  connectionManagerID="{DEAD23F6-6B08-4F1B-82FB-52DB460D8EDB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CRM Extract Outbound]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HHSID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[HHSID]"
+                      length="64"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HHSID]"
+                      name="HHSID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFIX]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PREFIX]"
+                      length="10"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFIX]"
+                      name="PREFIX"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[FIRSTNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[FIRSTNAME]"
+                      length="15"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[FIRSTNAME]"
+                      name="FIRSTNAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MIDDLENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MIDDLENAME]"
+                      length="1"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MIDDLENAME]"
+                      name="MIDDLENAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[LASTNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[LASTNAME]"
+                      length="15"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[LASTNAME]"
+                      name="LASTNAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[SUFFIX]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[SUFFIX]"
+                      length="10"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[SUFFIX]"
+                      name="SUFFIX"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OWNER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OWNER]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OWNER]"
+                      name="OWNER"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CONTRACTMANAGERID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CONTRACTMANAGERID]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CONTRACTMANAGERID]"
+                      name="CONTRACTMANAGERID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HHSALERT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[HHSALERT]"
+                      length="10"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HHSALERT]"
+                      name="HHSALERT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[SSN]"
+                      length="9"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[SSN]"
+                      name="SSN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[BIRTHDAY]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[BIRTHDAY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[BIRTHDAY]"
+                      name="BIRTHDAY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_01]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_01]"
+                      name="CASE_MGMT_SYSTEM_01"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_02]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_02]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_02]"
+                      name="CASE_MGMT_SYSTEM_02"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_03]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_03]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_03]"
+                      name="CASE_MGMT_SYSTEM_03"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_04]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_04]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_04]"
+                      name="CASE_MGMT_SYSTEM_04"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_05]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_05]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_05]"
+                      name="CASE_MGMT_SYSTEM_05"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_06]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_06]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_06]"
+                      name="CASE_MGMT_SYSTEM_06"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_01]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_01]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_01]"
+                      name="CASE_NUM_01"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_02]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_02]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_02]"
+                      name="CASE_NUM_02"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_03]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_03]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_03]"
+                      name="CASE_NUM_03"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_04]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_04]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_04]"
+                      name="CASE_NUM_04"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_05]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_05]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_05]"
+                      name="CASE_NUM_05"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_06]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_06]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_06]"
+                      name="CASE_NUM_06"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CONTACT_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CONTACT_TYPE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CONTACT_TYPE]"
+                      name="CONTACT_TYPE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CREATEDATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CREATEDATE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CREATEDATE]"
+                      name="CREATEDATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CREATESOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CREATESOURCE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CREATESOURCE]"
+                      name="CREATESOURCE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[EMAIL]"
+                      length="100"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[EMAIL]"
+                      name="EMAIL"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[GENDER]"
+                      length="10"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[GENDER]"
+                      name="GENDER"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MARITALSTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MARITALSTATUS]"
+                      length="10"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MARITALSTATUS]"
+                      name="MARITALSTATUS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HOMEPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[HOMEPHONE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HOMEPHONE]"
+                      name="HOMEPHONE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MOBILE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MOBILE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MOBILE]"
+                      name="MOBILE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHERPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OTHERPHONE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHERPHONE]"
+                      name="OTHERPHONE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[FAX]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[FAX]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[FAX]"
+                      name="FAX"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[WORKPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[WORKPHONE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[WORKPHONE]"
+                      name="WORKPHONE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MODIFYDATE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MODIFYDATE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MODIFYDATE]"
+                      name="MODIFYDATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[NATIONALITY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[NATIONALITY]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[NATIONALITY]"
+                      name="NATIONALITY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PRIMARYLANGUAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PRIMARYLANGUAGE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PRIMARYLANGUAGE]"
+                      name="PRIMARYLANGUAGE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHER_LANGUAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OTHER_LANGUAGE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHER_LANGUAGE]"
+                      name="OTHER_LANGUAGE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFERRED_CONTACT_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PREFERRED_CONTACT_METHOD]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFERRED_CONTACT_METHOD]"
+                      name="PREFERRED_CONTACT_METHOD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFERREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PREFERREDNAME]"
+                      length="255"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFERREDNAME]"
+                      name="PREFERREDNAME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[STATUS]"
+                      length="10"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[STATUS]"
+                      name="STATUS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSTYPE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSTYPE]"
+                      name="ADDRESSTYPE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESS1]"
+                      length="255"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS1]"
+                      name="ADDRESS1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESS2]"
+                      length="255"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS2]"
+                      name="ADDRESS2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESS3]"
+                      length="255"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS3]"
+                      name="ADDRESS3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSDESCRIPTION]"
+                      length="255"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSDESCRIPTION]"
+                      name="ADDRESSDESCRIPTION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSCITY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSCITY]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSCITY]"
+                      name="ADDRESSCITY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHERCITY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OTHERCITY]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHERCITY]"
+                      name="OTHERCITY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OHCOUNTY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OHCOUNTY]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OHCOUNTY]"
+                      name="OHCOUNTY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSCOUNTY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSCOUNTY]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSCOUNTY]"
+                      name="ADDRESSCOUNTY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[COUNTRY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[COUNTRY]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[POSTALCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[POSTALCODE]"
+                      length="50"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[POSTALCODE]"
+                      name="POSTALCODE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[STATE]"
+                      length="2"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[HHSID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PREFIX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PREFIX" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[FIRSTNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="FIRSTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MIDDLENAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="MIDDLENAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[LASTNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="LASTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[SUFFIX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SUFFIX" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OWNER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OWNER" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CONTRACTMANAGERID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CONTRACTMANAGERID" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[HHSALERT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="HHSALERT" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="SSN" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[BIRTHDAY]"
+                      dataType="dbDate"
+                      name="BIRTHDAY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_01" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_02]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_02" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_03]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_03" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_04]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_04" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_05]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_05" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_MGMT_SYSTEM_06]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_06" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_01]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_01" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_02]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_02" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_03]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_03" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_04]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_04" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_05]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_05" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CASE_NUM_06]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CASE_NUM_06" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CONTACT_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CONTACT_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CREATEDATE]"
+                      dataType="dbDate"
+                      name="CREATEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[CREATESOURCE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CREATESOURCE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[GENDER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="GENDER" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MARITALSTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MARITALSTATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[HOMEPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="HOMEPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MOBILE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MOBILE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OTHERPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OTHERPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[FAX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FAX" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[WORKPHONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WORKPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[MODIFYDATE]"
+                      dataType="dbDate"
+                      name="MODIFYDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[NATIONALITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NATIONALITY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PRIMARYLANGUAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PRIMARYLANGUAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OTHER_LANGUAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OTHER_LANGUAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PREFERRED_CONTACT_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PREFERRED_CONTACT_METHOD" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[PREFERREDNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PREFERREDNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[STATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESS1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ADDRESS1" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESS2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ADDRESS2" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESS3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ADDRESS3" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSDESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ADDRESSDESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSCITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSCITY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OTHERCITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OTHERCITY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[OHCOUNTY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OHCOUNTY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[ADDRESSCOUNTY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ADDRESSCOUNTY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[COUNTRY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[POSTALCODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="POSTALCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].ExternalColumns[STATE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="STATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="HHS Staging XTR CRM"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"XTR"."CRM"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Connections[IDbConnection]"
+                  connectionManagerID="{67AA0B24-1A2D-4171-B5D9-14ACE7D26265}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[HHSID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="HHSID"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[HHSID]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HHSID]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[PREFIX]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PREFIX"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PREFIX]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFIX]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[FIRSTNAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="FIRSTNAME"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[FIRSTNAME]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[FIRSTNAME]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[MIDDLENAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="MIDDLENAME"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MIDDLENAME]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MIDDLENAME]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[LASTNAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="LASTNAME"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[LASTNAME]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[LASTNAME]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[SUFFIX]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SUFFIX"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[SUFFIX]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[SUFFIX]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[OWNER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OWNER"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OWNER]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OWNER]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CONTRACTMANAGERID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CONTRACTMANAGERID"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CONTRACTMANAGERID]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CONTRACTMANAGERID]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[HHSALERT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="HHSALERT"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[HHSALERT]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HHSALERT]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[SSN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="SSN"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[SSN]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[SSN]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[BIRTHDAY]"
+                      cachedDataType="dbDate"
+                      cachedName="BIRTHDAY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[BIRTHDAY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[BIRTHDAY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_MGMT_SYSTEM_01]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_MGMT_SYSTEM_01"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_01]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_MGMT_SYSTEM_02]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_MGMT_SYSTEM_02"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_02]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_02]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_MGMT_SYSTEM_03]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_MGMT_SYSTEM_03"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_03]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_03]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_MGMT_SYSTEM_04]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_MGMT_SYSTEM_04"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_04]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_04]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_MGMT_SYSTEM_05]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_MGMT_SYSTEM_05"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_05]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_05]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_MGMT_SYSTEM_06]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_MGMT_SYSTEM_06"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_06]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_MGMT_SYSTEM_06]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_NUM_01]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_NUM_01"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_01]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_01]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_NUM_02]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_NUM_02"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_02]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_02]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_NUM_03]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_NUM_03"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_03]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_03]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_NUM_04]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_NUM_04"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_04]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_04]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_NUM_05]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_NUM_05"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_05]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_05]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CASE_NUM_06]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CASE_NUM_06"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_06]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CASE_NUM_06]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CONTACT_TYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CONTACT_TYPE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CONTACT_TYPE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CONTACT_TYPE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CREATEDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="CREATEDATE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CREATEDATE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CREATEDATE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[CREATESOURCE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CREATESOURCE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CREATESOURCE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[CREATESOURCE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[EMAIL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="EMAIL"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[EMAIL]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[EMAIL]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[GENDER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="GENDER"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[GENDER]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[GENDER]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[MARITALSTATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MARITALSTATUS"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MARITALSTATUS]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MARITALSTATUS]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[HOMEPHONE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="HOMEPHONE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[HOMEPHONE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[HOMEPHONE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[MOBILE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MOBILE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MOBILE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MOBILE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[OTHERPHONE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OTHERPHONE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OTHERPHONE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHERPHONE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[FAX]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="FAX"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[FAX]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[FAX]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[WORKPHONE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WORKPHONE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[WORKPHONE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[WORKPHONE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[MODIFYDATE]"
+                      cachedDataType="dbDate"
+                      cachedName="MODIFYDATE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MODIFYDATE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[MODIFYDATE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[NATIONALITY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NATIONALITY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[NATIONALITY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[NATIONALITY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[PRIMARYLANGUAGE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PRIMARYLANGUAGE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PRIMARYLANGUAGE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PRIMARYLANGUAGE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[OTHER_LANGUAGE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OTHER_LANGUAGE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OTHER_LANGUAGE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHER_LANGUAGE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[PREFERRED_CONTACT_METHOD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PREFERRED_CONTACT_METHOD"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PREFERRED_CONTACT_METHOD]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFERRED_CONTACT_METHOD]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[PREFERREDNAME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="PREFERREDNAME"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PREFERREDNAME]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[PREFERREDNAME]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[STATUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="STATUS"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[STATUS]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[STATUS]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESSTYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ADDRESSTYPE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSTYPE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSTYPE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESS1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ADDRESS1"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESS1]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS1]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESS2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ADDRESS2"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESS2]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS2]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESS3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ADDRESS3"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESS3]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESS3]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESSDESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ADDRESSDESCRIPTION"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSDESCRIPTION]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSDESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESSCITY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ADDRESSCITY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSCITY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSCITY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[OTHERCITY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OTHERCITY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OTHERCITY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OTHERCITY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[OHCOUNTY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OHCOUNTY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OHCOUNTY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[OHCOUNTY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[ADDRESSCOUNTY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ADDRESSCOUNTY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSCOUNTY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[ADDRESSCOUNTY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[COUNTRY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="COUNTRY"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[COUNTRY]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[COUNTRY]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[POSTALCODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="POSTALCODE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[POSTALCODE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[POSTALCODE]" />
+                    <inputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].Columns[STATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="STATE"
+                      externalMetadataColumnId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[STATE]"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output].Columns[STATE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[HHSID]"
+                      dataType="wstr"
+                      length="64"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PREFIX]"
+                      dataType="wstr"
+                      length="10"
+                      name="PREFIX" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[FIRSTNAME]"
+                      dataType="wstr"
+                      length="50"
+                      name="FIRSTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MIDDLENAME]"
+                      dataType="wstr"
+                      length="10"
+                      name="MIDDLENAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[LASTNAME]"
+                      dataType="wstr"
+                      length="50"
+                      name="LASTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[SUFFIX]"
+                      dataType="wstr"
+                      length="10"
+                      name="SUFFIX" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OWNER]"
+                      dataType="wstr"
+                      length="50"
+                      name="OWNER" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CONTRACTMANAGERID]"
+                      dataType="wstr"
+                      length="50"
+                      name="CONTRACTMANAGERID" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[HHSALERT]"
+                      dataType="wstr"
+                      length="10"
+                      name="HHSALERT" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[SSN]"
+                      dataType="wstr"
+                      length="9"
+                      name="SSN" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[BIRTHDAY]"
+                      dataType="dbTimeStamp"
+                      name="BIRTHDAY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_01]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_01" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_02]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_02" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_03]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_03" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_04]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_04" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_05]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_05" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_MGMT_SYSTEM_06]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_MGMT_SYSTEM_06" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_01]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_NUM_01" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_02]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_NUM_02" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_03]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_NUM_03" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_04]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_NUM_04" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_05]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_NUM_05" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CASE_NUM_06]"
+                      dataType="wstr"
+                      length="50"
+                      name="CASE_NUM_06" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CONTACT_TYPE]"
+                      dataType="wstr"
+                      length="50"
+                      name="CONTACT_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CREATEDATE]"
+                      dataType="dbTimeStamp"
+                      name="CREATEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[CREATESOURCE]"
+                      dataType="wstr"
+                      length="50"
+                      name="CREATESOURCE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[EMAIL]"
+                      dataType="wstr"
+                      length="100"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[GENDER]"
+                      dataType="wstr"
+                      length="10"
+                      name="GENDER" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MARITALSTATUS]"
+                      dataType="wstr"
+                      length="10"
+                      name="MARITALSTATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[HOMEPHONE]"
+                      dataType="wstr"
+                      length="50"
+                      name="HOMEPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MOBILE]"
+                      dataType="wstr"
+                      length="50"
+                      name="MOBILE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OTHERPHONE]"
+                      dataType="wstr"
+                      length="50"
+                      name="OTHERPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[FAX]"
+                      dataType="wstr"
+                      length="50"
+                      name="FAX" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[WORKPHONE]"
+                      dataType="wstr"
+                      length="50"
+                      name="WORKPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[MODIFYDATE]"
+                      dataType="dbTimeStamp"
+                      name="MODIFYDATE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[NATIONALITY]"
+                      dataType="wstr"
+                      length="50"
+                      name="NATIONALITY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PRIMARYLANGUAGE]"
+                      dataType="wstr"
+                      length="50"
+                      name="PRIMARYLANGUAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OTHER_LANGUAGE]"
+                      dataType="wstr"
+                      length="50"
+                      name="OTHER_LANGUAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PREFERRED_CONTACT_METHOD]"
+                      dataType="wstr"
+                      length="50"
+                      name="PREFERRED_CONTACT_METHOD" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[PREFERREDNAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="PREFERREDNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[STATUS]"
+                      dataType="wstr"
+                      length="10"
+                      name="STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSTYPE]"
+                      dataType="wstr"
+                      length="50"
+                      name="ADDRESSTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESS1]"
+                      dataType="wstr"
+                      length="255"
+                      name="ADDRESS1" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESS2]"
+                      dataType="wstr"
+                      length="255"
+                      name="ADDRESS2" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESS3]"
+                      dataType="wstr"
+                      length="255"
+                      name="ADDRESS3" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSDESCRIPTION]"
+                      dataType="wstr"
+                      length="255"
+                      name="ADDRESSDESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSCITY]"
+                      dataType="wstr"
+                      length="50"
+                      name="ADDRESSCITY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OTHERCITY]"
+                      dataType="wstr"
+                      length="50"
+                      name="OTHERCITY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[OHCOUNTY]"
+                      dataType="wstr"
+                      length="50"
+                      name="OHCOUNTY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[ADDRESSCOUNTY]"
+                      dataType="wstr"
+                      length="50"
+                      name="ADDRESSCOUNTY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[COUNTRY]"
+                      dataType="wstr"
+                      length="50"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[POSTALCODE]"
+                      dataType="wstr"
+                      length="50"
+                      name="POSTALCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="2"
+                      name="STATE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import CRM Outbound into XTR CRM.Paths[Flat File Source Output]"
+              endId="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM.Inputs[ADO NET Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Import CRM Outbound into XTR CRM\CRM Outbound.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate HHS Staging XTR CRM"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{40B8CE30-FD5D-4AFD-B141-C55DAA4A62FA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate HHS Staging XTR CRM"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{67AA0B24-1A2D-4171-B5D9-14ACE7D26265}"
+          SQLTask:SqlStatementSource="TRUNCATE Table HHS_Staging.XTR.CRM;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Update System Jobs - New output"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -5897,7 +8227,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update System Jobs - New output"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5905,6 +8235,36 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           SQLTask:SqlStatementSource="INSERT INTO[SystemJobs].[dbo].[job_status]&#xA;VALUES&#xA;(@PackageName, getdate(), 'SUCCESS', 'Package Executed Successfully. Processed ' + CAST(@Rows As varchar(20))  + ' rows.')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="@Rows"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@PackageName"
+            SQLTask:DtsVariableName="User::strPackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="16"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update SystemJobs - Copy Outbound Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A4835B4F-9E4C-4216-82C4-BE2C6CDA5B55}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update SystemJobs - Copy Outbound Failure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{870CA562-3BDD-4C04-9226-FCE9138BD363}"
+          SQLTask:SqlStatementSource="INSERT INTO[SystemJobs].[dbo].[job_status]&#xA;VALUES&#xA;(@PackageName, getdate(), 'FAILURE' ,'Failed to copy extract to Outbound directory.')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@RowCount"
             SQLTask:DtsVariableName="User::RowCount"
             SQLTask:ParameterDirection="Input"
             SQLTask:DataType="11"
@@ -5944,7 +8304,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update SystemJobs - Extract failure"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5960,20 +8320,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Update SystemJobs - Failure"
+      DTS:refId="Package\Update SystemJobs - Import XTR CRM Failure"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{A4835B4F-9E4C-4216-82C4-BE2C6CDA5B55}"
+      DTS:DTSID="{ed6ae6bb-a8c5-468e-b34d-01afa548b9c3}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Update SystemJobs - Failure"
+      DTS:ObjectName="Update SystemJobs - Import XTR CRM Failure"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{870CA562-3BDD-4C04-9226-FCE9138BD363}"
-          SQLTask:SqlStatementSource="INSERT INTO[SystemJobs].[dbo].[job_status]&#xA;VALUES&#xA;(@PackageName, getdate(), 'FAILURE' ,'Failed to copy extract to Outbound directory.')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="INSERT INTO[SystemJobs].[dbo].[job_status]&#xA;VALUES&#xA;(@PackageName, getdate(), 'FAILURE' ,'Failed to import outbound CRM into HHS_Staging.XTR.CRM.')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="@RowCount"
             SQLTask:DtsVariableName="User::RowCount"
@@ -6013,6 +8373,36 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update SystemJobs - Truncate XTR CRM Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{77c55e17-dd3e-4962-ab22-85b04c3fa09e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update SystemJobs - Truncate XTR CRM Failure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{870CA562-3BDD-4C04-9226-FCE9138BD363}"
+          SQLTask:SqlStatementSource="INSERT INTO[SystemJobs].[dbo].[job_status]&#xA;VALUES&#xA;(@PackageName, getdate(), 'FAILURE' ,'Failed to truncate HHS_Staging.XTR.CRM.')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@RowCount"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@PackageName"
+            SQLTask:DtsVariableName="User::strPackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="16"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -6034,6 +8424,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Copy CRM Extract to Outbound" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{60E6E046-3442-42CE-B1E4-EC2F52574DE8}"
+      DTS:From="Package\Import CRM Outbound into XTR CRM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Update System Jobs - New output" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{47CBCAF2-8EAF-4E10-AE4F-80BAACCA2EB7}"
@@ -6054,17 +8452,17 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
-      DTS:DTSID="{49D96026-B41B-4699-9E7E-5EFCED4666A4}"
+      DTS:DTSID="{471B1829-FC56-4A68-A30D-694382830DD9}"
       DTS:From="Package\Copy CRM Extract to Outbound"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
-      DTS:To="Package\Update System Jobs - New output" />
+      DTS:To="Package\Truncate HHS Staging XTR CRM" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
       DTS:DTSID="{BFD0C3C9-12F5-4C1E-B9D7-1D259852881D}"
       DTS:EvalOp="3"
-      DTS:Expression="@[User::RowCount] == 0"
+      DTS:Expression="@[User::RowCount] &lt;=  0"
       DTS:From="Package\Extract from Sources"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
@@ -6076,7 +8474,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:From="Package\Copy CRM Extract to Outbound"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
-      DTS:To="Package\Update SystemJobs - Failure"
+      DTS:To="Package\Update SystemJobs - Copy Outbound Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{B067F974-E3D9-4A1D-9C2E-1B16387097F9}"
+      DTS:From="Package\Truncate HHS Staging XTR CRM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Import CRM Outbound into XTR CRM" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{62624BE2-8557-4895-B900-8CA3A25364E4}"
+      DTS:From="Package\Truncate HHS Staging XTR CRM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Update SystemJobs - Truncate XTR CRM Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{4FCE007D-94CF-4010-852C-1D48D131887E}"
+      DTS:From="Package\Import CRM Outbound into XTR CRM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Update SystemJobs - Import XTR CRM Failure"
       DTS:Value="1" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -6090,7 +8514,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="270,42"
           Id="Package\Copy CRM Extract Template To Working"
@@ -6106,7 +8530,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <NodeLayout
           Size="240,42"
           Id="Package\Update System Jobs - New output"
-          TopLeft="568,478" />
+          TopLeft="571,716" />
         <NodeLayout
           Size="285,42"
           Id="Package\Update SystemJobs - Copy Template failure"
@@ -6116,8 +8540,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           Id="Package\Update SystemJobs - Extract failure"
           TopLeft="883,191" />
         <NodeLayout
-          Size="213,42"
-          Id="Package\Update SystemJobs - Failure"
+          Size="290,42"
+          Id="Package\Update SystemJobs - Copy Outbound Failure"
           TopLeft="889,369" />
         <NodeLayout
           Size="259,42"
@@ -6218,28 +8642,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="691,406">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,72"
-              Start="0,0"
-              End="0,64.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,64.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="671,238">
           <EdgeLayout.Curve>
@@ -6297,6 +8699,136 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             <mssgm:EdgeLabel
               BoundingBox="21.50865234375,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Truncate HHS Staging XTR CRM"
+          TopLeft="572,482" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="690.5,406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="254,42"
+          Id="Package\Import CRM Outbound into XTR CRM"
+          TopLeft="563,588" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="688.5,524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="305,42"
+          Id="Package\Update SystemJobs - Truncate XTR CRM Failure"
+          TopLeft="888,487" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="802,505.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86,0"
+              Start="0,0"
+              End="78.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="78.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="24.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="295,42"
+          Id="Package\Update SystemJobs - Import XTR CRM Failure"
+          TopLeft="884,589" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="817,609.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67,0"
+              Start="0,0"
+              End="59.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="59.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.50865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="690.5,630">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6550,6 +9082,52 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Extract from Sources\Duplicates - JFS SACWIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import CRM Outbound into XTR CRM">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import CRM Outbound into XTR CRM\CRM Outbound"
+          TopLeft="622,65" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM"
+          TopLeft="612,195" />
+        <EdgeLayout
+          Id="Package\Import CRM Outbound into XTR CRM.Paths[Flat File Source Output]"
+          TopLeft="700.75,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88"
+              Start="0,0"
+              End="0,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import CRM Outbound into XTR CRM\HHS Staging XTR CRM">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
