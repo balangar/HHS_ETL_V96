@@ -1,0 +1,371 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SetsIVRExtract"
+  DTS:DTSID="{CC97524F-69BE-4C44-8B8C-4527A023C67D}"
+  DTS:CreationName="FLATFILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Format="FixedWidth"
+      DTS:LocaleID="1033"
+      DTS:HeaderRowDelimiter="_x000D__x000A_"
+      DTS:RowDelimiter=""
+      DTS:TextQualifier="_x003C_none_x003E_"
+      DTS:CodePage="1252"
+      DTS:ConnectionString="\\ms-cjfs-sis\Source\Production\Working\LoadSetsIVR\Sets.txt">
+      <DTS:FlatFileColumns>
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="1"
+          DTS:MaximumWidth="1"
+          DTS:DataType="129"
+          DTS:ObjectName="RecordType"
+          DTS:DTSID="{0396603C-677F-46E4-B80C-9E8563F11508}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="9"
+          DTS:MaximumWidth="9"
+          DTS:DataType="129"
+          DTS:ObjectName="SocSecNo"
+          DTS:DTSID="{B51BFAAA-D725-4B74-B262-065C9E7D362F}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="12"
+          DTS:MaximumWidth="12"
+          DTS:DataType="129"
+          DTS:ObjectName="OrderNumber"
+          DTS:DTSID="{4C394CE1-4726-4308-8C32-E39315FC0D5F}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawPaymentReceivedDate"
+          DTS:DTSID="{68E6F2BA-F280-4C9F-8605-FA166B0030C9}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="11"
+          DTS:MaximumWidth="11"
+          DTS:DataType="129"
+          DTS:ObjectName="RawPaymentAmount"
+          DTS:DTSID="{AD033FE4-95EE-4FB1-86E5-072F454D07CB}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawDTEDPrintDist"
+          DTS:DTSID="{C80DC47A-5590-4B6C-9429-7BBE567B0798}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="1"
+          DTS:MaximumWidth="1"
+          DTS:DataType="129"
+          DTS:ObjectName="DisbursementType"
+          DTS:DTSID="{47AF915A-4EE5-47C1-A2CC-FA8332F59281}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="11"
+          DTS:MaximumWidth="11"
+          DTS:DataType="129"
+          DTS:ObjectName="RawTotalAmount"
+          DTS:DTSID="{12BF81D0-8E88-42EF-900C-C23A44DD28A8}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawDateOfProcess"
+          DTS:DTSID="{712AAB87-69A2-40A1-A013-0C5B2C6B1150}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="11"
+          DTS:MaximumWidth="11"
+          DTS:DataType="129"
+          DTS:ObjectName="RawTotalBalanceDue"
+          DTS:DTSID="{92C0FDAD-2156-458D-89E8-6FBBC3BE09E9}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawDisbursementDate"
+          DTS:DTSID="{ADE57F56-BE63-4DC5-B4F1-E98FDE29EA97}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="11"
+          DTS:MaximumWidth="11"
+          DTS:DataType="129"
+          DTS:ObjectName="RawDisbursementAmount"
+          DTS:DTSID="{B487664E-5EE5-487E-BBFF-A94D4D0968B2}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="2"
+          DTS:MaximumWidth="2"
+          DTS:DataType="129"
+          DTS:ObjectName="CountyNumber"
+          DTS:DTSID="{FFD6583A-EC7E-42DF-8193-110F6BA4289C}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="12"
+          DTS:MaximumWidth="12"
+          DTS:DataType="129"
+          DTS:ObjectName="CaretakerNumber"
+          DTS:DTSID="{7369DA8A-4885-4B73-B517-ADEF25312039}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="CaretakerType"
+          DTS:DTSID="{3D7D5ED2-1184-4B91-B685-C76EDCEAD2B1}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="10"
+          DTS:MaximumWidth="10"
+          DTS:DataType="129"
+          DTS:ObjectName="CaseNumber"
+          DTS:DTSID="{8DFD152E-D0B9-48CC-8BFC-026C97AF39F2}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="5"
+          DTS:MaximumWidth="5"
+          DTS:DataType="129"
+          DTS:ObjectName="OrderNumber_Last5"
+          DTS:DTSID="{E624A9D7-F791-4623-AED2-4AA1C47C2438}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="1"
+          DTS:MaximumWidth="1"
+          DTS:DataType="129"
+          DTS:ObjectName="SATNumber"
+          DTS:DTSID="{C599E964-4192-4DE2-99D5-1169C476A735}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawCreditAsOfDate"
+          DTS:DTSID="{2D0A787D-93ED-4986-BAB4-BF84A0B8ED57}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="9"
+          DTS:MaximumWidth="9"
+          DTS:DataType="129"
+          DTS:ObjectName="RawTotalCreditAmount"
+          DTS:DTSID="{49F462E6-5522-415C-84DF-4AF5EE645BF1}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="2"
+          DTS:MaximumWidth="2"
+          DTS:DataType="129"
+          DTS:ObjectName="CaseStatus"
+          DTS:DTSID="{4734A4CC-166F-4026-A18D-C0449624FF82}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="6"
+          DTS:MaximumWidth="6"
+          DTS:DataType="129"
+          DTS:ObjectName="TransactionCode"
+          DTS:DTSID="{335007BD-A888-4452-A03D-FFC5F315B758}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawScheduledHearingDate"
+          DTS:DTSID="{B2100119-57A9-457D-AD04-01AA16A2BDB6}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="DriverLicenseSuspensionErrorCode"
+          DTS:DTSID="{14909ADE-35BF-495F-AD41-CAD2858BC219}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="DriverLicenseSuspensionResultCode"
+          DTS:DTSID="{061AA9DD-9B16-48C8-96E1-14559CE424F6}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="ProfessionalLicenseSuspensionErrorCode"
+          DTS:DTSID="{8118FE34-8C85-46C6-9EBB-81898FED4945}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="ProfessionalLicenseSuspensionResultCode"
+          DTS:DTSID="{9AF54CAF-E527-449D-B550-B51CEAB3E596}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="RecreationalLicenseSuspensionErrorCode"
+          DTS:DTSID="{5C2538FB-3D45-42AF-B940-22A4D21DABF9}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="RecreationalLicenseSuspensionResultCode"
+          DTS:DTSID="{451AF594-387E-4BA4-A1C0-BC102D097C30}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="50"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:ObjectName="CareTakerEMail"
+          DTS:DTSID="{0843B6D9-B879-435B-A3F7-9116346BA445}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="1"
+          DTS:MaximumWidth="1"
+          DTS:DataType="129"
+          DTS:ObjectName="PortalSwitch"
+          DTS:DTSID="{3D46E6A9-3024-49E4-AF7C-83F21BAFA7F5}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="CellPhoneAreaCode"
+          DTS:DTSID="{1FAA5A13-D8E8-4D95-8BB3-15A9BF5E884E}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="7"
+          DTS:MaximumWidth="7"
+          DTS:DataType="129"
+          DTS:ObjectName="CellPhoneNumber"
+          DTS:DTSID="{AB8EE70E-9952-46AC-A806-FC12800838ED}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="3"
+          DTS:MaximumWidth="3"
+          DTS:DataType="129"
+          DTS:ObjectName="HomePhoneAreaCode"
+          DTS:DTSID="{F4FEDD2F-D5D5-4275-9C76-20B2E262ACB5}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="7"
+          DTS:MaximumWidth="7"
+          DTS:DataType="129"
+          DTS:ObjectName="HomePhoneNumber"
+          DTS:DTSID="{5A4BFA9C-CCF0-4EA8-8E4B-6884082FD830}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="15"
+          DTS:MaximumWidth="15"
+          DTS:DataType="129"
+          DTS:ObjectName="ChildLastName"
+          DTS:DTSID="{AB6EFAC4-BD63-4D41-8943-5947A68D9A09}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="15"
+          DTS:MaximumWidth="15"
+          DTS:DataType="129"
+          DTS:ObjectName="ChildFirrstName"
+          DTS:DTSID="{BF2B064C-A0CE-45C3-B676-AB6EC34ADC76}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="1"
+          DTS:MaximumWidth="1"
+          DTS:DataType="129"
+          DTS:ObjectName="ChildMiddleInitial"
+          DTS:DTSID="{EE57F770-E85B-4597-984D-004BAF1DB50D}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawChildDateOfBirth"
+          DTS:DTSID="{2D2E3662-DBD4-40BD-B350-F0D6C0C97A97}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="8"
+          DTS:MaximumWidth="8"
+          DTS:DataType="129"
+          DTS:ObjectName="RawExpectedEmancipationDate"
+          DTS:DTSID="{FDF6A2DE-F51C-4E39-996E-960B9B3BDCE4}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="15"
+          DTS:MaximumWidth="15"
+          DTS:DataType="129"
+          DTS:ObjectName="CaretakerLastName"
+          DTS:DTSID="{9E45BF9C-A7D8-41BD-8741-A535ED272E97}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="15"
+          DTS:MaximumWidth="15"
+          DTS:DataType="129"
+          DTS:ObjectName="CaretakerFirstName"
+          DTS:DTSID="{278BC3A6-5FD0-4F95-B3A5-3981C1389C8C}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="1"
+          DTS:MaximumWidth="1"
+          DTS:DataType="129"
+          DTS:ObjectName="CaretakerMiddleInitial"
+          DTS:DTSID="{9FB47F3D-C7B9-4332-8410-DEBF90390158}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnDelimiter=""
+          DTS:ColumnWidth="20"
+          DTS:MaximumWidth="20"
+          DTS:DataType="129"
+          DTS:ObjectName="Filler01"
+          DTS:DTSID="{B25E8CF3-4424-462D-9617-B5285969AB37}"
+          DTS:CreationName="" />
+      </DTS:FlatFileColumns>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

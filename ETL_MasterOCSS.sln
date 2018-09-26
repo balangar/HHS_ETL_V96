@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SETSLoad", "SETSLoad\SETSLoad.dtproj", "{47D52A2B-AD90-4FA1-8CAB-D74816E20ED3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{144651F3-54AE-4595-83EA-EAEC630C46DA}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\BookOfOffsets.xlsx = Documentation\BookOfOffsets.xlsx
+		Documentation\FileLayout_SetsIVRExtract.txt = Documentation\FileLayout_SetsIVRExtract.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47D52A2B-AD90-4FA1-8CAB-D74816E20ED3}.Development|Default.ActiveCfg = Development
+		{47D52A2B-AD90-4FA1-8CAB-D74816E20ED3}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9669845F-DDB4-4E4F-8C24-29721A8BB7F5}
+	EndGlobalSection
+EndGlobal
