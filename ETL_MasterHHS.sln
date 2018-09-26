@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ExtractHHSCommonData", "ExtractHHSCommonData\ExtractHHSCommonData.dtproj", "{1A58116F-CA2C-4C9F-888E-5FA4E8F4E1AB}"
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LoadHHSCommonData", "LoadHHSCommonData\LoadHHSCommonData.dtproj", "{0BCDF3A3-B04C-4825-87F3-12E3A47EAB9C}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LoadHHSMasterData", "LoadHHSMasterData\LoadHHSMasterData.dtproj", "{DD94024D-87AD-493B-8F56-6051E04C22F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,8 +36,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1A58116F-CA2C-4C9F-888E-5FA4E8F4E1AB}.Development|Default.ActiveCfg = Development
 		{1A58116F-CA2C-4C9F-888E-5FA4E8F4E1AB}.Development|Default.Build.0 = Development
-		{0BCDF3A3-B04C-4825-87F3-12E3A47EAB9C}.Development|Default.ActiveCfg = Development
-		{0BCDF3A3-B04C-4825-87F3-12E3A47EAB9C}.Development|Default.Build.0 = Development
+		{DD94024D-87AD-493B-8F56-6051E04C22F8}.Development|Default.ActiveCfg = Development
+		{DD94024D-87AD-493B-8F56-6051E04C22F8}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
