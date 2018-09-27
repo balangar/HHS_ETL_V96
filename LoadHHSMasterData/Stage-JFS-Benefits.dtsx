@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS403300"
   DTS:CreatorName="CCEFS\greeng"
-  DTS:DTSID="{0B077E74-4513-4BC5-A0E5-C1AFCA24DCD8}"
+  DTS:DTSID="{50AD2435-B9C2-4DFA-A9FA-508F53DA4331}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.92"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Extract-JFS-Benefits"
+  DTS:ObjectName="Stage-JFS-Benefits"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{4732F4CB-52C6-4A25-A433-3611B340E71A}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{FA6EE864-D0FA-4DE6-86EE-1244C4309338}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

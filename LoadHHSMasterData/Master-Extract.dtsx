@@ -7,30 +7,32 @@
   DTS:CreatorName="CCEFS\greeng"
   DTS:DTSID="{F4AA4854-5ABF-4C0E-8374-F3A1F2EEF2E1}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.0800.60"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
   DTS:LocaleID="1033"
   DTS:ObjectName="Master-Extract"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{7C9C25B5-C5FF-4784-9187-693A1F42C2C4}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{1FCD2E02-BDD8-4EA2-8EDD-A5E250A75CAF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Placeholder"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{62a75717-95f0-4488-98f9-628550106cda}"
-      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:refId="Package\Extract OBWP Medicaid"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{1AE4C735-5E20-4CAC-ADAD-6A26B6738F6B}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Placeholder"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      DTS:ObjectName="Extract OBWP Medicaid"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
-        <pipeline
-          version="1" />
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Extract-OBWP-Medicaid.dtsx</PackageName>
+        </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -47,9 +49,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="135,42"
-          Id="Package\Placeholder"
-          TopLeft="584,128" />
+          Size="189,42"
+          Id="Package\Extract OBWP Medicaid"
+          TopLeft="652,132" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

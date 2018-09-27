@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ExtractHHSCommonData", "ExtractHHSCommonData\ExtractHHSCommonData.dtproj", "{D2244E6C-8273-4842-8912-A7D6AF9172B3}"
-EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LoadHHSCommonData", "LoadHHSCommonData\LoadHHSCommonData.dtproj", "{AB99CE9C-B46F-4D37-B41B-F220B84F0E38}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8B75FE57-9691-44FC-9AE4-E42EB7161071}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\DIPT_CFS_SACWIS.sql = Scripts\DIPT_CFS_SACWIS.sql
@@ -29,15 +25,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\Release Notes.txt = Documents\Release Notes.txt
 	EndProjectSection
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ExtractHHSCommonData", "ExtractHHSCommonData\ExtractHHSCommonData.dtproj", "{1A58116F-CA2C-4C9F-888E-5FA4E8F4E1AB}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LoadHHSMasterData", "LoadHHSMasterData\LoadHHSMasterData.dtproj", "{DD94024D-87AD-493B-8F56-6051E04C22F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D2244E6C-8273-4842-8912-A7D6AF9172B3}.Development|Default.ActiveCfg = Development
-		{D2244E6C-8273-4842-8912-A7D6AF9172B3}.Development|Default.Build.0 = Development
-		{AB99CE9C-B46F-4D37-B41B-F220B84F0E38}.Development|Default.ActiveCfg = Development
-		{AB99CE9C-B46F-4D37-B41B-F220B84F0E38}.Development|Default.Build.0 = Development
+		{1A58116F-CA2C-4C9F-888E-5FA4E8F4E1AB}.Development|Default.ActiveCfg = Development
+		{1A58116F-CA2C-4C9F-888E-5FA4E8F4E1AB}.Development|Default.Build.0 = Development
+		{DD94024D-87AD-493B-8F56-6051E04C22F8}.Development|Default.ActiveCfg = Development
+		{DD94024D-87AD-493B-8F56-6051E04C22F8}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
