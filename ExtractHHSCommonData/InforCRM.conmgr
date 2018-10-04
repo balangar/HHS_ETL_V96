@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="InforCRM"
+  DTS:DTSID="{112A4DDF-EA80-4653-9B91-DFCC380CBFA3}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=InfoCRM;Persist Security Info=True;Application Name=SSIS-ExtractHHSCommonData-{112A4DDF-EA80-4653-9B91-DFCC380CBFA3}MS-DCFS-PSQL1.InfoCRM.Cuy_DataLoader;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAr+KmPHMep0auu3enNlmzkgAAAAACAAAAAAADZgAAwAAAABAAAAAimIYSVTUYrN2NAOi+hCHGAAAAAASAAACgAAAAEAAAABoRQAWzboDE4wqBk0ti3QiAAAAAI8mPjXVooHDb4eShcNloWFXhV4SmbiW/bAJqJED/RIXtHh0wPWBjP/OOqJJfxZshAZgcug7MFcr+e7azDfMUKgoTACBaefVJGgDiIAkz0/tqGq1PGt9MKzZPhhZamYWbFGmHFyVF4ZSx54ljAifnGvF1Te1jLinP6NmOIjfY4AgUAAAALFNyoSGBnQ1EV+NvZMAN1Mx0zcU=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

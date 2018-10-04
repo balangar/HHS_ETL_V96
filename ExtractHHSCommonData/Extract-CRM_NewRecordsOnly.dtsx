@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Extract-CRM_NewRecordsOnly"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{84D59C03-FB52-40A8-B9E8-C21B7EA12DCC}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{A0910461-0464-4335-93BE-A6A277DE4546}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -29,7 +29,1839 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Contacts Without HHSID"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Contacts Without HHSID"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select
+    *
+From
+   InfoCRM.dbo.Contact
+Where
+    HHSID IS NULL</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Contacts Without HHSID.Connections[IDbConnection]"
+                  connectionManagerID="{112A4DDF-EA80-4653-9B91-DFCC380CBFA3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[InforCRM]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      name="SysInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Key]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Key]"
+                      name="Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      name="AccountName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AlternateKeyPrefix]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AlternateKeyPrefix]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AlternateKeyPrefix]"
+                      name="AlternateKeyPrefix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AlternateKeySuffix]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AlternateKeySuffix]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AlternateKeySuffix]"
+                      name="AlternateKeySuffix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Birthday]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Birthday]"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Birthday]"
+                      name="Birthday"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Children]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Children]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Children]"
+                      name="Children"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CreateDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CreateDate]"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CreateDate]"
+                      name="CreateDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CreateUser]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CreateUser]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CreateUser]"
+                      name="CreateUser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotEmail]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotEmail]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotEmail]"
+                      name="DoNotEmail"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotFax]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotFax]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotFax]"
+                      name="DoNotFax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotMail]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotMail]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotMail]"
+                      name="DoNotMail"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotPhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotPhone]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotPhone]"
+                      name="DoNotPhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotSolicit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotSolicit]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[DoNotSolicit]"
+                      name="DoNotSolicit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Email]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Fax]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Fax]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Fax]"
+                      name="Fax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      name="HomePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ImportSource]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ImportSource]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ImportSource]"
+                      name="ImportSource"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Initials]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Initials]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Initials]"
+                      name="Initials"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[IsPrimary]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[IsPrimary]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[IsPrimary]"
+                      name="IsPrimary"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[IsServiceAuthorized]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[IsServiceAuthorized]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[IsServiceAuthorized]"
+                      name="IsServiceAuthorized"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[LastNameUpper]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[LastNameUpper]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[LastNameUpper]"
+                      name="LastNameUpper"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MiddleName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MiddleName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MiddleName]"
+                      name="MiddleName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ModifyDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ModifyDate]"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ModifyDate]"
+                      name="ModifyDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ModifyUser]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ModifyUser]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ModifyUser]"
+                      name="ModifyUser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[OtherPhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[OtherPhone]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[OtherPhone]"
+                      name="OtherPhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Salutation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Salutation]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Salutation]"
+                      name="Salutation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Status]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[FullName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[FullName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[FullName]"
+                      name="FullName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[NameLF]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[NameLF]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[NameLF]"
+                      name="NameLF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MailingStreet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MailingStreet]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MailingStreet]"
+                      name="MailingStreet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MailingCityStZip]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MailingCityStZip]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MailingCityStZip]"
+                      name="MailingCityStZip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[NamePFL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[NamePFL]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[NamePFL]"
+                      name="NamePFL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Categories]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Categories]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Categories]"
+                      name="Categories"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CreateSource]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CreateSource]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CreateSource]"
+                      name="CreateSource"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ErpLastUpdateDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ErpLastUpdateDate]"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ErpLastUpdateDate]"
+                      name="ErpLastUpdateDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum01]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum01]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum01]"
+                      name="CaseNum01"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem01]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem01]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem01]"
+                      name="CaseMgmtSystem01"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum02]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum02]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum02]"
+                      name="CaseNum02"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem02]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem02]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem02]"
+                      name="CaseMgmtSystem02"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum03]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum03]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum03]"
+                      name="CaseNum03"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem03]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem03]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem03]"
+                      name="CaseMgmtSystem03"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum04]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum04]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum04]"
+                      name="CaseNum04"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem04]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem04]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem04]"
+                      name="CaseMgmtSystem04"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum05]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum05]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum05]"
+                      name="CaseNum05"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem05]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem05]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem05]"
+                      name="CaseMgmtSystem05"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum06]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum06]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseNum06]"
+                      name="CaseNum06"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem06]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem06]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[CaseMgmtSystem06]"
+                      name="CaseMgmtSystem06"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ContactType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ContactType]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ContactType]"
+                      name="ContactType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      length="64"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      name="HHSID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[OtherCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[OtherCity]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[OtherCity]"
+                      name="OtherCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[County]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[County]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[County]"
+                      name="County"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AlertPicklist]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AlertPicklist]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AlertPicklist]"
+                      name="AlertPicklist"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Account Key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Account Key]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Account Key]"
+                      name="Account Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AccountManager Key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AccountManager Key]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[AccountManager Key]"
+                      name="AccountManager Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Key]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Key]"
+                      name="Address Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Owner Key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Owner Key]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Owner Key]"
+                      name="Owner Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ShippingAddress Key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ShippingAddress Key]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[ShippingAddress Key]"
+                      name="ShippingAddress Key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Address1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Address1]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Address1]"
+                      name="Address Address1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Address2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Address2]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Address2]"
+                      name="Address Address2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Address3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Address3]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Address3]"
+                      name="Address Address3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address City]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address City]"
+                      name="Address City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address County]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address County]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address County]"
+                      name="Address County"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Country]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Country]"
+                      name="Address Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Description]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Description]"
+                      name="Address Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Type]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address Type]"
+                      name="Address Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Gender]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MaritalStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MaritalStatus]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[MaritalStatus]"
+                      name="MaritalStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Mobile]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Mobile]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Mobile]"
+                      name="Mobile"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Nationality]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Nationality]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Nationality]"
+                      name="Nationality"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[OtherLanguage]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[OtherLanguage]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[OtherLanguage]"
+                      name="OtherLanguage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address PostalCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address PostalCode]"
+                      name="Address PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[PreferredContactMethod]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[PreferredContactMethod]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[PreferredContactMethod]"
+                      name="PreferredContactMethod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[PreferredName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[PreferredName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[PreferredName]"
+                      name="PreferredName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Prefix]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Prefix]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Prefix]"
+                      name="Prefix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[PrimaryLanguage]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[PrimaryLanguage]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[PrimaryLanguage]"
+                      name="PrimaryLanguage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[SSN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[SSN]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[SSN]"
+                      name="SSN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address State]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Address State]"
+                      name="Address State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Suffix]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Suffix]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[Suffix]"
+                      name="Suffix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[WorkPhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[WorkPhone]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].Columns[WorkPhone]"
+                      name="WorkPhone"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Key]"
+                      dataType="wstr"
+                      length="50"
+                      name="Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AlternateKeyPrefix]"
+                      dataType="wstr"
+                      length="50"
+                      name="AlternateKeyPrefix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AlternateKeySuffix]"
+                      dataType="wstr"
+                      length="50"
+                      name="AlternateKeySuffix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Birthday]"
+                      dataType="dbDate"
+                      name="Birthday" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Children]"
+                      dataType="wstr"
+                      length="50"
+                      name="Children" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CreateDate]"
+                      dataType="dbDate"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CreateUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="CreateUser" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotEmail]"
+                      dataType="wstr"
+                      length="50"
+                      name="DoNotEmail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotFax]"
+                      dataType="wstr"
+                      length="50"
+                      name="DoNotFax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotMail]"
+                      dataType="wstr"
+                      length="50"
+                      name="DoNotMail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotPhone]"
+                      dataType="wstr"
+                      length="50"
+                      name="DoNotPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[DoNotSolicit]"
+                      dataType="wstr"
+                      length="50"
+                      name="DoNotSolicit" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="50"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Fax]"
+                      dataType="wstr"
+                      length="50"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="50"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ImportSource]"
+                      dataType="wstr"
+                      length="50"
+                      name="ImportSource" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Initials]"
+                      dataType="wstr"
+                      length="50"
+                      name="Initials" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[IsPrimary]"
+                      dataType="wstr"
+                      length="50"
+                      name="IsPrimary" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[IsServiceAuthorized]"
+                      dataType="wstr"
+                      length="50"
+                      name="IsServiceAuthorized" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[LastNameUpper]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastNameUpper" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MiddleName]"
+                      dataType="wstr"
+                      length="50"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ModifyDate]"
+                      dataType="dbDate"
+                      name="ModifyDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ModifyUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="ModifyUser" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[OtherPhone]"
+                      dataType="wstr"
+                      length="50"
+                      name="OtherPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Salutation]"
+                      dataType="wstr"
+                      length="50"
+                      name="Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="50"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[FullName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FullName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[NameLF]"
+                      dataType="wstr"
+                      length="50"
+                      name="NameLF" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MailingStreet]"
+                      dataType="wstr"
+                      length="50"
+                      name="MailingStreet" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MailingCityStZip]"
+                      dataType="wstr"
+                      length="50"
+                      name="MailingCityStZip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[NamePFL]"
+                      dataType="wstr"
+                      length="50"
+                      name="NamePFL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Categories]"
+                      dataType="wstr"
+                      length="50"
+                      name="Categories" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CreateSource]"
+                      dataType="wstr"
+                      length="50"
+                      name="CreateSource" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ErpLastUpdateDate]"
+                      dataType="dbDate"
+                      name="ErpLastUpdateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum01]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseNum01" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem01]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseMgmtSystem01" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum02]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseNum02" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem02]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseMgmtSystem02" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum03]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseNum03" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem03]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseMgmtSystem03" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum04]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseNum04" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem04]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseMgmtSystem04" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum05]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseNum05" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem05]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseMgmtSystem05" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseNum06]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseNum06" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[CaseMgmtSystem06]"
+                      dataType="wstr"
+                      length="50"
+                      name="CaseMgmtSystem06" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ContactType]"
+                      dataType="wstr"
+                      length="50"
+                      name="ContactType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      dataType="wstr"
+                      length="64"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[OtherCity]"
+                      dataType="wstr"
+                      length="50"
+                      name="OtherCity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="50"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AlertPicklist]"
+                      dataType="wstr"
+                      length="50"
+                      name="AlertPicklist" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Account Key]"
+                      dataType="wstr"
+                      length="50"
+                      name="Account Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[AccountManager Key]"
+                      dataType="wstr"
+                      length="50"
+                      name="AccountManager Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Key]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Owner Key]"
+                      dataType="wstr"
+                      length="50"
+                      name="Owner Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[ShippingAddress Key]"
+                      dataType="wstr"
+                      length="50"
+                      name="ShippingAddress Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Address1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Address1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Address2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Address3]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Address3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address City]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address County]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address County" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Country]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Description]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Description" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address Type]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address Type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="50"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[MaritalStatus]"
+                      dataType="wstr"
+                      length="50"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Mobile]"
+                      dataType="wstr"
+                      length="50"
+                      name="Mobile" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Nationality]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nationality" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[OtherLanguage]"
+                      dataType="wstr"
+                      length="50"
+                      name="OtherLanguage" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address PostalCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[PreferredContactMethod]"
+                      dataType="wstr"
+                      length="50"
+                      name="PreferredContactMethod" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[PreferredName]"
+                      dataType="wstr"
+                      length="50"
+                      name="PreferredName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Prefix]"
+                      dataType="wstr"
+                      length="50"
+                      name="Prefix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[PrimaryLanguage]"
+                      dataType="wstr"
+                      length="50"
+                      name="PrimaryLanguage" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[SSN]"
+                      dataType="wstr"
+                      length="50"
+                      name="SSN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Address State]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[Suffix]"
+                      dataType="wstr"
+                      length="50"
+                      name="Suffix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Output].ExternalColumns[WorkPhone]"
+                      dataType="wstr"
+                      length="50"
+                      name="WorkPhone" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Key]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Key]"
+                      name="Key" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AlternateKeyPrefix]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AlternateKeyPrefix]"
+                      name="AlternateKeyPrefix" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AlternateKeySuffix]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AlternateKeySuffix]"
+                      name="AlternateKeySuffix" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Birthday]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Birthday]"
+                      name="Birthday" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Children]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Children]"
+                      name="Children" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CreateDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CreateDate]"
+                      name="CreateDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CreateUser]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CreateUser]"
+                      name="CreateUser" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotEmail]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotEmail]"
+                      name="DoNotEmail" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotFax]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotFax]"
+                      name="DoNotFax" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotMail]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotMail]"
+                      name="DoNotMail" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotPhone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotPhone]"
+                      name="DoNotPhone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotSolicit]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[DoNotSolicit]"
+                      name="DoNotSolicit" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Email]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Fax]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Fax]"
+                      name="Fax" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ImportSource]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ImportSource]"
+                      name="ImportSource" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Initials]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Initials]"
+                      name="Initials" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[IsPrimary]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[IsPrimary]"
+                      name="IsPrimary" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[IsServiceAuthorized]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[IsServiceAuthorized]"
+                      name="IsServiceAuthorized" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[LastNameUpper]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[LastNameUpper]"
+                      name="LastNameUpper" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MiddleName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MiddleName]"
+                      name="MiddleName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ModifyDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ModifyDate]"
+                      name="ModifyDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ModifyUser]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ModifyUser]"
+                      name="ModifyUser" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[OtherPhone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[OtherPhone]"
+                      name="OtherPhone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Salutation]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Salutation]"
+                      name="Salutation" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Status]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[FullName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[FullName]"
+                      name="FullName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[NameLF]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[NameLF]"
+                      name="NameLF" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MailingStreet]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MailingStreet]"
+                      name="MailingStreet" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MailingCityStZip]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MailingCityStZip]"
+                      name="MailingCityStZip" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[NamePFL]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[NamePFL]"
+                      name="NamePFL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Categories]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Categories]"
+                      name="Categories" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CreateSource]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CreateSource]"
+                      name="CreateSource" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ErpLastUpdateDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ErpLastUpdateDate]"
+                      name="ErpLastUpdateDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum01]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum01]"
+                      name="CaseNum01" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem01]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem01]"
+                      name="CaseMgmtSystem01" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum02]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum02]"
+                      name="CaseNum02" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem02]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem02]"
+                      name="CaseMgmtSystem02" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum03]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum03]"
+                      name="CaseNum03" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem03]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem03]"
+                      name="CaseMgmtSystem03" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum04]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum04]"
+                      name="CaseNum04" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem04]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem04]"
+                      name="CaseMgmtSystem04" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum05]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum05]"
+                      name="CaseNum05" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem05]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem05]"
+                      name="CaseMgmtSystem05" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum06]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseNum06]"
+                      name="CaseNum06" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem06]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[CaseMgmtSystem06]"
+                      name="CaseMgmtSystem06" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ContactType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ContactType]"
+                      name="ContactType" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      dataType="wstr"
+                      length="64"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      name="HHSID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[OtherCity]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[OtherCity]"
+                      name="OtherCity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[County]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[County]"
+                      name="County" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AlertPicklist]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AlertPicklist]"
+                      name="AlertPicklist" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Account Key]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Account Key]"
+                      name="Account Key" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AccountManager Key]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[AccountManager Key]"
+                      name="AccountManager Key" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Key]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Key]"
+                      name="Address Key" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Owner Key]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Owner Key]"
+                      name="Owner Key" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ShippingAddress Key]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ShippingAddress Key]"
+                      name="ShippingAddress Key" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Address1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Address1]"
+                      name="Address Address1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Address2]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Address2]"
+                      name="Address Address2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Address3]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Address3]"
+                      name="Address Address3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address City]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address City]"
+                      name="Address City" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address County]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address County]"
+                      name="Address County" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Country]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Country]"
+                      name="Address Country" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Description]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Description]"
+                      name="Address Description" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Type]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address Type]"
+                      name="Address Type" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Gender]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MaritalStatus]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[MaritalStatus]"
+                      name="MaritalStatus" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Mobile]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Mobile]"
+                      name="Mobile" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Nationality]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Nationality]"
+                      name="Nationality" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[OtherLanguage]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[OtherLanguage]"
+                      name="OtherLanguage" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address PostalCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address PostalCode]"
+                      name="Address PostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[PreferredContactMethod]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[PreferredContactMethod]"
+                      name="PreferredContactMethod" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[PreferredName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[PreferredName]"
+                      name="PreferredName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Prefix]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Prefix]"
+                      name="Prefix" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[PrimaryLanguage]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[PrimaryLanguage]"
+                      name="PrimaryLanguage" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[SSN]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[SSN]"
+                      name="SSN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address State]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Address State]"
+                      name="Address State" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Suffix]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[Suffix]"
+                      name="Suffix" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[WorkPhone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[WorkPhone]"
+                      name="WorkPhone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Contacts Without HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -52,5 +1884,25 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Data Flow Task\Contacts Without HHSID"
+          TopLeft="641,78" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Contacts Without HHSID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
