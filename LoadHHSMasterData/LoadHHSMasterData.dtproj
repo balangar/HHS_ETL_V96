@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS403300</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="1DLvM7JhWw==" SSIS:IV="1jnLdAFcNco=">lGLzkBd3ADiRPbq3YLemhpTMoh5xvYRvq+Sy0yRxX5vhwynfYGQUWcOvuFFBxn/GxXKTKtEvF0VH3mtv3Fn4007YD/EObHQMQO/M5PA/udTFI9Kg5pW118P39RRBEzK5E6lFafZz+STB6RE5O0eTwWZ8TvbHbLZsqh+uWrhoFcWancFXoHAv3Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="4K14rL8jYA==" SSIS:IV="uT9UkgDj8pQ=">r6ATOttlVjX2ZFiICO3X3hzNLUIPmQ4vRQtW3TajK6mHDPM/RPUjBlmIDZhQXeVFvybHfHwQUfrofuUuciD74U1gxT/Gv3nou7e5pNMUfXp3XLI0B6Bt7g7h9rUjmPuoSPvZMRnbM3NL//D5GGanvlN3zKt7mH2zT64ZCyn2QbRiB2N2DOK/Qg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -48,6 +48,7 @@
           <SSIS:Package SSIS:Name="Stage-JFS-Benefits.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage-OBWP-Medicaid.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Cleanse-OBWP-Medicaid.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Stage-CRM.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="ClientInfo.conmgr" />
@@ -903,10 +904,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-Stage</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{74086D13-2E1E-4EC5-8A00-A5E7F56A2D95}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{27AD5001-2E7C-42DC-8481-F63D93923328}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1077,6 +1078,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{C55D36BB-09D5-4F1C-A5AA-4B933E2D7700}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Stage-CRM.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C07BA205-35A9-4BA0-99EB-47F5169A8F96}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Stage-CRM</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CF8AA655-F281-4341-B7B0-25B7391E1EAA}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
