@@ -26,12 +26,13 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS403300</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAr+KmPHMep0auu3enNlmzkgAAAAACAAAAAAADZgAAwAAAABAAAAD02pFZVftOomprjSuVf7x+AAAAAASAAACgAAAAEAAAAB1/43PbvZ1QMa1KsQW9KLOIAAAAK7QWf2P431Zvnb+3qDB6MlhGbW1eI6WNZTXEXi71W29fEy1VdfV3BmYyLCfL7xRIfG0Hf3FiMeEhwufyZd7cQAGn4NuvgMaBLj5DdtT6w6pHGcJILU9x8C4N0F6WzKSGSuBZ4Rwq4sUlCevg+lpZUHHeJwvusGGWyYRaAKK+NrjhnT7AWAT//hQAAABIAk/2IaqigME6gA0WQBWDVCzJQA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAr+KmPHMep0auu3enNlmzkgAAAAACAAAAAAADZgAAwAAAABAAAADbJsu6AyORcBJ1aiLqc4dAAAAAAASAAACgAAAAEAAAAAuXcgYmOwO+XYjk5W0suQ6IAAAATJsJXSZu4htyb2b0ANLmOt+qxtEwSHizSaes9XFI7u8PxgyLHcynpMK5//A+G3wzavCvOBxO8GjSRvFKqttUFEsojQAmI5gQ5SxvJ+4s1QtWIRrth9mBjdqKY8e8Y8wKqUgmPyjUB7Sq4fhg1RZhcw+6UF+OZj8uB1/mMpRNzjM/uWnGLVEmKhQAAADHnZa8xTVJs8zXr3MCtHvsAjJekw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="Extract-CRM.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Extract-CRM_NewRecordsOnly.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="ReloadExtract.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="HHS_Staging.conmgr" />
@@ -885,6 +886,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{A0910461-0464-4335-93BE-A6A277DE4546}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="ReloadExtract.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{694C3CFD-4FAC-4091-B3DE-413CE1F8EDE7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">ReloadExtract</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EC4DBA91-6BDA-4009-B4DD-9D8C9CAB664B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

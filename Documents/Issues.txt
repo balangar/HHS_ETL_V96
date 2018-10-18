@@ -1,3 +1,9 @@
+18 Oct 2018		In existing "outbound" and "archive" CRM-Extract.csv, there are some records with
+					""HOMELESS""
+					""C
+				in address fields.  
+				(Maybe need to use a different text delimiter ... or keep this stuff out of the output)
+
 19 Apr 2018		Don't have Sacwis Case Id (Case Number?)
 					For the time being, will just assign "Unavailable"
 
