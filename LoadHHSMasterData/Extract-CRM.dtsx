@@ -1,0 +1,494 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/17/2018 11:18:07 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{576AF857-0139-4AE8-90D5-29FC460EDE59}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract-CRM"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{A50FD416-B4C9-48F6-B862-DE5E9CC7FBBB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract and validate CRM data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9809FE6D-5A62-4023-AD4A-59B7FD4E37C7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract and validate CRM data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="CRM Contact Info By AccountName and RowNumber"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select 
+	row_number() OVER(PARTITION by ct.AccountName Order by ct.SysInsertDate) as RN, 
+	SUBSTRING(ct.AccountName, 1, 50) As AccountName,
+	SUBSTRING(UPPER(ct.LastName), 1, 45) As LastName, 
+	SUBSTRING(UPPER(ct.FirstName), 1, 45) As FirstName, 
+	UPPER(SUBSTRING(ct.MiddleName, 1, 5)) As MI,
+	ct.Birthday As BirthDate, 
+	SUBSTRING(ct.SSN, 1, 9) As SocSecNo,
+	SUBSTRING(ct.[Address Address1], 1, 45) As ResAddrLine1, 
+	SUBSTRING(ct.[Address Address2], 1, 45) As ResAddrLine2,
+	SUBSTRING([Address City], 1,15) As ResAddrCity, 
+	SUBSTRING(ct.[Address State], 1, 2) As ResAddrState, 
+	SUBSTRING(ct.[Address PostalCode], 1, 5) As ResAddrZipCode
+
+From
+	InfoCRM.dbo.Contact ct
+	JOIN
+	InfoCRM.dbo.Account ac
+	ON 
+		ct.[Account Key] = ac.[Key] 
+Order by
+	AccountName, RN</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Connections[IDbConnection]"
+                  connectionManagerID="{4ECFBABE-63D1-4ED7-8778-D6A6AAC855E9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[InforCRM]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output]"
+                  isSorted="true"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[RN]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[RN]"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[RN]"
+                      name="RN"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      length="50"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      name="AccountName"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[MI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      length="5"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[MI]"
+                      name="MI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      length="15"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      name="ResAddrCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      length="2"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      name="ResAddrState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      length="5"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[RN]"
+                      dataType="i8"
+                      name="RN" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="45"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="45"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="5"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      dataType="dbDate"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[RN]"
+                      dataType="i8"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[RN]"
+                      name="RN" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging TMP CRM"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7A5D7E90-9E07-42DC-8EB7-78CFB80C0E2A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging TMP CRM"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="Truncate Table [HHS_Staging].[tmp].[CRM]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2E669ABF-24E1-44FC-B74C-F0954A43D00F}"
+      DTS:From="Package\Truncate Staging TMP CRM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract and validate CRM data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Extract and validate CRM data"
+          TopLeft="600,193" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Truncate Staging TMP CRM"
+          TopLeft="599,83" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="706.75,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Exclude duplicates as determined by AccountName"
+          ParentId="Package"
+          Size="276,37"
+          Id="b83e0156-f3c3-492c-bab8-ea0b5ec5bcf6"
+          TopLeft="865,195">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract and validate CRM data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber"
+          TopLeft="583,62" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS403300</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="4K14rL8jYA==" SSIS:IV="uT9UkgDj8pQ=">r6ATOttlVjX2ZFiICO3X3hzNLUIPmQ4vRQtW3TajK6mHDPM/RPUjBlmIDZhQXeVFvybHfHwQUfrofuUuciD74U1gxT/Gv3nou7e5pNMUfXp3XLI0B6Bt7g7h9rUjmPuoSPvZMRnbM3NL//D5GGanvlN3zKt7mH2zT64ZCyn2QbRiB2N2DOK/Qg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="jLvae/2V1A==" SSIS:IV="L7ZERsOoeW4=">nzvs2IPSKKHVJ6knFs3cRkGf3r7UMGAeYK6Mm8G4kSzlfh4WI9GC6RG964CUNNGaBNGnF0MW+II5Qw8CdJVD7GZXuQWTtnGyUIfTCnkfng24XaihifmwVS+DNTxwtc9DrZnvSTo5BxClI5Y67F3sVraLMVhVdU70c1OHfGQVhXMh9+cjN+cLSA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -48,7 +48,7 @@
           <SSIS:Package SSIS:Name="Stage-JFS-Benefits.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage-OBWP-Medicaid.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Cleanse-OBWP-Medicaid.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Stage-CRM.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Extract-CRM.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="ClientInfo.conmgr" />
@@ -58,6 +58,7 @@
           <SSIS:ConnectionManager SSIS:Name="HHS_MasterData.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="SystemJobs.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="OBWP_Medicaid_CSV.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="InforCRM.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -777,6 +778,95 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.InforCRM.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=InfoCRM;Persist Security Info=True;Application Name=SSIS-LoadHHSMasterData-{4ECFBABE-63D1-4ED7-8778-D6A6AAC855E9}MS-DCFS-PSQL1.InfoCRM.Cuy_DataLoader;</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.InforCRM.InitialCatalog">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">InfoCRM</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.InforCRM.Password">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.InforCRM.RetainSameConnection">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.InforCRM.ServerName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">MS-DCFS-PSQL1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.InforCRM.UserName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Cuy_DataLoader</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
             <SSIS:PackageMetaData SSIS:Name="Master.dtsx">
@@ -836,10 +926,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-Extract</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{1FCD2E02-BDD8-4EA2-8EDD-A5E250A75CAF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{03CBDBEA-77B3-4434-B88E-963D9CFFFF8D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -904,10 +994,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-Stage</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{27AD5001-2E7C-42DC-8481-F63D93923328}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4B109F7F-77A6-4E0D-91A2-3A5CCDA7EE81}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1085,16 +1175,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Stage-CRM.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Extract-CRM.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{C07BA205-35A9-4BA0-99EB-47F5169A8F96}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Stage-CRM</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{576AF857-0139-4AE8-90D5-29FC460EDE59}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Extract-CRM</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CF8AA655-F281-4341-B7B0-25B7391E1EAA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7ADFF425-7A2B-4CB8-BFF3-76BA7CBDA5F3}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
