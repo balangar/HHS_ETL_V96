@@ -12,8 +12,8 @@
   DTS:ObjectName="Extract-CRM"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{6BDB0092-499F-43EA-86C0-816EB5C32B47}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{01A367DB-72DF-4A9E-9481-2CAB2A031E25}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -67,7 +67,7 @@ From
 	ON 
 		ct.[Account Key] = ac.[Key] 
 Order by
-	AccountName, RN</property>
+	AccountName</property>
                 <property
                   dataType="System.Int32"
                   description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
@@ -113,7 +113,6 @@ Order by
                       externalMetadataColumnId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[RN]"
                       lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[RN]"
                       name="RN"
-                      sortKeyPosition="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]"
@@ -395,7 +394,1094 @@ Order by
                   name="SourceCode"
                   state="cdata">
                   <arrayElements
-                    arrayElementCount="0" />
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public ContactInfoOutputBuffer ContactInfoOutputBuffer;
+
+    int InputsFinished = 0;
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+        if (Buffer.EndOfRowset)
+        {
+            InputsFinished = InputsFinished + 1;
+            if (InputsFinished == 1)
+            {
+                FinishOutputs();
+                MarkOutputsFinished();
+            }
+        }
+
+    }
+
+    public virtual void FinishOutputs()
+    {
+    }
+
+    private void MarkOutputsFinished()
+    {
+
+        if (null != ContactInfoOutputBuffer)
+        {
+            ContactInfoOutputBuffer.SetEndOfRowset();
+            ContactInfoOutputBuffer = null;
+        }
+
+    }
+
+    public override void PrimeOutput(int Outputs, int[] OutputIDs, PipelineBuffer[] Buffers, OutputNameMap OutputMap)
+    {
+       for(int Idx = 0; Idx < Outputs; Idx++)
+       {
+            if(OutputIDs[Idx] == GetOutputID(OutputMap, @"ContactInfoOutput"))
+            {
+                ContactInfoOutputBuffer = new ContactInfoOutputBuffer(Buffers[Idx], GetColumnIndexes(OutputIDs[Idx]), OutputMap);
+            }
+        }
+
+        CreateNewOutputRows();
+
+    }
+
+    public virtual void CreateNewOutputRows()
+    {
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    public static string LastAccountName { get; set; } = string.Empty;
+    public static string CurrentAccountName { get; set; } = null;
+
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+     public override void CreateNewOutputRows()
+    {
+        /*
+          Add rows by calling the AddRow method on the member variable named "<Output Name>Buffer".
+          For example, call MyOutputBuffer.AddRow() if your output was named "MyOutput".
+        */
+    }
+
+   /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+
+        CurrentAccountName = Row.AccountName;
+        if(CurrentAccountName != LastAccountName)
+        {
+            LastAccountName = CurrentAccountName;
+            ContactInfoOutputBuffer.AddRow();
+
+            ContactInfoOutputBuffer.AccountName = Row.AccountName;
+
+            ContactInfoOutputBuffer.LastName = !Row.LastName_IsNull && !(Row.LastName == string.Empty) ? Row.LastName.Substring(0, Math.Min(Row.LastName.Length, 15)) : Row.LastName;
+            ContactInfoOutputBuffer.FirstName = !Row.FirstName_IsNull && !(Row.FirstName == string.Empty) ? Row.FirstName.Substring(0, Math.Min(Row.FirstName.Length, 15)) : Row.FirstName;
+            ContactInfoOutputBuffer.MI = !Row.MI_IsNull && !(Row.MI == string.Empty) ? Row.MI.Substring(0, Math.Min(Row.MI.Length, 1)) : Row.MI;
+
+            if(!Row.BirthDate_IsNull) { ContactInfoOutputBuffer.BirthDate = Row.BirthDate; }
+
+            ContactInfoOutputBuffer.SocSecNo = !Row.SocSecNo_IsNull && !(Row.SocSecNo == string.Empty) ? Row.SocSecNo.Substring(0, Math.Min(Row.SocSecNo.Length, 9)) : Row.SocSecNo;
+
+            ContactInfoOutputBuffer.ResAddrLine1 = !Row.ResAddrLine1_IsNull && !(Row.ResAddrLine1 == string.Empty) ? Row.ResAddrLine1.Substring(0, Math.Min(Row.ResAddrLine1.Length, 45)) : Row.ResAddrLine1;
+            ContactInfoOutputBuffer.ResAddrLine2 = !Row.ResAddrLine2_IsNull && !(Row.ResAddrLine2 == string.Empty) ? Row.ResAddrLine2.Substring(0, Math.Min(Row.ResAddrLine2.Length, 45)) : Row.ResAddrLine2;
+            ContactInfoOutputBuffer.ResAddrCity = !Row.ResAddrCity_IsNull && !(Row.ResAddrCity == string.Empty) ? Row.ResAddrCity.Substring(0, Math.Min(Row.ResAddrCity.Length, 15)) : Row.ResAddrCity;
+            ContactInfoOutputBuffer.ResAddrState = !Row.ResAddrState_IsNull && !(Row.ResAddrState == string.Empty) ? Row.ResAddrState.Substring(0, Math.Min(Row.ResAddrState.Length, 2)) : Row.ResAddrState;
+            ContactInfoOutputBuffer.ResAddrZipCode = !Row.ResAddrZipCode_IsNull && !(Row.ResAddrZipCode == string.Empty) ? Row.ResAddrZipCode.Substring(0, Math.Min(Row.ResAddrZipCode.Length, 5)) : Row.ResAddrZipCode;
+        }
+    }
+
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String AccountName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool AccountName_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String MI
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool MI_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[4]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String SocSecNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String ResAddrCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String ResAddrState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+
+public class ContactInfoOutputBuffer: ScriptBuffer
+
+{
+    public ContactInfoOutputBuffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String AccountName
+    {
+        set
+        {
+            this[0] = value;
+        }
+    }
+    public bool AccountName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String LastName
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool LastName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String FirstName
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String MI
+    {
+        set
+        {
+            this[3] = value;
+        }
+    }
+    public bool MI_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(3);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        set
+        {
+            this[4] = value;
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(4);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String SocSecNo
+    {
+        set
+        {
+            this[5] = value;
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(5);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        set
+        {
+            this[6] = value;
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(6);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        set
+        {
+            this[7] = value;
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(7);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrCity
+    {
+        set
+        {
+            this[8] = value;
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(8);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrState
+    {
+        set
+        {
+            this[9] = value;
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(9);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        set
+        {
+            this[10] = value;
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(10);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public void AddRow()
+    {
+        base.AddRow();
+    }
+
+    new public void SetEndOfRowset()
+    {
+        base.SetEndOfRowset();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Settings.get_Default():SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Sett" +
+    "ings")]
+
+namespace SC_5acf08d0ff6940e5b8201fdda37eb947.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_5acf08d0ff6940e5b8201fdda37eb947.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5b2337af-d0e5-4a0a-aa37-b12458b2f87f}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_5acf08d0ff6940e5b8201fdda37eb947</RootNamespace>
+    <AssemblyName>SC_5acf08d0ff6940e5b8201fdda37eb947</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_5acf08d0ff6940e5b8201fdda37eb947" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_5acf08d0ff6940e5b8201fdda37eb947</msb:CodeName>
+		<msb:DisplayName>SC_5acf08d0ff6940e5b8201fdda37eb947</msb:DisplayName>
+		<msb:ProjectId>{7C9E035B-8030-491F-B460-F412F99C202F}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_5acf08d0ff6940e5b8201fdda37eb947.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_5acf08d0ff6940e5b8201fdda37eb947")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_5acf08d0ff6940e5b8201fdda37eb947")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_5acf08d0ff6940e5b8201fdda37eb947.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
                 </property>
                 <property
                   dataType="System.String"
@@ -404,7 +1490,218 @@ Order by
                   name="BinaryCode"
                   state="cdata">
                   <arrayElements
-                    arrayElementCount="0" />
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_5acf08d0ff6940e5b8201fdda37eb947.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAKnxyVsAAAAAAAAAAOAAIiALATAAACQAAAAIAAAAAAAA0kIA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAIBCAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA2CIAAAAgAAAAJAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAYAAAAAYAAAAmAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAALAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAC0
+QgAAAAAAAEgAAAACAAUA9CcAANQZAAABAAAAAAAAAMhBAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABp+AQAABCoeAoABAAAEKhp+AgAABCoeAoACAAAEKgYqEzAF
+AP8CAAAAAAAAA28KAAAGKAQAAAYoAwAABigBAAAGKBAAAAo53wIAACgDAAAGKAIAAAYCewUAAARv
+OQAABgJ7BQAABANvCgAABm8jAAAGAnsFAAAEA28NAAAGLRIDbwwAAAZ+EQAACigSAAAKLAgDbwwA
+AAYrHgNvDAAABhYDbwwAAAZvEwAACh8PKBQAAApvFQAACm8lAAAGAnsFAAAEA28PAAAGLRIDbw4A
+AAZ+EQAACigSAAAKLAgDbw4AAAYrHgNvDgAABhYDbw4AAAZvEwAACh8PKBQAAApvFQAACm8nAAAG
+AnsFAAAEA28RAAAGLRIDbxAAAAZ+EQAACigSAAAKLAgDbxAAAAYrHQNvEAAABhYDbxAAAAZvEwAA
+ChcoFAAACm8VAAAKbykAAAYDbxMAAAYtEQJ7BQAABANvEgAABm8rAAAGAnsFAAAEA28VAAAGLRID
+bxQAAAZ+EQAACigSAAAKLAgDbxQAAAYrHgNvFAAABhYDbxQAAAZvEwAACh8JKBQAAApvFQAACm8t
+AAAGAnsFAAAEA28XAAAGLRIDbxYAAAZ+EQAACigSAAAKLAgDbxYAAAYrHgNvFgAABhYDbxYAAAZv
+EwAACh8tKBQAAApvFQAACm8vAAAGAnsFAAAEA28ZAAAGLRIDbxgAAAZ+EQAACigSAAAKLAgDbxgA
+AAYrHgNvGAAABhYDbxgAAAZvEwAACh8tKBQAAApvFQAACm8xAAAGAnsFAAAEA28bAAAGLRIDbxoA
+AAZ+EQAACigSAAAKLAgDbxoAAAYrHgNvGgAABhYDbxoAAAZvEwAACh8PKBQAAApvFQAACm8zAAAG
+AnsFAAAEA28dAAAGLRIDbxwAAAZ+EQAACigSAAAKLAgDbxwAAAYrHQNvHAAABhYDbxwAAAZvEwAA
+ChgoFAAACm8VAAAKbzUAAAYCewUAAAQDbx8AAAYtEgNvHgAABn4RAAAKKBIAAAosCANvHgAABisd
+A28eAAAGFgNvHgAABm8TAAAKGygUAAAKbxUAAApvNwAABioeAig8AAAGKkZ+EQAACoABAAAEFIAC
+AAAEKioCAwQFKBYAAAoqUgJ7FwAACgJ7GAAAChaUbxkAAAoqIgIWKBoAAAoqUgJ7FwAACgJ7GAAA
+CheUbxkAAAoqIgIXKBoAAAoqUgJ7FwAACgJ7GAAAChiUbxkAAAoqIgIYKBoAAAoqUgJ7FwAACgJ7
+GAAAChmUbxkAAAoqIgIZKBoAAAoqUgJ7FwAACgJ7GAAAChqUbxsAAAoqIgIaKBoAAAoqUgJ7FwAA
+CgJ7GAAAChuUbxkAAAoqIgIbKBoAAAoqUgJ7FwAACgJ7GAAAChyUbxkAAAoqIgIcKBoAAAoqUgJ7
+FwAACgJ7GAAACh2UbxkAAAoqIgIdKBoAAAoqUgJ7FwAACgJ7GAAACh6UbxkAAAoqIgIeKBoAAAoq
+VgJ7FwAACgJ7GAAACh8JlG8ZAAAKKiYCHwkoGgAACipWAnsXAAAKAnsYAAAKHwqUbxkAAAoqJgIf
+CigaAAAKKh4CKBwAAAoqHgIoHQAACiomAhYDKB4AAAoqWgMsCAIWKB8AAAoqcgEAAHBzIAAACnom
+AhcDKB4AAAoqWgMsCAIXKB8AAAoqcgEAAHBzIAAACnomAhgDKB4AAAoqWgMsCAIYKB8AAAoqcgEA
+AHBzIAAACnomAhkDKB4AAAoqWgMsCAIZKB8AAAoqcgEAAHBzIAAACno6AhoDjBIAAAEoHgAACipa
+AywIAhooHwAACipyAQAAcHMgAAAKeiYCGwMoHgAACipaAywIAhsoHwAACipyAQAAcHMgAAAKeiYC
+HAMoHgAACipaAywIAhwoHwAACipyAQAAcHMgAAAKeiYCHQMoHgAACipaAywIAh0oHwAACipyAQAA
+cHMgAAAKeiYCHgMoHgAACipaAywIAh4oHwAACipyAQAAcHMgAAAKeioCHwkDKB4AAAoqXgMsCQIf
+CSgfAAAKKnIBAABwcyAAAAp6KgIfCgMoHgAACipeAywJAh8KKB8AAAoqcgEAAHBzIAAACnoeAigh
+AAAKKh4CKCIAAAoqfgIoIwAACgICc0QAAAZ9AwAABAICc0UAAAZ9BAAABCoAABMwBABPAAAAAAAA
+AARyngAAcBpvJAAACiwVAgUCAyglAAAKDgRzCQAABm9CAAAGBW8mAAAKLCMCAnsGAAAEF1h9BgAA
+BAJ7BgAABBczDAJvPgAABgIoPwAABipuAnsFAAAELBICewUAAARvOgAABgIUfQUAAAQqABMwBQA9
+AAAAAQAAERYKKy4EBpQOBHKuAABwKCcAAAozGQIFBpoCBAaUKCUAAAoOBHMiAAAGfQUAAAQGF1gK
+BgMyzgJvQQAABipKKwcCA29DAAAGA28gAAAGLfEqOgIoKAAACgIDfQcAAAQqOgIoKAAACgIDfQgA
+AAQqHgIoKAAACiqufgkAAAQtHnLSAABw0AgAAAIoKQAACm8qAAAKcysAAAqACQAABH4JAAAEKhp+
+CgAABCoeAoAKAAAEKhp+CwAABCoeAigsAAAKKi5zSwAABoALAAAEKkJTSkIBAAEAAAAAAAwAAAB2
+NC4wLjMwMzE5AAAAAAUAbAAAAIgLAAAjfgAA9AsAAJAKAAAjU3RyaW5ncwAAAACEFgAARAEAACNV
+UwDIFwAAEAAAACNHVUlEAAAA2BcAAPwBAAAjQmxvYgAAAAAAAAACAAABVxWiAQkBAAAA+gEzABYA
+AAEAAAAhAAAACQAAAAsAAABMAAAALAAAACwAAAAWAAAAAQAAAAUAAAAxAAAANAAAAAEAAAAEAAAA
+AQAAAAAA1wQBAAAAAAAGAMsDNggGAF8ENggGABcDIwgPAKoIAAAGAEQDPAcGAK4DPAcGAI8DPAcG
+AEYEPAcGAOsDPAcGAAQEPAcGAFsDPAcGAHYDgwQKAB8EHgIGAN8CNggKANMHHgIOAMQHHgIKAJ8H
+HgIGABUC8AYKAK0JHgIGAF0J8AYGAPoCIwgGAPwHVggGAJMHJwcSAKgCwQQSACsDwQQSAGwCEgcG
+AKAE8AYGALEE8AYGAE4H8AYGAGgH8AYGAD8C8AYGADsB8AYGAEUKPAcAAAAAaQAAAAAAAQABAAEA
+EAAHBwAAFAABAAEAAQAQALcHAAA9AAMACQABABAA4AcAAD0AAwAiAAEAEACPCQAATQADADwAAQAQ
+ACcJAABRAAcARAABABAA6AgAAFEACABFAAAAEABdCLkIUQAJAEYAAAEQABcJuQhpAAsASgARAOQA
+IQARAMAAIQAGACcJoAAGAOgIpAAGAOAHqAABAJ0ArAABAJ0JrwABAJ0JrwARAPcGswARAFwCtwAR
+AAUBuwBQIAAAAACWCK0BvwABAFcgAAAAAJYIwQHDAAEAXyAAAAAAlgh/Ab8AAgBmIAAAAACWCJYB
+wwACAG4gAAAAAMYASQkGAAMAcCAAAAAAxgAiCsgAAwB7IwAAAACGGAwIBgAEAIMjAAAAAJEYEgjO
+AAQAlSMAAAAAhhgMCDQABACgIwAAAACGCF8B0gAHALUjAAAAAIYIrwVWAAcAviMAAAAAhgjVAdIA
+BwDTIwAAAACGCN0FVgAHANwjAAAAAIYI7wHSAAcA8SMAAAAAhggFBlYABwD6IwAAAACGCIYA0gAH
+AA8kAAAAAIYIXwVWAAcAGCQAAAAAhgiEAtYABwAtJAAAAACGCC8GVgAHADYkAAAAAIYIeQfSAAcA
+SyQAAAAAhgiJBlYABwBUJAAAAACGCAEA0gAHAGkkAAAAAIYI/wRWAAcAciQAAAAAhggjANIABwCH
+JAAAAACGCC8FVgAHAJAkAAAAAIYITgrSAAcApSQAAAAAhgixBlYABwCuJAAAAACGCL0C0gAHAMQk
+AAAAAIYIWQZWAAcAziQAAAAAhggVAdIABwDkJAAAAACGCHsFVgAHAO4kAAAAAIYAOQpWAAcA9iQA
+AAAAhgB3CVYABwCVIwAAAACGGAwINAAHAP4kAAAAAIYIbwEQAAoACCUAAAAAhgjGBdsACwAfJQAA
+AACGCOIBEAAMACklAAAAAIYI8QXbAA0AQCUAAAAAhgj9ARAADgBKJQAAAACGCBoG2wAPAGElAAAA
+AIYIjQAQABAAayUAAAAAhghtBdsAEQCCJQAAAACGCJIC4AASAJElAAAAAIYIRAbbABMAqCUAAAAA
+hgiGBxAAFACyJQAAAACGCJ0G2wAVAMklAAAAAIYIEgAQABYA0yUAAAAAhggXBdsAFwDqJQAAAACG
+CDQAEAAYAPQlAAAAAIYIRwXbABkACyYAAAAAhgheChAAGgAVJgAAAACGCMgG2wAbACwmAAAAAIYI
+zgIQABwANyYAAAAAhghxBtsAHQBPJgAAAACGCCgBEAAeAFomAAAAAIYIlQXbAB8AciYAAAAAhgAb
+CgYAIAB6JgAAAACGAHQJBgAgAPYkAAAAAIYAdwlWACAAgiYAAAAAhhgMCAYAIACkJgAAAADGAAIK
+5gAgAG4gAAAAAMYBOwkGACQA/yYAAAAAgQCsAAYAJAAcJwAAAADGAA8K8AAkAG4gAAAAAMYBSQkG
+ACgAZScAAAAAxgH7CcgAKABuIAAAAADGASIKyAApAHgnAAAAAIYYDAj8ACoAhycAAAAAhhgMCPwA
+KwCWJwAAAACDGAwIBgAsAJ4nAAAAAJMI+AcCASwAyicAAAAAkwhEAgcBLADRJwAAAACTCFACDAEs
+ANknAAAAAJYIgwkSAS0A4CcAAAAAhhgMCAYALQDoJwAAAACRGBIIzgAtAAAAAQB9BAAAAQB9BAAA
+AQA9CgAAAQDxBwAAAgDyCAAAAwCtBwAAAQDxBwAAAgDyCAAAAwCtBwAAAQB9BAAAAQB9BAAAAQB9
+BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAA
+AQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9BAAAAQB9
+BAAAAQByAAAAAgALAgAAAwDxBwAABACtBwAAAQBBCQAAAgAZCAAAAwAzCQAABACtBwAAAQDxBwAA
+AQA9CgAAAQCzCQAAAQCzCQAAAQB9BAkADAgBABEADAgGABkADAgKACkADAgQADEADAgQADkADAgQ
+AEEADAgQAEkADAgQAFEADAgQAFkADAgQAGEADAgQAGkADAgGAHEADAgGAKkADAgGAMkADAgVANkA
+egobANkAiAohANkAbgobANkAtgQkAOEAAwcoANkApwQuAHkADAg0AHkA8Qc+AHkA8ghCAIEAnQRG
+AHkA2AZLAIEAoAJQAHkAOQpWAHkAdwlWAHkA5wZaAHkA3wYBAOkADAgQAHkAGwoGAHkAdAkGAJkA
+DAgGANkAIAlgAJkABglnAIEAZAlWAJkAegBxAKEADAgGAPkATQF4APkAQQqAALEADAiGANEADAgG
+ACAAawD2ASEAawD2AS4ACwA3AS4AEwBAAS4AGwBfAS4AIwBoAS4AKwCRAS4AMwCRAS4AOwCRAS4A
+QwBoAS4ASwCXAS4AUwCRAS4AWwCuAUAAawD2AUEAawD2AUMAYwD2AWAAawD2AYAAawD2AQMBcwD2
+AWEBawD2AekFewBfAQkGewBfAW0AAgABAAMAAwAEABkACAAvAAkAMQAAAMUBFwEAAJoBFwEAAMkB
+GwEAAMoFHwEAAOYBGwEAAPUFHwEAAAECGwEAAB4GHwEAAJEAGwEAAHEFHwEAAJYCIwEAAEgGHwEA
+AIoHGwEAAKEGHwEAABYAGwEAABsFHwEAADgAGwEAAEsFHwEAAGIKGwEAAMwGHwEAANICGwEAAHUG
+HwEAACwBGwEAAJkFHwEAAMkBGwEAAMoFHwEAAOYBGwEAAPUFHwEAAAECGwEAAB4GHwEAAJEAGwEA
+AHEFHwEAAJYCIwEAAEgGHwEAAIoHGwEAAKEGHwEAABYAGwEAABsFHwEAADgAGwEAAEsFHwEAAGIK
+GwEAAMwGHwEAANICGwEAAHUGHwEAACwBGwEAAJkFHwEAAPwHKAEAAGQCLQEAAIcJMgECAAEAAwAB
+AAIAAwACAAMABQABAAQABQACAAoABwACAAsACQACAAwACwACAA0ADQACAA4ADwACAA8AEQACABAA
+EwACABEAFQACABIAFwACABMAGQACABQAGwACABUAHQACABYAHwACABcAIQACABgAIwACABkAJQAC
+ABoAJwACABsAKQACABwAKwACAB0ALQACAB4ALwACAB8AMQABACMAMwABACQANQABACUANwABACYA
+OQABACcAOwABACgAPQABACkAPwABACoAQQABACsAQwABACwARQABAC0ARwABAC4ASQABAC8ASwAB
+ADAATQABADEATwABADIAUQABADMAUwABADQAVQABADUAVwABADYAWQABADcAWwABADgAXQACAEcA
+XwACAEgAYQABAEkAYQACAEoAYwAEgAAAAQAAANIadE0AAAAAAABFAAAABAAAAAAAAAAAAAAAjgCU
+AAAAAAAMAAAAAAAAAAAAAACXAL0JAAAAAAwAAAAAAAAAAAAAAJcA2gkAAAAABAAAAAAAAAAAAAAA
+jgDwBgAAAAAAAAAAAQAAAGcIAAAAAABnZXRfUmVzQWRkckxpbmUxAHNldF9SZXNBZGRyTGluZTEA
+Z2V0X1Jlc0FkZHJMaW5lMgBzZXRfUmVzQWRkckxpbmUyAFNDXzVhY2YwOGQwZmY2OTQwZTViODIw
+MWZkZGEzN2ViOTQ3ADxNb2R1bGU+AElucHV0SUQAR2V0T3V0cHV0SUQAZ2V0X01JAHNldF9NSQBt
+c2NvcmxpYgBJbnB1dHNGaW5pc2hlZABNYXJrT3V0cHV0c0ZpbmlzaGVkADxDdXJyZW50QWNjb3Vu
+dE5hbWU+a19fQmFja2luZ0ZpZWxkADxMYXN0QWNjb3VudE5hbWU+a19fQmFja2luZ0ZpZWxkAGRl
+ZmF1bHRJbnN0YW5jZQBnZXRfUmVzQWRkclppcENvZGUAc2V0X1Jlc0FkZHJaaXBDb2RlAFJ1bnRp
+bWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAGdldF9BY2NvdW50TmFtZQBzZXRfQWNjb3Vu
+dE5hbWUAZ2V0X0N1cnJlbnRBY2NvdW50TmFtZQBzZXRfQ3VycmVudEFjY291bnROYW1lAGdldF9M
+YXN0QWNjb3VudE5hbWUAc2V0X0xhc3RBY2NvdW50TmFtZQBnZXRfTGFzdE5hbWUAc2V0X0xhc3RO
+YW1lAGdldF9GaXJzdE5hbWUAc2V0X0ZpcnN0TmFtZQBJbnB1dE5hbWUARGF0ZVRpbWUATWljcm9z
+b2Z0LlNxbFNlcnZlci5EdHMuUGlwZWxpbmUAVHlwZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBy
+ZXNvdXJjZUN1bHR1cmUAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAZ2V0X0JpcnRoRGF0ZQBzZXRf
+QmlydGhEYXRlAEdldERhdGUARWRpdG9yQnJvd3NhYmxlU3RhdGUAZ2V0X1Jlc0FkZHJTdGF0ZQBz
+ZXRfUmVzQWRkclN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNl
+ckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1
+dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJn
+ZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2Vt
+Ymx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBB
+c3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1Nj
+cmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRl
+AFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNp
+b25pbmcAR2V0U3RyaW5nAFN1YnN0cmluZwBNYXRoAGdldF9MZW5ndGgAU3lzdGVtLkNvbXBvbmVu
+dE1vZGVsAFNDXzVhY2YwOGQwZmY2OTQwZTViODIwMWZkZGEzN2ViOTQ3LmRsbABnZXRfUmVzQWRk
+ckxpbmUxX0lzTnVsbABzZXRfUmVzQWRkckxpbmUxX0lzTnVsbABnZXRfUmVzQWRkckxpbmUyX0lz
+TnVsbABzZXRfUmVzQWRkckxpbmUyX0lzTnVsbABnZXRfTUlfSXNOdWxsAHNldF9NSV9Jc051bGwA
+Z2V0X1Jlc0FkZHJaaXBDb2RlX0lzTnVsbABzZXRfUmVzQWRkclppcENvZGVfSXNOdWxsAGdldF9B
+Y2NvdW50TmFtZV9Jc051bGwAc2V0X0FjY291bnROYW1lX0lzTnVsbABnZXRfTGFzdE5hbWVfSXNO
+dWxsAHNldF9MYXN0TmFtZV9Jc051bGwAZ2V0X0ZpcnN0TmFtZV9Jc051bGwAc2V0X0ZpcnN0TmFt
+ZV9Jc051bGwAZ2V0X0JpcnRoRGF0ZV9Jc051bGwAc2V0X0JpcnRoRGF0ZV9Jc051bGwAZ2V0X1Jl
+c0FkZHJTdGF0ZV9Jc051bGwAc2V0X1Jlc0FkZHJTdGF0ZV9Jc051bGwAZ2V0X1NvY1NlY05vX0lz
+TnVsbABzZXRfU29jU2VjTm9fSXNOdWxsAGdldF9SZXNBZGRyQ2l0eV9Jc051bGwAc2V0X1Jlc0Fk
+ZHJDaXR5X0lzTnVsbABTZXROdWxsAHNldF9JdGVtAFN5c3RlbQByZXNvdXJjZU1hbgBNaW4AU2Ny
+aXB0TWFpbgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0u
+UmVmbGVjdGlvbgBJbnZhbGlkT3BlcmF0aW9uRXhjZXB0aW9uAFN0cmluZ0NvbXBhcmlzb24AZ2V0
+X1NvY1NlY05vAHNldF9Tb2NTZWNObwBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1h
+cABJbnB1dDBCdWZmZXIAUGlwZWxpbmVCdWZmZXIAU2NyaXB0QnVmZmVyAENvbnRhY3RJbmZvT3V0
+cHV0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0b3IALmNjdG9yAE91dHB1dElEcwBTeXN0
+ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVz
+b3VyY2VzAFNDXzVhY2YwOGQwZmY2OTQwZTViODIwMWZkZGEzN2ViOTQ3LlByb3BlcnRpZXMuUmVz
+b3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTQ181YWNmMDhkMGZmNjk0MGU1YjgyMDFm
+ZGRhMzdlYjk0Ny5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVzAEdldENv
+bHVtbkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAENvbm5lY3Rpb25zAEJ1ZmZlcnMARmluaXNoT3V0
+cHV0cwBDcmVhdGVOZXdPdXRwdXRSb3dzAE9iamVjdABnZXRfRW5kT2ZSb3dzZXQAU2V0RW5kT2ZS
+b3dzZXQAZ2V0X0RlZmF1bHQAVXNlckNvbXBvbmVudABQYXJlbnRDb21wb25lbnQAU2NyaXB0Q29t
+cG9uZW50AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWljcm9zb2Z0LlNxbFNlcnZlci5Q
+aXBlbGluZUhvc3QASW5wdXQwX1Byb2Nlc3NJbnB1dABQcmltZU91dHB1dABBZGRSb3cASW5wdXQw
+X1Byb2Nlc3NJbnB1dFJvdwBOZXh0Um93AGdldF9Bc3NlbWJseQBnZXRfUmVzQWRkckNpdHkAc2V0
+X1Jlc0FkZHJDaXR5AG9wX0VxdWFsaXR5AG9wX0luZXF1YWxpdHkARW1wdHkAAAAAgJtJAHMATgB1
+AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0AG8A
+IABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQAaABl
+ACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AAA9JAG4AcAB1AHQAIAAwAAAjQwBvAG4A
+dABhAGMAdABJAG4AZgBvAE8AdQB0AHAAdQB0AABxUwBDAF8ANQBhAGMAZgAwADgAZAAwAGYAZgA2
+ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBiADkANAA3AC4AUAByAG8AcABlAHIA
+dABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABOrinKnmeLSasyqTktCs/zAAQgAQEIAyAAAQUg
+AQEREQQgAQEOBSABARFhBQACAg4OAgYOAyAACAUAAggICAUgAg4ICAkgAwESQR0IEkUDBhJBAwYd
+CAQgAQ4IBCABAggFIAERSQgDIAACBSACAQgcBiACAg4ReQUgAR0ICAMHAQgGAAIIEkUOBwABEn0R
+gIEFIAASgIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDMkQMGEhgDBhIcAwYSEAIGCAMGEk0DBhJZ
+AwYSXQMGEiQDAAAOBAABAQ4FIAEBEgwDAAABAyAADgQgABFJBCABAQIFIAEBEUkJIAQBCA4SQRJF
+CyAEAQgdCB0SQRJFBSABARJNBAAAElkEAAASXQUAAQESXQQAABIkAwgADgMoAA4DKAACBCgAEUkE
+CAASWQQIABJdBAgAEiQIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEA
+AgAAAAAAKAEAI1NDXzVhY2YwOGQwZmY2OTQwZTViODIwMWZkZGEzN2ViOTQ3AAAFAQAAAAAWAQAR
+Q29weXJpZ2h0IEAgIDIwMTgAAEcBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4URnJh
+bWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNAQBAAAAALQAAADOyu++AQAAAJEAAABs
+U3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAu
+MCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3Rl
+bS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAACoQgAA
+AAAAAAAAAADCQgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtEIAAAAAAAAAAAAAAABfQ29yRGxs
+TWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAA
+ABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABYYAAA
+GgQAAAAAAAAAAAAAGgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E7/4A
+AAEAAAABAHRN0hoAAAEAdE3SGj8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
+cgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAAAACw
+BHoDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAFYDAAABADAAMAAwADAAMAA0AGIA
+MAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5AE4AYQBt
+AGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBDAF8A
+NQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBi
+ADkANAA3AAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAOAA2ADYA
+LgAxADkAOAAyADgAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8ANQBh
+AGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBiADkA
+NAA3AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
+AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADgAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0A
+YQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABT
+AEMAXwA1AGEAYwBmADAAOABkADAAZgBmADYAOQA0ADAAZQA1AGIAOAAyADAAMQBmAGQAZABhADMA
+NwBlAGIAOQA0ADcALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBD
+AF8ANQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcA
+ZQBiADkANAA3AAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2
+ADgANgA2AC4AMQA5ADgAMgA4AAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkA
+bwBuAAAAMQAuADAALgA2ADgANgA2AC4AMQA5ADgAMgA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAADAAAANQyAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
+                  </arrayElements>
                 </property>
                 <property
                   dataType="System.String"
@@ -439,12 +1736,12 @@ Order by
                   dataType="System.String"
                   description="Checksum to match component metedata against compiled codes."
                   name="MetadataChecksum"
-                  typeConverter="NOTBROWSABLE"></property>
+                  typeConverter="NOTBROWSABLE">12bee80e2cadf5a226f824a58f8e4161</property>
                 <property
                   dataType="System.String"
                   description="Checksum to match component metedata against compiled codes."
                   name="MetadataShaChecksum"
-                  typeConverter="NOTBROWSABLE"></property>
+                  typeConverter="NOTBROWSABLE">d11e87d018822c85883b6d9870751d9c7d857763</property>
                 <property
                   dataType="System.String"
                   name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
@@ -454,14 +1751,430 @@ Order by
                   refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0]"
                   hasSideEffects="true"
                   name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[AccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AccountName"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="LastName"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="MI"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[Output 0]"
-                  name="Output 0"
-                  synchronousInputId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0]">
+                  refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput]"
+                  hasSideEffects="true"
+                  name="ContactInfoOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[AccountName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[LastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[MI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[SocSecNo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrZipCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and validate CRM data\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[AccountName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AccountName"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[AccountName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[AccountName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[LastName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[LastName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[LastName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[FirstName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[FirstName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[MI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="MI"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[MI]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[MI]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[BirthDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[BirthDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[SocSecNo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[SocSecNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[SocSecNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[ResAddrLine1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine1]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrLine1]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[ResAddrLine2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine2]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrLine2]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[ResAddrCity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrCity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[ResAddrState]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrState]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrState]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1].Columns[ResAddrZipCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrZipCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrZipCode]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[AccountName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[LastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[MI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[SocSecNo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrLine1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrLine2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrZipCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Extract and validate CRM data\Union All.Outputs[Union All Output 1].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -473,6 +2186,11 @@ Order by
               endId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Inputs[Input 0]"
               name="ADO NET Source Output"
               startId="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Extract and validate CRM data.Paths[ContactInfoOutput]"
+              endId="Package\Extract and validate CRM data\Union All.Inputs[Union All Input 1]"
+              name="ContactInfoOutput"
+              startId="Package\Extract and validate CRM data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -567,7 +2285,7 @@ Order by
     design-time-name="Package\Extract and validate CRM data">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="230,42"
           Id="Package\Extract and validate CRM data\CRM Contact Info By AccountName and RowNumber"
@@ -590,6 +2308,32 @@ Order by
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Extract and validate CRM data\Union All"
+          TopLeft="626,317" />
+        <EdgeLayout
+          Id="Package\Extract and validate CRM data.Paths[ContactInfoOutput]"
+          TopLeft="689.25,214">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,103"
+              Start="0,0"
+              End="0,95.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,95.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
