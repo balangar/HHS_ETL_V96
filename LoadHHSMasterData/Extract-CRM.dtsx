@@ -12,8 +12,8 @@
   DTS:ObjectName="Extract-CRM"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{062AE197-C610-4470-9076-42BA32D714AA}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{2A8CCEA5-ED60-417F-B333-194A832B7616}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -759,7 +759,7 @@ public class ScriptMain : UserComponent
 
             ContactInfoOutputBuffer.ResAddrLine1 = !Row.ResAddrLine1_IsNull && !(Row.ResAddrLine1 == string.Empty) ? Row.ResAddrLine1.Substring(0, Math.Min(Row.ResAddrLine1.Length, 45)) : Row.ResAddrLine1;
             ContactInfoOutputBuffer.ResAddrLine2 = !Row.ResAddrLine2_IsNull && !(Row.ResAddrLine2 == string.Empty) ? Row.ResAddrLine2.Substring(0, Math.Min(Row.ResAddrLine2.Length, 45)) : Row.ResAddrLine2;
-            ContactInfoOutputBuffer.ResAddrCity = !Row.ResAddrCity_IsNull && !(Row.ResAddrCity == string.Empty) ? Row.ResAddrCity.Substring(0, Math.Min(Row.ResAddrCity.Length, 15)) : Row.ResAddrCity;
+            ContactInfoOutputBuffer.ResAddrCity = !Row.ResAddrCity_IsNull && !(Row.ResAddrCity == string.Empty) ? Row.ResAddrCity.Substring(0, Math.Min(Row.ResAddrCity.Length, 24)) : Row.ResAddrCity;
             ContactInfoOutputBuffer.ResAddrState = !Row.ResAddrState_IsNull && !(Row.ResAddrState == string.Empty) ? Row.ResAddrState.Substring(0, Math.Min(Row.ResAddrState.Length, 2)) : Row.ResAddrState;
             ContactInfoOutputBuffer.ResAddrZipCode = !Row.ResAddrZipCode_IsNull && !(Row.ResAddrZipCode == string.Empty) ? Row.ResAddrZipCode.Substring(0, Math.Min(Row.ResAddrZipCode.Length, 5)) : Row.ResAddrZipCode;
         }
@@ -1406,20 +1406,20 @@ namespace SC_5acf08d0ff6940e5b8201fdda37eb947.Properties {
                       dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>SC_5acf08d0ff6940e5b8201fdda37eb947</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_5acf08d0ff6940e5b8201fdda37eb947</msb:DisplayName>
 		<msb:ProjectId>{7C9E035B-8030-491F-B460-F412F99C202F}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_5acf08d0ff6940e5b8201fdda37eb947.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="BufferWrapper.cs"/>
-		<msb:File Include="main.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
 		<msb:File Include="ComponentWrapper.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></arrayElement>
@@ -1556,7 +1556,7 @@ namespace SC_5acf08d0ff6940e5b8201fdda37eb947.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAJMgylsAAAAAAAAAAOAAIiALATAAACQAAAAIAAAAAAAAzkMA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFjlzVsAAAAAAAAAAOAAIiALATAAACQAAAAIAAAAAAAAzkMA
 AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHxDAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1576,7 +1576,7 @@ AAAKHwkoFAAACm8VAAAKbzEAAAYCewUAAAQDbxcAAAYtEgNvFgAABn4RAAAKKBIAAAosCANvFgAA
 BiseA28WAAAGFgNvFgAABm8TAAAKHy0oFAAACm8VAAAKbzMAAAYCewUAAAQDbxkAAAYtEgNvGAAA
 Bn4RAAAKKBIAAAosCANvGAAABiseA28YAAAGFgNvGAAABm8TAAAKHy0oFAAACm8VAAAKbzUAAAYC
 ewUAAAQDbxsAAAYtEgNvGgAABn4RAAAKKBIAAAosCANvGgAABiseA28aAAAGFgNvGgAABm8TAAAK
-Hw8oFAAACm8VAAAKbzcAAAYCewUAAAQDbx0AAAYtEgNvHAAABn4RAAAKKBIAAAosCANvHAAABisd
+HxgoFAAACm8VAAAKbzcAAAYCewUAAAQDbx0AAAYtEgNvHAAABn4RAAAKKBIAAAosCANvHAAABisd
 A28cAAAGFgNvHAAABm8TAAAKGCgUAAAKbxUAAApvOQAABgJ7BQAABANvHwAABi0SA28eAAAGfhEA
 AAooEgAACiwIA28eAAAGKx0Dbx4AAAYWA28eAAAGbxMAAAobKBQAAApvFQAACm87AAAGKh4CKEAA
 AAYqRn4RAAAKgAEAAAQUgAIAAAQqKgIDBAUoFgAACipSAnsXAAAKAnsYAAAKFpRvGQAACioiAhYo
@@ -1654,7 +1654,7 @@ GQAlAAIAGgAnAAIAGwApAAIAHAArAAIAHQAtAAIAHgAvAAIAHwAxAAIAIAAzAAIAIQA1AAEAJQA3
 AAEAJgA5AAEAJwA7AAEAKAA9AAEAKQA/AAEAKgBBAAEAKwBDAAEALABFAAEALQBHAAEALgBJAAEA
 LwBLAAEAMABNAAEAMQBPAAEAMgBRAAEAMwBTAAEANABVAAEANQBXAAEANgBZAAEANwBbAAEAOABd
 AAEAOQBfAAEAOgBhAAEAOwBjAAEAPABlAAIASwBnAAIATABpAAEATQBpAAIATgBrAASAAAABAAAA
-0hrpZAAAAAAAAEUAAAAEAAAAAAAAAAAAAACOAKgAAAAAAAwAAAAAAAAAAAAAAJcA8wkAAAAADAAA
+1RoMTQAAAAAAAEUAAAAEAAAAAAAAAAAAAACOAKgAAAAAAAwAAAAAAAAAAAAAAJcA8wkAAAAADAAA
 AAAAAAAAAAAAlwAQCgAAAAAEAAAAAAAAAAAAAACOACYHAAAAAAAAAAABAAAAnQgAAAAAAGdldF9S
 ZXNBZGRyTGluZTEAc2V0X1Jlc0FkZHJMaW5lMQBnZXRfUmVzQWRkckxpbmUyAHNldF9SZXNBZGRy
 TGluZTIAU0NfNWFjZjA4ZDBmZjY5NDBlNWI4MjAxZmRkYTM3ZWI5NDcAPE1vZHVsZT4AZ2V0X0hI
@@ -1709,8 +1709,8 @@ bwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAg
 AHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4A
 AA9JAG4AcAB1AHQAIAAwAAAjQwBvAG4AdABhAGMAdABJAG4AZgBvAE8AdQB0AHAAdQB0AABxUwBD
 AF8ANQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcA
-ZQBiADkANAA3AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABdxMnD
-fuoGSrZXV1mLzEMZAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFhBQACAg4OAgYOAyAACAUAAggI
+ZQBiADkANAA3AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABzCXps
+LqjzQLC5YGqXsS3VAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFhBQACAg4OAgYOAyAACAUAAggI
 CAUgAg4ICAkgAwESQR0IEkUDBhJBAwYdCAQgAQ4IBCABAggFIAERSQgDIAACBSACAQgcBiACAg4R
 eQUgAR0ICAMHAQgGAAIIEkUOBwABEn0RgIEFIAASgIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDM
 kQMGEhgDBhIcAwYSEAIGCAMGEk0DBhJZAwYSXQMGEiQDAAAOBAABAQ4FIAEBEgwDAAABAyAADgQg
@@ -1727,14 +1727,14 @@ AAAAsEMAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAA
 ABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABYYAAA
 GgQAAAAAAAAAAAAAGgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E7/4A
-AAEAAAABAOlk0hoAAAEA6WTSGj8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
+AAEAAAABAAxN1RoAAAEADE3VGj8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
 cgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAAAACw
 BHoDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAFYDAAABADAAMAAwADAAMAA0AGIA
 MAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5AE4AYQBt
 AGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBDAF8A
 NQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBi
-ADkANAA3AAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAOAA2ADYA
-LgAyADUAOAAzADMAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8ANQBh
+ADkANAA3AAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAOAA2ADkA
+LgAxADkANwAyADQAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8ANQBh
 AGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBiADkA
 NAA3AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
 AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADgAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0A
@@ -1743,8 +1743,8 @@ AEMAXwA1AGEAYwBmADAAOABkADAAZgBmADYAOQA0ADAAZQA1AGIAOAAyADAAMQBmAGQAZABhADMA
 NwBlAGIAOQA0ADcALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBD
 AF8ANQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcA
 ZQBiADkANAA3AAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2
-ADgANgA2AC4AMgA1ADgAMwAzAAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkA
-bwBuAAAAMQAuADAALgA2ADgANgA2AC4AMgA1ADgAMwAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ADgANgA5AC4AMQA5ADcAMgA0AAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkA
+bwBuAAAAMQAuADAALgA2ADgANgA5AC4AMQA5ADcAMgA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1959,7 +1959,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]"
                       codePage="1252"
                       dataType="str"
-                      length="20"
+                      length="24"
                       lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]"
                       name="ResAddrCity" />
                     <outputColumn
@@ -2104,7 +2104,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[ResAddrCity]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="20"
+                      cachedLength="24"
                       cachedName="ResAddrCity"
                       externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
                       lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]" />
@@ -2301,7 +2301,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="162,42"
           Id="Package\Extract CRM Data"
@@ -2315,7 +2315,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           TopLeft="700,125">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,67"
               Start="0,0"
               End="0,59.5">
