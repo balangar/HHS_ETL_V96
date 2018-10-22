@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-CRM"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{04E36375-7B40-4C68-8D41-29777303E8C6}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{A2BC122E-0325-4B47-B23A-8E8533A1361F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,293 +32,6 @@
         <pipeline
           version="1">
           <components>
-            <component
-              refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
-              name="HHS_Staging CRM Persons"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"CRM"."Persons"</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Connections[IDbConnection]"
-                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input]"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="ADO NET Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[LastName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="15"
-                      cachedName="LastName"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[FirstName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="15"
-                      cachedName="FirstName"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[FirstName]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[MI]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="MI"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[MI]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[BirthDate]"
-                      cachedDataType="dbDate"
-                      cachedName="BirthDate"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[BirthDate]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[SocSecNo]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="9"
-                      cachedName="SocSecNo"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[SocSecNo]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[ResAddrLine1]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="45"
-                      cachedName="ResAddrLine1"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrLine1]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[ResAddrLine2]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="45"
-                      cachedName="ResAddrLine2"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrLine2]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[ResAddrCity]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="24"
-                      cachedName="ResAddrCity"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrCity]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[ResAddrState]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="2"
-                      cachedName="ResAddrState"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrState]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[ResAddrZipCode]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="5"
-                      cachedName="ResAddrZipCode"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrZipCode]" />
-                    <inputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].Columns[HHSID]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="64"
-                      cachedName="HHSID"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[HHSID]"
-                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[HHSID]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
-                      dataType="i4"
-                      name="ID" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
-                      dataType="dbTimeStamp"
-                      name="SysInsertDate" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[Signature]"
-                      dataType="bytes"
-                      length="8000"
-                      name="Signature" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[HHSID]"
-                      dataType="wstr"
-                      length="64"
-                      name="HHSID" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
-                      dataType="wstr"
-                      length="15"
-                      name="LastName" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
-                      dataType="wstr"
-                      length="15"
-                      name="FirstName" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
-                      dataType="wstr"
-                      length="1"
-                      name="MI" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
-                      dataType="dbTimeStamp"
-                      name="BirthDate" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
-                      dataType="wstr"
-                      length="9"
-                      name="SocSecNo" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
-                      dataType="wstr"
-                      length="45"
-                      name="ResAddrLine1" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
-                      dataType="wstr"
-                      length="45"
-                      name="ResAddrLine2" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine3]"
-                      dataType="wstr"
-                      length="45"
-                      name="ResAddrLine3" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
-                      dataType="wstr"
-                      length="15"
-                      name="ResAddrCity" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
-                      dataType="wstr"
-                      length="2"
-                      name="ResAddrState" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
-                      dataType="wstr"
-                      length="5"
-                      name="ResAddrZipCode" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
-                      dataType="wstr"
-                      length="7"
-                      name="ProgramName" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
-                      dataType="wstr"
-                      length="7"
-                      name="ServiceType" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
-                      dataType="wstr"
-                      length="255"
-                      name="ServiceDescription" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[DataSource]"
-                      dataType="wstr"
-                      length="15"
-                      name="DataSource" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[InCounty]"
-                      dataType="bool"
-                      name="InCounty" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[InState]"
-                      dataType="bool"
-                      name="InState" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
-                      dataType="bool"
-                      name="IsValid" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsCleansed]"
-                      dataType="bool"
-                      name="IsCleansed" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsDuplicate]"
-                      dataType="bool"
-                      name="IsDuplicate" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[IsLoaded]"
-                      dataType="bool"
-                      name="IsLoaded" />
-                    <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input].ExternalColumns[Comments]"
-                      dataType="wstr"
-                      length="255"
-                      name="Comments" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Outputs[ADO NET Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="ADO NET Destination Error Output"
-                  synchronousInputId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
             <component
               refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID"
               componentClassID="Microsoft.ManagedComponentHost"
@@ -351,6 +64,9 @@
       ,[ServiceDescription]
       ,[DataSource]
       ,[AddressType]
+      ,IsValid = 1
+     ,Comments = '                                                                                                                                  '
+
 FROM 
 	[HHS_Staging].[tmp].[CRM]
 Order by
@@ -563,6 +279,25 @@ Order by
                       lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AddressType]"
                       name="AddressType"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="130"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -650,6 +385,15 @@ Order by
                       dataType="wstr"
                       length="7"
                       name="AddressType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="130"
+                      name="Comments" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -758,6 +502,17 @@ Order by
                       length="7"
                       lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[AddressType]"
                       name="AddressType" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="130"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
                     <outputColumn
                       refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -1416,6 +1171,51 @@ public class Input0Buffer: ScriptBuffer
         }
     }
 
+    public Int32 IsValid
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[17]);
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        get
+        {
+            return IsNull(17);
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[18]);
+        }
+        set
+        {
+            this[18] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(18);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(18);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
     new public bool NextRow()
     {
         return base.NextRow();
@@ -1678,6 +1478,28 @@ public class CRMPersonsOutputBuffer: ScriptBuffer
         }
     }
 
+    public String Comments
+    {
+        set
+        {
+            this[11] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(11);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
     new public void AddRow()
     {
         base.AddRow();
@@ -1828,20 +1650,20 @@ namespace SC_5b0b2f41c0a84d669bbcc8446881f651.Properties {
                       dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>SC_5b0b2f41c0a84d669bbcc8446881f651</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_5b0b2f41c0a84d669bbcc8446881f651</msb:DisplayName>
 		<msb:ProjectId>{7BA774F8-2C55-4781-A1CB-79859C289787}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_5b0b2f41c0a84d669bbcc8446881f651.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="BufferWrapper.cs"/>
-		<msb:File Include="main.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
 		<msb:File Include="ComponentWrapper.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></arrayElement>
@@ -1978,29 +1800,29 @@ namespace SC_5b0b2f41c0a84d669bbcc8446881f651.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDABv8zVsAAAAAAAAAAOAAIiALATAAACYAAAAIAAAAAAAA7kUA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAJgFzlsAAAAAAAAAAOAAIiALATAAACgAAAAIAAAAAAAAxkcA
 AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAJxFAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHRHAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA9CUAAAAgAAAAJgAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAYAAAAAYAAAAoAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAIAAAAACAAAALgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADQ
-RQAAAAAAAEgAAAACAAUAtCgAADAcAAABAAAAAAAAAOREAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAzCcAAAAgAAAAKAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAYAAAAAYAAAAqAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAMAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACo
+RwAAAAAAAEgAAAACAAUAOCkAAIQdAAABAAAAAAAAALxGAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAABp+AQAABCoeAoABAAAEKhp+AgAABCoeAoACAAAEKgAAEzAF
-AJQCAAAAAAAAAwJvKwAABm9EAAAGAwJvDgAABi0SAm8NAAAGfhAAAAooEQAACiwIAm8NAAAGKx4C
-bw0AAAYWAm8NAAAGbxIAAAofDygTAAAKbxQAAApvMAAABgMCbxAAAAYtEgJvDwAABn4QAAAKKBEA
-AAosCAJvDwAABiseAm8PAAAGFgJvDwAABm8SAAAKHw8oEwAACm8UAAAKbzIAAAYDAm8SAAAGLRIC
-bxEAAAZ+EAAACigRAAAKLAgCbxEAAAYrHQJvEQAABhYCbxEAAAZvEgAAChcoEwAACm8UAAAKbzQA
-AAYCbxQAAAYtDAMCbxMAAAZvNgAABgMCbxYAAAYtEgJvFQAABn4QAAAKKBEAAAosCAJvFQAABise
-Am8VAAAGFgJvFQAABm8SAAAKHwkoEwAACm8UAAAKbzgAAAYDAm8YAAAGLRICbxcAAAZ+EAAACigR
-AAAKLAgCbxcAAAYrHgJvFwAABhYCbxcAAAZvEgAACh8tKBMAAApvFAAACm86AAAGAwJvGgAABi0S
+AJQCAAAAAAAAAwJvKwAABm9KAAAGAwJvDgAABi0SAm8NAAAGfhAAAAooEQAACiwIAm8NAAAGKx4C
+bw0AAAYWAm8NAAAGbxIAAAofDygTAAAKbxQAAApvNgAABgMCbxAAAAYtEgJvDwAABn4QAAAKKBEA
+AAosCAJvDwAABiseAm8PAAAGFgJvDwAABm8SAAAKHw8oEwAACm8UAAAKbzgAAAYDAm8SAAAGLRIC
+bxEAAAZ+EAAACigRAAAKLAgCbxEAAAYrHQJvEQAABhYCbxEAAAZvEgAAChcoEwAACm8UAAAKbzoA
+AAYCbxQAAAYtDAMCbxMAAAZvPAAABgMCbxYAAAYtEgJvFQAABn4QAAAKKBEAAAosCAJvFQAABise
+Am8VAAAGFgJvFQAABm8SAAAKHwkoEwAACm8UAAAKbz4AAAYDAm8YAAAGLRICbxcAAAZ+EAAACigR
+AAAKLAgCbxcAAAYrHgJvFwAABhYCbxcAAAZvEgAACh8tKBMAAApvFAAACm9AAAAGAwJvGgAABi0S
 Am8ZAAAGfhAAAAooEQAACiwIAm8ZAAAGKx4CbxkAAAYWAm8ZAAAGbxIAAAofLSgTAAAKbxQAAApv
-PAAABgMCbxwAAAYtEgJvGwAABn4QAAAKKBEAAAosCAJvGwAABiseAm8bAAAGFgJvGwAABm8SAAAK
-HxgoEwAACm8UAAAKbz4AAAYDAm8eAAAGLRICbx0AAAZ+EAAACigRAAAKLAgCbx0AAAYrHQJvHQAA
-BhYCbx0AAAZvEgAAChgoEwAACm8UAAAKb0AAAAYDAm8gAAAGLRICbx8AAAZ+EAAACigRAAAKLAgC
-bx8AAAYrHQJvHwAABhYCbx8AAAZvEgAAChsoEwAACm8UAAAKb0IAAAYqEzACAFwAAAAAAAAAA28L
+QgAABgMCbxwAAAYtEgJvGwAABn4QAAAKKBEAAAosCAJvGwAABiseAm8bAAAGFgJvGwAABm8SAAAK
+HxgoEwAACm8UAAAKb0QAAAYDAm8eAAAGLRICbx0AAAZ+EAAACigRAAAKLAgCbx0AAAYrHQJvHQAA
+BhYCbx0AAAZvEgAAChgoEwAACm8UAAAKb0YAAAYDAm8gAAAGLRICbx8AAAZ+EAAACigRAAAKLAgC
+bx8AAAYrHQJvHwAABhYCbx8AAAZvEgAAChsoEwAACm8UAAAKb0gAAAYqEzACAFwAAAAAAAAAA28L
 AAAGbxUAAAooBAAABigBAAAGbxUAAApvFgAACigDAAAGbxUAAApvFgAACigXAAAKLCYoAwAABm8W
-AAAKKAIAAAYCewUAAARvRgAABgMCewUAAAQoBQAABioGKh4CKEkAAAYqRn4QAAAKgAEAAAQUgAIA
+AAAKKAIAAAYCewUAAARvTgAABgMCewUAAAQoBQAABioGKh4CKFEAAAYqRn4QAAAKgAEAAAQUgAIA
 AAQqKgIDBAUoGAAACipSAnsZAAAKAnsaAAAKFpRvGwAACioiAhYoHAAACipSAnsZAAAKAnsaAAAK
 F5RvGwAACioiAhcoHAAACipSAnsZAAAKAnsaAAAKGJRvGwAACioiAhgoHAAACipSAnsZAAAKAnsa
 AAAKGZRvGwAACioiAhkoHAAACipSAnsZAAAKAnsaAAAKGpRvHQAACioiAhooHAAACipSAnsZAAAK
@@ -2010,179 +1832,188 @@ AnsZAAAKAnsaAAAKHwmUbxsAAAoqJgIfCSgcAAAKKlYCexkAAAoCexoAAAofCpRvGwAACiomAh8K
 KBwAAAoqVgJ7GQAACgJ7GgAACh8LlG8bAAAKKiYCHwsoHAAACipWAnsZAAAKAnsaAAAKHwyUbxsA
 AAoqJgIfDCgcAAAKKlYCexkAAAoCexoAAAofDZRvGwAACiomAh8NKBwAAAoqVgJ7GQAACgJ7GgAA
 Ch8OlG8bAAAKKiYCHw4oHAAACipWAnsZAAAKAnsaAAAKHw+UbxsAAAoqJgIfDygcAAAKKlYCexkA
-AAoCexoAAAofEJRvGwAACiomAh8QKBwAAAoqHgIoHgAACioeAigfAAAKKiYCFgMoIAAACipaAywI
-AhYoIQAACipyAQAAcHMiAAAKeiYCFwMoIAAACipaAywIAhcoIQAACipyAQAAcHMiAAAKeiYCGAMo
-IAAACipaAywIAhgoIQAACipyAQAAcHMiAAAKejoCGQOMEgAAASggAAAKKloDLAgCGSghAAAKKnIB
-AABwcyIAAAp6JgIaAyggAAAKKloDLAgCGighAAAKKnIBAABwcyIAAAp6JgIbAyggAAAKKloDLAgC
-GyghAAAKKnIBAABwcyIAAAp6JgIcAyggAAAKKloDLAgCHCghAAAKKnIBAABwcyIAAAp6JgIdAygg
-AAAKKloDLAgCHSghAAAKKnIBAABwcyIAAAp6JgIeAyggAAAKKloDLAgCHighAAAKKnIBAABwcyIA
-AAp6KgIfCQMoIAAACipeAywJAh8JKCEAAAoqcgEAAHBzIgAACnoqAh8KAyggAAAKKl4DLAkCHwoo
-IQAACipyAQAAcHMiAAAKeh4CKCMAAAoqHgIoJAAACip+AiglAAAKAgJzUQAABn0DAAAEAgJzUgAA
-Bn0EAAAEKgAAABMwBABPAAAAAAAAAARyngAAcBpvJgAACiwVAgUCAygnAAAKDgRzCgAABm9PAAAG
-BW8oAAAKLCMCAnsGAAAEF1h9BgAABAJ7BgAABBczDAJvSwAABgIoTAAABipuAnsFAAAELBICewUA
-AARvRwAABgIUfQUAAAQqABMwBQA9AAAAAQAAERYKKy4EBpQOBHKuAABwKCkAAAozGQIFBpoCBAaU
-KCcAAAoOBHMvAAAGfQUAAAQGF1gKBgMyzgJvTgAABipKKwcCA29QAAAGA28tAAAGLfEqOgIoKgAA
-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
-GAvUACsAOCgAAAAAhhjxCAQBLABHKAAAAACGGPEIBAEtAFYoAAAAAIMY8QgGAC4AXigAAAAAkwjV
-CAoBLgCKKAAAAACTCIICDwEuAJEoAAAAAJMIjgIUAS4AmSgAAAAAlghoChoBLwCgKAAAAACGGPEI
-BgAvAKgoAAAAAJEY9wjaAC8AAAABALsEAAABALsEAAABAAALAAACAAULAAABADMLAAABAM4IAAAC
-ANcJAAADAIsIAAABAM4IAAACANcJAAADAIsIAAABALsEAAABALsEAAABALsEAAABALsEAAABALsE
-AAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAAB
-ALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABALsEAAABAIYAAAACAC4C
-AAADAM4IAAAEAIsIAAABACYKAAACAP4IAAADABgKAAAEAIsIAAABAM4IAAABADMLAAABAJgKAAAB
-AJgKAAABALsECQDxCAEAEQDxCAYAGQDxCAoAKQDxCBAAMQDxCBAAOQDxCBAAQQDxCBAASQDxCBAA
-UQDxCBAAWQDxCBAAYQDxCBAAaQDxCAYAcQDxCAYAqQDxCAYAyQDxCBUA2QB+CxsA2QBkCx4A2QD0
-BCQA4QDKBygA2QDlBC4A2QDpCDQA2QC5BzQA2QBwCx4AeQDxCDgAeQDOCEIAeQDXCUYAgQDbBEoA
-eQCaB08AgQDeAlQAeQAvC1oAeQBcCloAeQCpB14AeQChBwEA6QDxCBAAeQAKCwYAeQBZCgYAmQDx
-CAYA2QAFCmQAmQDrCWsAgQBJCloAmQCOAHUAoQDxCAYA+QBwAXwA+QA3C4QAsQDxCIoA0QDxCAYA
-IABrAP4BIQBrAP4BLgALAD8BLgATAEgBLgAbAGcBLgAjAHABLgArAJkBLgAzAJkBLgA7AJkBLgBD
-AHABLgBLAJ8BLgBTAJkBLgBbALYBQABrAP4BQQBrAP4BQwBjAP4BYABrAP4BgABrAP4BAwFzAP4B
-YQFrAP4BaQd7AGcBiQd7AGcBcQACAAEAAwADAAQAJQAIADsACQA9AAAA6AEfAQAAvQEfAQAA7AEj
-AQAAQAYnAQAACQIjAQAAawYnAQAAJAIjAQAAlAYnAQAApQAjAQAA0QUnAQAA1AIrAQAA7AYnAQAA
-aAgjAQAAYwcnAQAAOgAjAQAAWQUnAQAAXAAjAQAAiQUnAQAAWAsjAQAAjgcnAQAAEAMjAQAAGQcn
-AQAATwEjAQAADwYnAQAAhgEjAQAAKQYnAQAAZgIjAQAAqQYnAQAAMwgjAQAAMQcnAQAALQEjAQAA
-3wUnAQAAdgIjAQAAwAYnAQAAgAAjAQAAsgUnAQAACQIjAQAAawYnAQAAJAIjAQAAlAYnAQAApQAj
-AQAA0QUnAQAA1AIrAQAA7AYnAQAAaAgjAQAAYwcnAQAAOgAjAQAAWQUnAQAAXAAjAQAAiQUnAQAA
-WAsjAQAAjgcnAQAAEAMjAQAAGQcnAQAATwEjAQAADwYnAQAAgAAjAQAAsgUnAQAA2QgwAQAAogI1
-AQAAbAo6AQIAAQADAAEAAgADAAIAAwAFAAEABAAFAAIACwAHAAIADAAJAAIADQALAAIADgANAAIA
-DwAPAAIAEAARAAIAEQATAAIAEgAVAAIAEwAXAAIAFAAZAAIAFQAbAAIAFgAdAAIAFwAfAAIAGAAh
-AAIAGQAjAAIAGgAlAAIAGwAnAAIAHAApAAIAHQArAAIAHgAtAAIAHwAvAAIAIAAxAAIAIQAzAAIA
-IgA1AAIAIwA3AAIAJAA5AAIAJQA7AAIAJgA9AAIAJwA/AAIAKABBAAIAKQBDAAIAKgBFAAIAKwBH
-AAIALABJAAEAMABLAAEAMQBNAAEAMgBPAAEAMwBRAAEANABTAAEANQBVAAEANgBXAAEANwBZAAEA
-OABbAAEAOQBdAAEAOgBfAAEAOwBhAAEAPABjAAEAPQBlAAEAPgBnAAEAPwBpAAEAQABrAAEAQQBt
-AAEAQgBvAAEAQwBxAAEARABzAAEARQB1AAIAVAB3AAIAVQB5AAEAVgB5AAIAVwB7AASAAAABAAAA
-1RptWAAAAAAAAAEAAAAEAAAAAAAAAAAAAACSAKgAAAAAAAwAAAAAAAAAAAAAAJsAogoAAAAADAAA
-AAAAAAAAAAAAmwC/CgAAAAAEAAAAAAAAAAAAAACSALIHAAAAAAAAAAABAAAATAkAAAAAAAAAU0Nf
-NWIwYjJmNDFjMGE4NGQ2NjliYmNjODQ0Njg4MWY2NTEAZ2V0X1Jlc0FkZHJMaW5lMQBzZXRfUmVz
-QWRkckxpbmUxAGdldF9SZXNBZGRyTGluZTIAc2V0X1Jlc0FkZHJMaW5lMgA8TW9kdWxlPgBnZXRf
-SEhTSUQAc2V0X0hIU0lEAElucHV0SUQAR2V0T3V0cHV0SUQAZ2V0X01JAHNldF9NSQBtc2Nvcmxp
-YgBJbnB1dHNGaW5pc2hlZABNYXJrT3V0cHV0c0ZpbmlzaGVkADxDdXJyZW50QWNjb3VudE5hbWU+
-a19fQmFja2luZ0ZpZWxkADxMYXN0QWNjb3VudE5hbWU+a19fQmFja2luZ0ZpZWxkAGRlZmF1bHRJ
-bnN0YW5jZQBnZXRfRGF0YVNvdXJjZQBnZXRfUmVzQWRkclppcENvZGUAc2V0X1Jlc0FkZHJaaXBD
-b2RlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAGdldF9Qcm9ncmFtTmFtZQBn
-ZXRfQWNjb3VudE5hbWUAZ2V0X0N1cnJlbnRBY2NvdW50TmFtZQBzZXRfQ3VycmVudEFjY291bnRO
-YW1lAGdldF9MYXN0QWNjb3VudE5hbWUAc2V0X0xhc3RBY2NvdW50TmFtZQBnZXRfTGFzdE5hbWUA
-c2V0X0xhc3ROYW1lAGdldF9GaXJzdE5hbWUAc2V0X0ZpcnN0TmFtZQBJbnB1dE5hbWUARGF0ZVRp
-bWUATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUGlwZWxpbmUAZ2V0X1NlcnZpY2VUeXBlAGdldF9B
-ZGRyZXNzVHlwZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQByZXNvdXJjZUN1bHR1cmUAQXBwbGlj
-YXRpb25TZXR0aW5nc0Jhc2UAZ2V0X0JpcnRoRGF0ZQBzZXRfQmlydGhEYXRlAEdldERhdGUARWRp
-dG9yQnJvd3NhYmxlU3RhdGUAZ2V0X1Jlc0FkZHJTdGF0ZQBzZXRfUmVzQWRkclN0YXRlAENvbXBp
-bGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdn
-YWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJp
-YnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUA
-QXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1
-dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1
-dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9p
-bnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5
-QXR0cmlidXRlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAR2V0U3RyaW5nAFN1YnN0
-cmluZwBNYXRoAGdldF9MZW5ndGgAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNDXzViMGIyZjQxYzBh
-ODRkNjY5YmJjYzg0NDY4ODFmNjUxLmRsbABnZXRfUmVzQWRkckxpbmUxX0lzTnVsbABzZXRfUmVz
-QWRkckxpbmUxX0lzTnVsbABnZXRfUmVzQWRkckxpbmUyX0lzTnVsbABzZXRfUmVzQWRkckxpbmUy
-X0lzTnVsbABnZXRfSEhTSURfSXNOdWxsAHNldF9ISFNJRF9Jc051bGwAZ2V0X01JX0lzTnVsbABz
-ZXRfTUlfSXNOdWxsAGdldF9EYXRhU291cmNlX0lzTnVsbABnZXRfUmVzQWRkclppcENvZGVfSXNO
-dWxsAHNldF9SZXNBZGRyWmlwQ29kZV9Jc051bGwAZ2V0X1Byb2dyYW1OYW1lX0lzTnVsbABnZXRf
-QWNjb3VudE5hbWVfSXNOdWxsAGdldF9MYXN0TmFtZV9Jc051bGwAc2V0X0xhc3ROYW1lX0lzTnVs
-bABnZXRfRmlyc3ROYW1lX0lzTnVsbABzZXRfRmlyc3ROYW1lX0lzTnVsbABnZXRfU2VydmljZVR5
-cGVfSXNOdWxsAGdldF9BZGRyZXNzVHlwZV9Jc051bGwAZ2V0X0JpcnRoRGF0ZV9Jc051bGwAc2V0
-X0JpcnRoRGF0ZV9Jc051bGwAZ2V0X1Jlc0FkZHJTdGF0ZV9Jc051bGwAc2V0X1Jlc0FkZHJTdGF0
-ZV9Jc051bGwAZ2V0X1NlcnZpY2VEZXNjcmlwdGlvbl9Jc051bGwAZ2V0X1NvY1NlY05vX0lzTnVs
-bABzZXRfU29jU2VjTm9fSXNOdWxsAGdldF9SZXNBZGRyQ2l0eV9Jc051bGwAc2V0X1Jlc0FkZHJD
-aXR5X0lzTnVsbABTZXROdWxsAHNldF9JdGVtAFN5c3RlbQBUcmltAHJlc291cmNlTWFuAE1pbgBT
-Y3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3Rl
-bS5SZWZsZWN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24AZ2V0X1NlcnZpY2VEZXNjcmlw
-dGlvbgBTdHJpbmdDb21wYXJpc29uAGdldF9Tb2NTZWNObwBzZXRfU29jU2VjTm8AQ3VsdHVyZUlu
-Zm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAASW5wdXQwQnVmZmVyAFBpcGVsaW5lQnVmZmVyAFNj
-cmlwdEJ1ZmZlcgBDUk1QZXJzb25zT3V0cHV0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIAVG9V
-cHBlcgAuY3RvcgAuY2N0b3IAT3V0cHV0SURzAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVu
-dGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU0NfNWIwYjJmNDFjMGE4NGQ2
-NjliYmNjODQ0Njg4MWY2NTEuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2lu
-Z01vZGVzAFNDXzViMGIyZjQxYzBhODRkNjY5YmJjYzg0NDY4ODFmNjUxLlByb3BlcnRpZXMAVmFy
-aWFibGVzAEJ1ZmZlckNvbHVtbkluZGV4ZXMAR2V0Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBFcXVh
-bHMAQ29ubmVjdGlvbnMAQnVmZmVycwBGaW5pc2hPdXRwdXRzAENyZWF0ZU5ld091dHB1dFJvd3MA
-T2JqZWN0AGdldF9FbmRPZlJvd3NldABTZXRFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29t
-cG9uZW50AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZl
-ci5UeFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vz
-c0lucHV0AFByaW1lT3V0cHV0AElSb3cAT1JvdwBBZGRSb3cAT3V0Um93AElucHV0MF9Qcm9jZXNz
-SW5wdXRSb3cATmV4dFJvdwBnZXRfQXNzZW1ibHkAZ2V0X1Jlc0FkZHJDaXR5AHNldF9SZXNBZGRy
-Q2l0eQBvcF9FcXVhbGl0eQBvcF9JbmVxdWFsaXR5AEVtcHR5AACAm0kAcwBOAHUAbABsACAAcABy
-AG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUAdAAgAHQAbwAgAEYAYQBsAHMA
-ZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAAdABoAGUAIABjAG8AbAB1
-AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBwAHUAdAAgADAAACFDAFIATQBQAGUAcgBzAG8A
-bgBzAE8AdQB0AHAAdQB0AABxUwBDAF8ANQBiADAAYgAyAGYANAAxAGMAMABhADgANABkADYANgA5
-AGIAYgBjAGMAOAA0ADQANgA4ADgAMQBmADYANQAxAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIA
-ZQBzAG8AdQByAGMAZQBzAAAAAHyWxU1OeO1IuwjGCewVLJAABCABAQgDIAABBSABARERBCABAQ4F
-IAEBEWECBg4FAAICDg4DIAAIBQACCAgIBSACDggIAyAADgkgAwESQR0IEkUDBhJBAwYdCAQgAQ4I
-BCABAggFIAERSQgDIAACBSACAQgcBiACAg4ReQUgAR0ICAMHAQgGAAIIEkUOBwABEn0RgIEFIAAS
-gIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDMkQMGEhgDBhIcAwYSEAIGCAMGEk0DBhJZAwYSXQMG
-EiQDAAAOBAABAQ4HAAIBEgwSEAUgAQESDAMAAAEEIAARSQQgAQECBSABARFJCSAEAQgOEkESRQsg
-BAEIHQgdEkESRQUgAQESTQQAABJZBAAAEl0FAAEBEl0EAAASJAMIAA4DKAAOAygAAgQoABFJBAgA
-ElkECAASXQQIABIkCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIA
-AAAAACgBACNTQ181YjBiMmY0MWMwYTg0ZDY2OWJiY2M4NDQ2ODgxZjY1MQAABQEAAAAAFgEAEUNv
-cHlyaWdodCBAICAyMDE4AABHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1l
-d29ya0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQEAQAAAAC0AAAAzsrvvgEAAACRAAAAbFN5
-c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAs
-IEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0u
-UmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAxEUAAAAA
-AAAAAAAA3kUAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAANBFAAAAAAAAAAAAAAAAX0NvckRsbE1h
-aW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAA
-GAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhgAAAa
-BAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv/gAA
-AQAAAAEAbVjVGgAAAQBtWNUaPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYAYQBy
-AEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAAALAE
-egMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAAMAAwADQAYgAw
-AAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBhAG0A
-ZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMAXwA1
-AGIAMABiADIAZgA0ADEAYwAwAGEAOAA0AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAxAGYA
-NgA1ADEAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgA4ADYAOQAu
-ADIAMgA2ADMANwAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwA1AGIA
-MABiADIAZgA0ADEAYwAwAGEAOAA0AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAxAGYANgA1
-ADEALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkA
-cgBpAGcAaAB0ACAAQAAgACAAMgAwADEAOAAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUAbQBh
-AHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMA
-QwBfADUAYgAwAGIAMgBmADQAMQBjADAAYQA4ADQAZAA2ADYAOQBiAGIAYwBjADgANAA0ADYAOAA4
-ADEAZgA2ADUAMQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAEMA
-XwA1AGIAMABiADIAZgA0ADEAYwAwAGEAOAA0AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAx
-AGYANgA1ADEAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYA
-OAA2ADkALgAyADIANgAzADcAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBv
-AG4AAAAxAC4AMAAuADYAOAA2ADkALgAyADIANgAzADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAoCexoAAAofEJRvGwAACiomAh8QKBwAAAoqVgJ7GQAACgJ7GgAACh8RlG8eAAAKKiYCHxEoHAAA
+CipWAnsZAAAKAnsaAAAKHxKUbxsAAAoqKgIfEgMoHwAACiomAh8SKBwAAAoqXgMsCQIfEiggAAAK
+KnIBAABwcyEAAAp6HgIoIgAACioeAigjAAAKKiYCFgMoHwAACipaAywIAhYoIAAACipyAQAAcHMh
+AAAKeiYCFwMoHwAACipaAywIAhcoIAAACipyAQAAcHMhAAAKeiYCGAMoHwAACipaAywIAhgoIAAA
+CipyAQAAcHMhAAAKejoCGQOMEgAAASgfAAAKKloDLAgCGSggAAAKKnIBAABwcyEAAAp6JgIaAygf
+AAAKKloDLAgCGiggAAAKKnIBAABwcyEAAAp6JgIbAygfAAAKKloDLAgCGyggAAAKKnIBAABwcyEA
+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
+AQDQBAAAAQDQBAAAAQDQBAAAAQDQBAAAAQDQBAAAAQCPAAAAAgBDAgAAAwAeCQAABADbCAAAAQCQ
+CgAAAgBOCQAAAwBoCgAABADbCAAAAQAeCQAAAQCdCwAAAQACCwAAAQACCwAAAQDQBAkAQQkBABEA
+QQkGABkAQQkKACkAQQkQADEAQQkQADkAQQkQAEEAQQkQAEkAQQkQAFEAQQkQAFkAQQkQAGEAQQkQ
+AGkAQQkGAHEAQQkGAKkAQQkGAMkAQQkVANkA6AsbANkAzgseANkACQUkAOEAGggoANkA+gQuANkA
+OQk0ANkACQg0ANkA2gseAHkAQQk4AHkAHglCAHkAJwpGAIEA8ARKAHkA6gdPAIEA8wJUAIEARwBa
+AHkA+QdfAHkA8QcBAOkAQQkQAHkAmQtlAHkAxgplAHkAdAsGAHkAwwoGAJkAQQkGANkAVQppAJkA
+OwpwAIEAswplAJkAlwB6AKEAQQkGAPkAhQGBAPkAoQuJALEAQQmPANEAQQkGACAAawAHAiEAawAH
+Ai4ACwBIAS4AEwBRAS4AGwBwAS4AIwB5AS4AKwCiAS4AMwCiAS4AOwCiAS4AQwB5AS4ASwCoAS4A
+UwCiAS4AWwC/AUAAawAHAkEAawAHAkMAYwAHAmAAawAHAoAAawAHAgMBcwAHAmEBawAHAikIewBw
+AUkIewBwAXYAAgABAAMAAwAEACkACABBAAkAQwAAAP0BJAEAANIBJAEAAAECKAEAAGgGLAEAAB4C
+KAEAAJMGLAEAADkCKAEAALwGLAEAAK4AKAEAAOYFLAEAAOkCMAEAABQHLAEAALgIKAEAAIsHLAEA
+ADoAKAEAAG4FLAEAAGUAKAEAAJ4FLAEAAMILKAEAAN4HLAEAACUDKAEAAEEHLAEAAGQBKAEAADcG
+LAEAAJsBKAEAAFEGLAEAAHsCKAEAANEGLAEAAIMIKAEAAFkHLAEAAEIBKAEAAAcGLAEAAIsCKAEA
+AOgGLAEAAIkAKAEAAMcFLAEAAOEANQEAAPQFLAEAAIEKKAEAALMHLAEAAB4CKAEAAJMGLAEAADkC
+KAEAALwGLAEAAK4AKAEAAOYFLAEAAOkCMAEAABQHLAEAALgIKAEAAIsHLAEAADoAKAEAAG4FLAEA
+AGUAKAEAAJ4FLAEAAMILKAEAAN4HLAEAACUDKAEAAEEHLAEAAGQBKAEAADcGLAEAAIkAKAEAAMcF
+LAEAAIEKKAEAALMHLAEAACkJOQEAALcCPgEAANYKQwECAAEAAwABAAIAAwACAAMABQABAAQABQAC
+AAsABwACAAwACQACAA0ACwACAA4ADQACAA8ADwACABAAEQACABEAEwACABIAFQACABMAFwACABQA
+GQACABUAGwACABYAHQACABcAHwACABgAIQACABkAIwACABoAJQACABsAJwACABwAKQACAB0AKwAC
+AB4ALQACAB8ALwACACAAMQACACEAMwACACIANQACACMANwACACQAOQACACUAOwACACYAPQACACcA
+PwACACgAQQACACkAQwACACoARQACACsARwACACwASQACAC0ASwACAC4ATQACAC8ATwABADAATwAC
+ADEAUQABADIAUQABADYAUwABADcAVQABADgAVwABADkAWQABADoAWwABADsAXQABADwAXwABAD0A
+YQABAD4AYwABAD8AZQABAEAAZwABAEEAaQABAEIAawABAEMAbQABAEQAbwABAEUAcQABAEYAcwAB
+AEcAdQABAEgAdwABAEkAeQABAEoAewABAEsAfQABAEwAfwABAE0AgQACAFwAgwACAF0AhQABAF4A
+hQACAF8AhwAEgAAAAQAAANUaLF0AAAAAAAABAAAABAAAAAAAAAAAAAAAlwCxAAAAAAAMAAAAAAAA
+AAAAAACgAAwLAAAAAAwAAAAAAAAAAAAAAKAAKQsAAAAABAAAAAAAAAAAAAAAlwACCAAAAAAAAAAA
+AQAAAJwJAAAAAABTQ181YjBiMmY0MWMwYTg0ZDY2OWJiY2M4NDQ2ODgxZjY1MQBnZXRfUmVzQWRk
+ckxpbmUxAHNldF9SZXNBZGRyTGluZTEAR2V0SW50MzIAZ2V0X1Jlc0FkZHJMaW5lMgBzZXRfUmVz
+QWRkckxpbmUyADxNb2R1bGU+AGdldF9ISFNJRABzZXRfSEhTSUQASW5wdXRJRABHZXRPdXRwdXRJ
+RABnZXRfTUkAc2V0X01JAG1zY29ybGliAElucHV0c0ZpbmlzaGVkAE1hcmtPdXRwdXRzRmluaXNo
+ZWQAZ2V0X0lzVmFsaWQAPEN1cnJlbnRBY2NvdW50TmFtZT5rX19CYWNraW5nRmllbGQAPExhc3RB
+Y2NvdW50TmFtZT5rX19CYWNraW5nRmllbGQAZGVmYXVsdEluc3RhbmNlAGdldF9EYXRhU291cmNl
+AGdldF9SZXNBZGRyWmlwQ29kZQBzZXRfUmVzQWRkclppcENvZGUAUnVudGltZVR5cGVIYW5kbGUA
+R2V0VHlwZUZyb21IYW5kbGUAZ2V0X1Byb2dyYW1OYW1lAGdldF9BY2NvdW50TmFtZQBnZXRfQ3Vy
+cmVudEFjY291bnROYW1lAHNldF9DdXJyZW50QWNjb3VudE5hbWUAZ2V0X0xhc3RBY2NvdW50TmFt
+ZQBzZXRfTGFzdEFjY291bnROYW1lAGdldF9MYXN0TmFtZQBzZXRfTGFzdE5hbWUAZ2V0X0ZpcnN0
+TmFtZQBzZXRfRmlyc3ROYW1lAElucHV0TmFtZQBEYXRlVGltZQBNaWNyb3NvZnQuU3FsU2VydmVy
+LkR0cy5QaXBlbGluZQBnZXRfU2VydmljZVR5cGUAZ2V0X0FkZHJlc3NUeXBlAGdldF9DdWx0dXJl
+AHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBnZXRf
+QmlydGhEYXRlAHNldF9CaXJ0aERhdGUAR2V0RGF0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBnZXRf
+UmVzQWRkclN0YXRlAHNldF9SZXNBZGRyU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUA
+RGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJy
+b3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJr
+QXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25B
+dHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRp
+b25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0
+dHJpYnV0ZQBTU0lTU2NyaXB0Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNv
+bXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAdmFsdWUAU3lzdGVt
+LlJ1bnRpbWUuVmVyc2lvbmluZwBHZXRTdHJpbmcAU3Vic3RyaW5nAE1hdGgAZ2V0X0xlbmd0aABT
+eXN0ZW0uQ29tcG9uZW50TW9kZWwAU0NfNWIwYjJmNDFjMGE4NGQ2NjliYmNjODQ0Njg4MWY2NTEu
+ZGxsAGdldF9SZXNBZGRyTGluZTFfSXNOdWxsAHNldF9SZXNBZGRyTGluZTFfSXNOdWxsAGdldF9S
+ZXNBZGRyTGluZTJfSXNOdWxsAHNldF9SZXNBZGRyTGluZTJfSXNOdWxsAGdldF9ISFNJRF9Jc051
+bGwAc2V0X0hIU0lEX0lzTnVsbABnZXRfTUlfSXNOdWxsAHNldF9NSV9Jc051bGwAZ2V0X0lzVmFs
+aWRfSXNOdWxsAGdldF9EYXRhU291cmNlX0lzTnVsbABnZXRfUmVzQWRkclppcENvZGVfSXNOdWxs
+AHNldF9SZXNBZGRyWmlwQ29kZV9Jc051bGwAZ2V0X1Byb2dyYW1OYW1lX0lzTnVsbABnZXRfQWNj
+b3VudE5hbWVfSXNOdWxsAGdldF9MYXN0TmFtZV9Jc051bGwAc2V0X0xhc3ROYW1lX0lzTnVsbABn
+ZXRfRmlyc3ROYW1lX0lzTnVsbABzZXRfRmlyc3ROYW1lX0lzTnVsbABnZXRfU2VydmljZVR5cGVf
+SXNOdWxsAGdldF9BZGRyZXNzVHlwZV9Jc051bGwAZ2V0X0JpcnRoRGF0ZV9Jc051bGwAc2V0X0Jp
+cnRoRGF0ZV9Jc051bGwAZ2V0X1Jlc0FkZHJTdGF0ZV9Jc051bGwAc2V0X1Jlc0FkZHJTdGF0ZV9J
+c051bGwAZ2V0X1NlcnZpY2VEZXNjcmlwdGlvbl9Jc051bGwAZ2V0X1NvY1NlY05vX0lzTnVsbABz
+ZXRfU29jU2VjTm9fSXNOdWxsAGdldF9Db21tZW50c19Jc051bGwAc2V0X0NvbW1lbnRzX0lzTnVs
+bABnZXRfUmVzQWRkckNpdHlfSXNOdWxsAHNldF9SZXNBZGRyQ2l0eV9Jc051bGwAU2V0TnVsbABz
+ZXRfSXRlbQBTeXN0ZW0AVHJpbQByZXNvdXJjZU1hbgBNaW4AU2NyaXB0TWFpbgBTeXN0ZW0uQ29u
+ZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBJbnZhbGlk
+T3BlcmF0aW9uRXhjZXB0aW9uAGdldF9TZXJ2aWNlRGVzY3JpcHRpb24AU3RyaW5nQ29tcGFyaXNv
+bgBnZXRfU29jU2VjTm8Ac2V0X1NvY1NlY05vAEN1bHR1cmVJbmZvAE91dHB1dE5hbWVNYXAAT3V0
+cHV0TWFwAElucHV0MEJ1ZmZlcgBQaXBlbGluZUJ1ZmZlcgBTY3JpcHRCdWZmZXIAQ1JNUGVyc29u
+c091dHB1dEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAFRvVXBwZXIALmN0b3IALmNjdG9yAE91
+dHB1dElEcwBTeXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNl
+cwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzViMGIyZjQxYzBhODRkNjY5YmJjYzg0NDY4ODFmNjUxLlBy
+b3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTQ181YjBiMmY0MWMw
+YTg0ZDY2OWJiY2M4NDQ2ODgxZjY1MS5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5J
+bmRleGVzAEdldENvbHVtbkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAENvbm5lY3Rpb25zAEJ1ZmZl
+cnMAZ2V0X0NvbW1lbnRzAHNldF9Db21tZW50cwBGaW5pc2hPdXRwdXRzAENyZWF0ZU5ld091dHB1
+dFJvd3MAT2JqZWN0AGdldF9FbmRPZlJvd3NldABTZXRFbmRPZlJvd3NldABnZXRfRGVmYXVsdABV
+c2VyQ29tcG9uZW50AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNx
+bFNlcnZlci5UeFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBf
+UHJvY2Vzc0lucHV0AFByaW1lT3V0cHV0AElSb3cAT1JvdwBBZGRSb3cAT3V0Um93AElucHV0MF9Q
+cm9jZXNzSW5wdXRSb3cATmV4dFJvdwBnZXRfQXNzZW1ibHkAZ2V0X1Jlc0FkZHJDaXR5AHNldF9S
+ZXNBZGRyQ2l0eQBvcF9FcXVhbGl0eQBvcF9JbmVxdWFsaXR5AEVtcHR5AAAAAICbSQBzAE4AdQBs
+AGwAIABwAHIAbwBwAGUAcgB0AHkAIABjAGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAA
+RgBhAGwAcwBlAC4AIABBAHMAcwBpAGcAbgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAg
+AGMAbwBsAHUAbQBuACAAaQBuAHMAdABlAGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAIUMAUgBNAFAA
+ZQByAHMAbwBuAHMATwB1AHQAcAB1AHQAAHFTAEMAXwA1AGIAMABiADIAZgA0ADEAYwAwAGEAOAA0
+AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAxAGYANgA1ADEALgBQAHIAbwBwAGUAcgB0AGkA
+ZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAAmNzZUMGb7EiBJqDhpRQoLwAEIAEBCAMgAAEFIAEB
+EREEIAEBDgUgAQERYQIGDgUAAgIODgMgAAgFAAIICAgFIAIOCAgDIAAOCSADARJBHQgSRQMGEkED
+Bh0IBCABDggEIAECCAUgARFJCAQgAQgIBSACAQgcAyAAAgYgAgIOEXkFIAEdCAgDBwEIBgACCBJF
+DgcAARJ9EYCBBSAAEoCFByACAQ4SgIUIt3pcVhk04IkIiYRdzYCAzJEDBhIYAwYSHAMGEhACBggD
+BhJNAwYSWQMGEl0DBhIkAwAADgQAAQEOBwACARIMEhAFIAEBEgwDAAABBCAAEUkEIAEBAgUgAQER
+SQkgBAEIDhJBEkULIAQBCB0IHRJBEkUFIAEBEk0EAAASWQQAABJdBQABARJdBAAAEiQDCAAOAygA
+DgMoAAIEKAARSQMoAAgECAASWQQIABJdBAgAEiQIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNl
+cHRpb25UaHJvd3MBCAEAAgAAAAAAKAEAI1NDXzViMGIyZjQxYzBhODRkNjY5YmJjYzg0NDY4ODFm
+NjUxAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTgAAEcBABouTkVURnJhbWV3b3JrLFZlcnNp
+b249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNAQBAAAAtAAA
+AM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwg
+VmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2
+MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQ
+QURQQURQtAAAAJxHAAAAAAAAAAAAALZHAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoRwAAAAAA
+AAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAAAAAY
+AACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAAABoE
+AAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+AAAB
+AAAAAQAsXdUaAAABACxd1Ro/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBhAHIA
+RgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAAsAR6
+AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAwADAANABiADAA
+AAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEAbQBl
+AAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBfADUA
+YgAwAGIAMgBmADQAMQBjADAAYQA4ADQAZAA2ADYAOQBiAGIAYwBjADgANAA0ADYAOAA4ADEAZgA2
+ADUAMQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADgANgA5AC4A
+MgAzADgANQAyAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADUAYgAw
+AGIAMgBmADQAMQBjADAAYQA4ADQAZAA2ADYAOQBiAGIAYwBjADgANAA0ADYAOAA4ADEAZgA2ADUA
+MQAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQBy
+AGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEA
+cgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBD
+AF8ANQBiADAAYgAyAGYANAAxAGMAMABhADgANABkADYANgA5AGIAYgBjAGMAOAA0ADQANgA4ADgA
+MQBmADYANQAxAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBf
+ADUAYgAwAGIAMgBmADQAMQBjADAAYQA4ADQAZAA2ADYAOQBiAGIAYwBjADgANAA0ADYAOAA4ADEA
+ZgA2ADUAMQAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgA4
+ADYAOQAuADIAMwA4ADUAMgAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8A
+bgAAADEALgAwAC4ANgA4ADYAOQAuADIAMwA4ADUAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAMAAAA8DUAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAADINwAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2191,7 +2022,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                   </arrayElements>
                 </property>
                 <property
@@ -2227,12 +2058,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                   dataType="System.String"
                   description="Checksum to match component metedata against compiled codes."
                   name="MetadataChecksum"
-                  typeConverter="NOTBROWSABLE">101a85b3cc03bbfe4f9a1f54a723f56f</property>
+                  typeConverter="NOTBROWSABLE">62640ba649473d98869616bcda307bf2</property>
                 <property
                   dataType="System.String"
                   description="Checksum to match component metedata against compiled codes."
                   name="MetadataShaChecksum"
-                  typeConverter="NOTBROWSABLE">e73e105e086360dbb8c813131a826e418676edd2</property>
+                  typeConverter="NOTBROWSABLE">e15afbc15b76dd23395fa7a5a9414d663daf13d5</property>
                 <property
                   dataType="System.String"
                   name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
@@ -2346,6 +2177,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedName="HHSID"
                       cachedSortKeyPosition="2"
                       lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[HHSID]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="130"
+                      cachedName="Comments"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[Comments]"
+                      usageType="readWrite" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -2431,7 +2274,1152 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       length="64"
                       lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[HHSID]"
                       name="HHSID" />
+                    <outputColumn
+                      refId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[Comments]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[Comments]"
+                      name="Comments" />
                   </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract and validate CRM data\Validate Fields"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Validate Fields"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using System.Text.RegularExpressions;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+
+    #region Validation Rules        
+    /*
+    * Regular expressions from RegexLib.com
+    * Validate ZipCode
+    *  ^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$
+    *  
+    * Validate Name
+       ^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$
+
+   *  Validate SocSecNo. Reference:  http://regexlib.com/Search.aspx?k=Social+Security+Number&c=-1&m=-1&ps=50  NB:  Modified below.  
+       (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+
+   *  Possible Phone no:  http://regexlib.com/Search.aspx?k=&c=7&m=-1&ps=50  
+   *       NB:  This one doesn't quite work.  It disallows phone numbers with no punctuation which is how we normally store them. I'm saving it for possible future reference[geg]
+       (^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-6]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])
+    */
+    #endregion
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        Regex validZipCode = new Regex(@"^(?!00000)(?<zip>(?<zip5>\d{5})(?:[ -](?=\d))?(?<zip4>\d{4})?)$");
+
+        //Regular exxpression for SocSecNo modified to allow 1-8 in first position per https://www.ssa.gov/kc/SSAFactSheet--IssuingSSNs.pdf
+        Regex validSocSecNo = new Regex(@"(^|\s)(00[1-9]|0[1-9]0|0[1-9][1-9]|[1-8]\d{2}|7[0-6]\d|77[0-2])(-?|[\. ])([1-9]0|0[1-9]|[1-9][1-9])\3(\d{3}[1-9]|[1-9]\d{3}|\d[1-9]\d{2}|\d{2}[1-9]\d)($|\s|[;:,!\.\?])");
+
+        Regex validName = new Regex(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z][.]*)*$"); // Modified to allow a "." at the end.  For example, Galworthy, Jr.
+
+        Match rMatch;
+
+        long lDumb = 0;
+
+        string runningComments = string.Empty;
+        bool runningValid = true;
+
+        //ZipCode not required but, if present, must be syntactically valid
+        if(!Row.ResAddrZipCode_IsNull && !validZipCode.Match(Row.ResAddrZipCode).Success)
+        {
+            runningValid = false;
+            runningComments += "Malformed Zip Code.";
+        }
+
+        //SocSecNo not required but, if present, must be syntactically valid
+        if (!Row.SocSecNo_IsNull && !validSocSecNo.Match(Row.SocSecNo).Success)
+        {
+            runningValid = false;
+            runningComments += "Malformed SocSecNo.";
+        }
+
+        //First Name not required but, if present, must be syntactically valid
+        if(!Row.FirstName_IsNull  && !(validName.Match(Row.FirstName).Success))
+        {
+            runningValid = false;
+            runningComments += "Malformed First Name.";
+
+        }
+
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String MI
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool MI_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[3]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String SocSecNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String ResAddrCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String ResAddrState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String HHSID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool HHSID_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+        set
+        {
+            this[11] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(11);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_74faeedd588746778121406bb096c0a6.Properties.Settings.get_Default():SC_74faeedd588746778121406bb096c0a6.Properties.Sett" +
+    "ings")]
+
+namespace SC_74faeedd588746778121406bb096c0a6.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_74faeedd588746778121406bb096c0a6.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{414bbae8-684a-452a-813e-1545c7f160b9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_74faeedd588746778121406bb096c0a6</RootNamespace>
+    <AssemblyName>SC_74faeedd588746778121406bb096c0a6</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_74faeedd588746778121406bb096c0a6" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_74faeedd588746778121406bb096c0a6</msb:CodeName>
+		<msb:DisplayName>SC_74faeedd588746778121406bb096c0a6</msb:DisplayName>
+		<msb:ProjectId>{9B7E4930-3837-42A7-BE4C-8B46E9C4DCB3}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_74faeedd588746778121406bb096c0a6.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_74faeedd588746778121406bb096c0a6")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_74faeedd588746778121406bb096c0a6")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_74faeedd588746778121406bb096c0a6.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_74faeedd588746778121406bb096c0a6.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_74faeedd588746778121406bb096c0a6.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_74faeedd588746778121406bb096c0a6.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_74faeedd588746778121406bb096c0a6.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_74faeedd588746778121406bb096c0a6.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAK8PzlsAAAAAAAAAAOAAIiALATAAABwAAAAIAAAAAAAAVjoA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAAQ6AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAXBoAAAAgAAAAHAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAeAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAJAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAA4
+OgAAAAAAAEgAAAACAAUAhCMAAMgVAAABAAAAAAAAAEw5AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAgCdAAAAAQAAEXIBAABwcxAAAAoKcoEAAHBzEAAACgty
+0gEAcHMQAAAKDH4RAAAKDQNvFwAABi0fBgNvFgAABm8SAAAKbxMAAAotDAlyLgIAcCgUAAAKDQNv
+DQAABi0fBwNvDAAABm8SAAAKbxMAAAotDAlyVgIAcCgUAAAKDQNvBwAABi0fCANvBgAABm8SAAAK
+bxMAAAotDAlyfgIAcCgUAAAKDSoeAiggAAAGKioCAwQFKBUAAAoqUgJ7FgAACgJ7FwAAChaUbxgA
+AAoqIgIWKBkAAAoqUgJ7FgAACgJ7FwAACheUbxgAAAoqIgIXKBkAAAoqUgJ7FgAACgJ7FwAAChiU
+bxgAAAoqIgIYKBkAAAoqUgJ7FgAACgJ7FwAAChmUbxoAAAoqIgIZKBkAAAoqUgJ7FgAACgJ7FwAA
+ChqUbxgAAAoqIgIaKBkAAAoqUgJ7FgAACgJ7FwAAChuUbxgAAAoqIgIbKBkAAAoqUgJ7FgAACgJ7
+FwAAChyUbxgAAAoqIgIcKBkAAAoqUgJ7FgAACgJ7FwAACh2UbxgAAAoqIgIdKBkAAAoqUgJ7FgAA
+CgJ7FwAACh6UbxgAAAoqIgIeKBkAAAoqVgJ7FgAACgJ7FwAACh8JlG8YAAAKKiYCHwkoGQAACipW
+AnsWAAAKAnsXAAAKHwqUbxgAAAoqJgIfCigZAAAKKlYCexYAAAoCexcAAAofC5RvGAAACioqAh8L
+AygbAAAKKiYCHwsoGQAACipeAywJAh8LKBwAAAoqcqoCAHBzHQAACnoeAigeAAAKKh4CKB8AAAoq
+fgIoIAAACgICcyQAAAZ9AQAABAICcyUAAAZ9AgAABCqSBHJHAwBwGm8hAAAKLBUCBQIDKCIAAAoO
+BHMDAAAGbyIAAAYqSisHAgNvIwAABgNvHgAABi3xKgYqOgIoIwAACgIDfQMAAAQqOgIoIwAACgID
+fQQAAAQqHgIoIwAACiqufgUAAAQtHnJXAwBw0AcAAAIoJAAACm8lAAAKcyYAAAqABQAABH4FAAAE
+Khp+BgAABCoeAoAGAAAEKhp+BwAABCoeAignAAAKKi5zKwAABoAHAAAEKgBCU0pCAQABAAAAAAAM
+AAAAdjQuMC4zMDMxOQAAAAAFAGwAAACwBwAAI34AABwIAAAECAAAI1N0cmluZ3MAAAAAIBAAAMwD
+AAAjVVMA7BMAABAAAAAjR1VJRAAAAPwTAADMAQAAI0Jsb2IAAAAAAAAAAgAAAVcVogEJAQAAAPoB
+MwAWAAABAAAAIwAAAAgAAAAHAAAALAAAAA8AAAAnAAAAEAAAAAEAAAADAAAAGwAAAB4AAAABAAAA
+BAAAAAEAAAAAAG0DAQAAAAAABgB1AtEFBgAJA9EFBgDBAb4FDwBFBgAABgDuAQAFBgBYAgAFBgA5
+AgAFBgDwAgAFBgCVAgAFBgCuAgAFBgAFAgAFBgAgAi0DCgDJAucADgDYB8IGCgCQBecAEgCBBecA
+CgBWBecABgDeALgECgBXB+cABgAaB7gEBgCkAb4FBgChBfEFBgBKBesEDgBjAVcDDgDVAVcDDgA1
+AdYEBgCJAdEFBgBKA7gEDgBRA8IGDgBuBcIGBgASBbgEBgAsBbgEBgAIAbgEBgCVALgEBgDiBwAF
+AAAAAEcAAAAAAAEAAQABABAAywQAABAAAQABAAEAEAB0BQAAPQABAAMAAQAQADkHAABNAAEAIAAB
+ABAA4QYAAFEAAwAkAAEAEACDBgAAUQAEACUAAAAQAPgFVAZRAAUAJgAAARAAsgZUBmkABwAqAAYA
+4QaXAAYAgwabAAEARwefAAEARwefABEAvwSjABEAJQGnABEAcgCrAFAgAAAAAMYAuQevAAEA+SAA
+AAAAhhixBQYAAgABIQAAAACGGLEFOAACAAwhAAAAAIYIuQC1AAUAISEAAAAAhgj+Ay4ABQAqIQAA
+AACGCMYAtQAFAD8hAAAAAIYIEgQuAAUASCEAAAAAhghiALUABQBdIQAAAACGCNYDLgAFAGYhAAAA
+AIYITQG5AAUAeyEAAAAAhggnBC4ABQCEIQAAAACGCD0FtQAFAJkhAAAAAIYIVAQuAAUAoiEAAAAA
+hggBALUABQC3IQAAAACGCJUDLgAFAMAhAAAAAIYIEgC1AAUA1SEAAAAAhgitAy4ABQDeIQAAAACG
+COsHtQAFAPMhAAAAAIYIkAQuAAUA/CEAAAAAhgh4AbUABQARIgAAAACGCDwELgAFABoiAAAAAIYI
+ggC1AAUAMCIAAAAAhgjkAy4ABQA6IgAAAACGCFAAtQAFAFAiAAAAAIYIxQMuAAUAWiIAAAAAhgj5
+BrUABQBwIgAAAACGCAYHEAAFAHsiAAAAAIYIaAQuAAYAhSIAAAAAhgh8BL4ABgCdIgAAAACGANAH
+LgAHAKUiAAAAAIYAIQcuAAcArSIAAAAAhhixBQYABwDNIgAAAADGAKwHwwAHAPIiAAAAAMYBpQev
+AAsABSMAAAAAxgG5B68ADAAHIwAAAACGGLEFzQANABYjAAAAAIYYsQXNAA4AJSMAAAAAgxixBQYA
+DwAtIwAAAACTCJ0F0wAPAFkjAAAAAJMIDQHYAA8AYCMAAAAAkwgZAd0ADwBoIwAAAACWCC0H4wAQ
+AG8jAAAAAIYYsQUGABAAdyMAAAAAkRi3BegAEAAAAAEA1AcAAAEAlgUAAAIAjQYAAAMAZAUAAAEA
+JwMAAAEAJwMAAAEAWgAAAAIA1AAAAAMAlgUAAAQAZAUAAAEAlgUAAAEA1AcAAAEAXQcAAAEAXQcA
+AAEAJwMJALEFAQARALEFBgAZALEFCgApALEFEAAxALEFEAA5ALEFEABBALEFEABJALEFEABRALEF
+EABZALEFEABhALEFEABpALEFBgCpALEFBgDJALEFFQDZALEFBgBxALEFEADhAPsHJQBxAFEDKADx
+AO0GLgDhABMHMgB5ALEFOAB5AJYFQgB5AI0GRgCBAEcDSgB5AKAETwCBAFsBVAB5AK8EWgB5AKcE
+AQD5ALEFEAB5ANAHLgB5ACEHLgCZALEFBgDhALsGYACZAKEGaAChALEFBgAJAacAbgAJAd4HdwCx
+ALEFfQDRALEFBgAuAAsACAEuABMAEQEuABsAMAEuACMAOQEuACsAYgEuADMAYgEuADsAYgEuAEMA
+OQEuAEsAaAEuAFMAYgEuAFsAfwFDAGMAxwHhAHsAxwHjAGsAxwEpA3MAMAFJA3MAMAEbAAMAAQAH
+ABkACAAbAAAAvQDsAAAAAgTwAAAAygDsAAAAFgTwAAAAZgDsAAAA2gPwAAAAUQH0AAAAKwTwAAAA
+QQXsAAAAWATwAAAABQDsAAAAmQPwAAAAFgDsAAAAsQPwAAAA7wfsAAAAlATwAAAAfAHsAAAAQATw
+AAAAhgDsAAAA6APwAAAAVADsAAAAyQPwAAAACgfsAAAAgATwAAAAoQX5AAAALQH+AAAAMQcDAQIA
+BAADAAIABQAFAAIABgAHAAIABwAJAAIACAALAAIACQANAAIACgAPAAIACwARAAIADAATAAIADQAV
+AAIADgAXAAIADwAZAAIAEAAbAAIAEQAdAAIAEgAfAAIAEwAhAAIAFAAjAAIAFQAlAAIAFgAnAAIA
+FwApAAIAGAArAAIAGQAtAAIAGgAvAAEAGwAvAAIAHAAxAAEAHQAxAAIAJwAzAAIAKAA1AAEAKQA1
+AAIAKgA3AASAAAABAAAA1Ro3YgAAAAAAACMAAAAEAAAAAAAAAAAAAACFAGkAAAAAAAwAAAAAAAAA
+AAAAAI4AZwcAAAAABAAAAAAAAAAAAAAAhQC4BAAAAAAMAAAAAAAAAAAAAACOAIQHAAAAAAAAAAAB
+AAAAAgYAAAAAAAAAZ2V0X1Jlc0FkZHJMaW5lMQBnZXRfUmVzQWRkckxpbmUyAFNDXzc0ZmFlZWRk
+NTg4NzQ2Nzc4MTIxNDA2YmIwOTZjMGE2ADxNb2R1bGU+AGdldF9ISFNJRABJbnB1dElEAGdldF9N
+SQBtc2NvcmxpYgBkZWZhdWx0SW5zdGFuY2UAZ2V0X1Jlc0FkZHJaaXBDb2RlAFJ1bnRpbWVUeXBl
+SGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAGdldF9MYXN0TmFtZQBnZXRfRmlyc3ROYW1lAElucHV0
+TmFtZQBEYXRlVGltZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBUeXBlAGdldF9D
+dWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBBcHBsaWNhdGlvblNldHRpbmdzQmFz
+ZQBnZXRfQmlydGhEYXRlAEdldERhdGUARWRpdG9yQnJvd3NhYmxlU3RhdGUAZ2V0X1Jlc0FkZHJT
+dGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmli
+dXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5
+VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3Jr
+QXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0
+aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9k
+dWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRDb21wb25l
+bnRFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1lQ29t
+cGF0aWJpbGl0eUF0dHJpYnV0ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAEdldFN0
+cmluZwBNYXRjaABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU0NfNzRmYWVlZGQ1ODg3NDY3NzgxMjE0
+MDZiYjA5NmMwYTYuZGxsAGdldF9SZXNBZGRyTGluZTFfSXNOdWxsAGdldF9SZXNBZGRyTGluZTJf
+SXNOdWxsAGdldF9ISFNJRF9Jc051bGwAZ2V0X01JX0lzTnVsbABnZXRfUmVzQWRkclppcENvZGVf
+SXNOdWxsAGdldF9MYXN0TmFtZV9Jc051bGwAZ2V0X0ZpcnN0TmFtZV9Jc051bGwAZ2V0X0JpcnRo
+RGF0ZV9Jc051bGwAZ2V0X1Jlc0FkZHJTdGF0ZV9Jc051bGwAZ2V0X1NvY1NlY05vX0lzTnVsbABn
+ZXRfQ29tbWVudHNfSXNOdWxsAHNldF9Db21tZW50c19Jc051bGwAZ2V0X1Jlc0FkZHJDaXR5X0lz
+TnVsbABTZXROdWxsAHNldF9JdGVtAFN5c3RlbQByZXNvdXJjZU1hbgBTY3JpcHRNYWluAFN5c3Rl
+bS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3RlbS5SZWZsZWN0aW9uAElu
+dmFsaWRPcGVyYXRpb25FeGNlcHRpb24AU3RyaW5nQ29tcGFyaXNvbgBnZXRfU29jU2VjTm8AQ3Vs
+dHVyZUluZm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAAR3JvdXAASW5wdXQwQnVmZmVyAFBpcGVs
+aW5lQnVmZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAC5jdG9yAC5jY3RvcgBT
+eXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0u
+UmVzb3VyY2VzAFNDXzc0ZmFlZWRkNTg4NzQ2Nzc4MTIxNDA2YmIwOTZjMGE2LlByb3BlcnRpZXMu
+UmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTQ183NGZhZWVkZDU4ODc0Njc3ODEy
+MTQwNmJiMDk2YzBhNi5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVzAEdl
+dENvbHVtbkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAFN5c3RlbS5UZXh0LlJlZ3VsYXJFeHByZXNz
+aW9ucwBDb25uZWN0aW9ucwBnZXRfU3VjY2VzcwBnZXRfQ29tbWVudHMAc2V0X0NvbW1lbnRzAENv
+bmNhdABPYmplY3QARW5kT2ZSb3dzZXQAZ2V0X0RlZmF1bHQAVXNlckNvbXBvbmVudABQYXJlbnRD
+b21wb25lbnQAU2NyaXB0Q29tcG9uZW50AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWlj
+cm9zb2Z0LlNxbFNlcnZlci5QaXBlbGluZUhvc3QASW5wdXQwX1Byb2Nlc3NJbnB1dABJbnB1dDBf
+UHJvY2Vzc0lucHV0Um93AE5leHRSb3cAUmVnZXgAZ2V0X0Fzc2VtYmx5AGdldF9SZXNBZGRyQ2l0
+eQBFbXB0eQAAAAAAf14AKAA/ACEAMAAwADAAMAAwACkAKAA/ADwAegBpAHAAPgAoAD8APAB6AGkA
+cAA1AD4AXABkAHsANQB9ACkAKAA/ADoAWwAgAC0AXQAoAD8APQBcAGQAKQApAD8AKAA/ADwAegBp
+AHAANAA+AFwAZAB7ADQAfQApAD8AKQAkAAGBTygAXgB8AFwAcwApACgAMAAwAFsAMQAtADkAXQB8
+ADAAWwAxAC0AOQBdADAAfAAwAFsAMQAtADkAXQBbADEALQA5AF0AfABbADEALQA4AF0AXABkAHsA
+MgB9AHwANwBbADAALQA2AF0AXABkAHwANwA3AFsAMAAtADIAXQApACgALQA/AHwAWwBcAC4AIABd
+ACkAKABbADEALQA5AF0AMAB8ADAAWwAxAC0AOQBdAHwAWwAxAC0AOQBdAFsAMQAtADkAXQApAFwA
+MwAoAFwAZAB7ADMAfQBbADEALQA5AF0AfABbADEALQA5AF0AXABkAHsAMwB9AHwAXABkAFsAMQAt
+ADkAXQBcAGQAewAyAH0AfABcAGQAewAyAH0AWwAxAC0AOQBdAFwAZAApACgAJAB8AFwAcwB8AFsA
+OwA6ACwAIQBcAC4AXAA/AF0AKQABW14AWwBhAC0AegBBAC0AWgBdACsAKAAoAFsAJwAsAC4AIAAt
+AF0AWwBhAC0AegBBAC0AWgAgAF0AKQA/AFsAYQAtAHoAQQAtAFoAXQBbAC4AXQAqACkAKgAkAAEn
+TQBhAGwAZgBvAHIAbQBlAGQAIABaAGkAcAAgAEMAbwBkAGUALgAAJ00AYQBsAGYAbwByAG0AZQBk
+ACAAUwBvAGMAUwBlAGMATgBvAC4AACtNAGEAbABmAG8AcgBtAGUAZAAgAEYAaQByAHMAdAAgAE4A
+YQBtAGUALgAAgJtJAHMATgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAA
+YgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBs
+AHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AAA9JAG4A
+cAB1AHQAIAAwAABxUwBDAF8ANwA0AGYAYQBlAGUAZABkADUAOAA4ADcANAA2ADcANwA4ADEAMgAx
+ADQAMAA2AGIAYgAwADkANgBjADAAYQA2AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8A
+dQByAGMAZQBzAAAAAABjH4UFBoCvT7qpMOYSlp+PAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFh
+CQcEEjkSORI5DgIGDgUgARJ1DgMgAAIFAAIODg4JIAMBEkEdCBJFAwYSQQMGHQgEIAEOCAQgAQII
+BSABEUkIBSACAQgcByACAg4RgIEFIAEdCAgIAAESgIURgIkFIAASgI0HIAIBDhKAjQi3elxWGTTg
+iQiJhF3NgIDMkQMGEhQDBhIYAwYSTQMGElkDBhJdAwYSIAUgAQESDAMgAA4EIAARSQQgAQECCSAE
+AQgOEkESRQUgAQESTQQAABJZBAAAEl0FAAEBEl0EAAASIAMAAAEDKAAOAygAAgQoABFJBAgAElkE
+CAASXQQIABIgCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAA
+ACgBACNTQ183NGZhZWVkZDU4ODc0Njc3ODEyMTQwNmJiMDk2YzBhNgAABQEAAAAAFgEAEUNvcHly
+aWdodCBAICAyMDE4AABHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29y
+a0Rpc3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQEAQAAALQAAADOyu++AQAAAJEAAABsU3lzdGVt
+LlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3Vs
+dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNv
+dXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAAAsOgAAAAAAAAAA
+AABGOgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODoAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBt
+c2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
+ABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAA
+WEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9
+BO/+AAABAAAAAQA3YtUaAAABADdi1Ro/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEA
+VgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAA
+AAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAwADAA
+NABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBO
+AGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMA
+QwBfADcANABmAGEAZQBlAGQAZAA1ADgAOAA3ADQANgA3ADcAOAAxADIAMQA0ADAANgBiAGIAMAA5
+ADYAYwAwAGEANgAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADgA
+NgA5AC4AMgA1ADEANAAzAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBf
+ADcANABmAGEAZQBlAGQAZAA1ADgAOAA3ADQANgA3ADcAOAAxADIAMQA0ADAANgBiAGIAMAA5ADYA
+YwAwAGEANgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBv
+AHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQA
+ZQBtAGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBl
+AAAAUwBDAF8ANwA0AGYAYQBlAGUAZABkADUAOAA4ADcANAA2ADcANwA4ADEAMgAxADQAMAA2AGIA
+YgAwADkANgBjADAAYQA2AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAA
+AFMAQwBfADcANABmAGEAZQBlAGQAZAA1ADgAOAA3ADQANgA3ADcAOAAxADIAMQA0ADAANgBiAGIA
+MAA5ADYAYwAwAGEANgAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAw
+AC4ANgA4ADYAOQAuADIANQAxADQAMwAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIA
+cwBpAG8AbgAAADEALgAwAC4ANgA4ADYAOQAuADIANQAxADQAMwAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAABYOgAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_74faeedd588746778121406bb096c0a6</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">4727dedb9b5d559413cd3464b7f1342a</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">002e8a449bc9363288208be50c96f324b1b76746</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[LastName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[FirstName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[MI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="MI"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[SocSecNo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[ResAddrLine2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[ResAddrCity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="24"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[ResAddrState]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[ResAddrZipCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[HHSID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="HHSID"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[HHSID]" />
+                    <inputColumn
+                      refId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0].Columns[Comments]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Comments"
+                      lineageId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput].Columns[Comments]"
+                      usageType="readWrite" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract and validate CRM data\Validate Fields.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0]">
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -2445,7 +3433,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               startId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output]" />
             <path
               refId="Package\Extract and validate CRM data.Paths[CRMPersonsOutput]"
-              endId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input]"
+              endId="Package\Extract and validate CRM data\Validate Fields.Inputs[Input 0]"
               name="CRMPersonsOutput"
               startId="Package\Extract and validate CRM data\Keep if new or previously sent.Outputs[CRMPersonsOutput]" />
           </paths>
@@ -2492,13 +3480,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="250,42"
-          Id="Package\Truncate HHS_Staging CRM Persons"
-          TopLeft="540,84" />
-        <NodeLayout
           Size="221,42"
           Id="Package\Extract and validate CRM data"
           TopLeft="561,211" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Truncate HHS_Staging CRM Persons"
+          TopLeft="540,84" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="668.25,126">
@@ -2530,27 +3518,27 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="221,42"
+          Id="Package\Extract and validate CRM data\Keep if new or previously sent"
+          TopLeft="484,148" />
+        <NodeLayout
           Size="325,42"
           Id="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID"
-          TopLeft="584,50" />
-        <NodeLayout
-          Size="250,42"
-          Id="Package\Extract and validate CRM data\Keep if new or previously sent"
-          TopLeft="617,157" />
+          TopLeft="434,49" />
         <EdgeLayout
           Id="Package\Extract and validate CRM data.Paths[ADO NET Source Output]"
-          TopLeft="744.25,92">
+          TopLeft="595.5,91">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,65"
+              EndConnector="0,57"
               Start="0,0"
-              End="0,57.5">
+              End="0,49.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.5" />
+                    End="0,49.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2560,23 +3548,23 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="205,42"
-          Id="Package\Extract and validate CRM data\HHS_Staging CRM Persons"
-          TopLeft="643,266" />
+          Size="147,42"
+          Id="Package\Extract and validate CRM data\Validate Fields"
+          TopLeft="527,259" />
         <EdgeLayout
           Id="Package\Extract and validate CRM data.Paths[CRMPersonsOutput]"
-          TopLeft="743.75,199">
+          TopLeft="597.5,190">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,67"
+              EndConnector="0,69"
               Start="0,0"
-              End="0,59.5">
+              End="0,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,59.5" />
+                    End="0,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2590,14 +3578,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract and validate CRM data\HHS_Staging CRM Persons">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
