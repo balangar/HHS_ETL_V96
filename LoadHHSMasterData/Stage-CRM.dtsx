@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-CRM"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{D9B7C077-342C-4CEC-87B5-D548A42919B1}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{04E36375-7B40-4C68-8D41-29777303E8C6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -320,11 +320,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName"
+              refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-              name="HHS_Staging tmp CRM by AccountName"
+              name="HHS_Staging tmp CRM by AccountName and HHSID"
               usesDispositions="true"
               version="4">
               <properties>
@@ -380,7 +380,7 @@ Order by
               </properties>
               <connections>
                 <connection
-                  refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Connections[IDbConnection]"
+                  refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Connections[IDbConnection]"
                   connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
                   connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
                   description="Managed connection manager"
@@ -388,383 +388,386 @@ Order by
               </connections>
               <outputs>
                 <output
-                  refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output]"
+                  refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output]"
+                  isSorted="true"
                   name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AccountName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
                       length="50"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AccountName]"
                       name="AccountName"
+                      sortKeyPosition="1"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[HHSID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
                       length="64"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[HHSID]"
                       name="HHSID"
+                      sortKeyPosition="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[LastName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[LastName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[LastName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[FirstName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[MI]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[MI]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[MI]"
                       length="1"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[MI]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[MI]"
                       name="MI"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[BirthDate]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[BirthDate]"
                       name="BirthDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[SocSecNo]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
                       length="9"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[SocSecNo]"
                       name="SocSecNo"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
                       length="45"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
                       name="ResAddrLine1"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
                       length="45"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
                       name="ResAddrLine2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
                       name="ResAddrCity"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrState]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
                       length="2"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrState]"
                       name="ResAddrState"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
                       length="5"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
                       name="ResAddrZipCode"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ProgramName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ProgramName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ProgramName]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ProgramName]"
                       length="7"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ProgramName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ProgramName]"
                       name="ProgramName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ServiceType]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ServiceType]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ServiceType]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ServiceType]"
                       length="7"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ServiceType]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ServiceType]"
                       name="ServiceType"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ServiceDescription]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ServiceDescription]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ServiceDescription]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ServiceDescription]"
                       length="255"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ServiceDescription]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ServiceDescription]"
                       name="ServiceDescription"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[DataSource]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[DataSource]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[DataSource]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[DataSource]"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[DataSource]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[DataSource]"
                       name="DataSource"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[AddressType]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AddressType]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[AddressType]"
+                      externalMetadataColumnId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[AddressType]"
                       length="7"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[AddressType]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AddressType]"
                       name="AddressType"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
                       dataType="wstr"
                       length="50"
                       name="AccountName" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
                       dataType="wstr"
                       length="64"
                       name="HHSID" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
                       dataType="wstr"
                       length="15"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
                       dataType="wstr"
                       length="15"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[MI]"
                       dataType="wstr"
                       length="1"
                       name="MI" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
                       dataType="dbDate"
                       name="BirthDate" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
                       dataType="wstr"
                       length="9"
                       name="SocSecNo" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
                       dataType="wstr"
                       length="45"
                       name="ResAddrLine1" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
                       dataType="wstr"
                       length="45"
                       name="ResAddrLine2" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
                       dataType="wstr"
                       length="15"
                       name="ResAddrCity" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
                       dataType="wstr"
                       length="2"
                       name="ResAddrState" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
                       dataType="wstr"
                       length="5"
                       name="ResAddrZipCode" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ProgramName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ProgramName]"
                       dataType="wstr"
                       length="7"
                       name="ProgramName" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ServiceType]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ServiceType]"
                       dataType="wstr"
                       length="7"
                       name="ServiceType" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[ServiceDescription]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[ServiceDescription]"
                       dataType="wstr"
                       length="255"
                       name="ServiceDescription" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[DataSource]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[DataSource]"
                       dataType="wstr"
                       length="15"
                       name="DataSource" />
                     <externalMetadataColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].ExternalColumns[AddressType]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].ExternalColumns[AddressType]"
                       dataType="wstr"
                       length="7"
                       name="AddressType" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output]"
+                  refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
                   name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[AccountName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[AccountName]"
                       name="AccountName" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[HHSID]"
                       dataType="wstr"
                       length="64"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[HHSID]"
                       name="HHSID" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[LastName]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[FirstName]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[MI]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[MI]"
                       name="MI" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
                       dataType="dbDate"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
                       name="BirthDate" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
                       dataType="wstr"
                       length="9"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
                       name="SocSecNo" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
                       dataType="wstr"
                       length="45"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
                       name="ResAddrLine1" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
                       dataType="wstr"
                       length="45"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
                       name="ResAddrLine2" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
                       name="ResAddrCity" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
                       dataType="wstr"
                       length="2"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
                       name="ResAddrState" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
                       dataType="wstr"
                       length="5"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
                       name="ResAddrZipCode" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ProgramName]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ProgramName]"
                       dataType="wstr"
                       length="7"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ProgramName]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ProgramName]"
                       name="ProgramName" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ServiceType]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ServiceType]"
                       dataType="wstr"
                       length="7"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ServiceType]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ServiceType]"
                       name="ServiceType" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ServiceDescription]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ServiceDescription]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ServiceDescription]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ServiceDescription]"
                       name="ServiceDescription" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[DataSource]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[DataSource]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[DataSource]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[DataSource]"
                       name="DataSource" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[AddressType]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[AddressType]"
                       dataType="wstr"
                       length="7"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[AddressType]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[AddressType]"
                       name="AddressType" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1825,20 +1828,20 @@ namespace SC_5b0b2f41c0a84d669bbcc8446881f651.Properties {
                       dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>SC_5b0b2f41c0a84d669bbcc8446881f651</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_5b0b2f41c0a84d669bbcc8446881f651</msb:CodeName>
 		<msb:DisplayName>SC_5b0b2f41c0a84d669bbcc8446881f651</msb:DisplayName>
 		<msb:ProjectId>{7BA774F8-2C55-4781-A1CB-79859C289787}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_5b0b2f41c0a84d669bbcc8446881f651.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="main.cs"/>
 		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ComponentWrapper.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></arrayElement>
@@ -1975,7 +1978,7 @@ namespace SC_5b0b2f41c0a84d669bbcc8446881f651.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDADb3zVsAAAAAAAAAAOAAIiALATAAACYAAAAIAAAAAAAA7kUA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDABv8zVsAAAAAAAAAAOAAIiALATAAACYAAAAIAAAAAAAA7kUA
 AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAJxFAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2079,7 +2082,7 @@ IgA1AAIAIwA3AAIAJAA5AAIAJQA7AAIAJgA9AAIAJwA/AAIAKABBAAIAKQBDAAIAKgBFAAIAKwBH
 AAIALABJAAEAMABLAAEAMQBNAAEAMgBPAAEAMwBRAAEANABTAAEANQBVAAEANgBXAAEANwBZAAEA
 OABbAAEAOQBdAAEAOgBfAAEAOwBhAAEAPABjAAEAPQBlAAEAPgBnAAEAPwBpAAEAQABrAAEAQQBt
 AAEAQgBvAAEAQwBxAAEARABzAAEARQB1AAIAVAB3AAIAVQB5AAEAVgB5AAIAVwB7AASAAAABAAAA
-1Rr7VQAAAAAAAAEAAAAEAAAAAAAAAAAAAACSAKgAAAAAAAwAAAAAAAAAAAAAAJsAogoAAAAADAAA
+1RptWAAAAAAAAAEAAAAEAAAAAAAAAAAAAACSAKgAAAAAAAwAAAAAAAAAAAAAAJsAogoAAAAADAAA
 AAAAAAAAAAAAmwC/CgAAAAAEAAAAAAAAAAAAAACSALIHAAAAAAAAAAABAAAATAkAAAAAAAAAU0Nf
 NWIwYjJmNDFjMGE4NGQ2NjliYmNjODQ0Njg4MWY2NTEAZ2V0X1Jlc0FkZHJMaW5lMQBzZXRfUmVz
 QWRkckxpbmUxAGdldF9SZXNBZGRyTGluZTIAc2V0X1Jlc0FkZHJMaW5lMgA8TW9kdWxlPgBnZXRf
@@ -2138,7 +2141,7 @@ ZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAAdABoAGUAIABjAG8AbAB1
 AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBwAHUAdAAgADAAACFDAFIATQBQAGUAcgBzAG8A
 bgBzAE8AdQB0AHAAdQB0AABxUwBDAF8ANQBiADAAYgAyAGYANAAxAGMAMABhADgANABkADYANgA5
 AGIAYgBjAGMAOAA0ADQANgA4ADgAMQBmADYANQAxAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIA
-ZQBzAG8AdQByAGMAZQBzAAAAAA/XOQwqtUFDtqx0TsnVxRAABCABAQgDIAABBSABARERBCABAQ4F
+ZQBzAG8AdQByAGMAZQBzAAAAAHyWxU1OeO1IuwjGCewVLJAABCABAQgDIAABBSABARERBCABAQ4F
 IAEBEWECBg4FAAICDg4DIAAIBQACCAgIBSACDggIAyAADgkgAwESQR0IEkUDBhJBAwYdCAQgAQ4I
 BCABAggFIAERSQgDIAACBSACAQgcBiACAg4ReQUgAR0ICAMHAQgGAAIIEkUOBwABEn0RgIEFIAAS
 gIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDMkQMGEhgDBhIcAwYSEAIGCAMGEk0DBhJZAwYSXQMG
@@ -2155,14 +2158,14 @@ AAAAAAAA3kUAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAANBFAAAAAAAAAAAAAAAAX0NvckRsbE1h
 aW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAA
 GAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhgAAAa
 BAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv/gAA
-AQAAAAEA+1XVGgAAAQD7VdUaPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYAYQBy
+AQAAAAEAbVjVGgAAAQBtWNUaPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYAYQBy
 AEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAAALAE
 egMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAAMAAwADQAYgAw
 AAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBhAG0A
 ZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMAXwA1
 AGIAMABiADIAZgA0ADEAYwAwAGEAOAA0AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAxAGYA
 NgA1ADEAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgA4ADYAOQAu
-ADIAMgAwADEAMQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwA1AGIA
+ADIAMgA2ADMANwAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwA1AGIA
 MABiADIAZgA0ADEAYwAwAGEAOAA0AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAxAGYANgA1
 ADEALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkA
 cgBpAGcAaAB0ACAAQAAgACAAMgAwADEAOAAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUAbQBh
@@ -2171,8 +2174,8 @@ QwBfADUAYgAwAGIAMgBmADQAMQBjADAAYQA4ADQAZAA2ADYAOQBiAGIAYwBjADgANAA0ADYAOAA4
 ADEAZgA2ADUAMQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAEMA
 XwA1AGIAMABiADIAZgA0ADEAYwAwAGEAOAA0AGQANgA2ADkAYgBiAGMAYwA4ADQANAA2ADgAOAAx
 AGYANgA1ADEAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYA
-OAA2ADkALgAyADIAMAAxADEAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBv
-AG4AAAAxAC4AMAAuADYAOAA2ADkALgAyADIAMAAxADEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+OAA2ADkALgAyADIANgAzADcAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBv
+AG4AAAAxAC4AMAAuADYAOAA2ADkALgAyADIANgAzADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2245,102 +2248,104 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="AccountName"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[AccountName]" />
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AccountName]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[LastName]"
                       cachedDataType="wstr"
                       cachedLength="15"
                       cachedName="LastName"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[LastName]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[FirstName]"
                       cachedDataType="wstr"
                       cachedLength="15"
                       cachedName="FirstName"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[MI]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="MI"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[MI]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[MI]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[BirthDate]"
                       cachedDataType="dbDate"
                       cachedName="BirthDate"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[BirthDate]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[SocSecNo]"
                       cachedDataType="wstr"
                       cachedLength="9"
                       cachedName="SocSecNo"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ResAddrLine1]"
                       cachedDataType="wstr"
                       cachedLength="45"
                       cachedName="ResAddrLine1"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ResAddrLine2]"
                       cachedDataType="wstr"
                       cachedLength="45"
                       cachedName="ResAddrLine2"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ResAddrCity]"
                       cachedDataType="wstr"
                       cachedLength="15"
                       cachedName="ResAddrCity"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ResAddrState]"
                       cachedDataType="wstr"
                       cachedLength="2"
                       cachedName="ResAddrState"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ResAddrZipCode]"
                       cachedDataType="wstr"
                       cachedLength="5"
                       cachedName="ResAddrZipCode"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ProgramName]"
                       cachedDataType="wstr"
                       cachedLength="7"
                       cachedName="ProgramName"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ProgramName]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ProgramName]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ServiceType]"
                       cachedDataType="wstr"
                       cachedLength="7"
                       cachedName="ServiceType"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ServiceType]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ServiceType]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[ServiceDescription]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="ServiceDescription"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[ServiceDescription]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[ServiceDescription]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[DataSource]"
                       cachedDataType="wstr"
                       cachedLength="15"
                       cachedName="DataSource"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[DataSource]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[DataSource]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[AddressType]"
                       cachedDataType="wstr"
                       cachedLength="7"
                       cachedName="AddressType"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[AddressType]" />
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[AddressType]" />
                     <inputColumn
                       refId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0].Columns[HHSID]"
                       cachedDataType="wstr"
                       cachedLength="64"
                       cachedName="HHSID"
-                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output].Columns[HHSID]" />
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output].Columns[HHSID]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -2437,7 +2442,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               refId="Package\Extract and validate CRM data.Paths[ADO NET Source Output]"
               endId="Package\Extract and validate CRM data\Keep if new or previously sent.Inputs[Input 0]"
               name="ADO NET Source Output"
-              startId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName.Outputs[ADO NET Source Output]" />
+              startId="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID.Outputs[ADO NET Source Output]" />
             <path
               refId="Package\Extract and validate CRM data.Paths[CRMPersonsOutput]"
               endId="Package\Extract and validate CRM data\HHS_Staging CRM Persons.Inputs[ADO NET Destination Input]"
@@ -2523,18 +2528,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     design-time-name="Package\Extract and validate CRM data">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="269,42"
-          Id="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName"
+          Size="325,42"
+          Id="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID"
           TopLeft="584,50" />
         <NodeLayout
-          Size="221,42"
+          Size="250,42"
           Id="Package\Extract and validate CRM data\Keep if new or previously sent"
-          TopLeft="604,157" />
+          TopLeft="617,157" />
         <EdgeLayout
           Id="Package\Extract and validate CRM data.Paths[ADO NET Source Output]"
-          TopLeft="716.5,92">
+          TopLeft="744.25,92">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -2554,27 +2559,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="Remove records with duplicate AccountName.&#xD;&#xA;Should only happen if one has HHISID and other does not"
-          ParentId="Package\Extract and validate CRM data"
-          Size="312,60"
-          Id="0ec0acd1-acb0-48f7-ae83-453a208d718a"
-          TopLeft="841,159">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo>
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
         <NodeLayout
           Size="205,42"
           Id="Package\Extract and validate CRM data\HHS_Staging CRM Persons"
-          TopLeft="613,266" />
+          TopLeft="643,266" />
         <EdgeLayout
           Id="Package\Extract and validate CRM data.Paths[CRMPersonsOutput]"
-          TopLeft="715,199">
+          TopLeft="743.75,199">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -2598,7 +2589,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName">
+    design-time-name="Package\Extract and validate CRM data\HHS_Staging tmp CRM by AccountName and HHSID">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
