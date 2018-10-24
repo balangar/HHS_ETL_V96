@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS403300</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="5AOoyvzquw==" SSIS:IV="8cwLw/nXwYQ=">70kRfZC7r9trb1i8csJum3DAAp52mAHYQGQ73Jv+17zqqXBeB8ynsEZKIIqN+bAJt93ctaVfF3CIM0uUSBq9zYo9IibrqWBGEHhOIGALU1W4DNJFIR0c8Flo9aikp+Uohs7hmL3r9Ub877LexdM0kOcCLc6nuHPv+OglFA+Nm+j8pl6FwjcgoA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="/bWXaYqRJw==" SSIS:IV="hkHXZICL5x4=">nhdnzq+Sv/xLLFJWmdFgFbmpYqmfaSkfvYslptOC8Ch+yM/z/TXPbFA4E3L6vhMyRrp6jV2E+MKR0ptxp3IO4jj70e2W00K3hIMrbjGsLU6JgzcM3h+7UGe+uFnh0h3QpvAyrBHnozH6pStwRlCi0tDo7kF4/yrWWDOaUvhaMAbpniN7z3MWPQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -51,6 +51,7 @@
           <SSIS:Package SSIS:Name="Extract-CRM.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage-CRM.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DetectDuplicates-CRM.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="TransformLoad-CRM.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="ClientInfo.conmgr" />
@@ -894,10 +895,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-TransformLoad</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{FD5A4E4F-8F25-4B77-BCCE-9FBFCA67E850}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{21ADC45A-AB0C-4BDC-9B9A-F917F0EBF258}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1081,10 +1082,10 @@
                 <SSIS:Property SSIS:Name="Name">TransformLoad-Master-Persons</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{488A65BE-07F0-4233-952D-ED70EE7494B8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DABEBDEA-2775-4B3D-BB5F-A23ECE149D57}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1221,6 +1222,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{1F1B60AF-0392-4C7A-BE12-9E46BC8387DC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="TransformLoad-CRM.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{9F5C0F3A-7663-4EA1-8F4C-EC1716593276}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">TransformLoad-CRM</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EF5767DF-2881-45CD-960A-3BBE3B7F87B1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
