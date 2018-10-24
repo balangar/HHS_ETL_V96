@@ -1,0 +1,160 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/24/2018 10:58:07 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{C2BBE30B-38EE-45C1-A5E7-BE76E02F43B5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DetectDuplicates-CRM"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{1F1B60AF-0392-4C7A-BE12-9E46BC8387DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Valid HHS_Staging CRM Persons that already have HHSID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{92AF291D-F04A-42FA-8131-67F8D9B7D6A7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Valid HHS_Staging CRM Persons that already have HHSID"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="UPDATE HHS_Staging.CRM.Persons&#xA;&#x9;Set&#xA;&#x9;&#x9;IsDuplicate = 1&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 AND&#xA;&#x9;&#x9;HHSID IS NOT NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Valid HHS_Staging CRM Persons that Match DCFS Persons"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0D502B61-42C7-4F68-8BA9-CD4FF7978FEB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Valid HHS_Staging CRM Persons that Match DCFS Persons"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource=" With HHS_Duplicates(BirthDate, FirstName, LastName)&#xA;AS&#xA;(&#xA;&#x9;Select&#xA;&#x9;&#x9; BirthDate, FirstName, LastName--, ResAddrCleansedZipCode&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.DCFS.Persons&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 AND&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#xA;&#x9;INTERSECT&#xA;&#x9;Select&#xA;&#x9;&#x9; BirthDate,FirstName, LastName&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.CRM.Persons&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1&#x9;And&#xA;&#x9;&#x9;HHSID IS NULL&#x9;-- No Address cleansing performed on CRM.Persons ... yet. 2018-10-24. [geg]&#xA;)&#xA;UPDATE j&#xA;&#x9;Set&#xA;&#x9;&#x9;j.IsDuplicate = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.CRM.Persons j&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;HHS_Duplicates d&#xA;&#x9;&#x9;ON&#xA;&#x9;&#x9;&#x9;j.LastName = d.LastName And&#xA;&#x9;&#x9;&#x9;j.FirstName = d.FirstName And&#xA;&#x9;&#x9;&#x9;j.BirthDate = d.BirthDate And&#xA;&#x9;&#x9;&#x9;j.HHSID IS NULL&#xA;&#x9;Where&#xA;&#x9;&#x9;j.IsValid = 1&#x9;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Valid HHS_Staging CRM Persons that Match JFS CRISE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C68DB1E2-175C-4839-993F-0DB134835652}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Valid HHS_Staging CRM Persons that Match JFS CRISE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource=" With HHS_Duplicates(BirthDate, FirstName, LastName)&#xA;AS&#xA;(&#xA;&#x9;Select&#xA;&#x9;&#x9; BirthDate, FirstName, LastName--, ResAddrCleansedZipCode&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.JFS.CRISE&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1 AND&#xA;&#x9;&#x9;IsCleansed = 1&#xA;&#xA;&#x9;INTERSECT&#xA;&#x9;Select&#xA;&#x9;&#x9; BirthDate,FirstName, LastName&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.CRM.Persons&#xA;&#x9;Where&#xA;&#x9;&#x9;IsValid = 1&#x9;And&#xA;&#x9;&#x9;HHSID IS NULL&#x9;-- No Address cleansing performed on CRM.Persons ... yet. 2018-10-24. [geg]&#xA;)&#xA;UPDATE j&#xA;&#x9;Set&#xA;&#x9;&#x9;j.IsDuplicate = 1&#xA;&#x9;From&#xA;&#x9;&#x9;HHS_Staging.CRM.Persons j&#xA;&#x9;&#x9;JOIN&#xA;&#x9;&#x9;HHS_Duplicates d&#xA;&#x9;&#x9;ON&#xA;&#x9;&#x9;&#x9;j.LastName = d.LastName And&#xA;&#x9;&#x9;&#x9;j.FirstName = d.FirstName And&#xA;&#x9;&#x9;&#x9;j.BirthDate = d.BirthDate And&#xA;&#x9;&#x9;&#x9;j.HHSID IS NULL&#xA;&#x9;Where&#xA;&#x9;&#x9;j.IsValid = 1&#x9;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{92596448-050C-4C70-BD77-2A893DC00C36}"
+      DTS:From="Package\Valid HHS_Staging CRM Persons that already have HHSID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Valid HHS_Staging CRM Persons that Match JFS CRISE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9183668E-1D44-4013-BE5E-ECE36EEDB707}"
+      DTS:From="Package\Valid HHS_Staging CRM Persons that Match JFS CRISE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Valid HHS_Staging CRM Persons that Match DCFS Persons" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="189,54"
+          Id="Package\Valid HHS_Staging CRM Persons that already have HHSID"
+          TopLeft="571,98" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Valid HHS_Staging CRM Persons that Match JFS CRISE"
+          TopLeft="537,232" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="667,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,80"
+              Start="0,0"
+              End="0,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="272,42"
+          Id="Package\Valid HHS_Staging CRM Persons that Match DCFS Persons"
+          TopLeft="533,347" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="668.75,274">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

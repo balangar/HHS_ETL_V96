@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS403300</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="w4J625QhEQ==" SSIS:IV="iQ4Pd8bTMRw=">MsgUvmDGz3JNUT2TaKR6iUv031fuiQ9yVBrarq7HsHS9l5VHDodBM3IX6w7/U3r/c+HVoFBo6YvrrQGWcW4+e4q9ZVjo0XHI5LZM4dBbI46A/CG1RdrSZOOg9bwvVmHYPhqvwK2IIXSuGuN3Yd1IuDJp2uff/LqfNYuwqM05pmPWhanZiiwI5g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="5AOoyvzquw==" SSIS:IV="8cwLw/nXwYQ=">70kRfZC7r9trb1i8csJum3DAAp52mAHYQGQ73Jv+17zqqXBeB8ynsEZKIIqN+bAJt93ctaVfF3CIM0uUSBq9zYo9IibrqWBGEHhOIGALU1W4DNJFIR0c8Flo9aikp+Uohs7hmL3r9Ub877LexdM0kOcCLc6nuHPv+OglFA+Nm+j8pl6FwjcgoA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -50,6 +50,7 @@
           <SSIS:Package SSIS:Name="Cleanse-OBWP-Medicaid.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Extract-CRM.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage-CRM.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DetectDuplicates-CRM.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="ClientInfo.conmgr" />
@@ -1012,10 +1013,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-DetectDuplicates</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B3570F1B-7450-4FC1-9148-6612EF466F45}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D40882BB-C4D7-415F-BC52-802F182A6B02}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1199,10 +1200,27 @@
                 <SSIS:Property SSIS:Name="Name">Stage-CRM</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">38</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B05ED4A5-18CA-4B0C-BBA5-EEA3FE19D142}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DetectDuplicates-CRM.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C2BBE30B-38EE-45C1-A5E7-BE76E02F43B5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DetectDuplicates-CRM</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{58A8D6DC-534E-4510-A1D4-8E24BE7DCEFD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1F1B60AF-0392-4C7A-BE12-9E46BC8387DC}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
