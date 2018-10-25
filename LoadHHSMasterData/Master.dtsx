@@ -12,8 +12,8 @@
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{2B753043-6381-4DC1-AC19-57860E199D70}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{BAF63D63-5FE5-44E2-B30F-8F9E5E2228F0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -174,7 +174,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="117,42"
           Id="Package\Cleanse"
@@ -204,7 +204,7 @@
           TopLeft="643.5,107">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,48"
               Start="0,0"
               End="0,40.5">
@@ -226,7 +226,7 @@
           TopLeft="641.25,197">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,49"
               Start="0,0"
               End="0,41.5">
@@ -248,7 +248,7 @@
           TopLeft="646.5,373">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,53"
               Start="0,0"
               End="0,45.5">
@@ -270,7 +270,7 @@
           TopLeft="646.75,468">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,61"
               Start="0,0"
               End="0,53.5">
@@ -292,7 +292,7 @@
           TopLeft="644.5,288">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,43"
               Start="0,0"
               End="0,35.5">
