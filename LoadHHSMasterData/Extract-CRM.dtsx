@@ -1,0 +1,2433 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/17/2018 11:18:07 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GreenG"
+  DTS:DTSID="{576AF857-0139-4AE8-90D5-29FC460EDE59}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Extract-CRM"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{2A8CCEA5-ED60-417F-B333-194A832B7616}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract CRM Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9809FE6D-5A62-4023-AD4A-59B7FD4E37C7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract CRM Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="CRM Contact Info By AccountName and RowNumber"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select 
+	row_number() OVER(PARTITION by ct.AccountName Order by ct.SysInsertDate) as RN, 
+                   HHSID,
+	SUBSTRING(ct.AccountName, 1, 50) As AccountName,
+	SUBSTRING(UPPER(ct.LastName), 1, 45) As LastName, 
+	SUBSTRING(UPPER(ct.FirstName), 1, 45) As FirstName, 
+	UPPER(SUBSTRING(ct.MiddleName, 1, 5)) As MI,
+	ct.Birthday As BirthDate, 
+	SUBSTRING(ct.SSN, 1, 9) As SocSecNo,
+	SUBSTRING(ct.[Address Address1], 1, 45) As ResAddrLine1, 
+	SUBSTRING(ct.[Address Address2], 1, 45) As ResAddrLine2,
+	SUBSTRING([Address City], 1,15) As ResAddrCity, 
+	SUBSTRING(ct.[Address State], 1, 2) As ResAddrState, 
+	SUBSTRING(ct.[Address PostalCode], 1, 5) As ResAddrZipCode
+
+From
+	InfoCRM.dbo.Contact ct
+	JOIN
+	InfoCRM.dbo.Account ac
+	ON 
+		ct.[Account Key] = ac.[Key] 
+Order by
+	AccountName</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Connections[IDbConnection]"
+                  connectionManagerID="{4ECFBABE-63D1-4ED7-8778-D6A6AAC855E9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[InforCRM]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output]"
+                  isSorted="true"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[RN]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[RN]"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[RN]"
+                      name="RN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      length="64"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[HHSID]"
+                      name="HHSID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      length="50"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]"
+                      name="AccountName"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[MI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      length="5"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[MI]"
+                      name="MI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      length="9"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]"
+                      name="SocSecNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      length="15"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrCity]"
+                      name="ResAddrCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      length="2"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrState]"
+                      name="ResAddrState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      length="5"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[RN]"
+                      dataType="i8"
+                      name="RN" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[HHSID]"
+                      dataType="wstr"
+                      length="64"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="45"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="45"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="5"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[BirthDate]"
+                      dataType="dbDate"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[RN]"
+                      dataType="i8"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[RN]"
+                      name="RN" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      dataType="wstr"
+                      length="64"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[HHSID]"
+                      name="HHSID" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract CRM Data\Remove Duplicates (Account Name)"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Remove Duplicates (Account Name)"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public ContactInfoOutputBuffer ContactInfoOutputBuffer;
+
+    int InputsFinished = 0;
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+        if (Buffer.EndOfRowset)
+        {
+            InputsFinished = InputsFinished + 1;
+            if (InputsFinished == 1)
+            {
+                FinishOutputs();
+                MarkOutputsFinished();
+            }
+        }
+
+    }
+
+    public virtual void FinishOutputs()
+    {
+    }
+
+    private void MarkOutputsFinished()
+    {
+
+        if (null != ContactInfoOutputBuffer)
+        {
+            ContactInfoOutputBuffer.SetEndOfRowset();
+            ContactInfoOutputBuffer = null;
+        }
+
+    }
+
+    public override void PrimeOutput(int Outputs, int[] OutputIDs, PipelineBuffer[] Buffers, OutputNameMap OutputMap)
+    {
+       for(int Idx = 0; Idx < Outputs; Idx++)
+       {
+            if(OutputIDs[Idx] == GetOutputID(OutputMap, @"ContactInfoOutput"))
+            {
+                ContactInfoOutputBuffer = new ContactInfoOutputBuffer(Buffers[Idx], GetColumnIndexes(OutputIDs[Idx]), OutputMap);
+            }
+        }
+
+        CreateNewOutputRows();
+
+    }
+
+    public virtual void CreateNewOutputRows()
+    {
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    public static string LastAccountName { get; set; } = string.Empty;
+    public static string CurrentAccountName { get; set; } = null;
+
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+     public override void CreateNewOutputRows()
+    {
+        /*
+          Add rows by calling the AddRow method on the member variable named "<Output Name>Buffer".
+          For example, call MyOutputBuffer.AddRow() if your output was named "MyOutput".
+        */
+    }
+
+   /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+
+        CurrentAccountName = Row.AccountName;
+        if(CurrentAccountName != LastAccountName)
+        {
+            LastAccountName = CurrentAccountName;
+            ContactInfoOutputBuffer.AddRow();
+
+            ContactInfoOutputBuffer.HHSID = Row.HHSID;
+            ContactInfoOutputBuffer.AccountName = Row.AccountName;
+
+            ContactInfoOutputBuffer.LastName = !Row.LastName_IsNull && !(Row.LastName == string.Empty) ? Row.LastName.Substring(0, Math.Min(Row.LastName.Length, 15)) : Row.LastName;
+            ContactInfoOutputBuffer.FirstName = !Row.FirstName_IsNull && !(Row.FirstName == string.Empty) ? Row.FirstName.Substring(0, Math.Min(Row.FirstName.Length, 15)) : Row.FirstName;
+            ContactInfoOutputBuffer.MI = !Row.MI_IsNull && !(Row.MI == string.Empty) ? Row.MI.Substring(0, Math.Min(Row.MI.Length, 1)) : Row.MI;
+
+            if(!Row.BirthDate_IsNull) { ContactInfoOutputBuffer.BirthDate = Row.BirthDate; }
+
+            ContactInfoOutputBuffer.SocSecNo = !Row.SocSecNo_IsNull && !(Row.SocSecNo == string.Empty) ? Row.SocSecNo.Substring(0, Math.Min(Row.SocSecNo.Length, 9)) : Row.SocSecNo;
+
+            ContactInfoOutputBuffer.ResAddrLine1 = !Row.ResAddrLine1_IsNull && !(Row.ResAddrLine1 == string.Empty) ? Row.ResAddrLine1.Substring(0, Math.Min(Row.ResAddrLine1.Length, 45)) : Row.ResAddrLine1;
+            ContactInfoOutputBuffer.ResAddrLine2 = !Row.ResAddrLine2_IsNull && !(Row.ResAddrLine2 == string.Empty) ? Row.ResAddrLine2.Substring(0, Math.Min(Row.ResAddrLine2.Length, 45)) : Row.ResAddrLine2;
+            ContactInfoOutputBuffer.ResAddrCity = !Row.ResAddrCity_IsNull && !(Row.ResAddrCity == string.Empty) ? Row.ResAddrCity.Substring(0, Math.Min(Row.ResAddrCity.Length, 24)) : Row.ResAddrCity;
+            ContactInfoOutputBuffer.ResAddrState = !Row.ResAddrState_IsNull && !(Row.ResAddrState == string.Empty) ? Row.ResAddrState.Substring(0, Math.Min(Row.ResAddrState.Length, 2)) : Row.ResAddrState;
+            ContactInfoOutputBuffer.ResAddrZipCode = !Row.ResAddrZipCode_IsNull && !(Row.ResAddrZipCode == string.Empty) ? Row.ResAddrZipCode.Substring(0, Math.Min(Row.ResAddrZipCode.Length, 5)) : Row.ResAddrZipCode;
+        }
+    }
+
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String AccountName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool AccountName_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String LastName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool LastName_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String FirstName
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String MI
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool MI_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[4]);
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String SocSecNo
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public String ResAddrCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String ResAddrState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String HHSID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool HHSID_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+
+public class ContactInfoOutputBuffer: ScriptBuffer
+
+{
+    public ContactInfoOutputBuffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String HHSID
+    {
+        set
+        {
+            this[0] = value;
+        }
+    }
+    public bool HHSID_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String AccountName
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool AccountName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String LastName
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool LastName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String FirstName
+    {
+        set
+        {
+            this[3] = value;
+        }
+    }
+    public bool FirstName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(3);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String MI
+    {
+        set
+        {
+            this[4] = value;
+        }
+    }
+    public bool MI_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(4);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTime BirthDate
+    {
+        set
+        {
+            this[5] = value;
+        }
+    }
+    public bool BirthDate_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(5);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String SocSecNo
+    {
+        set
+        {
+            this[6] = value;
+        }
+    }
+    public bool SocSecNo_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(6);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrLine1
+    {
+        set
+        {
+            this[7] = value;
+        }
+    }
+    public bool ResAddrLine1_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(7);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrLine2
+    {
+        set
+        {
+            this[8] = value;
+        }
+    }
+    public bool ResAddrLine2_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(8);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrCity
+    {
+        set
+        {
+            this[9] = value;
+        }
+    }
+    public bool ResAddrCity_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(9);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrState
+    {
+        set
+        {
+            this[10] = value;
+        }
+    }
+    public bool ResAddrState_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(10);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResAddrZipCode
+    {
+        set
+        {
+            this[11] = value;
+        }
+    }
+    public bool ResAddrZipCode_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(11);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public void AddRow()
+    {
+        base.AddRow();
+    }
+
+    new public void SetEndOfRowset()
+    {
+        base.SetEndOfRowset();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Settings.get_Default():SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Sett" +
+    "ings")]
+
+namespace SC_5acf08d0ff6940e5b8201fdda37eb947.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_5acf08d0ff6940e5b8201fdda37eb947.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5b2337af-d0e5-4a0a-aa37-b12458b2f87f}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_5acf08d0ff6940e5b8201fdda37eb947</RootNamespace>
+    <AssemblyName>SC_5acf08d0ff6940e5b8201fdda37eb947</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_5acf08d0ff6940e5b8201fdda37eb947" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_5acf08d0ff6940e5b8201fdda37eb947</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_5acf08d0ff6940e5b8201fdda37eb947</msb:DisplayName>
+		<msb:ProjectId>{7C9E035B-8030-491F-B460-F412F99C202F}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_5acf08d0ff6940e5b8201fdda37eb947.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_5acf08d0ff6940e5b8201fdda37eb947")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_5acf08d0ff6940e5b8201fdda37eb947")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_5acf08d0ff6940e5b8201fdda37eb947.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_5acf08d0ff6940e5b8201fdda37eb947.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_5acf08d0ff6940e5b8201fdda37eb947.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[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
+AAAEAOMHAAABAHcJAAACAE8IAAADAGkJAAAEAOMHAAABACcIAAABAHMKAAABAOkJAAABAOkJAAAB
+AJEECQBCCAEAEQBCCAYAGQBCCAoAKQBCCBAAMQBCCBAAOQBCCBAAQQBCCBAASQBCCBAAUQBCCBAA
+WQBCCBAAYQBCCBAAaQBCCAYAcQBCCAYAqQBCCAYAyQBCCBUA2QCwChsA2QC+CiEA2QCkChsA2QDK
+BCQA4QA5BygA2QC7BC4AeQBCCDQAeQAnCD4AeQAoCUIAgQCxBEYAeQAOB0sAgQC0AlAAeQBvClYA
+eQCtCVYAeQAdB1oAeQAVBwEA6QBCCBAAeQBRCgYAeQCqCQYAmQBCCAYA2QBWCWAAmQA8CWcAgQCa
+CVYAmQCOAHEAoQBCCAYA+QBhAXgA+QB3CoAAsQBCCIYA0QBCCAYAIABrAPYBIQBrAPYBLgALADcB
+LgATAEABLgAbAF8BLgAjAGgBLgArAJEBLgAzAJEBLgA7AJEBLgBDAGgBLgBLAJcBLgBTAJEBLgBb
+AK4BQABrAPYBQQBrAPYBQwBjAPYBYABrAPYBgABrAPYBAwFzAPYBYQFrAPYBaQZ7AF8BiQZ7AF8B
+bQACAAEAAwADAAQAGwAIADMACQA1AAAA2QEXAQAArgEXAQAA3QEbAQAAAAYfAQAA+gEbAQAAKwYf
+AQAAFQIbAQAAVAYfAQAApQAbAQAApwUfAQAAqgIjAQAAfgYfAQAAwAcbAQAA1wYfAQAAFgAbAQAA
+LwUfAQAAOAAbAQAAXwUfAQAAmAobAQAAAgcfAQAA5gIbAQAAqwYfAQAAQAEbAQAAzwUfAQAAgAAb
+AQAAiAUfAQAAgAAbAQAAiAUfAQAA3QEbAQAAAAYfAQAA+gEbAQAAKwYfAQAAFQIbAQAAVAYfAQAA
+pQAbAQAApwUfAQAAqgIjAQAAfgYfAQAAwAcbAQAA1wYfAQAAFgAbAQAALwUfAQAAOAAbAQAAXwUf
+AQAAmAobAQAAAgcfAQAA5gIbAQAAqwYfAQAAQAEbAQAAzwUfAQAAMggoAQAAeAItAQAAvQkyAQIA
+AQADAAEAAgADAAIAAwAFAAEABAAFAAIACgAHAAIACwAJAAIADAALAAIADQANAAIADgAPAAIADwAR
+AAIAEAATAAIAEQAVAAIAEgAXAAIAEwAZAAIAFAAbAAIAFQAdAAIAFgAfAAIAFwAhAAIAGAAjAAIA
+GQAlAAIAGgAnAAIAGwApAAIAHAArAAIAHQAtAAIAHgAvAAIAHwAxAAIAIAAzAAIAIQA1AAEAJQA3
+AAEAJgA5AAEAJwA7AAEAKAA9AAEAKQA/AAEAKgBBAAEAKwBDAAEALABFAAEALQBHAAEALgBJAAEA
+LwBLAAEAMABNAAEAMQBPAAEAMgBRAAEAMwBTAAEANABVAAEANQBXAAEANgBZAAEANwBbAAEAOABd
+AAEAOQBfAAEAOgBhAAEAOwBjAAEAPABlAAIASwBnAAIATABpAAEATQBpAAIATgBrAASAAAABAAAA
+1RoMTQAAAAAAAEUAAAAEAAAAAAAAAAAAAACOAKgAAAAAAAwAAAAAAAAAAAAAAJcA8wkAAAAADAAA
+AAAAAAAAAAAAlwAQCgAAAAAEAAAAAAAAAAAAAACOACYHAAAAAAAAAAABAAAAnQgAAAAAAGdldF9S
+ZXNBZGRyTGluZTEAc2V0X1Jlc0FkZHJMaW5lMQBnZXRfUmVzQWRkckxpbmUyAHNldF9SZXNBZGRy
+TGluZTIAU0NfNWFjZjA4ZDBmZjY5NDBlNWI4MjAxZmRkYTM3ZWI5NDcAPE1vZHVsZT4AZ2V0X0hI
+U0lEAHNldF9ISFNJRABJbnB1dElEAEdldE91dHB1dElEAGdldF9NSQBzZXRfTUkAbXNjb3JsaWIA
+SW5wdXRzRmluaXNoZWQATWFya091dHB1dHNGaW5pc2hlZAA8Q3VycmVudEFjY291bnROYW1lPmtf
+X0JhY2tpbmdGaWVsZAA8TGFzdEFjY291bnROYW1lPmtfX0JhY2tpbmdGaWVsZABkZWZhdWx0SW5z
+dGFuY2UAZ2V0X1Jlc0FkZHJaaXBDb2RlAHNldF9SZXNBZGRyWmlwQ29kZQBSdW50aW1lVHlwZUhh
+bmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBnZXRfQWNjb3VudE5hbWUAc2V0X0FjY291bnROYW1lAGdl
+dF9DdXJyZW50QWNjb3VudE5hbWUAc2V0X0N1cnJlbnRBY2NvdW50TmFtZQBnZXRfTGFzdEFjY291
+bnROYW1lAHNldF9MYXN0QWNjb3VudE5hbWUAZ2V0X0xhc3ROYW1lAHNldF9MYXN0TmFtZQBnZXRf
+Rmlyc3ROYW1lAHNldF9GaXJzdE5hbWUASW5wdXROYW1lAERhdGVUaW1lAE1pY3Jvc29mdC5TcWxT
+ZXJ2ZXIuRHRzLlBpcGVsaW5lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VD
+dWx0dXJlAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAGdldF9CaXJ0aERhdGUAc2V0X0JpcnRoRGF0
+ZQBHZXREYXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAGdldF9SZXNBZGRyU3RhdGUAc2V0X1Jlc0Fk
+ZHJTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0
+cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2Vt
+Ymx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3
+b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2Ny
+aXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQ
+cm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRDb21w
+b25lbnRFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1l
+Q29tcGF0aWJpbGl0eUF0dHJpYnV0ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAEdl
+dFN0cmluZwBTdWJzdHJpbmcATWF0aABnZXRfTGVuZ3RoAFN5c3RlbS5Db21wb25lbnRNb2RlbABT
+Q181YWNmMDhkMGZmNjk0MGU1YjgyMDFmZGRhMzdlYjk0Ny5kbGwAZ2V0X1Jlc0FkZHJMaW5lMV9J
+c051bGwAc2V0X1Jlc0FkZHJMaW5lMV9Jc051bGwAZ2V0X1Jlc0FkZHJMaW5lMl9Jc051bGwAc2V0
+X1Jlc0FkZHJMaW5lMl9Jc051bGwAZ2V0X0hIU0lEX0lzTnVsbABzZXRfSEhTSURfSXNOdWxsAGdl
+dF9NSV9Jc051bGwAc2V0X01JX0lzTnVsbABnZXRfUmVzQWRkclppcENvZGVfSXNOdWxsAHNldF9S
+ZXNBZGRyWmlwQ29kZV9Jc051bGwAZ2V0X0FjY291bnROYW1lX0lzTnVsbABzZXRfQWNjb3VudE5h
+bWVfSXNOdWxsAGdldF9MYXN0TmFtZV9Jc051bGwAc2V0X0xhc3ROYW1lX0lzTnVsbABnZXRfRmly
+c3ROYW1lX0lzTnVsbABzZXRfRmlyc3ROYW1lX0lzTnVsbABnZXRfQmlydGhEYXRlX0lzTnVsbABz
+ZXRfQmlydGhEYXRlX0lzTnVsbABnZXRfUmVzQWRkclN0YXRlX0lzTnVsbABzZXRfUmVzQWRkclN0
+YXRlX0lzTnVsbABnZXRfU29jU2VjTm9fSXNOdWxsAHNldF9Tb2NTZWNOb19Jc051bGwAZ2V0X1Jl
+c0FkZHJDaXR5X0lzTnVsbABzZXRfUmVzQWRkckNpdHlfSXNOdWxsAFNldE51bGwAc2V0X0l0ZW0A
+U3lzdGVtAHJlc291cmNlTWFuAE1pbgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5
+c3RlbS5HbG9iYWxpemF0aW9uAFN5c3RlbS5SZWZsZWN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNl
+cHRpb24AU3RyaW5nQ29tcGFyaXNvbgBnZXRfU29jU2VjTm8Ac2V0X1NvY1NlY05vAEN1bHR1cmVJ
+bmZvAE91dHB1dE5hbWVNYXAAT3V0cHV0TWFwAElucHV0MEJ1ZmZlcgBQaXBlbGluZUJ1ZmZlcgBT
+Y3JpcHRCdWZmZXIAQ29udGFjdEluZm9PdXRwdXRCdWZmZXIAZ2V0X1Jlc291cmNlTWFuYWdlcgAu
+Y3RvcgAuY2N0b3IAT3V0cHV0SURzAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5D
+b21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU0NfNWFjZjA4ZDBmZjY5NDBlNWI4MjAx
+ZmRkYTM3ZWI5NDcuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVz
+AFNDXzVhY2YwOGQwZmY2OTQwZTViODIwMWZkZGEzN2ViOTQ3LlByb3BlcnRpZXMAVmFyaWFibGVz
+AEJ1ZmZlckNvbHVtbkluZGV4ZXMAR2V0Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBFcXVhbHMAQ29u
+bmVjdGlvbnMAQnVmZmVycwBGaW5pc2hPdXRwdXRzAENyZWF0ZU5ld091dHB1dFJvd3MAT2JqZWN0
+AGdldF9FbmRPZlJvd3NldABTZXRFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29tcG9uZW50
+AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZlci5UeFNj
+cmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vzc0lucHV0
+AFByaW1lT3V0cHV0AEFkZFJvdwBJbnB1dDBfUHJvY2Vzc0lucHV0Um93AE5leHRSb3cAZ2V0X0Fz
+c2VtYmx5AGdldF9SZXNBZGRyQ2l0eQBzZXRfUmVzQWRkckNpdHkAb3BfRXF1YWxpdHkAb3BfSW5l
+cXVhbGl0eQBFbXB0eQAAgJtJAHMATgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4A
+bwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAg
+AHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4A
+AA9JAG4AcAB1AHQAIAAwAAAjQwBvAG4AdABhAGMAdABJAG4AZgBvAE8AdQB0AHAAdQB0AABxUwBD
+AF8ANQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcA
+ZQBiADkANAA3AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABzCXps
+LqjzQLC5YGqXsS3VAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFhBQACAg4OAgYOAyAACAUAAggI
+CAUgAg4ICAkgAwESQR0IEkUDBhJBAwYdCAQgAQ4IBCABAggFIAERSQgDIAACBSACAQgcBiACAg4R
+eQUgAR0ICAMHAQgGAAIIEkUOBwABEn0RgIEFIAASgIUHIAIBDhKAhQi3elxWGTTgiQiJhF3NgIDM
+kQMGEhgDBhIcAwYSEAIGCAMGEk0DBhJZAwYSXQMGEiQDAAAOBAABAQ4FIAEBEgwDAAABAyAADgQg
+ABFJBCABAQIFIAEBEUkJIAQBCA4SQRJFCyAEAQgdCB0SQRJFBSABARJNBAAAElkEAAASXQUAAQES
+XQQAABIkAwgADgMoAA4DKAACBCgAEUkECAASWQQIABJdBAgAEiQIAQAIAAAAAAAeAQABAFQCFldy
+YXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEAI1NDXzVhY2YwOGQwZmY2OTQwZTViODIw
+MWZkZGEzN2ViOTQ3AAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTgAAEcBABouTkVURnJhbWV3
+b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsg
+NAQBAAAAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwg
+bXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tl
+bj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAA
+AAAAAAAAAAAAUEFEUEFEULQAAACkQwAAAAAAAAAAAAC+QwAAACAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAsEMAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAA
+ABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABYYAAA
+GgQAAAAAAAAAAAAAGgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E7/4A
+AAEAAAABAAxN1RoAAAEADE3VGj8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
+cgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAAAACw
+BHoDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAFYDAAABADAAMAAwADAAMAA0AGIA
+MAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5AE4AYQBt
+AGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBDAF8A
+NQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBi
+ADkANAA3AAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAOAA2ADkA
+LgAxADkANwAyADQAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8ANQBh
+AGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcAZQBiADkA
+NAA3AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
+AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADgAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0A
+YQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABT
+AEMAXwA1AGEAYwBmADAAOABkADAAZgBmADYAOQA0ADAAZQA1AGIAOAAyADAAMQBmAGQAZABhADMA
+NwBlAGIAOQA0ADcALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBD
+AF8ANQBhAGMAZgAwADgAZAAwAGYAZgA2ADkANAAwAGUANQBiADgAMgAwADEAZgBkAGQAYQAzADcA
+ZQBiADkANAA3AAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2
+ADgANgA5AC4AMQA5ADcAMgA0AAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkA
+bwBuAAAAMQAuADAALgA2ADgANgA5AC4AMQA5ADcAMgA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAADAAAANAzAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_5acf08d0ff6940e5b8201fdda37eb947</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">ec872cce6d2f7fed16242f8fe64e8315</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">17ded49a8167e5521f2ab636858cc270188becb3</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[AccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AccountName"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[AccountName]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="LastName"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="FirstName"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[MI]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="MI"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[SocSecNo]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrCity]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ResAddrCity"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[ResAddrZipCode]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[ResAddrZipCode]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0].Columns[HHSID]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="HHSID"
+                      lineageId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output].Columns[HHSID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput]"
+                  hasSideEffects="true"
+                  name="ContactInfoOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[HHSID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[HHSID]"
+                      name="HHSID" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[AccountName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[AccountName]"
+                      name="AccountName" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[LastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[MI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[MI]"
+                      name="MI" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[BirthDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[SocSecNo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[SocSecNo]"
+                      name="SocSecNo" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine1]"
+                      name="ResAddrLine1" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine2]"
+                      name="ResAddrLine2" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="24"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]"
+                      name="ResAddrCity" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrState]"
+                      name="ResAddrState" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrZipCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrZipCode]"
+                      name="ResAddrZipCode" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract CRM Data\Staging tmp CRM"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Staging tmp CRM"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"tmp"."CRM"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract CRM Data\Staging tmp CRM.Connections[IDbConnection]"
+                  connectionManagerID="{4E7D527F-7D71-4960-A824-F63D93AB73F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HHS_Staging]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[HHSID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="HHSID"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[HHSID]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[HHSID]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[AccountName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AccountName"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[AccountName]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[AccountName]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[LastName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[FirstName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[MI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="MI"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[MI]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[BirthDate]"
+                      cachedDataType="dbDate"
+                      cachedName="BirthDate"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[SocSecNo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="SocSecNo"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[SocSecNo]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[ResAddrLine1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="ResAddrLine1"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine1]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[ResAddrLine2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="ResAddrLine2"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrLine2]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[ResAddrCity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="24"
+                      cachedName="ResAddrCity"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrCity]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[ResAddrState]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ResAddrState"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrState]" />
+                    <inputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].Columns[ResAddrZipCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="ResAddrZipCode"
+                      externalMetadataColumnId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      lineageId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput].Columns[ResAddrZipCode]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[AccountName]"
+                      dataType="wstr"
+                      length="50"
+                      name="AccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[HHSID]"
+                      dataType="wstr"
+                      length="64"
+                      name="HHSID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="15"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="15"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[MI]"
+                      dataType="wstr"
+                      length="1"
+                      name="MI" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[BirthDate]"
+                      dataType="dbTimeStamp"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[SocSecNo]"
+                      dataType="wstr"
+                      length="9"
+                      name="SocSecNo" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine1]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrLine2]"
+                      dataType="wstr"
+                      length="45"
+                      name="ResAddrLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrCity]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResAddrCity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrState]"
+                      dataType="wstr"
+                      length="2"
+                      name="ResAddrState" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ResAddrZipCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="ResAddrZipCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ProgramName]"
+                      dataType="wstr"
+                      length="7"
+                      name="ProgramName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ServiceType]"
+                      dataType="wstr"
+                      length="7"
+                      name="ServiceType" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[ServiceDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ServiceDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[DataSource]"
+                      dataType="wstr"
+                      length="15"
+                      name="DataSource" />
+                    <externalMetadataColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input].ExternalColumns[AddressType]"
+                      dataType="wstr"
+                      length="7"
+                      name="AddressType" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract CRM Data\Staging tmp CRM.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract CRM Data\Staging tmp CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract CRM Data\Staging tmp CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract CRM Data\Staging tmp CRM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract CRM Data.Paths[ADO NET Source Output]"
+              endId="Package\Extract CRM Data\Remove Duplicates (Account Name).Inputs[Input 0]"
+              name="ADO NET Source Output"
+              startId="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Extract CRM Data.Paths[ContactInfoOutput]"
+              endId="Package\Extract CRM Data\Staging tmp CRM.Inputs[ADO NET Destination Input]"
+              name="ContactInfoOutput"
+              startId="Package\Extract CRM Data\Remove Duplicates (Account Name).Outputs[ContactInfoOutput]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging TMP CRM"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7A5D7E90-9E07-42DC-8EB7-78CFB80C0E2A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging TMP CRM"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E7D527F-7D71-4960-A824-F63D93AB73F1}"
+          SQLTask:SqlStatementSource="Truncate Table [HHS_Staging].[tmp].[CRM]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2E669ABF-24E1-44FC-B74C-F0954A43D00F}"
+      DTS:From="Package\Truncate Staging TMP CRM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract CRM Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Extract CRM Data"
+          TopLeft="616,192" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Truncate Staging TMP CRM"
+          TopLeft="599,83" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="700,125">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Exclude duplicates as determined by AccountName"
+          ParentId="Package"
+          Size="276,37"
+          Id="b83e0156-f3c3-492c-bab8-ea0b5ec5bcf6"
+          TopLeft="865,195">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo>
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract CRM Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Extract CRM Data\Staging tmp CRM"
+          TopLeft="615,279" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\Extract CRM Data\Remove Duplicates (Account Name)"
+          TopLeft="568,172" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber"
+          TopLeft="583,62" />
+        <EdgeLayout
+          Id="Package\Extract CRM Data.Paths[ADO NET Source Output]"
+          TopLeft="695,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract CRM Data.Paths[ContactInfoOutput]"
+          TopLeft="693.75,214">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract CRM Data\Staging tmp CRM">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract CRM Data\CRM Contact Info By AccountName and RowNumber">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

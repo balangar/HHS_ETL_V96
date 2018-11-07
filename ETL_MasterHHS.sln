@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8B75
 		Scripts\HHS_Staging_CFS_SACWIS.sql = Scripts\HHS_Staging_CFS_SACWIS.sql
 		Scripts\HHS_Staging_ToProperCase.sql = Scripts\HHS_Staging_ToProperCase.sql
 		Scripts\SampleQueries.txt = Scripts\SampleQueries.txt
+		Scripts\SetXTRCRMUploadStatus.sql = Scripts\SetXTRCRMUploadStatus.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{ACBA2858-B0AD-489E-858E-224725C0F63B}"
