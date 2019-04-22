@@ -9,6 +9,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Auxiliary", "_Auxiliary", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", "{FC926C31-042D-4370-BF81-8E9144BA552E}"
+	ProjectSection(SolutionItems) = preProject
+		_Documents\APS Data Dictionary_data from ODAPS to Peer Place rev092518.xlsx = _Documents\APS Data Dictionary_data from ODAPS to Peer Place rev092518.xlsx
+		_Documents\Contact_Full.txt = _Documents\Contact_Full.txt
+		_Documents\ObjectsAndFields.xlsx = _Documents\ObjectsAndFields.xlsx
+		_Documents\ODAPS_Objects.txt = _Documents\ODAPS_Objects.txt
+		_Documents\Query_SF_CaseNotes.txt = _Documents\Query_SF_CaseNotes.txt
+		_Documents\Query_SF_Cases.txt = _Documents\Query_SF_Cases.txt
+		_Documents\Query_SF_Contact.txt = _Documents\Query_SF_Contact.txt
+		_Documents\Query_SF_User.txt = _Documents\Query_SF_User.txt
+		_Documents\SF_CaseNotes.txt = _Documents\SF_CaseNotes.txt
+		_Documents\SF_Cases.txt = _Documents\SF_Cases.txt
+		_Documents\SF_Contact.txt = _Documents\SF_Contact.txt
+		_Documents\SF_User.txt = _Documents\SF_User.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
