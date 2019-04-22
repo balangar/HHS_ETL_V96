@@ -24,7 +24,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", 
 		_Documents\SF_User.txt = _Documents\SF_User.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProbeODAPS", "ProbeODAPS\ProbeODAPS.csproj", "{7A9289ED-3B62-4201-BE77-1492627A6E8F}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
