@@ -1,0 +1,9 @@
+{"Case_Notes__C",
+	@"SELECT
+		APS_Case_Number__c, Case_Note_Interview_Date__c, Name, Client_Interview__c, Client_Interview_Outside_Perp_Presence__c, 
+		Client_Name__c, Contact_is_Timely__c,
+		Days_since_last_assessment__c, Explain_Why_Perp_Attended_Interview__c, Interview_Conducted_With__c, Non_Participating_Contact__c,
+		Note_Type__c, Note__c,
+		CreatedById, CreatedDate, LastModifiedById, LastModifiedDate, SystemModstamp
+	FROM
+		Case_Notes__C"}
