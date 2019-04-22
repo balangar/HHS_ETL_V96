@@ -1,0 +1,166 @@
+User: 	164 fields
+
+Id	: 	Type: id	Length :18	Label :User ID    
+Username	: 	Type: string	Length :80	Label :Username    
+LastName	: 	Type: string	Length :80	Label :Last Name    
+FirstName	: 	Type: string	Length :40	Label :First Name   IS_Nullable
+MiddleName	: 	Type: string	Length :40	Label :Middle Name   IS_Nullable
+Suffix	: 	Type: string	Length :40	Label :Suffix   IS_Nullable
+Name	: 	Type: string	Length :121	Label :Full Name	IS_NameField   
+CompanyName	: 	Type: string	Length :80	Label :Company Name   IS_Nullable
+Division	: 	Type: string	Length :80	Label :Division   IS_Nullable
+Department	: 	Type: string	Length :80	Label :Department   IS_Nullable
+Title	: 	Type: string	Length :80	Label :Title   IS_Nullable
+Street	: 	Type: textarea	Length :255	Label :Street   IS_Nullable
+City	: 	Type: string	Length :40	Label :City   IS_Nullable
+State	: 	Type: string	Length :80	Label :State/Province   IS_Nullable
+PostalCode	: 	Type: string	Length :20	Label :Zip/Postal Code   IS_Nullable
+Country	: 	Type: string	Length :80	Label :Country   IS_Nullable
+StateCode	: 	Type: picklist	Length :10	Label :State/Province Code  IS_Restricted_Picklist IS_Nullable
+CountryCode	: 	Type: picklist	Length :10	Label :Country Code  IS_Restricted_Picklist IS_Nullable
+Latitude	: 	Type: double		Label :Latitude   IS_Nullable
+Longitude	: 	Type: double		Label :Longitude   IS_Nullable
+GeocodeAccuracy	: 	Type: picklist	Length :40	Label :Geocode Accuracy  IS_Restricted_Picklist IS_Nullable
+Address	: 	Type: address		Label :Address   IS_Nullable
+Email	: 	Type: email	Length :128	Label :Email    
+EmailPreferencesAutoBcc	: 	Type: boolean		Label :AutoBcc    
+EmailPreferencesAutoBccStayInTouch	: 	Type: boolean		Label :AutoBccStayInTouch    
+EmailPreferencesStayInTouchReminder	: 	Type: boolean		Label :StayInTouchReminder    
+SenderEmail	: 	Type: email	Length :80	Label :Email Sender Address   IS_Nullable
+SenderName	: 	Type: string	Length :80	Label :Email Sender Name   IS_Nullable
+Signature	: 	Type: textarea	Length :1333	Label :Email Signature   IS_Nullable
+StayInTouchSubject	: 	Type: string	Length :80	Label :Stay-in-Touch Email Subject   IS_Nullable
+StayInTouchSignature	: 	Type: textarea	Length :512	Label :Stay-in-Touch Email Signature   IS_Nullable
+StayInTouchNote	: 	Type: string	Length :512	Label :Stay-in-Touch Email Note   IS_Nullable
+Phone	: 	Type: phone	Length :40	Label :Phone   IS_Nullable
+Fax	: 	Type: phone	Length :40	Label :Fax   IS_Nullable
+MobilePhone	: 	Type: phone	Length :40	Label :Mobile   IS_Nullable
+Alias	: 	Type: string	Length :8	Label :Alias    
+CommunityNickname	: 	Type: string	Length :40	Label :Nickname    
+BadgeText	: 	Type: string	Length :80	Label :User Photo badge text overlay   IS_Nullable
+IsActive	: 	Type: boolean		Label :Active    
+TimeZoneSidKey	: 	Type: picklist	Length :40	Label :Time Zone  IS_Restricted_Picklist  
+UserRoleId	: 	Type: reference	Length :18	Label :Role ID   IS_Nullable
+LocaleSidKey	: 	Type: picklist	Length :40	Label :Locale  IS_Restricted_Picklist  
+ReceivesInfoEmails	: 	Type: boolean		Label :Info Emails    
+ReceivesAdminInfoEmails	: 	Type: boolean		Label :Admin Info Emails    
+EmailEncodingKey	: 	Type: picklist	Length :40	Label :Email Encoding  IS_Restricted_Picklist  
+ProfileId	: 	Type: reference	Length :18	Label :Profile ID    
+UserType	: 	Type: picklist	Length :40	Label :User Type  IS_Restricted_Picklist IS_Nullable
+LanguageLocaleKey	: 	Type: picklist	Length :40	Label :Language  IS_Restricted_Picklist  
+EmployeeNumber	: 	Type: string	Length :20	Label :Employee Number   IS_Nullable
+DelegatedApproverId	: 	Type: reference	Length :18	Label :Delegated Approver ID   IS_Nullable
+ManagerId	: 	Type: reference	Length :18	Label :Manager ID   IS_Nullable
+LastLoginDate	: 	Type: datetime		Label :Last Login   IS_Nullable
+CreatedDate	: 	Type: datetime		Label :Created Date    
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID    
+LastModifiedDate	: 	Type: datetime		Label :Last Modified Date    
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID    
+SystemModstamp	: 	Type: datetime		Label :System Modstamp    
+OfflineTrialExpirationDate	: 	Type: datetime		Label :Offline Edition Trial Expiration Date   IS_Nullable
+OfflinePdaTrialExpirationDate	: 	Type: datetime		Label :Sales Anywhere Trial Expiration Date   IS_Nullable
+UserPermissionsMarketingUser	: 	Type: boolean		Label :Marketing User    
+UserPermissionsOfflineUser	: 	Type: boolean		Label :Offline User    
+UserPermissionsAvantgoUser	: 	Type: boolean		Label :AvantGo User    
+UserPermissionsCallCenterAutoLogin	: 	Type: boolean		Label :Auto-login To Call Center    
+UserPermissionsMobileUser	: 	Type: boolean		Label :Apex Mobile User    
+UserPermissionsSFContentUser	: 	Type: boolean		Label :Salesforce CRM Content User    
+UserPermissionsKnowledgeUser	: 	Type: boolean		Label :Knowledge User    
+UserPermissionsInteractionUser	: 	Type: boolean		Label :Flow User    
+UserPermissionsSupportUser	: 	Type: boolean		Label :Service Cloud User    
+UserPermissionsLiveAgentUser	: 	Type: boolean		Label :Live Agent User    
+ForecastEnabled	: 	Type: boolean		Label :Allow Forecasting    
+UserPreferencesActivityRemindersPopup	: 	Type: boolean		Label :ActivityRemindersPopup    
+UserPreferencesEventRemindersCheckboxDefault	: 	Type: boolean		Label :EventRemindersCheckboxDefault    
+UserPreferencesTaskRemindersCheckboxDefault	: 	Type: boolean		Label :TaskRemindersCheckboxDefault    
+UserPreferencesReminderSoundOff	: 	Type: boolean		Label :ReminderSoundOff    
+UserPreferencesDisableAllFeedsEmail	: 	Type: boolean		Label :DisableAllFeedsEmail    
+UserPreferencesDisableFollowersEmail	: 	Type: boolean		Label :DisableFollowersEmail    
+UserPreferencesDisableProfilePostEmail	: 	Type: boolean		Label :DisableProfilePostEmail    
+UserPreferencesDisableChangeCommentEmail	: 	Type: boolean		Label :DisableChangeCommentEmail    
+UserPreferencesDisableLaterCommentEmail	: 	Type: boolean		Label :DisableLaterCommentEmail    
+UserPreferencesDisProfPostCommentEmail	: 	Type: boolean		Label :DisProfPostCommentEmail    
+UserPreferencesApexPagesDeveloperMode	: 	Type: boolean		Label :ApexPagesDeveloperMode    
+UserPreferencesHideCSNGetChatterMobileTask	: 	Type: boolean		Label :HideCSNGetChatterMobileTask    
+UserPreferencesDisableMentionsPostEmail	: 	Type: boolean		Label :DisableMentionsPostEmail    
+UserPreferencesDisMentionsCommentEmail	: 	Type: boolean		Label :DisMentionsCommentEmail    
+UserPreferencesHideCSNDesktopTask	: 	Type: boolean		Label :HideCSNDesktopTask    
+UserPreferencesHideChatterOnboardingSplash	: 	Type: boolean		Label :HideChatterOnboardingSplash    
+UserPreferencesHideSecondChatterOnboardingSplash	: 	Type: boolean		Label :HideSecondChatterOnboardingSplash    
+UserPreferencesDisCommentAfterLikeEmail	: 	Type: boolean		Label :DisCommentAfterLikeEmail    
+UserPreferencesDisableLikeEmail	: 	Type: boolean		Label :DisableLikeEmail    
+UserPreferencesSortFeedByComment	: 	Type: boolean		Label :SortFeedByComment    
+UserPreferencesDisableMessageEmail	: 	Type: boolean		Label :DisableMessageEmail    
+UserPreferencesDisableBookmarkEmail	: 	Type: boolean		Label :DisableBookmarkEmail    
+UserPreferencesDisableSharePostEmail	: 	Type: boolean		Label :DisableSharePostEmail    
+UserPreferencesEnableAutoSubForFeeds	: 	Type: boolean		Label :EnableAutoSubForFeeds    
+UserPreferencesDisableFileShareNotificationsForApi	: 	Type: boolean		Label :DisableFileShareNotificationsForApi    
+UserPreferencesShowTitleToExternalUsers	: 	Type: boolean		Label :ShowTitleToExternalUsers    
+UserPreferencesShowManagerToExternalUsers	: 	Type: boolean		Label :ShowManagerToExternalUsers    
+UserPreferencesShowEmailToExternalUsers	: 	Type: boolean		Label :ShowEmailToExternalUsers    
+UserPreferencesShowWorkPhoneToExternalUsers	: 	Type: boolean		Label :ShowWorkPhoneToExternalUsers    
+UserPreferencesShowMobilePhoneToExternalUsers	: 	Type: boolean		Label :ShowMobilePhoneToExternalUsers    
+UserPreferencesShowFaxToExternalUsers	: 	Type: boolean		Label :ShowFaxToExternalUsers    
+UserPreferencesShowStreetAddressToExternalUsers	: 	Type: boolean		Label :ShowStreetAddressToExternalUsers    
+UserPreferencesShowCityToExternalUsers	: 	Type: boolean		Label :ShowCityToExternalUsers    
+UserPreferencesShowStateToExternalUsers	: 	Type: boolean		Label :ShowStateToExternalUsers    
+UserPreferencesShowPostalCodeToExternalUsers	: 	Type: boolean		Label :ShowPostalCodeToExternalUsers    
+UserPreferencesShowCountryToExternalUsers	: 	Type: boolean		Label :ShowCountryToExternalUsers    
+UserPreferencesShowProfilePicToGuestUsers	: 	Type: boolean		Label :ShowProfilePicToGuestUsers    
+UserPreferencesShowTitleToGuestUsers	: 	Type: boolean		Label :ShowTitleToGuestUsers    
+UserPreferencesShowCityToGuestUsers	: 	Type: boolean		Label :ShowCityToGuestUsers    
+UserPreferencesShowStateToGuestUsers	: 	Type: boolean		Label :ShowStateToGuestUsers    
+UserPreferencesShowPostalCodeToGuestUsers	: 	Type: boolean		Label :ShowPostalCodeToGuestUsers    
+UserPreferencesShowCountryToGuestUsers	: 	Type: boolean		Label :ShowCountryToGuestUsers    
+UserPreferencesPipelineViewHideHelpPopover	: 	Type: boolean		Label :PipelineViewHideHelpPopover    
+UserPreferencesHideS1BrowserUI	: 	Type: boolean		Label :HideS1BrowserUI    
+UserPreferencesDisableEndorsementEmail	: 	Type: boolean		Label :DisableEndorsementEmail    
+UserPreferencesPathAssistantCollapsed	: 	Type: boolean		Label :PathAssistantCollapsed    
+UserPreferencesCacheDiagnostics	: 	Type: boolean		Label :CacheDiagnostics    
+UserPreferencesShowEmailToGuestUsers	: 	Type: boolean		Label :ShowEmailToGuestUsers    
+UserPreferencesShowManagerToGuestUsers	: 	Type: boolean		Label :ShowManagerToGuestUsers    
+UserPreferencesShowWorkPhoneToGuestUsers	: 	Type: boolean		Label :ShowWorkPhoneToGuestUsers    
+UserPreferencesShowMobilePhoneToGuestUsers	: 	Type: boolean		Label :ShowMobilePhoneToGuestUsers    
+UserPreferencesShowFaxToGuestUsers	: 	Type: boolean		Label :ShowFaxToGuestUsers    
+UserPreferencesShowStreetAddressToGuestUsers	: 	Type: boolean		Label :ShowStreetAddressToGuestUsers    
+UserPreferencesLightningExperiencePreferred	: 	Type: boolean		Label :LightningExperiencePreferred    
+UserPreferencesHideEndUserOnboardingAssistantModal	: 	Type: boolean		Label :HideEndUserOnboardingAssistantModal    
+UserPreferencesHideLightningMigrationModal	: 	Type: boolean		Label :HideLightningMigrationModal    
+UserPreferencesHideSfxWelcomeMat	: 	Type: boolean		Label :HideSfxWelcomeMat    
+UserPreferencesHideBiggerPhotoCallout	: 	Type: boolean		Label :HideBiggerPhotoCallout    
+UserPreferencesGlobalNavBarWTShown	: 	Type: boolean		Label :GlobalNavBarWTShown    
+UserPreferencesGlobalNavGridMenuWTShown	: 	Type: boolean		Label :GlobalNavGridMenuWTShown    
+UserPreferencesCreateLEXAppsWTShown	: 	Type: boolean		Label :CreateLEXAppsWTShown    
+UserPreferencesFavoritesWTShown	: 	Type: boolean		Label :FavoritesWTShown    
+UserPreferencesRecordHomeSectionCollapseWTShown	: 	Type: boolean		Label :RecordHomeSectionCollapseWTShown    
+UserPreferencesRecordHomeReservedWTShown	: 	Type: boolean		Label :RecordHomeReservedWTShown    
+UserPreferencesFavoritesShowTopFavorites	: 	Type: boolean		Label :FavoritesShowTopFavorites    
+UserPreferencesExcludeMailAppAttachments	: 	Type: boolean		Label :ExcludeMailAppAttachments    
+UserPreferencesSuppressTaskSFXReminders	: 	Type: boolean		Label :SuppressTaskSFXReminders    
+UserPreferencesSuppressEventSFXReminders	: 	Type: boolean		Label :SuppressEventSFXReminders    
+UserPreferencesPreviewCustomTheme	: 	Type: boolean		Label :PreviewCustomTheme    
+UserPreferencesHasCelebrationBadge	: 	Type: boolean		Label :HasCelebrationBadge    
+UserPreferencesUserDebugModePref	: 	Type: boolean		Label :UserDebugModePref    
+UserPreferencesNewLightningReportRunPageEnabled	: 	Type: boolean		Label :NewLightningReportRunPageEnabled    
+ContactId	: 	Type: reference	Length :18	Label :Contact ID   IS_Nullable
+AccountId	: 	Type: reference	Length :18	Label :County ID   IS_Nullable
+CallCenterId	: 	Type: reference	Length :18	Label :Call Center ID   IS_Nullable
+Extension	: 	Type: phone	Length :40	Label :Extension   IS_Nullable
+PortalRole	: 	Type: picklist	Length :40	Label :Portal Role Level  IS_Restricted_Picklist IS_Nullable
+IsPortalEnabled	: 	Type: boolean		Label :Is Portal Enabled    
+FederationIdentifier	: 	Type: string	Length :512	Label :SAML Federation ID   IS_Nullable
+AboutMe	: 	Type: textarea	Length :1000	Label :About Me   IS_Nullable
+FullPhotoUrl	: 	Type: url	Length :1024	Label :Url for full-sized Photo   IS_Nullable
+SmallPhotoUrl	: 	Type: url	Length :1024	Label :Photo   IS_Nullable
+IsExtIndicatorVisible	: 	Type: boolean		Label :Show external indicator    
+OutOfOfficeMessage	: 	Type: string	Length :40	Label :Out of office message   IS_Nullable
+MediumPhotoUrl	: 	Type: url	Length :1024	Label :Url for medium profile photo   IS_Nullable
+DigestFrequency	: 	Type: picklist	Length :40	Label :Chatter Email Highlights Frequency  IS_Restricted_Picklist  
+DefaultGroupNotificationFrequency	: 	Type: picklist	Length :40	Label :Default Notification Frequency when Joining Groups  IS_Restricted_Picklist  
+LastViewedDate	: 	Type: datetime		Label :Last Viewed Date   IS_Nullable
+LastReferencedDate	: 	Type: datetime		Label :Last Referenced Date   IS_Nullable
+BannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for banner photo   IS_Nullable
+SmallBannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for IOS banner photo   IS_Nullable
+MediumBannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for Android banner photo   IS_Nullable
+IsProfilePhotoActive	: 	Type: boolean		Label :Has Profile Photo    
+supervisor__c	: 	Type: reference	Length :18	Label :Supervisor   IS_CustomIS_Nullable

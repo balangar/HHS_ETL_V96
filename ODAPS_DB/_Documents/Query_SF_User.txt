@@ -1,0 +1,8 @@
+{ "User",
+	@"SELECT
+		ID,
+		LastName, FirstName, Name, 
+		Supervisor__c,
+		CreatedById, CreatedDate, LastModifiedById, LastModifiedDate, SystemModstamp
+	FROM
+		User" }
