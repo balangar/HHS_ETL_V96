@@ -1,0 +1,22 @@
+Case_Notes__c: 	20 fields	IS_Custom  
+Id	: 	Type: id	Length :18	Label :Record ID 
+IsDeleted	: 	Type: boolean		Label :Deleted 
+Name	: 	Type: string	Length :80	Label :Case Notes Name 
+RecordTypeId	: 	Type: reference	Length :18	Label :Record Type IDIS_Nullable
+CreatedDate	: 	Type: datetime		Label :Created Date 
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
+LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 
+SystemModstamp	: 	Type: datetime		Label :System Modstamp 
+LastActivityDate	: 	Type: date		Label :Last Activity DateIS_Nullable
+LastViewedDate	: 	Type: datetime		Label :Last Viewed DateIS_Nullable
+LastReferencedDate	: 	Type: datetime		Label :Last Referenced DateIS_Nullable
+APS_Case_Number__c	: 	Type: reference	Length :18	Label :APS Case Number 
+TemporaryAPSCase__c	: 	Type: reference	Length :18	Label :APS CaseIS_Nullable
+Case_Note_Created_in_Error__c	: 	Type: boolean		Label :Case Note Created in Error 
+Case_Note__c	: 	Type: reference	Length :18	Label :Original Case NoteIS_Nullable
+Status__c	: 	Type: picklist	Length :255	Label :StatusIS_Nullable
+Supervisor_Email__c	: 	Type: email	Length :80	Label :Supervisor EmailIS_Nullable
+Created_in_Error_Formatted__c	: 	Type: string	Length :1300	Label :Created in Error (Formatted)IS_Nullable
+Parent__c	: 	Type: string	Length :1300	Label :ParentIS_Nullable
+

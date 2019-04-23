@@ -14,17 +14,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", 
 		_Documents\Contact_Full.txt = _Documents\Contact_Full.txt
 		_Documents\ObjectsAndFields.xlsx = _Documents\ObjectsAndFields.xlsx
 		_Documents\ODAPS_Objects.txt = _Documents\ODAPS_Objects.txt
-		_Documents\Query_SF_CaseNotes.txt = _Documents\Query_SF_CaseNotes.txt
-		_Documents\Query_SF_Cases.txt = _Documents\Query_SF_Cases.txt
-		_Documents\Query_SF_Contact.txt = _Documents\Query_SF_Contact.txt
-		_Documents\Query_SF_User.txt = _Documents\Query_SF_User.txt
-		_Documents\SF_CaseNotes.txt = _Documents\SF_CaseNotes.txt
-		_Documents\SF_Cases.txt = _Documents\SF_Cases.txt
+		_Documents\SF_Case.txt = _Documents\SF_Case.txt
+		_Documents\SF_CaseNote.txt = _Documents\SF_CaseNote.txt
 		_Documents\SF_Contact.txt = _Documents\SF_Contact.txt
+		_Documents\SF_Contact_Full.txt = _Documents\SF_Contact_Full.txt
 		_Documents\SF_User.txt = _Documents\SF_User.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProbeODAPS", "ProbeODAPS\ProbeODAPS.csproj", "{7A9289ED-3B62-4201-BE77-1492627A6E8F}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ODAPS_DB", "ODAPS_DB\ODAPS_DB.sqlproj", "{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +35,12 @@ Global
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

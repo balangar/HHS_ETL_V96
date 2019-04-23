@@ -1,8 +1,8 @@
-Contact: 	179 fields
+Contact: 	63 fields
 Id	: 	Type: id	Length :18	Label :Contact ID 
 IsDeleted	: 	Type: boolean		Label :Deleted 
 MasterRecordId	: 	Type: reference	Length :18	Label :Master Record IDIS_Nullable
-AccountId	: 	Type: reference	Length :18	Label :County NameIS_Nullable
+AccountId	: 	Type: reference	Length :18	Label :Account IDIS_Nullable
 LastName	: 	Type: string	Length :80	Label :Last Name 
 FirstName	: 	Type: string	Length :40	Label :First NameIS_Nullable
 Salutation	: 	Type: picklist	Length :40	Label :SalutationIS_Nullable
@@ -10,17 +10,6 @@ MiddleName	: 	Type: string	Length :40	Label :Middle NameIS_Nullable
 Suffix	: 	Type: string	Length :40	Label :SuffixIS_Nullable
 Name	: 	Type: string	Length :121	Label :Full Name 
 RecordTypeId	: 	Type: reference	Length :18	Label :Record Type IDIS_Nullable
-OtherStreet	: 	Type: textarea	Length :255	Label :Other StreetIS_Nullable
-OtherCity	: 	Type: string	Length :40	Label :Other CityIS_Nullable
-OtherState	: 	Type: string	Length :80	Label :Other State/ProvinceIS_Nullable
-OtherPostalCode	: 	Type: string	Length :20	Label :Other Zip/Postal CodeIS_Nullable
-OtherCountry	: 	Type: string	Length :80	Label :Other CountryIS_Nullable
-OtherStateCode	: 	Type: picklist	Length :10	Label :Other State/Province CodeIS_Nullable
-OtherCountryCode	: 	Type: picklist	Length :10	Label :Other Country CodeIS_Nullable
-OtherLatitude	: 	Type: double		Label :Other LatitudeIS_Nullable
-OtherLongitude	: 	Type: double		Label :Other LongitudeIS_Nullable
-OtherGeocodeAccuracy	: 	Type: picklist	Length :40	Label :Other Geocode AccuracyIS_Nullable
-OtherAddress	: 	Type: address		Label :Other AddressIS_Nullable
 MailingStreet	: 	Type: textarea	Length :255	Label :Mailing StreetIS_Nullable
 MailingCity	: 	Type: string	Length :40	Label :Mailing CityIS_Nullable
 MailingState	: 	Type: string	Length :80	Label :Mailing State/ProvinceIS_Nullable
@@ -35,21 +24,11 @@ MailingAddress	: 	Type: address		Label :Mailing AddressIS_Nullable
 Phone	: 	Type: phone	Length :40	Label :Business PhoneIS_Nullable
 Fax	: 	Type: phone	Length :40	Label :Business FaxIS_Nullable
 MobilePhone	: 	Type: phone	Length :40	Label :Mobile PhoneIS_Nullable
-HomePhone	: 	Type: phone	Length :40	Label :Home PhoneIS_Nullable
-OtherPhone	: 	Type: phone	Length :40	Label :Other PhoneIS_Nullable
-AssistantPhone	: 	Type: phone	Length :40	Label :Asst. PhoneIS_Nullable
 ReportsToId	: 	Type: reference	Length :18	Label :Reports To IDIS_Nullable
 Email	: 	Type: email	Length :80	Label :EmailIS_Nullable
 Title	: 	Type: string	Length :128	Label :TitleIS_Nullable
 Department	: 	Type: string	Length :80	Label :DepartmentIS_Nullable
-AssistantName	: 	Type: string	Length :40	Label :Assistant's NameIS_Nullable
-LeadSource	: 	Type: picklist	Length :40	Label :Lead SourceIS_Nullable
-Birthdate	: 	Type: date		Label :BirthdateIS_Nullable
-Description	: 	Type: textarea	Length :32000	Label :Contact DescriptionIS_Nullable
 OwnerId	: 	Type: reference	Length :18	Label :Owner ID 
-HasOptedOutOfEmail	: 	Type: boolean		Label :Email Opt Out 
-HasOptedOutOfFax	: 	Type: boolean		Label :Fax Opt Out 
-DoNotCall	: 	Type: boolean		Label :Do Not Call 
 CreatedDate	: 	Type: datetime		Label :Created Date 
 CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
 LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
@@ -66,100 +45,6 @@ IsEmailBounced	: 	Type: boolean		Label :Is Email Bounced
 PhotoUrl	: 	Type: url	Length :255	Label :Photo URLIS_Nullable
 Jigsaw	: 	Type: string	Length :20	Label :Data.com KeyIS_Nullable
 JigsawContactId	: 	Type: string	Length :20	Label :Jigsaw Contact IDIS_Nullable
-Additional_End_of_Life_Information__c	: 	Type: textarea	Length :32768	Label :Additional End of Life InformationIS_Nullable
-Agency__c	: 	Type: string	Length :50	Label :Agency NameIS_Nullable
-Alias__c	: 	Type: textarea	Length :255	Label :AliasIS_Nullable
-Approx_Age__c	: 	Type: double		Label :Approx AgeIS_Nullable
-Are_there_safety_issues_for_caseworkers__c	: 	Type: picklist	Length :255	Label :Are there safety issues for caseworkers?IS_Nullable
-At_Risk_Population_Checkbox__c	: 	Type: boolean		Label :At-Risk Population Checkbox 
-At_Risk_Population__c	: 	Type: multipicklist	Length :4099	Label :At Risk PopulationIS_Nullable
-Best_Time_to_Reach__c	: 	Type: textarea	Length :255	Label :Best Time to ReachIS_Nullable
-Biohazard__c	: 	Type: boolean		Label :Biohazard 
-Bug_or_vermin_infestation__c	: 	Type: boolean		Label :Bug or vermin infestation 
-Burial_Cremation_Info__c	: 	Type: picklist	Length :255	Label :Burial/Cremation InfoIS_Nullable
-Client_Lives_With__c	: 	Type: multipicklist	Length :4099	Label :Client Lives WithIS_Nullable
-Client_s_Home__c	: 	Type: picklist	Length :255	Label :Client's HomeIS_Nullable
-Condition_Requiring_Total_Physical_Care__c	: 	Type: boolean		Label :Condition Requiring Total Physical Care 
-Contact_Record_System_ID__c	: 	Type: string	Length :1300	Label :Contact Record System IDIS_Nullable
-Contagious_disease__c	: 	Type: boolean		Label :Contagious disease 
-CountyPicklist__c	: 	Type: picklist	Length :255	Label :County PicklistIS_Nullable
-County_Held__c	: 	Type: picklist	Length :255	Label :County HeldIS_Nullable
-Court_Report_Completed_Date__c	: 	Type: date		Label :Court Report Completed DateIS_Nullable
-Court_Report_Due_Date__c	: 	Type: date		Label :Court Report Due DateIS_Nullable
-DNR__c	: 	Type: picklist	Length :255	Label :DNRIS_Nullable
-Dangerous_Aggressive_Person_in_Home__c	: 	Type: boolean		Label :Dangerous/Aggressive person in home 
-Dangerous_aggressive_animals__c	: 	Type: boolean		Label :Dangerous/aggressive animals 
-Dangerous_home_structure__c	: 	Type: boolean		Label :Dangerous home structure 
-Date_Assigned_to_County__c	: 	Type: date		Label :Date Assigned to CountyIS_Nullable
-Dementia_Alzheimer_s__c	: 	Type: boolean		Label :Dementia/Alzheimer's 
-Developmental_Intellectual_Disability__c	: 	Type: boolean		Label :Developmental/Intellectual Disability 
-Ethnicity__c	: 	Type: multipicklist	Length :4099	Label :EthnicityIS_Nullable
-Family_or_Other_Support__c	: 	Type: textarea	Length :10000	Label :Family or Other SupportIS_Nullable
-Firearms_or_other_weapons__c	: 	Type: boolean		Label :Firearms or other weapons 
-Frail_Elderly__c	: 	Type: boolean		Label :Frail Elderly 
-Gated_locked_community_building__c	: 	Type: boolean		Label :Gated/locked community/building 
-Gender_Code__c	: 	Type: string	Length :1300	Label :Gender CodeIS_Nullable
-Gender__c	: 	Type: picklist	Length :255	Label :GenderIS_Nullable
-Health_Insurance__c	: 	Type: multipicklist	Length :4099	Label :Health InsuranceIS_Nullable
-Hoarding_or_animal_hoarding__c	: 	Type: boolean		Label :Hoarding or animal hoarding 
-Illegal_drug_manufacturing__c	: 	Type: boolean		Label :Illegal drug manufacturing 
-Illegal_drug_use__c	: 	Type: boolean		Label :Illegal drug use 
-Inappropriate_Sexual_Behaviors__c	: 	Type: boolean		Label :Inappropriate Sexual Behaviors 
-Income_Source__c	: 	Type: multipicklist	Length :4099	Label :Income SourceIS_Nullable
-Istheclientatrisk__c	: 	Type: picklist	Length :255	Label :Is the client at risk?IS_Nullable
-Kinship_Code__c	: 	Type: string	Length :1300	Label :Kinship CodeIS_Nullable
-Known_Illegal_Activity__c	: 	Type: picklist	Length :255	Label :Known Illegal Activity?IS_Nullable
-Known_criminal_activity_history__c	: 	Type: boolean		Label :Known criminal activity/history 
-Known_gang_activity__c	: 	Type: boolean		Label :Known gang activity 
-Living_Will__c	: 	Type: picklist	Length :255	Label :Living WillIS_Nullable
-Major_Mental_Illness_Emotional_Disorder__c	: 	Type: boolean		Label :Major Mental Illness/Emotional Disorder 
-Marital_Status__c	: 	Type: picklist	Length :255	Label :Marital StatusIS_Nullable
-Medicaid__c	: 	Type: textarea	Length :255	Label :Medicaid #IS_Nullable
-Medically_Fragile__c	: 	Type: boolean		Label :Medically Fragile 
-Medicare__c	: 	Type: textarea	Length :255	Label :Medicare #IS_Nullable
-NAMRS_Client_Gender__c	: 	Type: string	Length :1300	Label :NAMRS Client GenderIS_Nullable
-NAMRS_Client_Language__c	: 	Type: string	Length :1300	Label :NAMRS Client LanguageIS_Nullable
-NAMRS_Diagnosis_None__c	: 	Type: string	Length :1300	Label :NAMRS Diagnosis NoneIS_Nullable
-NAMRS_Perpetrator_Age__c	: 	Type: string	Length :1300	Label :NAMRS Perpetrator AgeIS_Nullable
-NAMRS_Perpetrator_Gender__c	: 	Type: string	Length :1300	Label :NAMRS Perpetrator GenderIS_Nullable
-NAMRS_Perpetrator_Race__c	: 	Type: string	Length :1300	Label :NAMRS Perpetrator RaceIS_Nullable
-NAMRS_Previous_Report__c	: 	Type: string	Length :1300	Label :NAMRS Previous ReportIS_Nullable
-NAMRS_Race_Code__c	: 	Type: string	Length :1300	Label :NAMRS Race CodeIS_Nullable
-Neurological_Impairment_Stroke_TBI_MS__c	: 	Type: boolean		Label :Neurological Impairment - Stroke, TBI MS 
-None__c	: 	Type: boolean		Label :None 
-Organ_Donor__c	: 	Type: picklist	Length :255	Label :Organ DonorIS_Nullable
-Other_Communnication_Needs__c	: 	Type: string	Length :50	Label :Specify Communication NeedsIS_Nullable
-Other_Income_Source__c	: 	Type: string	Length :100	Label :Other Income SourceIS_Nullable
-Other_Insurance__c	: 	Type: textarea	Length :255	Label :Other Insurance #IS_Nullable
-Other_Relationship_to_Client__c	: 	Type: string	Length :40	Label :Other Relationship to ClientIS_Nullable
-Perp_Lives_with_Client__c	: 	Type: picklist	Length :255	Label :Perp Lives with ClientIS_Nullable
-Perpetrator_Age__c	: 	Type: double		Label :Perpetrator AgeIS_Nullable
-Physical_Impairment__c	: 	Type: boolean		Label :Physical Impairment 
-Police_frequently_called_to_the_home__c	: 	Type: boolean		Label :Police frequently called to the home 
-Primary_Language__c	: 	Type: picklist	Length :255	Label :Primary LanguageIS_Nullable
-Professional_Support__c	: 	Type: textarea	Length :10000	Label :Professional SupportIS_Nullable
-Relationship_Category__c	: 	Type: picklist	Length :255	Label :Relationship CategoryIS_Nullable
-Relationship_to_Client__c	: 	Type: picklist	Length :255	Label :Relationship to ClientIS_Nullable
-Reporting_Party_Relationship_Notes__c	: 	Type: string	Length :50	Label :Reporting Party Relationship NotesIS_Nullable
-SSN__c	: 	Type: string	Length :50	Label :SSNIS_Nullable
-Safety_Notes__c	: 	Type: textarea	Length :5000	Label :Safety NotesIS_Nullable
-Safety_Warning__c	: 	Type: string	Length :1300	Label :Safety WarningIS_Nullable
-Security_system_cameras__c	: 	Type: boolean		Label :Security system/cameras 
-Specify_Facility_Type__c	: 	Type: string	Length :30	Label :Specify Facility TypeIS_Nullable
-Specify_Illegal_Activity__c	: 	Type: textarea	Length :255	Label :Specify Illegal ActivityIS_Nullable
-Specify_Other_At_Risk_Info__c	: 	Type: string	Length :30	Label :Specify Other At Risk InfoIS_Nullable
-Substance_Abuse_including_RX_meds__c	: 	Type: boolean		Label :Substance Abuse (including RX meds) 
-Translator_Needed_Other_Comm_Needs__c	: 	Type: picklist	Length :255	Label :Translator Needed/Other Comm NeedsIS_Nullable
-Type_of_Authority__c	: 	Type: multipicklist	Length :4099	Label :Type of AuthorityIS_Nullable
-Type_of_Facility__c	: 	Type: picklist	Length :255	Label :Type of FacilityIS_Nullable
-Unknown_At_Risk_Population__c	: 	Type: boolean		Label :Unknown At-Risk Population 
-Unsafe_neighborhood__c	: 	Type: boolean		Label :Unsafe neighborhood 
-Untreated_mental_illness__c	: 	Type: boolean		Label :Untreated mental illness 
-Work_Ext__c	: 	Type: double		Label :Work Ext.IS_Nullable
-Worker_Safety_Concerns__c	: 	Type: multipicklist	Length :4099	Label :Worker Safety ConcernsIS_Nullable
-Worker_Safety_Issue__c	: 	Type: boolean		Label :Worker Safety Issue? 
-of_Cases__c	: 	Type: double		Label :# of CasesIS_Nullable
-of_Intakes__c	: 	Type: double		Label :# of IntakesIS_Nullable
 Confidential_Reason__c	: 	Type: picklist	Length :255	Label :Confidential ReasonIS_Nullable
 Confidential__c	: 	Type: boolean		Label :Confidential 
 Contact_Type__c	: 	Type: picklist	Length :255	Label :Contact TypeIS_Nullable
@@ -177,5 +62,4 @@ Veteran_Status__c	: 	Type: picklist	Length :255	Label :Veteran StatusIS_Nullable
 Social_Security_Number__c	: 	Type: encryptedstring	Length :11	Label :Social Security NumberIS_Nullable
 Bed_Bugs__c	: 	Type: boolean		Label :Bed Bugs 
 Date_of_Death__c	: 	Type: date		Label :Date of DeathIS_Nullable
-County__c	: 	Type: picklist	Length :255	Label :CountyIS_Nullable
 
