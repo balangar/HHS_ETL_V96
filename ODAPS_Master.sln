@@ -14,17 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", 
 		_Documents\Contact_Full.txt = _Documents\Contact_Full.txt
 		_Documents\ObjectsAndFields.xlsx = _Documents\ObjectsAndFields.xlsx
 		_Documents\ODAPS_Objects.txt = _Documents\ODAPS_Objects.txt
-		_Documents\Query_SF_CaseNotes.txt = _Documents\Query_SF_CaseNotes.txt
-		_Documents\Query_SF_Cases.txt = _Documents\Query_SF_Cases.txt
-		_Documents\Query_SF_Contact.txt = _Documents\Query_SF_Contact.txt
-		_Documents\Query_SF_User.txt = _Documents\Query_SF_User.txt
-		_Documents\SF_CaseNotes.txt = _Documents\SF_CaseNotes.txt
-		_Documents\SF_Cases.txt = _Documents\SF_Cases.txt
+		_Documents\SF_Case.txt = _Documents\SF_Case.txt
+		_Documents\SF_CaseNote.txt = _Documents\SF_CaseNote.txt
 		_Documents\SF_Contact.txt = _Documents\SF_Contact.txt
 		_Documents\SF_Contact_Full.txt = _Documents\SF_Contact_Full.txt
-		_Documents\SF_Contacts.txt = _Documents\SF_Contacts.txt
 		_Documents\SF_User.txt = _Documents\SF_User.txt
-		_Documents\SF_Users.txt = _Documents\SF_Users.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProbeODAPS", "ProbeODAPS\ProbeODAPS.csproj", "{7A9289ED-3B62-4201-BE77-1492627A6E8F}"

@@ -1,4 +1,4 @@
-User: 	164 fields
+User: 	165 fields
 Id	: 	Type: id	Length :18	Label :User ID 
 Username	: 	Type: string	Length :80	Label :Username 
 LastName	: 	Type: string	Length :80	Label :Last Name 
@@ -79,6 +79,8 @@ UserPreferencesDisableProfilePostEmail	: 	Type: boolean		Label :DisableProfilePo
 UserPreferencesDisableChangeCommentEmail	: 	Type: boolean		Label :DisableChangeCommentEmail 
 UserPreferencesDisableLaterCommentEmail	: 	Type: boolean		Label :DisableLaterCommentEmail 
 UserPreferencesDisProfPostCommentEmail	: 	Type: boolean		Label :DisProfPostCommentEmail 
+UserPreferencesContentNoEmail	: 	Type: boolean		Label :ContentNoEmail 
+UserPreferencesContentEmailAsAndWhen	: 	Type: boolean		Label :ContentEmailAsAndWhen 
 UserPreferencesApexPagesDeveloperMode	: 	Type: boolean		Label :ApexPagesDeveloperMode 
 UserPreferencesHideCSNGetChatterMobileTask	: 	Type: boolean		Label :HideCSNGetChatterMobileTask 
 UserPreferencesDisableMentionsPostEmail	: 	Type: boolean		Label :DisableMentionsPostEmail 
@@ -142,7 +144,7 @@ UserPreferencesHasCelebrationBadge	: 	Type: boolean		Label :HasCelebrationBadge
 UserPreferencesUserDebugModePref	: 	Type: boolean		Label :UserDebugModePref 
 UserPreferencesNewLightningReportRunPageEnabled	: 	Type: boolean		Label :NewLightningReportRunPageEnabled 
 ContactId	: 	Type: reference	Length :18	Label :Contact IDIS_Nullable
-AccountId	: 	Type: reference	Length :18	Label :County IDIS_Nullable
+AccountId	: 	Type: reference	Length :18	Label :Account IDIS_Nullable
 CallCenterId	: 	Type: reference	Length :18	Label :Call Center IDIS_Nullable
 Extension	: 	Type: phone	Length :40	Label :ExtensionIS_Nullable
 PortalRole	: 	Type: picklist	Length :40	Label :Portal Role LevelIS_Nullable
@@ -162,5 +164,4 @@ BannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for banner photoIS_Nullable
 SmallBannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for IOS banner photoIS_Nullable
 MediumBannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for Android banner photoIS_Nullable
 IsProfilePhotoActive	: 	Type: boolean		Label :Has Profile Photo 
-supervisor__c	: 	Type: reference	Length :18	Label :SupervisorIS_Nullable
 
