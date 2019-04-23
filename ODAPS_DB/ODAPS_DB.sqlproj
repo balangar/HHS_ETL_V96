@@ -148,15 +148,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />
-    <None Include="_Documents\APS Data Dictionary_data from ODAPS to Peer Place rev092518.xlsx" />
-    <None Include="_Documents\Contact_Full.txt" />
-    <None Include="_Documents\ObjectsAndFields.xlsx" />
-    <None Include="_Documents\Query_SF_CaseNotes.txt" />
-    <None Include="_Documents\Query_SF_Cases.txt" />
-    <None Include="_Documents\Query_SF_Contact.txt" />
-    <None Include="_Documents\Query_SF_User.txt" />
-    <None Include="_Documents\SF_CaseNotes.txt" />
-    <None Include="_Documents\SF_Contact.txt" />
-    <None Include="_Documents\SF_User.txt" />
   </ItemGroup>
 </Project>
