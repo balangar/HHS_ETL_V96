@@ -76,7 +76,7 @@ namespace ProbeODAPS
         private static int DocumentSFObject(SoapClient EndPoint, string SFObjectName, bool Verbose, string OutFileSpec)
         {
             Program.Logger.InfoFormat("Document: {0}", SFObjectName);
-            Program.Logger.DebugFormat("SF Object Name: {0}   Verbose: {1}  OutPath: {2}  OutFile: {3}", SFObjectName, Verbose, OutFileSpec, OutFileSpec);
+            Program.Logger.DebugFormat("SF Object Name: {0}   Verbose: {1}  OutPath: {2}  OutFile: {3}", SFObjectName, Verbose, Path.GetDirectoryName(OutFileSpec), Path.GetFileName(OutFileSpec));
 
             using (StreamWriter w = new StreamWriter(OutFileSpec, false))
             {
