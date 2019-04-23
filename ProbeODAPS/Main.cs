@@ -96,7 +96,7 @@ namespace ProbeODAPS
         }
         private static void PutSFRecord(sObject SFObject, String OutputPath)
         {
-
+            //TODO:  Possible bug. ?Flush if only one SFObject having only one SFRecord?
             string nextSFType = SFObject.type;
             string outputFilePath = OutputPath;
             string outputFileSpec = string.Empty;
@@ -505,7 +505,7 @@ namespace ProbeODAPS
 
                 SF.Logout(EndpointClient);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 exitStatus = -1;
                 throw;
