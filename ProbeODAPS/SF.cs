@@ -143,6 +143,7 @@ namespace ProbeODAPS
                 builder.Append(dsr.name + ": ");
                 builder.Append("\t" + dsr.fields.Length + " fields");
                 if (dsr.custom) builder.Append("\tIS_Custom  ");
+                builder.Append("\t" + DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
 
                 builder.AppendLine();
 
