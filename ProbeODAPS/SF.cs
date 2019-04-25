@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
-
-using System.IO;
 using System.ServiceModel;
 
 using ProbeODAPS.sforce;
@@ -77,27 +73,43 @@ namespace ProbeODAPS
             bool foundRecords = false;
             QueryResult qr;
 
-            try
-            {
-                EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr);
-            }
-            catch (Exception ex)
-            {
-                Program.Logger.Error(ex.Message);
-                throw;
-            }
+            //try
+            //{
+            //    EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Program.Logger.Error(ex.Message);
+            //    throw;
+            //}
 
-            while (qr.size > 0)
+            for(EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr); qr.size > 0; EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr))
             {
-                if (!foundRecords) foundRecords = true;
+                if (!foundRecords) // First batch?
+                {
+                    foundRecords = true; 
+                }
+
                 foreach (sObject item in qr.records)
                 {
                     yield return item;
                 }
 
                 if (qr.done) break;
-                else EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr);
             }
+
+            //while (qr.size > 0)
+            //{
+            //    if (!foundRecords) foundRecords = true; // First batch?
+
+            //    foreach (sObject item in qr.records)
+            //    {
+            //        yield return item;
+            //    }
+
+            //    if (qr.done) break;
+            //    else EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr);
+            //}
 
             if (!foundRecords)
             {
