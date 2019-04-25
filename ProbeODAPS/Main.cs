@@ -459,7 +459,9 @@ namespace ProbeODAPS
                             Owner_County__c,
                             of_Completed_Assessments_Formula__c
                           FROM
-                            APS_Case__c"}
+                            APS_Case__c
+                          WHERE
+                            Owner_County__c = 'Cuyahoga'"}
                 };
 
             int exitStatus = -1;

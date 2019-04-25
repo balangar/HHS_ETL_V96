@@ -159,10 +159,10 @@ namespace ProbeODAPS
                     if (Verbose)
                     {
                         builder.Append(field.nameField ? "\tIS_NameField" : " ");
-                        builder.Append(field.restrictedPicklist ? " IS_Restricted_Picklist" : " ");
-                        builder.Append(field.custom ? " IS_Custom" : " ");
+                        builder.Append(field.restrictedPicklist ? "\tIS_Restricted_Picklist" : " ");
+                        builder.Append(field.custom ? "\tIS_Custom" : " ");
                     }
-                    builder.Append(field.nillable ? "IS_Nullable" : " ");
+                    builder.Append(field.nillable ? "\tIS_Nullable" : " ");
 
                     builder.AppendLine();
                 }
