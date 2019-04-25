@@ -30,8 +30,8 @@ namespace ProbeODAPS
                 lr = loginClient.login(null, null, UserName, Password);
                 if (lr.passwordExpired)
                 {
-                    Console.WriteLine("An error has occurred. Your password has expired.");
-                    Console.WriteLine("User Name: {0}  Password: {1}", UserName, Password);
+                    Program.Logger.Warn("Password has expired");
+                    Program.Logger.Debug(string.Format("User Name: {0}  Password: {1}", UserName, Password));
 
                     returnStatus = false;
                 }
@@ -143,6 +143,7 @@ namespace ProbeODAPS
                 builder.Append(dsr.name + ": ");
                 builder.Append("\t" + dsr.fields.Length + " fields");
                 if (dsr.custom) builder.Append("\tIS_Custom  ");
+                builder.Append("\t" + DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
 
                 builder.AppendLine();
 
@@ -159,10 +160,10 @@ namespace ProbeODAPS
                     if (Verbose)
                     {
                         builder.Append(field.nameField ? "\tIS_NameField" : " ");
-                        builder.Append(field.restrictedPicklist ? " IS_Restricted_Picklist" : " ");
-                        builder.Append(field.custom ? " IS_Custom" : " ");
+                        builder.Append(field.restrictedPicklist ? "\tIS_Restricted_Picklist" : " ");
+                        builder.Append(field.custom ? "\tIS_Custom" : " ");
                     }
-                    builder.Append(field.nillable ? "IS_Nullable" : " ");
+                    builder.Append(field.nillable ? "\tIS_Nullable" : " ");
 
                     builder.AppendLine();
                 }
@@ -173,8 +174,9 @@ namespace ProbeODAPS
             catch (Exception ex)
             {
                 sfObjectDescription = null;
-                Console.WriteLine("An exception has occurred: " + ex.Message +
-                    "\nStack trace: " + ex.StackTrace);
+                Program.Logger.Error(ex.Message);
+                Program.Logger.Debug(ex.StackTrace);
+
                 throw;
             }
 
@@ -201,8 +203,8 @@ namespace ProbeODAPS
             }
             catch (Exception e)
             {
-                Console.WriteLine("An exception has occurred: " + e.Message +
-                    "\nStack trace: " + e.StackTrace);
+                Program.Logger.Error(e.Message);
+                Program.Logger.Debug(e.StackTrace);
             }
 
             return sfObjectList;
