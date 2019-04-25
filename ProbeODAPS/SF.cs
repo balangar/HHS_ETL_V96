@@ -72,7 +72,7 @@ namespace ProbeODAPS
                 Program.Logger.Debug(e.StackTrace);
             }
         }
-        public static IEnumerable<sObject> GetNextSFRecord(string SFObjectName, string SoqlQuery, SoapClient EndPoint)
+        public static IEnumerable<sObject> GetNextSFRecord(string SoqlQuery, SoapClient EndPoint, string SFObjectName)
         {
             bool foundRecords = false;
             QueryResult qr;

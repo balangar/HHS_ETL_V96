@@ -19,10 +19,6 @@ namespace ProbeODAPS
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private static string CurrentSFType = string.Empty;
-        private static StreamWriter writer = null;
-        private static CsvWriter csvWriter = null;
-
         [Verb("Count", HelpText = "List SF objects to obtain record count")]
         internal class CountOptions
         {
@@ -122,7 +118,7 @@ namespace ProbeODAPS
             int recordCount = 0;
             try
             {
-                foreach (sObject o in SF.GetNextSFRecord(SFObjectName, Query, EndPoint))
+                foreach (sObject o in SF.GetNextSFRecord(Query, EndPoint, SFObjectName))
                 {
                     if (recordCount == 0)
                     {
