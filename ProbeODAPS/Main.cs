@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using log4net;
-using Vanilla;
 
 using CommandLine;
 
 using System.IO;
-using System.ServiceModel;
 
 using CsvHelper;
 
@@ -25,6 +22,13 @@ namespace ProbeODAPS
         private static string CurrentSFType = string.Empty;
         private static StreamWriter writer = null;
         private static CsvWriter csvWriter = null;
+
+        [Verb("Count", HelpText = "List SF objects to obtain record count")]
+        internal class CountOptions
+        {
+            [Option('o', "Objects", Required = false, HelpText = "List of SF Objects to county")]
+            public IEnumerable<string> SFObjectNames { get; set; }
+        }
 
         [Verb("Document", HelpText = "List SF Objects to document")]
         internal class DocumentOptions
@@ -94,9 +98,27 @@ namespace ProbeODAPS
             }
             return returnStatus == 0 ? 0 : -1;
         }
+        private static int CountSFObjects(CountOptions Options, SoapClient EndPoint)
+        {
+            int returnStatus = 0;
+            try
+            {
+                foreach (var oName in Options.SFObjectNames)
+                {
+                    Logger.Info(string.Format("Record count for {0}: {1}", oName, SF.GetRecordCount(oName, EndPoint)));
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return returnStatus == 0 ? 0 : -1;
+        }
         private static void PutSFRecord(sObject SFObject, String OutputPath)
         {
-            //TODO:  Possible bug. ?Flush if only one SFObject having only one SFRecord?
+            //TODO:  PutSFRecord -- Possible bug. ?Flush if only one SFObject having only one SFRecord?
             string nextSFType = SFObject.type;
             string outputFilePath = OutputPath;
             string outputFileSpec = string.Empty;
@@ -157,26 +179,42 @@ namespace ProbeODAPS
         private static int ExtractSFObjectRecords(string SFObjectName, string Query, string OutFilePath, SoapClient EndPoint)
         {
             int exitStatus = 0;
+            int recordCount = 0;
             try
             {
                 foreach (sObject o in SF.GetNextSFRecord(SFObjectName, Query, EndPoint))
                 {
-                    PutSFRecord(o, OutFilePath);
+                    if (recordCount == 0)
+                    {
+                        PIO.Open(o.type, OutFilePath);
+                        PIO.WriterHeader(o);
+                        PIO.WriteRecord(o);
+                        recordCount += 1;
+                    }
+                    else
+                    {
+                        PIO.WriteRecord(o);
+                        recordCount += 1;
+                    }
                 }
 
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                exitStatus =-1;
+                exitStatus = -1;
+            }
+            finally
+            {
+                PIO.Close();
             }
 
+            Logger.Info(string.Format("{0} record count : {1}", SFObjectName, recordCount));
             return exitStatus;
         }
         private static int ExtractSFObjects(ExtractOptions Options, Dictionary<string, string> SFObjectQueries, SoapClient EndPoint)
         {
             int exitStatus = -1;
-
 
             try
             {
@@ -294,7 +332,6 @@ namespace ProbeODAPS
                             ReceivesInfoEmails,
                             ReceivesAdminInfoEmails,
                             EmailEncodingKey,
-                            ProfileId,
                             UserType,
                             LanguageLocaleKey,
                             EmployeeNumber,
@@ -494,11 +531,12 @@ namespace ProbeODAPS
             {
                 if (SF.Login(SF_USER_NAME, SF_PASS_WORD, out SoapClient EndpointClient))
                 {
-                    exitStatus = CommandLine.Parser.Default.ParseArguments<DocumentOptions, ExtractOptions, ListOptions>(args)
+                    exitStatus = CommandLine.Parser.Default.ParseArguments<DocumentOptions, ExtractOptions, ListOptions, CountOptions>(args)
                         .MapResult(
                             (DocumentOptions o) => DocumentSFObjects(o, EndpointClient),
                             (ExtractOptions o) => ExtractSFObjects(o, sfObjectQueries, EndpointClient),
                             (ListOptions o) => ListSFObjects(o, EndpointClient),
+                            (CountOptions o) => CountSFObjects(o, EndpointClient),
                             errs => 1);
 
                 }
@@ -515,4 +553,3 @@ namespace ProbeODAPS
         }
     }
 }
-

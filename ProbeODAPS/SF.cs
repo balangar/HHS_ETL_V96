@@ -24,7 +24,7 @@ namespace ProbeODAPS
 
             SoapClient loginClient = new SoapClient();
 
-            LoginResult lr; 
+            LoginResult lr;
             try
             {
                 lr = loginClient.login(null, null, UserName, Password);
@@ -49,8 +49,8 @@ namespace ProbeODAPS
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("User Name: {0}  Password: {1}", UserName, Password);
+                Program.Logger.Error(e.Message);
+                Program.Logger.Debug(e.StackTrace);
 
                 returnStatus = false;
             }
@@ -104,6 +104,30 @@ namespace ProbeODAPS
                 Program.Logger.Warn("No records found: " + SFObjectName + ".");
             }
         }
+        public static int GetRecordCount(string SFObjectName, SoapClient EndPoint)
+        {
+            //TODO: GetRecordCount -- Bug.  Always returns 1
+            int recordCount;
+
+            try
+            {
+                string SoqlQuery = "Select Count(Id) From " + SFObjectName;
+                EndPoint.query(Header, null, null, null, null, SoqlQuery, out QueryResult qr);
+                //foreach(var item in qr.records)
+                //{
+                //    Program.Logger.Info(item.ToString());
+                //}
+                recordCount = qr.records.Length;
+            }
+            catch (Exception ex)
+            {
+                Program.Logger.Error(ex.Message);
+                throw;
+            }
+
+            return recordCount;
+
+        }
         public static string GetObjectDocumentation(SoapClient EndPoint, string SFObjectName, bool Verbose)
         {
             StringBuilder builder = new StringBuilder();
@@ -142,7 +166,7 @@ namespace ProbeODAPS
 
                     builder.AppendLine();
                 }
-                
+
                 sfObjectDescription = builder.ToString();
             }
 
@@ -184,7 +208,6 @@ namespace ProbeODAPS
             return sfObjectList;
 
         }
-
     }
 
 }
