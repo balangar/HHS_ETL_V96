@@ -116,66 +116,66 @@ namespace ProbeODAPS
 
             return returnStatus == 0 ? 0 : -1;
         }
-        private static void PutSFRecord(sObject SFObject, String OutputPath)
-        {
-            //TODO:  PutSFRecord -- Possible bug. ?Flush if only one SFObject having only one SFRecord?
-            string nextSFType = SFObject.type;
-            string outputFilePath = OutputPath;
-            string outputFileSpec = string.Empty;
+        //private static void PutSFRecord(sObject SFObject, String OutputPath)
+        //{
+        //    //TODO:  PutSFRecord -- Possible bug. ?Flush if only one SFObject having only one SFRecord?
+        //    string nextSFType = SFObject.type;
+        //    string outputFilePath = OutputPath;
+        //    string outputFileSpec = string.Empty;
 
-            try
-            {
-                if (nextSFType != CurrentSFType) //New SFObject
-                {
-                    CurrentSFType = nextSFType;
-                    outputFileSpec = outputFilePath + Path.DirectorySeparatorChar + nextSFType + "." + "csv";
-                    var config = new CsvHelper.Configuration.Configuration(new System.Globalization.CultureInfo("en-US"))
-                    {
-                        AllowComments = true,
-                        Delimiter = ",",
-                        Comment = '#',
-                        BadDataFound = null,
-                        SanitizeForInjection = false,
-                        IgnoreQuotes = false,
-                        DetectColumnCountChanges = true
-                    };
+        //    try
+        //    {
+        //        if (nextSFType != CurrentSFType) //New SFObject
+        //        {
+        //            CurrentSFType = nextSFType;
+        //            outputFileSpec = outputFilePath + Path.DirectorySeparatorChar + nextSFType + "." + "csv";
+        //            var config = new CsvHelper.Configuration.Configuration(new System.Globalization.CultureInfo("en-US"))
+        //            {
+        //                AllowComments = true,
+        //                Delimiter = ",",
+        //                Comment = '#',
+        //                BadDataFound = null,
+        //                SanitizeForInjection = false,
+        //                IgnoreQuotes = false,
+        //                DetectColumnCountChanges = true
+        //            };
 
-                    if (writer != null)
-                    {
-                        writer.Flush();
-                    }
+        //            if (writer != null)
+        //            {
+        //                writer.Flush();
+        //            }
 
-                    writer = new StreamWriter(outputFileSpec, false, Encoding.UTF8);
-                    csvWriter = new CsvWriter(writer, config);
+        //            writer = new StreamWriter(outputFileSpec, false, Encoding.UTF8);
+        //            csvWriter = new CsvWriter(writer, config);
 
-                    /* Write header record */
-                    int d = 0;
-                    do
-                    {
-                        csvWriter.WriteField(SFObject.Any[d].LocalName);
-                        d++;
-                    } while (d < SFObject.Any.Length);
-                    csvWriter.NextRecord();
-                }
-                /* Write data records */
+        //            /* Write header record */
+        //            int d = 0;
+        //            do
+        //            {
+        //                csvWriter.WriteField(SFObject.Any[d].LocalName);
+        //                d++;
+        //            } while (d < SFObject.Any.Length);
+        //            csvWriter.NextRecord();
+        //        }
+        //        /* Write data records */
 
-                int i = 0;
-                do
-                {
-                    csvWriter.WriteField(SFObject.Any[i].InnerText);
-                    i++;
-                } while (i < SFObject.Any.Length);
+        //        int i = 0;
+        //        do
+        //        {
+        //            csvWriter.WriteField(SFObject.Any[i].InnerText);
+        //            i++;
+        //        } while (i < SFObject.Any.Length);
 
-                csvWriter.NextRecord();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex.Message);
-                throw;
-            }
+        //        csvWriter.NextRecord();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Error(ex.Message);
+        //        throw;
+        //    }
 
-            return;
-        }
+        //    return;
+        //}
         private static int ExtractSFObjectRecords(string SFObjectName, string Query, string OutFilePath, SoapClient EndPoint)
         {
             int exitStatus = 0;
