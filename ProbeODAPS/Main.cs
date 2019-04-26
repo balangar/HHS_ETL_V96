@@ -568,7 +568,11 @@ namespace ProbeODAPS
                           FROM
                             APS_Case__c
                           WHERE
-                            Owner_County__c = 'Cuyahoga'"}
+                            Owner_County__c = 'Cuyahoga'"},
+                {"Account",
+                    @"Select
+                            Id,                            IsDeleted,                            MasterRecordId,                            Name,                            Type,                            RecordTypeId,                            ParentId,                            BillingStreet,                            BillingCity,                            BillingState,                            BillingPostalCode,                            BillingCountry,                            BillingStateCode,                            BillingCountryCode,                            BillingLatitude,                            BillingLongitude,                            BillingGeocodeAccuracy,                            BillingAddress,                            ShippingStreet,                            ShippingCity,                            ShippingState,                            ShippingPostalCode,                            ShippingCountry,                            ShippingStateCode,                            ShippingCountryCode,                            ShippingLatitude,                            ShippingLongitude,                            ShippingGeocodeAccuracy,                            ShippingAddress,                            Phone,                            Website,                            PhotoUrl,                            Industry,                            NumberOfEmployees,                            Description,                            OwnerId,                            CreatedDate,                            CreatedById,                            LastModifiedDate,                            LastModifiedById,                            SystemModstamp,                            LastActivityDate,                            LastViewedDate,                            LastReferencedDate,                            IsCustomerPortal,                            Jigsaw,                            JigsawCompanyId,                            AccountSource,                            SicDesc                      From
+                        Account"}
                 };
 
             int exitStatus = -1;

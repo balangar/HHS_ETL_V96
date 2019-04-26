@@ -73,10 +73,10 @@ namespace ProbeODAPS
             bool foundRecords = false;
             QueryResult qr;
 
-
+            /* I assume that for the last batch of records available, qr.size > 0 and qr.done is true.  [geg] */
             for(EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr); qr.size > 0; EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr))
             {
-                if (!foundRecords) // First batch?
+                if (!foundRecords) // First batch?  
                 {
                     foundRecords = true; 
                 }
@@ -96,7 +96,6 @@ namespace ProbeODAPS
         }
         public static int GetRecordCount(string SFObjectName, SoapClient EndPoint)
         {
-            //TODO: GetRecordCount -- Bug.  Always returns 1
             int recordCount;
 
             try
