@@ -73,15 +73,6 @@ namespace ProbeODAPS
             bool foundRecords = false;
             QueryResult qr;
 
-            //try
-            //{
-            //    EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Program.Logger.Error(ex.Message);
-            //    throw;
-            //}
 
             for(EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr); qr.size > 0; EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr))
             {
@@ -98,19 +89,6 @@ namespace ProbeODAPS
                 if (qr.done) break;
             }
 
-            //while (qr.size > 0)
-            //{
-            //    if (!foundRecords) foundRecords = true; // First batch?
-
-            //    foreach (sObject item in qr.records)
-            //    {
-            //        yield return item;
-            //    }
-
-            //    if (qr.done) break;
-            //    else EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr);
-            //}
-
             if (!foundRecords)
             {
                 Program.Logger.Warn("No records found: " + SFObjectName + ".");
@@ -125,10 +103,6 @@ namespace ProbeODAPS
             {
                 string SoqlQuery = "Select Count(Id) From " + SFObjectName;
                 EndPoint.query(Header, null, null, null, null, SoqlQuery, out QueryResult qr);
-                //foreach(var item in qr.records)
-                //{
-                //    Program.Logger.Info(item.ToString());
-                //}
                 recordCount = qr.records.Length;
             }
             catch (Exception ex)
@@ -138,7 +112,6 @@ namespace ProbeODAPS
             }
 
             return recordCount;
-
         }
         public static string GetObjectDocumentation(SoapClient EndPoint, string SFObjectName, bool Verbose)
         {
