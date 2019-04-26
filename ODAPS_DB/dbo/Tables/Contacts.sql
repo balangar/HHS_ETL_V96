@@ -11,19 +11,24 @@
 	[SystemModstamp] DATETIME NULL,
 	
 	[ContactID] VARCHAR(18) NOT NULL,
+	
+	[PersonID] VARCHAR(30) NULL,
 
 	[LastName] VARCHAR(80) NULL,
 	[FirstName] VARCHAR(40) NULL,
+	[Name] VARCHAR(121) NULL,
 	[Salutation] VARCHAR(10) NULL,
 	[Alias] VARCHAR(255) NULL,
 	[BirthDate] DATE NULL,
 	[ApproxAge] DECIMAL(18,2) NULL,
 	[SocSecNo] CHAR(9) NULL,
 
-	[MaritalStatus] VARCHAR(30) NULL,
+	[MaritalStatus] VARCHAR(255) NULL,
+	[GenderCode] VARCHAR(1500) NULL,
 	[Gender] VARCHAR(30) NULL,
 	[Race] VARCHAR(1300) NULL,
 	[Ethnicity] VARCHAR(5000) NULL,
+	[VeteranStatus] VARCHAR(30)NULL,
 
 	[Medicaid] VARCHAR(255) NULL,
 	[Medicare] VARCHAR(255) NULL,
@@ -69,7 +74,7 @@
 
 	[Email] VARCHAR(80) NULL,
 
-	[IncomeSource] VARCHAR(255) NULL,
+	[IncomeSource] VARCHAR(4099) NULL,
 	[HealthInsurance] VARCHAR(255) NULL,
 
 	[DNR] VARCHAR(7) NULL,
@@ -128,6 +133,7 @@
 	[UnsafeNeighborhood] BIT NULL,
 	[BioHazard] BIT NULL,
 	[ContagiousDisease] BIT NULL,
+	[BedBugInfestation] BIT NULL,
 	[BugOrVerminInfestation] BIT NULL,
 	[DangerousOrAggressiveAnimals] BIT NULL,
 	[DangerousOrAggressivePersonInHome] BIT NULL,

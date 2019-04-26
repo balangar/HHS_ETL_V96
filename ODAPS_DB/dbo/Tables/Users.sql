@@ -12,11 +12,15 @@
 	[LastModifiedDate] DATE NULL,
 	[SystemModstamp] DATETIME NULL,
 
+	[ManagerID] VARCHAR(18) NULL,
 	[SupervisorID] VARCHAR(18) NULL,
 
 	[LastName] VARCHAR(80) NULL,
 	[FirstName] VARCHAR(40) NULL,
 	[Name] VARCHAR(128) NULL,
+
+	[EMail] VARCHAR(128) NULL,
+	[Phone] VARCHAR(40) NULL,
 
 
 	CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([UserKey] ASC)
