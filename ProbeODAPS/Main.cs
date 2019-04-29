@@ -87,7 +87,7 @@ namespace ProbeODAPS
             int returnStatus = 0;
             foreach (var objName in Options.SFObjectNames)
             {
-                returnStatus += DocumentSFObject(EndPoint, objName, Options.Verbose, Path.Combine(Options.OutPath, objName + "_Doc.txt"));
+                returnStatus += DocumentSFObject(EndPoint, objName, Options.Verbose, Path.Combine(Options.OutPath, "Doc_" + objName + ".txt"));
             }
             return returnStatus == 0 ? 0 : -1;
         }
