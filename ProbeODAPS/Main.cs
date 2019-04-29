@@ -175,6 +175,7 @@ namespace ProbeODAPS
                     {"Contact",
                         @"Select
                             Id,
+                            AccountID,
                             Lastname,
                             FirstName,
                             Name,
@@ -201,7 +202,9 @@ namespace ProbeODAPS
                             Veteran_Status__c,
                             Bed_Bugs__c
                         From
-	                        Contact"},
+	                        Contact
+                        Where
+                            AccountID = '001t0000009WiXVAA0'"},
                     {"Case_Notes__c",
                         @"SELECT
                             Id,
@@ -397,7 +400,7 @@ namespace ProbeODAPS
                     {"APS_Case__c",
                         @"Select
                             Id,
-                            OwnerId,
+                            OwnerId,Owner_County__c,
                             IsDeleted,
                             CreatedDate,
                             CreatedById,

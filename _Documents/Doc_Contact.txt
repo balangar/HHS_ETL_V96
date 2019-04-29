@@ -1,4 +1,4 @@
-Contact: 	178 fields	04/26/2019 10:39:20
+Contact: 	178 fields	04/29/2019 08:38:52
 Id	: 	Type: id	Length :18	Label :Contact ID 
 IsDeleted	: 	Type: boolean		Label :Deleted 
 MasterRecordId	: 	Type: reference	Length :18	Label :Master Record ID	IS_Nullable
