@@ -1,0 +1,51 @@
+Account: 	49 fields	04/30/2019 07:52:21
+Id	: 	Type: id	Length :18	Label :Account ID 
+IsDeleted	: 	Type: boolean		Label :Deleted 
+MasterRecordId	: 	Type: reference	Length :18	Label :Master Record ID	IS_Nullable
+Name	: 	Type: string	Length :255	Label :Account Name 
+Type	: 	Type: picklist	Length :40	Label :Account Type	IS_Nullable
+RecordTypeId	: 	Type: reference	Length :18	Label :Record Type ID	IS_Nullable
+ParentId	: 	Type: reference	Length :18	Label :Parent Account ID	IS_Nullable
+BillingStreet	: 	Type: textarea	Length :255	Label :Billing Street	IS_Nullable
+BillingCity	: 	Type: string	Length :40	Label :Billing City	IS_Nullable
+BillingState	: 	Type: string	Length :80	Label :Billing State/Province	IS_Nullable
+BillingPostalCode	: 	Type: string	Length :20	Label :Billing Zip/Postal Code	IS_Nullable
+BillingCountry	: 	Type: string	Length :80	Label :Billing Country	IS_Nullable
+BillingStateCode	: 	Type: picklist	Length :10	Label :Billing State/Province Code	IS_Nullable
+BillingCountryCode	: 	Type: picklist	Length :10	Label :Billing Country Code	IS_Nullable
+BillingLatitude	: 	Type: double		Label :Billing Latitude	IS_Nullable
+BillingLongitude	: 	Type: double		Label :Billing Longitude	IS_Nullable
+BillingGeocodeAccuracy	: 	Type: picklist	Length :40	Label :Billing Geocode Accuracy	IS_Nullable
+BillingAddress	: 	Type: address		Label :Billing Address	IS_Nullable
+ShippingStreet	: 	Type: textarea	Length :255	Label :Shipping Street	IS_Nullable
+ShippingCity	: 	Type: string	Length :40	Label :Shipping City	IS_Nullable
+ShippingState	: 	Type: string	Length :80	Label :Shipping State/Province	IS_Nullable
+ShippingPostalCode	: 	Type: string	Length :20	Label :Shipping Zip/Postal Code	IS_Nullable
+ShippingCountry	: 	Type: string	Length :80	Label :Shipping Country	IS_Nullable
+ShippingStateCode	: 	Type: picklist	Length :10	Label :Shipping State/Province Code	IS_Nullable
+ShippingCountryCode	: 	Type: picklist	Length :10	Label :Shipping Country Code	IS_Nullable
+ShippingLatitude	: 	Type: double		Label :Shipping Latitude	IS_Nullable
+ShippingLongitude	: 	Type: double		Label :Shipping Longitude	IS_Nullable
+ShippingGeocodeAccuracy	: 	Type: picklist	Length :40	Label :Shipping Geocode Accuracy	IS_Nullable
+ShippingAddress	: 	Type: address		Label :Shipping Address	IS_Nullable
+Phone	: 	Type: phone	Length :40	Label :Account Phone	IS_Nullable
+Website	: 	Type: url	Length :255	Label :Website	IS_Nullable
+PhotoUrl	: 	Type: url	Length :255	Label :Photo URL	IS_Nullable
+Industry	: 	Type: picklist	Length :40	Label :Industry	IS_Nullable
+NumberOfEmployees	: 	Type: int		Label :Employees	IS_Nullable
+Description	: 	Type: textarea	Length :32000	Label :Account Description	IS_Nullable
+OwnerId	: 	Type: reference	Length :18	Label :Owner ID 
+CreatedDate	: 	Type: datetime		Label :Created Date 
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
+LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 
+SystemModstamp	: 	Type: datetime		Label :System Modstamp 
+LastActivityDate	: 	Type: date		Label :Last Activity	IS_Nullable
+LastViewedDate	: 	Type: datetime		Label :Last Viewed Date	IS_Nullable
+LastReferencedDate	: 	Type: datetime		Label :Last Referenced Date	IS_Nullable
+IsCustomerPortal	: 	Type: boolean		Label :Customer Portal Account 
+Jigsaw	: 	Type: string	Length :20	Label :Data.com Key	IS_Nullable
+JigsawCompanyId	: 	Type: string	Length :20	Label :Jigsaw Company ID	IS_Nullable
+AccountSource	: 	Type: picklist	Length :40	Label :Account Source	IS_Nullable
+SicDesc	: 	Type: string	Length :80	Label :SIC Description	IS_Nullable
+

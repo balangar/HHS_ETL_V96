@@ -1,0 +1,400 @@
+APS_Case__c: 	398 fields	IS_Custom  	04/30/2019 07:52:21
+Id	: 	Type: id	Length :18	Label :Record ID 
+OwnerId	: 	Type: reference	Length :18	Label :Owner ID 
+IsDeleted	: 	Type: boolean		Label :Deleted 
+Name	: 	Type: string	Length :80	Label :Case Number	IS_Nullable
+RecordTypeId	: 	Type: reference	Length :18	Label :Record Type ID	IS_Nullable
+CreatedDate	: 	Type: datetime		Label :Created Date 
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
+LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 
+SystemModstamp	: 	Type: datetime		Label :System Modstamp 
+LastActivityDate	: 	Type: date		Label :Last Activity Date	IS_Nullable
+LastViewedDate	: 	Type: datetime		Label :Last Viewed Date	IS_Nullable
+LastReferencedDate	: 	Type: datetime		Label :Last Referenced Date	IS_Nullable
+ADLs_toileting_bathing_hygiene_toileting__c	: 	Type: boolean		Label :ADLs (toileting, bathing, hygiene, etc.) 
+AP_Team_Review_Date__c	: 	Type: date		Label :AP Team Review Date	IS_Nullable
+Able_to_Care_for_Themselves_Information__c	: 	Type: textarea	Length :32768	Label :Able to Care for Themselves Information	IS_Nullable
+Able_to_Care_for_Themselves__c	: 	Type: picklist	Length :255	Label :Able to Care for Themselves	IS_Nullable
+Actions_Taken_Prior_to_this_Call__c	: 	Type: boolean		Label :Actions Taken Prior to this Call 
+Additional_Notes__c	: 	Type: textarea	Length :32000	Label :Additional Notes	IS_Nullable
+Adequate_nutrition_hydration__c	: 	Type: boolean		Label :Adequate nutrition/hydration 
+Adequate_supervision__c	: 	Type: boolean		Label :Adequate supervision 
+Agencies_Assisting_in_Investigation__c	: 	Type: multipicklist	Length :4099	Label :Agencies Assisting in Investigation	IS_Nullable
+Allow_someone_to_live_with_them__c	: 	Type: boolean		Label :Allow someone to live with them 
+Appropriate_medical_treatment__c	: 	Type: boolean		Label :Appropriate medical treatment 
+Approval_Kick_off__c	: 	Type: boolean		Label :Approval Kick-off 
+Approval_Status__c	: 	Type: picklist	Length :255	Label :Approval Status	IS_Nullable
+Approximate_Age__c	: 	Type: double		Label :Approximate Age	IS_Nullable
+Approximate_Loss_of_Assets__c	: 	Type: currency		Label :Approximate Loss of Assets	IS_Nullable
+Are_there_existing_conditions__c	: 	Type: picklist	Length :255	Label :Are there existing conditions?	IS_Nullable
+Are_there_safety_issues_for_co__c	: 	Type: string	Length :1300	Label :Are there safety issues for caseworkers?	IS_Nullable
+Assessment_Scoring_Info__c	: 	Type: string	Length :1300	Label :Assessment Scoring Info	IS_Nullable
+Auxiliary_Date__c	: 	Type: date		Label :Auxiliary_Date	IS_Nullable
+Bathing_and_hygiene__c	: 	Type: boolean		Label :Bathing and hygiene 
+Best_Time_to_Reach_Client__c	: 	Type: string	Length :255	Label :Best Time to Reach Client	IS_Nullable
+Bills_finances__c	: 	Type: boolean		Label :Bills/finances 
+Biohazard__c	: 	Type: boolean		Label :Biohazard 
+Bug_or_vermin_infestation__c	: 	Type: boolean		Label :Bug or vermin infestation 
+CBMS_Case_Number__c	: 	Type: string	Length :20	Label :CBMS Case #	IS_Nullable
+CaretakerNeglectWereThereAnyWitness__c	: 	Type: picklist	Length :255	Label :Neglect: Any Witnesses?	IS_Nullable
+Caretaker_Additional_Details__c	: 	Type: textarea	Length :32768	Label :Neglect Additional Details	IS_Nullable
+Caretaker_Neglect__c	: 	Type: boolean		Label :Neglect 
+Case_Closed_Additional_Information__c	: 	Type: textarea	Length :32768	Label :Specify Other	IS_Nullable
+Case_Closed_Reason__c	: 	Type: picklist	Length :255	Label :Closure Reason	IS_Nullable
+Case_Closure_Approval_Status__c	: 	Type: picklist	Length :255	Label :Case Closure Approval Status	IS_Nullable
+Case_Closure_Corrections_Completed__c	: 	Type: boolean		Label :Case Closure Corrections Completed 
+Case_Closure_Reason__c	: 	Type: string	Length :1300	Label :Case Closure Reason	IS_Nullable
+Case_County__c	: 	Type: string	Length :1300	Label :County	IS_Nullable
+Case_Duration__c	: 	Type: double		Label :Case Duration	IS_Nullable
+Case_Plan_Completed_Date__c	: 	Type: date		Label :Amended Case Plan Completed Date	IS_Nullable
+Cause_Harm_or_Loss_Information__c	: 	Type: textarea	Length :32768	Label :Cause Harm or Loss Information	IS_Nullable
+Cause_Harm_or_Loss__c	: 	Type: picklist	Length :255	Label :Cause Harm or Loss	IS_Nullable
+Client_Address__c	: 	Type: string	Length :1300	Label :Client Mailing Address	IS_Nullable
+Client_Alleged_Perpetrator_History__c	: 	Type: textarea	Length :5000	Label :Client & Alleged Perpetrator History	IS_Nullable
+Client_At_Risk_Info__c	: 	Type: string	Length :1300	Label :Client At-Risk Info	IS_Nullable
+Client_Name__c	: 	Type: reference	Length :18	Label :Client Name	IS_Nullable
+Client_s_Age__c	: 	Type: double		Label :Client's Age	IS_Nullable
+Client_s_Age_at_Time_of_Report__c	: 	Type: double		Label :Client's Age at Time of Report	IS_Nullable
+Client_s_Current_Location__c	: 	Type: picklist	Length :255	Label :Client's Current Location	IS_Nullable
+Client_s_Home_Phone_Number__c	: 	Type: string	Length :1300	Label :Client's Home Phone Number	IS_Nullable
+Community_User_Account__c	: 	Type: reference	Length :18	Label :Community User Account	IS_Nullable
+Complicating_Risks_Vulnerabilities__c	: 	Type: textarea	Length :5000	Label :Complicating Risks & Vulnerabilities	IS_Nullable
+ConditionNone__c	: 	Type: boolean		Label :Condition None 
+ConditionUnabletoManageNone__c	: 	Type: boolean		Label :Condition Unable to Manage None 
+ConditionUnabletoManageUnknown__c	: 	Type: boolean		Label :Condition Unable to Manage Unknown 
+ConditionUnknown__c	: 	Type: boolean		Label :Condition Unknown 
+Condition_Requiring_Total_Physical_Care__c	: 	Type: boolean		Label :Condition Requiring Total Physical Care 
+Confidential__c	: 	Type: boolean		Label :Confidential 
+Contagious_disease__c	: 	Type: boolean		Label :Contagious disease 
+Corrections_Completed__c	: 	Type: boolean		Label :Corrections Completed 
+County_Calendar__c	: 	Type: reference	Length :18	Label :County Calendar	IS_Nullable
+County_Held_Legal_Authority__c	: 	Type: reference	Length :18	Label :Support Network	IS_Nullable
+County_Held__c	: 	Type: string	Length :1300	Label :County Held?	IS_Nullable
+County_Type_of_Authority__c	: 	Type: string	Length :1300	Label :County Type of Authority	IS_Nullable
+County_Web2Case_Email_field__c	: 	Type: string	Length :1300	Label :County Web2Case Email field	IS_Nullable
+Court_Report_Completed_Date__c	: 	Type: date		Label :Court Report Completed Date	IS_Nullable
+Court_Report_Due_Date__c	: 	Type: date		Label :Court Report Due Date	IS_Nullable
+Criminal_Investigation_Status__c	: 	Type: picklist	Length :255	Label :Criminal Investigation Status	IS_Nullable
+Cultural_Considerations__c	: 	Type: textarea	Length :5000	Label :Cultural Considerations	IS_Nullable
+CurrentStrengthsorSupportinPlace__c	: 	Type: textarea	Length :32768	Label :Current Strengths or Support in Place	IS_Nullable
+Current_Strengths_Supports__c	: 	Type: textarea	Length :5000	Label :Current Strengths & Supports	IS_Nullable
+Danger_Harm__c	: 	Type: textarea	Length :5000	Label :Danger/Harm	IS_Nullable
+Dangerous_Aggressive_Person_in_Home_c__c	: 	Type: boolean		Label :Dangerous/Aggressive Person in Home 
+Dangerous_aggressive_animals__c	: 	Type: boolean		Label :Dangerous/aggressive animals 
+Dangerous_home_structure__c	: 	Type: boolean		Label :Dangerous home structure 
+Date_Case_Closed__c	: 	Type: date		Label :Date Case Closed	IS_Nullable
+Date_Closed_Date_of_Death__c	: 	Type: double		Label :(Date Closed - Date of Death)	IS_Nullable
+Date_Time_Created__c	: 	Type: datetime		Label :Date/Time Created	IS_Nullable
+Date_of_Birth__c	: 	Type: date		Label :Date of Birth	IS_Nullable
+Date_of_Death__c	: 	Type: date		Label :Date of Death	IS_Nullable
+Days_Between_Assessments__c	: 	Type: double		Label :Days Between Assessments	IS_Nullable
+Days_Between_Client_Contact__c	: 	Type: double		Label :Days Between Client Contact	IS_Nullable
+Days_Open__c	: 	Type: double		Label :Days Open	IS_Nullable
+Days_of_In_Activity__c	: 	Type: double		Label :Days of Inactivity	IS_Nullable
+Decision_making_understanding_deficits__c	: 	Type: boolean		Label :Decision making/understanding deficits 
+Decline_in_abilities__c	: 	Type: picklist	Length :255	Label :Decline in abilities	IS_Nullable
+Decline_in_abilities_information__c	: 	Type: textarea	Length :32768	Label :Decline in abilities information	IS_Nullable
+Dementia_Alzheimer_s__c	: 	Type: boolean		Label :Dementia/Alzheimer's 
+Developmental_Intellectual_Disability__c	: 	Type: boolean		Label :Developmental/Intellectual Disability 
+Diagnosed_Mental_Illness_Info__c	: 	Type: textarea	Length :32768	Label :Diagnosed Mental Illness Info	IS_Nullable
+Diagnosed_Mental_Illness__c	: 	Type: picklist	Length :255	Label :Diagnosed Mental Illness	IS_Nullable
+Difference_of_days__c	: 	Type: double		Label :Difference of days	IS_Nullable
+Disposition_Next_Steps__c	: 	Type: textarea	Length :32768	Label :Disposition/Next Steps	IS_Nullable
+Documents_for_Legal_Authority__c	: 	Type: picklist	Length :255	Label :Documents Verified	IS_Nullable
+Does_Perp_Hold_Legal_Authority__c	: 	Type: picklist	Length :255	Label :Does Alleged Perp Hold Legal Authority	IS_Nullable
+Does_Perp_Live_with_Client__c	: 	Type: picklist	Length :255	Label :Does Alleged Perp Live with Client?	IS_Nullable
+Does_adult_have_support_help_in_place__c	: 	Type: picklist	Length :255	Label :Does adult have support/help in place?	IS_Nullable
+Does_alleged_perp_have_access_to_adult__c	: 	Type: picklist	Length :255	Label :Does alleged perp have access to adult?	IS_Nullable
+Does_party_receive_funds_from_adult__c	: 	Type: picklist	Length :255	Label :Does party receive funds from adult?	IS_Nullable
+Emergency_Email_field__c	: 	Type: string	Length :1300	Label :Emergency Email field	IS_Nullable
+Emergency_Immediate_Harm_Information__c	: 	Type: textarea	Length :32768	Label :Emergency/Immediate Harm Information	IS_Nullable
+Emergency_Immediate_Harm__c	: 	Type: boolean		Label :Emergency/Immediate Harm 
+Evidence_of_Neglect_Exploitation_and_A__c	: 	Type: textarea	Length :32768	Label :Evidence of Abuse, Neglect, Exploitation	IS_Nullable
+Explain_Why_Adult_is_Being_Mistreated__c	: 	Type: textarea	Length :32768	Label :Explain How Client is Being Maltreated	IS_Nullable
+Exploitation_Additional_Details__c	: 	Type: textarea	Length :32768	Label :Exploitation Additional Details	IS_Nullable
+Exploitation__c	: 	Type: boolean		Label :Exploitation 
+Fear_as_a_result_of_a_person_s_action__c	: 	Type: boolean		Label :Fear as a result of a person's action 
+Firearms_or_other_weapons__c	: 	Type: boolean		Label :Firearms or other weapons 
+First_Assessment_Risk_Score__c	: 	Type: double		Label :Baseline Assessment Risk Score	IS_Nullable
+First_Assessment_Safety_Score__c	: 	Type: double		Label :Baseline Assessment Safety Score	IS_Nullable
+For_another_person_s_personal_needs__c	: 	Type: boolean		Label :For another person's personal needs 
+For_illegal_activity__c	: 	Type: boolean		Label :For illegal activity 
+For_things_adult_would_not_use_purchase__c	: 	Type: boolean		Label :For things adult would not use/purchase 
+Frail_Elderly__c	: 	Type: boolean		Label :Frail Elderly 
+Gated_locked_community_building__c	: 	Type: boolean		Label :Gated/locked community/building 
+Gender_Code__c	: 	Type: string	Length :1300	Label :Gender Code	IS_Nullable
+Give_away_money_or_property__c	: 	Type: boolean		Label :Give away money or property 
+Gray_Areas__c	: 	Type: textarea	Length :5000	Label :Gray Areas	IS_Nullable
+Guardian_or_conservator_in_place__c	: 	Type: boolean		Label :Guardian or conservator in place 
+Harasses_the_adult_in_a_sexual_manner__c	: 	Type: boolean		Label :Harasses the adult in a sexual manner 
+Has_the_condition_been_diagnosed__c	: 	Type: picklist	Length :255	Label :Has the condition been diagnosed?	IS_Nullable
+Has_there_been_a_recent_change__c	: 	Type: picklist	Length :255	Label :Has there been a recent change?	IS_Nullable
+Have_aggressive_behavior__c	: 	Type: boolean		Label :Have aggressive behavior 
+Have_self_injurious_behavior__c	: 	Type: boolean		Label :Have self-injurious behavior 
+Healthcare_medical_needs__c	: 	Type: boolean		Label :Healthcare/medical needs 
+Help_from_family_friends_others__c	: 	Type: boolean		Label :Help from family, friends, others 
+Hoarding_including_animals__c	: 	Type: boolean		Label :Hoarding, including animals 
+Hoarding_or_animal_hoarding__c	: 	Type: boolean		Label :Hoarding or animal hoarding 
+IADLs_cleaning_laundry_cooking__c	: 	Type: boolean		Label :IADLs (cleaning, laundry, cooking, etc.) 
+Illegal_activity_in_the_home__c	: 	Type: boolean		Label :Illegal activity in the home 
+Illegal_drug_manufacturing__c	: 	Type: boolean		Label :Illegal drug manufacturing 
+Illegal_drug_use__c	: 	Type: boolean		Label :Illegal drug use 
+Imminent_foreclosures_or_eviction__c	: 	Type: boolean		Label :Imminent foreclosures or eviction 
+Impact_ability_to_communicate__c	: 	Type: boolean		Label :Impact ability to communicate 
+In_what_capacity_does_perp_have_access__c	: 	Type: textarea	Length :1000	Label :In what capacity does perp have access?	IS_Nullable
+Inappropriate_Sexual_Behaviors__c	: 	Type: boolean		Label :Inappropriate Sexual Behaviors 
+Inappropriate_confinement__c	: 	Type: boolean		Label :Inappropriate confinement 
+Inappropriate_restraint__c	: 	Type: boolean		Label :Inappropriate restraint 
+Initial_Assessment_Complete_Date__c	: 	Type: date		Label :Initial Assessment Complete Date	IS_Nullable
+Initial_Assessment_Due_Date__c	: 	Type: date		Label :Initial Assessment Due Date	IS_Nullable
+Initial_Case_Plan_Complete_Date__c	: 	Type: date		Label :Initial Case Plan Complete Date	IS_Nullable
+Initial_Case_Plan_Due_Date__c	: 	Type: date		Label :Initial Case Plan Due Date	IS_Nullable
+Initial_Response_Date__c	: 	Type: date		Label :Initial Response Date	IS_Nullable
+Initial_Response_Due_Date__c	: 	Type: date		Label :Initial Response Due Date	IS_Nullable
+Initial_Response_Type__c	: 	Type: picklist	Length :255	Label :Initiation Response Type	IS_Nullable
+Interviews__c	: 	Type: textarea	Length :32768	Label :Interviews	IS_Nullable
+Investigation_Approval_Status__c	: 	Type: picklist	Length :255	Label :Investigation Approval Status	IS_Nullable
+Investigation_Completed_Date__c	: 	Type: date		Label :Investigation Completed Date	IS_Nullable
+Investigation_Due_Date__c	: 	Type: date		Label :Investigation Due Date	IS_Nullable
+Is_there_a_Will_or_Power_of_Attorney__c	: 	Type: picklist	Length :255	Label :Is there a Will or Power of Attorney?	IS_Nullable
+Is_this_a_recent_change_in_behavior__c	: 	Type: picklist	Length :255	Label :Is this a recent change in behavior?	IS_Nullable
+Istheclientatrisk__c	: 	Type: string	Length :1300	Label :Is the client at risk?	IS_Nullable
+Known_criminal_activity_history__c	: 	Type: boolean		Label :Known criminal activity/history 
+Known_gang_activity__c	: 	Type: boolean		Label :Known gang activity 
+Lack_of_access_pathways__c	: 	Type: boolean		Label :Lack of access/pathways 
+Last_Activity_Child_Objects__c	: 	Type: date		Label :Last Activity Child Objects	IS_Nullable
+Last_Assessment_Risk_Score__c	: 	Type: double		Label :Re-Assessment Risk Score	IS_Nullable
+Last_Assessment_Safety_Score__c	: 	Type: double		Label :Re-Assessment Safety Score	IS_Nullable
+Last_Monthly_Contact_Date__c	: 	Type: date		Label :Last Client Visit Date	IS_Nullable
+Late_Initial_Response__c	: 	Type: string	Length :1300	Label :Timely Initial Response	IS_Nullable
+Law_Enforcement_Requested_by_APS__c	: 	Type: picklist	Length :255	Label :Law Enforcement Assistance Requested?	IS_Nullable
+Major_Mental_Illness_Emotional_Disorder__c	: 	Type: boolean		Label :Major Mental Illness/Emotional Disorder 
+Make_changes_to_a_bank_account__c	: 	Type: boolean		Label :Make changes to a bank account 
+Makes_sexual_innuendos_toward_the_adult__c	: 	Type: boolean		Label :Makes sexual innuendos toward the adult 
+Makes_the_adult_perform_sexual_acts__c	: 	Type: boolean		Label :Makes the adult perform sexual acts 
+Makes_the_adult_watch_pornography__c	: 	Type: boolean		Label :Makes the adult watch pornography 
+Malnutrition_sudden_weight_loss_gain__c	: 	Type: boolean		Label :Malnutrition; sudden weight loss/gain 
+Managing_Home_Cleanliness__c	: 	Type: boolean		Label :Managing Home Cleanliness 
+Mandated_Report__c	: 	Type: picklist	Length :255	Label :Report Came from Law Enforce Due to MR	IS_Nullable
+Marital_Status_Code__c	: 	Type: string	Length :1300	Label :Marital Status Code	IS_Nullable
+Medical_conditions__c	: 	Type: boolean		Label :Medical conditions 
+Medically_Fragile__c	: 	Type: boolean		Label :Medically Fragile 
+Medication_management__c	: 	Type: boolean		Label :Medication management 
+Memory_Decision_Making_Problems_Info__c	: 	Type: textarea	Length :32768	Label :Memory/Decision Making Problems Info	IS_Nullable
+Memory_Decision_Making_Problems__c	: 	Type: picklist	Length :255	Label :Memory/Decision Making Problems	IS_Nullable
+Memory_deficits__c	: 	Type: boolean		Label :Memory deficits 
+Memory_problems__c	: 	Type: boolean		Label :Memory problems 
+Mental_illness__c	: 	Type: boolean		Label :Mental illness 
+Minor_Impacts__c	: 	Type: textarea	Length :131072	Label :Minor Impacts	IS_Nullable
+Mismanagement_of_medications__c	: 	Type: boolean		Label :Mismanagement of medications 
+Mistreatment_Category__c	: 	Type: multipicklist	Length :4099	Label :Maltreatment Category	IS_Nullable
+Month_After_Date_Report_Received__c	: 	Type: date		Label :Month After Date Report Received	IS_Nullable
+Monthly_Contact_Due_Date__c	: 	Type: date		Label :Monthly Contact Due Date	IS_Nullable
+Monthly_Contact_Target_Date__c	: 	Type: date		Label :Monthly Contact Target Date	IS_Nullable
+NeurologicalImpairmentStrokeTBIMS__c	: 	Type: boolean		Label :Neurological Impairment - Stroke, TBI MS 
+Neurological_Impairment_Stroke_TBI_MS__c	: 	Type: boolean		Label :Neurological Impairment - Stroke, TBI MS 
+NewScreeninOutRecommendation__c	: 	Type: string	Length :1300	Label :New Screen-In/Out Recommendation	IS_Nullable
+Next_Case_Plan_Due_Date__c	: 	Type: date		Label :Next Case Plan Due Date	IS_Nullable
+No_At_Risk_Issues__c	: 	Type: boolean		Label :No At-Risk Issues 
+No_Mistreatment__c	: 	Type: boolean		Label :No Maltreatment 
+No_Physical_Medical_Condition__c	: 	Type: boolean		Label :No Physical/Medical Condition 
+Non_working_appliances__c	: 	Type: boolean		Label :Non-working appliances 
+Non_working_utilities__c	: 	Type: boolean		Label :Non-working utilities 
+Old_Monthly_Contact_Due_Date__c	: 	Type: date		Label :Old Monthly Contact Due Date	IS_Nullable
+On_going_Client_Needs__c	: 	Type: textarea	Length :32768	Label :Case Closure Summary	IS_Nullable
+On_going_Perpetrator_Involvement__c	: 	Type: textarea	Length :32768	Label :On-going Perpetrator Involvement	IS_Nullable
+Ongoing_Alleged_Perpetrator_Involvement__c	: 	Type: picklist	Length :255	Label :Ongoing Alleged Perpetrator Involvement?	IS_Nullable
+Other_Involved_Parties__c	: 	Type: textarea	Length :32768	Label :Other Involved Parties	IS_Nullable
+Owner_Profile__c	: 	Type: string	Length :1300	Label :Owner Profile	IS_Nullable
+POA_in_place__c	: 	Type: boolean		Label :POA in place 
+Pain_as_a_result_of_a_person_s_action__c	: 	Type: boolean		Label :Pain as a result of a person's action 
+Perp_Legal_Authority_Type__c	: 	Type: picklist	Length :255	Label :Perp Legal Authority Type	IS_Nullable
+Physical_Abuse_Additional_Details__c	: 	Type: textarea	Length :32768	Label :Physical Abuse Additional Details	IS_Nullable
+Physical_Abuse_Broken_Bones__c	: 	Type: boolean		Label :Broken Bones 
+Physical_Abuse_Bruises__c	: 	Type: boolean		Label :Bruises 
+Physical_Abuse_Cuts__c	: 	Type: boolean		Label :Cuts 
+Physical_Abuse_Scratches__c	: 	Type: boolean		Label :Scratches 
+Physical_Abuse_Visible_Marks__c	: 	Type: boolean		Label :Visible Marks/Injuries 
+Physical_Abuse_Were_there_any_witnesses__c	: 	Type: picklist	Length :255	Label :Physical Abuse:Were there any witnesses?	IS_Nullable
+Physical_Abuse__c	: 	Type: boolean		Label :Physical Abuse 
+Physical_Impairment__c	: 	Type: boolean		Label :Physical Impairment 
+Physical_Medical_Additional_Details__c	: 	Type: textarea	Length :5000	Label :Physical/Medical Additional Details	IS_Nullable
+Physical_Medical_Conditions_Information__c	: 	Type: textarea	Length :32768	Label :Physical/Medical Conditions Information	IS_Nullable
+Physical_Medical_Conditions__c	: 	Type: picklist	Length :255	Label :Physical/Medical Conditions	IS_Nullable
+Physical_conditions__c	: 	Type: boolean		Label :Physical conditions 
+Police_frequently_called_to_the_home__c	: 	Type: boolean		Label :Police frequently called to the home 
+Poor_hygiene_not_bathing__c	: 	Type: boolean		Label :Poor hygiene; not bathing 
+Previous_Assessment_Completed_Date__c	: 	Type: date		Label :Previous Assessment Completed Date	IS_Nullable
+Previous_Monthly_Contact__c	: 	Type: date		Label :Previous Client Visit Date	IS_Nullable
+Primary_Language_Code__c	: 	Type: string	Length :1300	Label :Primary Language Code	IS_Nullable
+Professional_services_in_place__c	: 	Type: boolean		Label :Professional services in place 
+Questionable_transfer_of_money_property__c	: 	Type: boolean		Label :Questionable transfer of money/property 
+Re_Assessment_Completed_Date__c	: 	Type: date		Label :Assessment Completed Date	IS_Nullable
+Re_Assessment_Due_Date__c	: 	Type: date		Label :90 Day Assessment/Case Review Due	IS_Nullable
+Ready_to_Close_Case__c	: 	Type: boolean		Label :Ready to Close Case 
+Refuses_recommended_services__c	: 	Type: boolean		Label :Refuses recommended services 
+Rep_payee_in_place__c	: 	Type: boolean		Label :Rep payee in place 
+Report_came_from_Law_Enforcement__c	: 	Type: picklist	Length :255	Label :Report came from Public Safety	IS_Nullable
+ReportingPartyActionsAlreadyTaken__c	: 	Type: textarea	Length :32768	Label :What interventions have been tried?	IS_Nullable
+ReportingPartyActions__c	: 	Type: textarea	Length :32768	Label :Reporting Party Actions	IS_Nullable
+Reporting_Party_Agency_Name__c	: 	Type: string	Length :1300	Label :Reporting Party Agency Name	IS_Nullable
+Reporting_Party_Name__c	: 	Type: reference	Length :18	Label :Reporting Party Name	IS_Nullable
+Reporting_Party_Relationship_Notes__c	: 	Type: string	Length :255	Label :Reporting Party Relationship Notes	IS_Nullable
+Reporting_Party_Relationship_Role__c	: 	Type: picklist	Length :255	Label :Relationship	IS_Nullable
+Reporting_Party_Relationship_to_Client__c	: 	Type: picklist	Length :255	Label :Relationship Type	IS_Nullable
+ResponseDueDate__c	: 	Type: date		Label :ResponseDueDate	IS_Nullable
+Response_Explanation__c	: 	Type: textarea	Length :1000	Label :Response Explanation	IS_Nullable
+Risk_Score_Difference__c	: 	Type: double		Label :Risk Score Difference	IS_Nullable
+Risk_Score_Outcome__c	: 	Type: percent		Label :Risk Score Outcome	IS_Nullable
+Safety_Improvement_Percentage__c	: 	Type: percent		Label :Safety Improvement Percentage	IS_Nullable
+Safety_Notes__c	: 	Type: string	Length :1300	Label :Safety Notes	IS_Nullable
+Safety_Perception__c	: 	Type: double		Label :Safety Perception	IS_Nullable
+Safety_Score_Difference__c	: 	Type: double		Label :Safety Score Difference	IS_Nullable
+Safety_Score_Outcome__c	: 	Type: percent		Label :Safety Score Outcome	IS_Nullable
+Safety_Warning__c	: 	Type: string	Length :1300	Label :Safety Warning	IS_Nullable
+Scorecard_Review__c	: 	Type: boolean		Label :Scorecard Review 
+Screen_In_Out_Summary__c	: 	Type: string	Length :1300	Label :Screen In/Out Summary	IS_Nullable
+Screen_In_Screen_Out_Recommendation__c	: 	Type: string	Length :1300	Label :Screen In/Out Recommendation	IS_Nullable
+Screen_Out_Reason__c	: 	Type: picklist	Length :255	Label :Screen Out Reason	IS_Nullable
+Security_system_cameras__c	: 	Type: boolean		Label :Security system/cameras 
+Self_Neglect_Additional_Details__c	: 	Type: textarea	Length :32768	Label :Self-Neglect Additional Details	IS_Nullable
+Self_Neglect_Substance_Abuse__c	: 	Type: boolean		Label :Substance abuse 
+Self_Neglect__c	: 	Type: boolean		Label :Self-Neglect 
+Sexual_Abuse_Additional_Details__c	: 	Type: textarea	Length :32768	Label :Sexual Abuse Additional Details	IS_Nullable
+Sexual_Abuse_Broken_Bones__c	: 	Type: boolean		Label :Broken Bones 
+Sexual_Abuse_Bruises__c	: 	Type: boolean		Label :Bruises 
+Sexual_Abuse_Cuts__c	: 	Type: boolean		Label :Cuts 
+Sexual_Abuse_Scratches__c	: 	Type: boolean		Label :Scratches 
+Sexual_Abuse_Visible_Marks__c	: 	Type: boolean		Label :Visible Marks/Injuries 
+Sexual_Abuse_Were_there_any_witnesses__c	: 	Type: picklist	Length :255	Label :Sexual Abuse:Were there any witnesses?	IS_Nullable
+Sexual_Abuse__c	: 	Type: boolean		Label :Sexual Abuse 
+Sign_a_quit_claim_deed__c	: 	Type: boolean		Label :Sign a quit claim deed 
+Significant_Impacts__c	: 	Type: textarea	Length :131072	Label :Significant Impacts	IS_Nullable
+Social_interaction_family_friends_visit__c	: 	Type: boolean		Label :Social interaction, family/friends visit 
+Specify_Other_Relationship__c	: 	Type: textarea	Length :255	Label :Specify Other Relationship	IS_Nullable
+Specify_Other_Screen_Out_Reason__c	: 	Type: textarea	Length :1000	Label :Specify Other Screen Out Reason	IS_Nullable
+Specify_Other_current_location__c	: 	Type: string	Length :255	Label :Specify Other current location	IS_Nullable
+Specify_if_No__c	: 	Type: textarea	Length :32768	Label :Specify if No	IS_Nullable
+Specify_why_no_assistance_was_received__c	: 	Type: textarea	Length :32768	Label :Specify why no assistance was received	IS_Nullable
+Status__c	: 	Type: picklist	Length :255	Label :Status	IS_Nullable
+Substance_Abuse_including_RX_meds__c	: 	Type: boolean		Label :Substance Abuse (including RX meds) 
+Substance_abuse__c	: 	Type: boolean		Label :Substance abuse 
+Supervisor_E_mail__c	: 	Type: email	Length :80	Label :Supervisor E-mail	IS_Nullable
+Supervisor_Name__c	: 	Type: string	Length :1300	Label :Supervisor Name	IS_Nullable
+Supervisor__c	: 	Type: reference	Length :18	Label :Supervisor	IS_Nullable
+Support_Network_Lives_with_Client__c	: 	Type: picklist	Length :255	Label :Support Network Lives with Client	IS_Nullable
+Support_Network_Narrative__c	: 	Type: textarea	Length :15000	Label :Support Network Narrative	IS_Nullable
+Team_Members__c	: 	Type: textarea	Length :1000	Label :Team Members	IS_Nullable
+TemporaryContact__c	: 	Type: reference	Length :18	Label :Contact	IS_Nullable
+Test_support_number_of_county_held_auth__c	: 	Type: string	Length :1300	Label :Test support number of county held  auth	IS_Nullable
+Timely_Initial_Assessment__c	: 	Type: string	Length :1300	Label :Timely Initial Assessment	IS_Nullable
+Timely_Initial_Case_Plan__c	: 	Type: string	Length :1300	Label :Timely Initial Case Plan	IS_Nullable
+Timely_Investigation__c	: 	Type: string	Length :1300	Label :Timely Investigation	IS_Nullable
+Timely_Monthly_Contact_2__c	: 	Type: string	Length :1300	Label :Timely Monthly Contact2	IS_Nullable
+Timely_Monthly_Contact__c	: 	Type: string	Length :10	Label :Timely Monthly Contact	IS_Nullable
+To_do_anything_they_wouldn_t_do_normally__c	: 	Type: boolean		Label :To do anything they wouldn't do normally 
+Transportation__c	: 	Type: boolean		Label :Transportation 
+Unable_to_Care_for_Themselves_Info__c	: 	Type: textarea	Length :32768	Label :Unable to Care for Themselves Info	IS_Nullable
+Unable_to_Care_for_Themselves__c	: 	Type: picklist	Length :255	Label :Unable to Care for Themselves	IS_Nullable
+Unable_to_Protect_Themselves_Information__c	: 	Type: textarea	Length :32768	Label :Unable to Protect Themselves Information	IS_Nullable
+Unable_to_Protect_Themselves__c	: 	Type: picklist	Length :255	Label :Unable to Protect Themselves	IS_Nullable
+Unable_to_protect_themselves_checkbox__c	: 	Type: boolean		Label :Unable to protect themselves 
+Unexplained_loss_of_money_property__c	: 	Type: boolean		Label :Unexplained loss of money/property 
+Unknown_At_Risk_Population__c	: 	Type: boolean		Label :Unknown At-Risk Population 
+Unpaid_utilities__c	: 	Type: boolean		Label :Unpaid utilities 
+Unsafe_neighborhood__c	: 	Type: boolean		Label :Unsafe neighborhood 
+Unsafe_structure__c	: 	Type: boolean		Label :Unsafe structure 
+Untreated_medical_condition__c	: 	Type: boolean		Label :Untreated medical condition 
+Untreated_mental_health_need__c	: 	Type: boolean		Label :Untreated mental health need 
+Untreated_mental_illness__c	: 	Type: boolean		Label :Untreated mental illness 
+Vermin_pest_infestation__c	: 	Type: boolean		Label :Vermin/pest infestation 
+Wander__c	: 	Type: boolean		Label :Wander 
+Was_Assistance_Received__c	: 	Type: picklist	Length :255	Label :Was Assistance Received	IS_Nullable
+What_are_the_details_of_the_conditions__c	: 	Type: textarea	Length :30000	Label :What are the details of the condition(s)	IS_Nullable
+What_is_the_Concern_You_Want_to_Report__c	: 	Type: textarea	Length :35000	Label :What is the Concern You Want to Report?	IS_Nullable
+What_would_be_helpful_improve_situation__c	: 	Type: textarea	Length :1000	Label :What would be helpful/improve situation?	IS_Nullable
+Who_is_responsible_for_adult_s_care__c	: 	Type: textarea	Length :1000	Label :Who is responsible for adult's care?	IS_Nullable
+Why_Did_Reporting_Party_Call__c	: 	Type: textarea	Length :32768	Label :What Prompted the Call Today?	IS_Nullable
+Without_adult_s_knowledge_permission__c	: 	Type: boolean		Label :Without adult's knowledge/permission 
+Worker_Safety_Concerns__c	: 	Type: string	Length :1300	Label :Worker Safety Concerns	IS_Nullable
+Worker_Safety_Issues_Desc__c	: 	Type: textarea	Length :1000	Label :Worker Safety Issues Description	IS_Nullable
+Worker_Safety_Issues__c	: 	Type: boolean		Label :Worker Safety Issues 
+X3rd_Most_Recent_Monthly_Contact__c	: 	Type: date		Label :3rd Most-Recent Monthly Contact	IS_Nullable
+X4th_Most_Recent_Monthly_Contact__c	: 	Type: date		Label :4th Most-Recent Monthly Contact	IS_Nullable
+Xof_Cases__c	: 	Type: double		Label :# of Cases	IS_Nullable
+Xof_Intakes__c	: 	Type: double		Label :# of Intakes	IS_Nullable
+Assessment_Count__c	: 	Type: double		Label :Assessment Count	IS_Nullable
+Case_Plan_Count__c	: 	Type: double		Label :Case Plan Count	IS_Nullable
+Count_of_Allegations__c	: 	Type: double		Label :Count of Allegations	IS_Nullable
+In_progress_case_plans__c	: 	Type: double		Label :# In-progress case plans	IS_Nullable
+Substantiated_Exploitation__c	: 	Type: double		Label :#Validated Exploitation	IS_Nullable
+Sum_of_County_Funds_Used__c	: 	Type: currency		Label :Sum of Client Services Funds Used	IS_Nullable
+Xof_Monthly_Contacts__c	: 	Type: double		Label :# of Monthly Contacts	IS_Nullable
+of_Case_Plans__c	: 	Type: double		Label :# of Case Plans	IS_Nullable
+of_Completed_Assessments__c	: 	Type: double		Label :# of Completed Assessments	IS_Nullable
+of_In_Progress_Assessments__c	: 	Type: double		Label :# of In-Progress Assessments	IS_Nullable
+of_No_Mistreatment_Allegations__c	: 	Type: double		Label :# of No Maltreatment Allegations	IS_Nullable
+of_Not_Yet_Implemented_Client_Services__c	: 	Type: double		Label :# of Not Yet Implemented Client Services	IS_Nullable
+of_Open_Allegations__c	: 	Type: double		Label :# of Open Allegations	IS_Nullable
+of_Open_Perp_Findings__c	: 	Type: double		Label :# of Open Perp Findings	IS_Nullable
+of_Substantiated_Allegations__c	: 	Type: double		Label :# of Validated Allegations	IS_Nullable
+Case_Decision_Approval_Status__c	: 	Type: picklist	Length :255	Label :Case Decision Approval Status	IS_Nullable
+Case_Decision_Date_Time__c	: 	Type: datetime		Label :Case Decision Date/Time	IS_Nullable
+Case_Decision_Due_Date__c	: 	Type: date		Label :Case Decision Due Date	IS_Nullable
+Case_Decision_Reason__c	: 	Type: textarea	Length :32768	Label :Case Decision Reason	IS_Nullable
+Case_Decision__c	: 	Type: picklist	Length :255	Label :Case Decision	IS_Nullable
+Case_Plan_Date_Timely__c	: 	Type: string	Length :3	Label :Case Plan Date Timely	IS_Nullable
+Case_Stage__c	: 	Type: picklist	Length :255	Label :Case Stage	IS_Nullable
+Case_Transfer_Required__c	: 	Type: boolean		Label :Case Transfer Required 
+Client_Current_Address__c	: 	Type: string	Length :1300	Label :Client Current Address	IS_Nullable
+Companion_Case__c	: 	Type: reference	Length :18	Label :Companion Case	IS_Nullable
+Confidential_Reason__c	: 	Type: picklist	Length :255	Label :Confidential Reason	IS_Nullable
+Date_Notice_of_Intent_Letter_Provided__c	: 	Type: date		Label :Date Notice of Intent Letter Provided	IS_Nullable
+Demeaning_insults__c	: 	Type: boolean		Label :Demeaning/insults 
+Emotional_Abuse_Were_there_any_witnesses__c	: 	Type: picklist	Length :255	Label :Emotional Abuse:Were there any witnesses	IS_Nullable
+Emotional_Verbal_Abuse_Additional_Detail__c	: 	Type: textarea	Length :32768	Label :Emotional/Verbal Abuse Additional Detail	IS_Nullable
+Emotional_Verbal_Abuse__c	: 	Type: boolean		Label :Emotional/Verbal Abuse 
+Extension_Reason__c	: 	Type: textarea	Length :32768	Label :Extension Reason	IS_Nullable
+Extension_Request__c	: 	Type: picklist	Length :255	Label :Extension Request	IS_Nullable
+Harassment__c	: 	Type: boolean		Label :Harassment 
+Humiliation__c	: 	Type: boolean		Label :Humiliation 
+INR_Additional_Details__c	: 	Type: textarea	Length :32768	Label :I&R Additional Details	IS_Nullable
+Ignoring__c	: 	Type: boolean		Label :Ignoring 
+Information_and_Referral__c	: 	Type: boolean		Label :Information and Referral 
+Initial_Risk_Assessment_Status__c	: 	Type: picklist	Length :255	Label :Initial Risk Assessment Status	IS_Nullable
+Initiation_Date_Time__c	: 	Type: datetime		Label :Initiation Date/Time	IS_Nullable
+Initiation_Due_Date_Time__c	: 	Type: datetime		Label :Initiation Due Date/Time	IS_Nullable
+Intimidation_Threats__c	: 	Type: boolean		Label :Intimidation/Threats 
+Isolation__c	: 	Type: boolean		Label :Isolation 
+Location_of_Emotional_Abuse_Allegation__c	: 	Type: textarea	Length :255	Label :Location of Emotional Abuse Allegation	IS_Nullable
+Location_of_Exploitation_Allegation__c	: 	Type: textarea	Length :255	Label :Location of Exploitation Allegation	IS_Nullable
+Location_of_Neglect_Allegation__c	: 	Type: textarea	Length :255	Label :Location of Neglect Allegation	IS_Nullable
+Location_of_Physical_Abuse_Allegation__c	: 	Type: textarea	Length :255	Label :Location of Physical Abuse Allegation	IS_Nullable
+Location_of_Self_Neglect_Allegation__c	: 	Type: textarea	Length :255	Label :Location of Self Neglect Allegation	IS_Nullable
+Location_of_Sexual_Abuse_Allegation__c	: 	Type: textarea	Length :255	Label :Location of Sexual Abuse Allegation	IS_Nullable
+Other_Confidential_Reason__c	: 	Type: textarea	Length :32768	Label :Other Confidential Reason	IS_Nullable
+ReAssessment_Due_Date__c	: 	Type: date		Label :Re-Assessment Due Date	IS_Nullable
+Ready_for_Screening_Decision__c	: 	Type: boolean		Label :Ready for Screening Decision 
+Reassessment_Complete_Date__c	: 	Type: date		Label :Re-assessment Complete Date	IS_Nullable
+Referral_Source__c	: 	Type: picklist	Length :255	Label :Referral Source	IS_Nullable
+Referral_Submitted_Date_Time__c	: 	Type: datetime		Label :Referral Submitted Date/Time	IS_Nullable
+Report_Effective_Date_Time__c	: 	Type: datetime		Label :Report Effective Date/Time	IS_Nullable
+ResponseDueDateTime__c	: 	Type: datetime		Label :ResponseDueDateTime	IS_Nullable
+STD__c	: 	Type: boolean		Label :STD 
+Sequencing_Number__c	: 	Type: double		Label :Sequencing Number	IS_Nullable
+Sexual_Exploitation__c	: 	Type: boolean		Label :Sexual Exploitation 
+Transfer_Case_Reason__c	: 	Type: textarea	Length :1000	Label :Transfer Case Reason	IS_Nullable
+Transferring_County_Decision__c	: 	Type: picklist	Length :255	Label :Transferring County Decision	IS_Nullable
+Verbal_Assaults_Yelling__c	: 	Type: boolean		Label :Verbal Assaults/Yelling 
+Max_Reassessment_Date__c	: 	Type: date		Label :90 Day Assessment Completed Date	IS_Nullable
+Does_Reporting_Party_Live_with_Client__c	: 	Type: picklist	Length :255	Label :Does Reporting Party Live with Client	IS_Nullable
+No_Maltreatment_Additional_Details__c	: 	Type: textarea	Length :32768	Label :No Maltreatment Additional Details	IS_Nullable
+Primary_Maltreatment__c	: 	Type: string	Length :30	Label :Primary Maltreatment	IS_Nullable
+Re_Assessment_Close__c	: 	Type: boolean		Label :Re-Assessment Close 
+Bed_Bugs__c	: 	Type: boolean		Label :Bed Bugs 
+Screened_Out_Date_Time__c	: 	Type: datetime		Label :Screened Out Date/Time	IS_Nullable
+Owner_County__c	: 	Type: string	Length :1300	Label :Owner County	IS_Nullable
+of_Completed_Assessments_Formula__c	: 	Type: double		Label :# of Completed Assessments Formula	IS_Nullable
+Safety_Notes2__c	: 	Type: textarea	Length :5000	Label :Safety Notes	IS_Nullable
+

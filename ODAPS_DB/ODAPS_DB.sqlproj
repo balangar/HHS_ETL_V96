@@ -127,6 +127,8 @@
     <Folder Include="_Auxiliary" />
     <Folder Include="_Documents" />
     <Folder Include="_Ancillary" />
+    <Folder Include="POD" />
+    <Folder Include="POD\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\CaseNotes.sql" />
@@ -145,9 +147,11 @@
     <Build Include="_Ancillary\InsertStagingCaseNotes.sql" />
     <Build Include="_Ancillary\InsertStagingContacts.sql" />
     <Build Include="_Ancillary\InsertStagingUsers.sql" />
+    <Build Include="Security\POD.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />
     <None Include="_Auxiliary\ODAPS_PROD_Recreate.publish.xml" />
+    <None Include="_Documents\PODObjectsAndFields.txt" />
   </ItemGroup>
 </Project>

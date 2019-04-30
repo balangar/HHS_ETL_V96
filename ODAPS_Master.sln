@@ -12,13 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", 
 	ProjectSection(SolutionItems) = preProject
 		_Documents\APS Data Dictionary_data from ODAPS to Peer Place rev092518.xlsx = _Documents\APS Data Dictionary_data from ODAPS to Peer Place rev092518.xlsx
 		_Documents\Contact_Full.txt = _Documents\Contact_Full.txt
+		_Documents\Doc_Account.txt = _Documents\Doc_Account.txt
+		_Documents\Doc_Case.txt = _Documents\Doc_Case.txt
+		_Documents\Doc_CaseNotes.txt = _Documents\Doc_CaseNotes.txt
+		_Documents\Doc_Contact.txt = _Documents\Doc_Contact.txt
+		_Documents\Doc_User.txt = _Documents\Doc_User.txt
 		_Documents\ObjectsAndFields.xlsx = _Documents\ObjectsAndFields.xlsx
 		_Documents\ODAPS_Objects.txt = _Documents\ODAPS_Objects.txt
-		_Documents\SF_Case.txt = _Documents\SF_Case.txt
-		_Documents\SF_CaseNote.txt = _Documents\SF_CaseNote.txt
-		_Documents\SF_Contact.txt = _Documents\SF_Contact.txt
 		_Documents\SF_Contact_Full.txt = _Documents\SF_Contact_Full.txt
-		_Documents\SF_User.txt = _Documents\SF_User.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProbeODAPS", "ProbeODAPS\ProbeODAPS.csproj", "{7A9289ED-3B62-4201-BE77-1492627A6E8F}"
