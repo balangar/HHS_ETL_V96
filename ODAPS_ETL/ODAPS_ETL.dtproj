@@ -12,11 +12,11 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{56ecc2a5-5763-4668-8fdd-2c22a2e897ee}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">ODAPS_ETL</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionComments">
@@ -26,70 +26,14 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAuxvu0G0xw0KAIUTYKs9rIwAAAAACAAAAAAADZgAAwAAAABAAAADf9mZ8PcWpSJSBlf35/Q3FAAAAAASAAACgAAAAEAAAAMii0r2iWE3/dNo8wMrpuf+IAAAAFvrx7Jf64hUd8UjvKHgoBch5d2l1VRp6fXrfZbnoaMyRuobFKvBe6IKmmxn81degwIJyVVVVhdITFpV5XfIpDlORwPAPvBbcgQLdKqKzRKo10kBqocsI8g1Z3TUUCO75tdlsqEiHyQ4BHmtQCVi1qHmTgycJjS8ToTq7Q527/eTk31P3fVqcJxQAAACoDMcFksaYaNWdc7Ao3gkVp52GQA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="nimwB4jUzQA=" SSIS:IV="CJxQOZ1sq4uDNxD476s8mQ==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">ffIoVFc8kiMgNuVK/C9lzHDwVqYw6I+XwQvLUdBtZfJ6H7lx5zNaQtbNz3osyABisR23VMBc3EOzML4+QPyjJq9dgvyD10uIG0Vj6uW1g0tkHxUChjjLsTQ05fweqnc+C4Ekx4qF2jU1p0a3UWdMWE2m3dIiJuHKbtz6ynFELmz22n0yYUHYRdmcK686IUzU</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
-        <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Master.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Master-Import.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Import-Contacts.dtsx" SSIS:EntryPoint="1" />
-        </SSIS:Packages>
+        <SSIS:Packages />
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
-          <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Master.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{FD3718C7-D902-4135-AF4A-4478A7CB45CC}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4D200E7E-D3FB-4281-86C9-08E463566F6D}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Master-Import.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{905E94F0-E986-4EA1-9221-E14AEE5504F6}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Master-Import</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{C482471F-E5CC-4860-9092-E37B7509D74C}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Import-Contacts.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{C2C072D1-840C-4C88-8CAB-E7E6C32D6CBB}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Import-Contacts</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5CEC60D0-DADF-4C69-86EF-BE68A01CDC27}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-          </SSIS:PackageInfo>
+          <SSIS:PackageInfo />
         </SSIS:DeploymentInfo>
       </SSIS:Project>
     </Manifest>
