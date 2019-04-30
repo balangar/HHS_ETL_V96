@@ -1,75 +1,81 @@
-select
----from case file----
-Id	 
-OwnerId	
-Name
-Approximate_Age_C
-Caretaker_Neglect__c
-Client_Address__c
-Client_Name__c
-Client_s_Age__c	
-Client_s_Home_Phone_Number__c
-Date_of_Birth__c
-Exploitation__c	
-Gender_Code__c
-Marital_Status_Code__c
-Physical_Abuse__c
-Reporting_Party_Agency_Name__c	
-Reporting_Party_Name__c	
-Self_Neglect__c	
-Sexual_Abuse__c
-Supervisor_E_mail__c
-Supervisor_Name__c
-Supervisor__c
-Hoarding_or_animal_hoarding__c
-Emotional_Verbal_Abuse__c
-Referral_Submitted_Date_Time__c
-Bed_Bugs__c
+/*  With my additions -- geg */
+/* --- APS_Case__c */
+Id,
+OwnerId,Owner_County__c,
+IsDeleted,
+CreatedById,CreatedDate,
+LastModifiedById, LastModifiedDate, SystemModstamp,
+LastName, FirstName,
+Name,
+Approximate_Age_C,
+Caretaker_Neglect__c,
+Client_Address__c,
+Client_Name__c,
+Client_s_Age__c	,
+Client_s_Home_Phone_Number__c,
+Date_of_Birth__c,
+Exploitation__c,
+Gender_Code__c,
+Marital_Status_Code__c,
+Physical_Abuse__c,
+Reporting_Party_Agency_Name__c,
+Reporting_Party_Name__c,
+Self_Neglect__c,
+Sexual_Abuse__c,
+Supervisor_E_mail__c,
+Supervisor_Name__c,
+Supervisor__c,
+Hoarding_or_animal_hoarding__c,
+Emotional_Verbal_Abuse__c,
+Referral_Submitted_Date_Time__c,
+Bed_Bugs__c,
 Substance_abuse__c
-Caretaker_Neglect__c
 
 
-----------from contact file ------
+/* -- Contact -- */
+ID, OwnerId, AccountId, MasterRecordId,
+IsDeleted,
+CreatedById,CreatedDate,
+LastModifiedById, LastModifiedDate, SystemModstamp,
+Lastname,
+FirstName,
+Name,
+MailingStreet,
+MailingCity,
+MailingStatecode,
+MailingPostalCode,
+MailingAddress,
+Phone,
+HomePhone,
+Email,
+Birthdate,
+Approx_age__C,
+Gender_Code__C,
+Gender__C,
+Hoarding_or_animal_hoarding__c,
+Income_Source__C,
+Marital_status__C,
+Medicaid__C,
+Medicare__C,
+Race__C,
+SSN__C,
+Person_ID__C,
+Veteran_Status__C,
+Bed_Bugs__c			/* Bed_Bugs_C -- bad name [geg]  04/30/2019 */
+/* Status__c   -- Does not exist in SF Contact.   [geg]  04/30/2019 */
 
-Id
-Lastname
-FirstName
-Name
-MailingStreet
-MailingCity
-MailingStatecode
-MailingPostalCode
-MailingAddress
-Phone
-HomePhone
-Email
-Birthdate
-Approx_age__C
-Gender_Code__C
-Gender__C
-Hoarding_or_animal_hoarding__c
-Income_Source_C
-Marital_status_C
-Medicaid__C
-Medicare__C
-Race__C
-SSN__C
-Person_ID__C
-Veteran_Status__C
-Bed_Bugs_C
-Status_c
-
--------  from user file ---------
-
-ID
-Username
-FirstName
-LastName
-Name
-Email
-Phone
-managerid
-Supervisor
+/* --  User -- */
+ID, AccountID, ContactID,
+CreatedById,CreatedDate,
+LastModifiedById, LastModifiedDate, SystemModstamp,
+Username,
+FirstName,
+LastName,
+Name,
+Email,
+Phone,
+managerid,
+supervisor__c	/* Supervisor -- Bad name [geg]  04/30/2019 */
 
 
 

@@ -1,4 +1,4 @@
-Account: 	49 fields	04/29/2019 08:38:53
+Account: 	49 fields	04/30/2019 07:52:21
 Id	: 	Type: id	Length :18	Label :Account ID 
 IsDeleted	: 	Type: boolean		Label :Deleted 
 MasterRecordId	: 	Type: reference	Length :18	Label :Master Record ID	IS_Nullable

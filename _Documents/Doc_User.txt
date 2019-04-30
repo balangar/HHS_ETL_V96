@@ -1,4 +1,4 @@
-User: 	164 fields	04/26/2019 10:15:47
+User: 	164 fields	04/30/2019 07:52:22
 Id	: 	Type: id	Length :18	Label :User ID 
 Username	: 	Type: string	Length :80	Label :Username 
 LastName	: 	Type: string	Length :80	Label :Last Name 
