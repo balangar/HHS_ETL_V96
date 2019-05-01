@@ -12,12 +12,45 @@
   DTS:ObjectName="Import-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{D499224F-392E-4C0B-8239-027FB9B85742}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{E3056AC3-571E-43CD-8AF9-C1246AE7DE69}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{580F6444-0A84-4C5E-8DAD-6A31868976A5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TruncateTable">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Conditionally Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C1B34748-3D75-4A95-9805-D399C68C41F9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Conditionally Truncate Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7856EB34-71E4-475D-8EC9-70043F980BF7}"
+          SQLTask:SqlStatementSource="IF @paramTruncate = 1&#xA;BEGIN&#xA;  Truncate Table Staging.Contacts&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@paramTruncate"
+            SQLTask:DtsVariableName="User::TruncateTable"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
@@ -33,12 +66,12 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task\SF Contact"
+              refId="Package\Data Flow Task\Contacts"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
               localeId="1033"
-              name="SF Contact"
+              name="Contacts"
               usesDispositions="true"
               version="1">
               <properties>
@@ -53,25 +86,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\SF Contact.Connections[FlatFileConnection]"
+                  refId="Package\Data Flow Task\Contacts.Connections[FlatFileConnection]"
                   connectionManagerID="{7075B883-E921-437B-A657-401A293FCE50}:external"
                   connectionManagerRefId="Project.ConnectionManagers[SFContactExtract]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output]"
+                  refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Id]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Id]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Id]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Id]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Id]"
                       name="Id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -86,14 +119,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[OwnerId]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[OwnerId]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[OwnerId]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[OwnerId]"
                       name="OwnerId"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -108,14 +141,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[AccountId]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[AccountId]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[AccountId]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[AccountId]"
                       name="AccountId"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -130,14 +163,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MasterRecordId]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MasterRecordId]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MasterRecordId]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MasterRecordId]"
                       name="MasterRecordId"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -152,14 +185,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[IsDeleted]"
-                      codePage="65001"
-                      dataType="str"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[IsDeleted]"
+                      dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[IsDeleted]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[IsDeleted]"
                       name="IsDeleted"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -174,14 +205,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[CreatedById]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[CreatedById]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[CreatedById]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[CreatedById]"
                       name="CreatedById"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -196,14 +227,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[CreatedDate]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[CreatedDate]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
                       length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[CreatedDate]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[CreatedDate]"
                       name="CreatedDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -218,14 +249,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastModifiedById]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedById]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastModifiedById]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedById]"
                       name="LastModifiedById"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -240,14 +271,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
                       length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
                       name="LastModifiedDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -262,14 +293,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[SystemModstamp]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[SystemModstamp]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
                       length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[SystemModstamp]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[SystemModstamp]"
                       name="SystemModstamp"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -284,14 +315,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastName]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastName]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[LastName]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastName]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastName]"
+                      length="80"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -306,14 +337,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[FirstName]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[FirstName]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[FirstName]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -328,14 +359,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Name]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Name]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Name]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Name]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Name]"
+                      length="128"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Name]"
                       name="Name"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -350,14 +381,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingStreet]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingStreet]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingStreet]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingStreet]"
                       name="MailingStreet"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -372,14 +403,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingCity]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingCity]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingCity]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingCity]"
                       name="MailingCity"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -394,14 +425,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingStateCode]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingStateCode]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingStateCode]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingStateCode]"
                       name="MailingStateCode"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -416,14 +447,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
                       name="MailingPostalCode"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -438,16 +469,16 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingAddress]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingAddress]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="IgnoreFailure"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingAddress]"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingAddress]"
                       name="MailingAddress"
-                      truncationRowDisposition="IgnoreFailure">
+                      truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.Boolean"
@@ -460,14 +491,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Phone]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Phone]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Phone]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Phone]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Phone]"
                       name="Phone"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -482,14 +513,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[HomePhone]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[HomePhone]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[HomePhone]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[HomePhone]"
                       name="HomePhone"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -504,14 +535,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Email]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Email]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Email]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Email]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Email]"
+                      length="80"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Email]"
                       name="Email"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -526,14 +557,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Birthdate]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Birthdate]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
                       length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Birthdate]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Birthdate]"
                       name="Birthdate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -548,14 +579,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
                       length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
                       name="Approx_Age__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -570,14 +601,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
+                      length="1500"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
                       name="Gender_Code__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -592,14 +623,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Gender__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Gender__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Gender__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Gender__c]"
                       name="Gender__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -614,14 +645,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
-                      codePage="65001"
-                      dataType="str"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
                       name="Hoarding_or_animal_hoarding__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -636,14 +665,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Income_Source__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Income_Source__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Income_Source__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
+                      length="4096"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Income_Source__c]"
                       name="Income_Source__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -658,14 +687,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
                       name="Marital_Status__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -680,14 +709,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Medicaid__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Medicaid__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Medicaid__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Medicaid__c]"
                       name="Medicaid__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -702,14 +731,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Medicare__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Medicare__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Medicare__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Medicare__c]"
                       name="Medicare__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -724,14 +753,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Race__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Race__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Race__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Race__c]"
                       name="Race__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -746,14 +775,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[SSN__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[SSN__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
                       length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[SSN__c]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[SSN__c]"
                       name="SSN__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -768,14 +797,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Person_Id__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Person_Id__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Person_Id__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Person_Id__c]"
                       name="Person_Id__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -790,14 +819,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
                       name="Veteran_Status__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -812,14 +841,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
-                      codePage="65001"
-                      dataType="str"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
+                      dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
+                      externalMetadataColumnId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
                       name="Bed_Bugs__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -837,239 +864,233 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Id]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="18"
                       name="Id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="18"
                       name="OwnerId" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="18"
                       name="AccountId" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="18"
                       name="MasterRecordId" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
                       name="IsDeleted" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="18"
                       name="CreatedById" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="CreatedDate" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="18"
                       name="LastModifiedById" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="LastModifiedDate" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="SystemModstamp" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[LastName]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastName]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="80"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="40"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Name]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Name]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="128"
                       name="Name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="MailingStreet" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="40"
                       name="MailingCity" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="10"
                       name="MailingStateCode" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="20"
                       name="MailingPostalCode" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="MailingAddress" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Phone]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="40"
                       name="Phone" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="40"
                       name="HomePhone" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Email]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Email]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="80"
                       name="Email" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="Birthdate" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="Approx_Age__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="1500"
                       name="Gender_Code__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="Gender__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
+                      dataType="bool"
                       name="Hoarding_or_animal_hoarding__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="4096"
                       name="Income_Source__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="Marital_Status__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="Medicaid__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="Medicare__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="Race__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="SSN__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="30"
                       name="Person_Id__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
                       codePage="65001"
                       dataType="str"
-                      length="50"
+                      length="255"
                       name="Veteran_Status__c" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
+                      dataType="bool"
                       name="Bed_Bugs__c" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output]"
+                  refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="65001"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1130,50 +1151,48 @@
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Id]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="18"
                       cachedName="Id"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Id]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Id]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[OwnerId]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="18"
                       cachedName="OwnerId"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[OwnerId]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[OwnerId]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[OwnerId]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[AccountId]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="18"
                       cachedName="AccountId"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[AccountId]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[AccountId]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[AccountId]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MasterRecordId]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="18"
                       cachedName="MasterRecordId"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MasterRecordId]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MasterRecordId]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MasterRecordId]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[IsDeleted]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="bool"
                       cachedName="IsDeleted"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[IsDeleted]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[IsDeleted]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[IsDeleted]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[CreatedById]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="18"
                       cachedName="CreatedById"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[CreatedByID]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[CreatedById]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[CreatedById]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[CreatedDate]"
                       cachedCodepage="65001"
@@ -1181,15 +1200,15 @@
                       cachedLength="50"
                       cachedName="CreatedDate"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[CreatedDate]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[CreatedDate]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[CreatedDate]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[LastModifiedById]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="18"
                       cachedName="LastModifiedById"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedById]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastModifiedById]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedById]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[LastModifiedDate]"
                       cachedCodepage="65001"
@@ -1197,7 +1216,7 @@
                       cachedLength="50"
                       cachedName="LastModifiedDate"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedDate]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastModifiedDate]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedDate]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[SystemModstamp]"
                       cachedCodepage="65001"
@@ -1205,95 +1224,95 @@
                       cachedLength="50"
                       cachedName="SystemModstamp"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SystemModstamp]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[SystemModstamp]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[SystemModstamp]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[LastName]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="80"
                       cachedName="LastName"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[LastName]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[FirstName]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="40"
                       cachedName="FirstName"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[FirstName]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Name]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="128"
                       cachedName="Name"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Name]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Name]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingStreet]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="MailingStreet"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingStreet]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingStreet]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingStreet]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingCity]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="40"
                       cachedName="MailingCity"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingCity]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingCity]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingCity]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingStateCode]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="10"
                       cachedName="MailingStateCode"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingStateCode]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingStateCode]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingStateCode]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingPostalCode]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="20"
                       cachedName="MailingPostalCode"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingPostalCode]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingPostalCode]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingPostalCode]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingAddress]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="MailingAddress"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingAddress]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[MailingAddress]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[MailingAddress]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Phone]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="40"
                       cachedName="Phone"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Phone]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Phone]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Phone]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[HomePhone]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="40"
                       cachedName="HomePhone"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[HomePhone]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[HomePhone]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Email]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="80"
                       cachedName="Email"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Email]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Email]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Email]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Birthdate]"
                       cachedCodepage="65001"
@@ -1301,7 +1320,7 @@
                       cachedLength="50"
                       cachedName="Birthdate"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Birthdate]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Birthdate]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Birthdate]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Approx_Age__c]"
                       cachedCodepage="65001"
@@ -1309,71 +1328,69 @@
                       cachedLength="50"
                       cachedName="Approx_Age__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Approx_Age__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Approx_Age__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Approx_Age__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Gender_Code__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="1500"
                       cachedName="Gender_Code__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Gender_Code__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Gender_Code__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Gender_Code__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Gender__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="Gender__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Gender__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Gender__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Gender__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Hoarding_or_animal_hoarding__c]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="bool"
                       cachedName="Hoarding_or_animal_hoarding__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Hoarding_or_animal_hoarding__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Income_Source__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="4096"
                       cachedName="Income_Source__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Income_Source__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Income_Source__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Income_Source__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Marital_Status__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="Marital_Status__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Marital_Status__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Marital_Status__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Marital_Status__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Medicaid__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="Medicaid__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Medicaid__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Medicaid__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Medicaid__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Medicare__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="Medicare__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Medicare__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Medicare__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Medicare__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Race__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="Race__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Race__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Race__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Race__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[SSN__c]"
                       cachedCodepage="65001"
@@ -1381,31 +1398,29 @@
                       cachedLength="50"
                       cachedName="SSN__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SSN__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[SSN__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[SSN__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Person_Id__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="30"
                       cachedName="Person_Id__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Person_Id__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Person_Id__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Person_Id__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Veteran_Status__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
+                      cachedLength="255"
                       cachedName="Veteran_Status__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Veteran_Status__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Veteran_Status__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Veteran_Status__c]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Bed_Bugs__c]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="bool"
                       cachedName="Bed_Bugs__c"
                       externalMetadataColumnId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Bed_Bugs__c]"
-                      lineageId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]" />
+                      lineageId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1423,6 +1438,10 @@
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
                     <externalMetadataColumn
+                      refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
                       dataType="wstr"
                       length="18"
@@ -1434,7 +1453,8 @@
                       name="CreatedByID" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[CreatedDate]"
-                      dataType="dbTimeStamp"
+                      dataType="wstr"
+                      length="255"
                       name="CreatedDate" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedById]"
@@ -1443,11 +1463,13 @@
                       name="LastModifiedById" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedDate]"
-                      dataType="dbTimeStamp"
+                      dataType="wstr"
+                      length="255"
                       name="LastModifiedDate" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SystemModstamp]"
-                      dataType="dbTimeStamp"
+                      dataType="wstr"
+                      length="255"
                       name="SystemModstamp" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[OwnerId]"
@@ -1591,6 +1613,14 @@
                       refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Bed_Bugs__c]"
                       dataType="bool"
                       name="Bed_Bugs__c" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      name="LoadDate" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1625,12 +1655,22 @@
               refId="Package\Data Flow Task.Paths[Flat File Source Output]"
               endId="Package\Data Flow Task\Staging Contacts.Inputs[ADO NET Destination Input]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\SF Contact.Outputs[Flat File Source Output]" />
+              startId="Package\Data Flow Task\Contacts.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F1FD19AE-D932-4D9B-AC6F-E6D8F1265C26}"
+      DTS:From="Package\Conditionally Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1642,11 +1682,49 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task"
-          TopLeft="466,83" />
+          TopLeft="580,200" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Conditionally Truncate Table"
+          TopLeft="569,59" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="675.5,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20,99"
+              Start="0,0"
+              End="-20,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.5"
+                    Point2="0,49.5"
+                    Point3="-4,49.5" />
+                  <mssgle:LineSegment
+                    End="-16,49.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16,49.5"
+                    Point2="-20,49.5"
+                    Point3="-20,53.5" />
+                  <mssgle:LineSegment
+                    End="-20,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1656,39 +1734,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="130,42"
-          Id="Package\Data Flow Task\SF Contact"
-          TopLeft="548,108" />
+          Size="120,42"
+          Id="Package\Data Flow Task\Contacts"
+          TopLeft="593,115" />
         <NodeLayout
           Size="158,42"
           Id="Package\Data Flow Task\Staging Contacts"
-          TopLeft="542,271" />
+          TopLeft="567,282" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Flat File Source Output]"
-          TopLeft="613,150">
+          TopLeft="649.5,157">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8,121"
+              EndConnector="0,125"
               Start="0,0"
-              End="8,113.5">
+              End="0,117.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,56.5"
-                    Point2="0,60.5"
-                    Point3="4,60.5" />
-                  <mssgle:LineSegment
-                    End="4,60.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4,60.5"
-                    Point2="8,60.5"
-                    Point3="8,64.5" />
-                  <mssgle:LineSegment
-                    End="8,113.5" />
+                    End="0,117.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
