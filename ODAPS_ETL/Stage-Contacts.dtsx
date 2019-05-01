@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS430619"
   DTS:CreatorName="CUYAHOGA\GREENG"
-  DTS:DTSID="{F6673874-874C-4933-8671-2ED1D6195918}"
+  DTS:DTSID="{BAE65EB7-5931-4DFD-B90F-06E44E360130}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.40"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Import-Contacts"
+  DTS:ObjectName="Stage-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{58E8BCAB-6512-45FB-90E9-78DBC79F9716}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{BE43F9C5-D87B-4672-935D-81D5BCBAD639}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>

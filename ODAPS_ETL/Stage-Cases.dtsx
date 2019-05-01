@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS430619"
   DTS:CreatorName="CUYAHOGA\GREENG"
-  DTS:DTSID="{4B6099AD-BDCF-4AAA-9153-0FCA99970C50}"
+  DTS:DTSID="{C3AB7866-291D-4A9D-A0DF-1AA62773E7C2}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.40"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Import-Cases"
+  DTS:ObjectName="Stage-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{0BEA12D6-FBF7-4B7E-AB42-9B7ECB243C96}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{25BA84FB-3FBC-4C56-B418-64E388A4A1AB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>

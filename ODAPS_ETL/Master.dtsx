@@ -12,36 +12,26 @@
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{1C880B15-2A4C-4518-B021-FEB28652CFAC}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{D9EA6D11-4ED2-4D1C-86BD-3E1A8588C11A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Master Import"
+      DTS:refId="Package\Master Stage"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{5B171D4A-A6AB-46DA-8C84-461FA5E3F89B}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Master Import"
+      DTS:ObjectName="Master Stage"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Master-Import.dtsx</PackageName>
-          <EncryptedData
-            Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="UdG7xG355Bk="
-            IV="ki/JzL2zK/n4QPbQ0NJVVA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
-            <EncryptionMethod
-              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
-            <CipherData>
-              <CipherValue>ki/JzL2zK/n4QPbQ0NJVVDyoACXU96cc3j+rGVC799FhKE5AD6aOPUcAg4RIaRU8IbC02sG/JTZGv1b8yjzcYZbwhpXoS/QRpEnhJbSJHEQ=</CipherValue>
-            </CipherData>
-          </EncryptedData>
+          <PackageName>Master-Stage.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -59,8 +49,8 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="146,42"
-          Id="Package\Master Import"
+          Size="141,42"
+          Id="Package\Master Stage"
           TopLeft="489,84" />
       </GraphLayout>
     </LayoutInfo>

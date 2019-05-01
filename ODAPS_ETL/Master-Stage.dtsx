@@ -5,80 +5,19 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS430619"
   DTS:CreatorName="CUYAHOGA\GREENG"
-  DTS:DTSID="{45B82E31-39F4-4DC1-9147-3F60EA1F3CD0}"
+  DTS:DTSID="{55812ED4-3AA2-4474-A794-EDF54F1BFD97}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.40"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Master-Import"
+  DTS:ObjectName="Master-Stage"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{2866B1A5-69B6-4986-951C-29BF9EB0D629}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{D1E0FFBB-B90E-47F8-9C2B-2CFA348EAA52}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Import Cases"
-      DTS:CreationName="Microsoft.ExecutePackageTask"
-      DTS:Description="Execute Package Task"
-      DTS:DTSID="{308C2B7C-34BC-4BC8-9ABE-719A608E44D7}"
-      DTS:ExecutableType="Microsoft.ExecutePackageTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Import Cases"
-      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExecutePackageTask>
-          <UseProjectReference>True</UseProjectReference>
-          <PackageName>Import-Cases.dtsx</PackageName>
-        </ExecutePackageTask>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Import Contacts"
-      DTS:CreationName="Microsoft.ExecutePackageTask"
-      DTS:Description="Execute Package Task"
-      DTS:DTSID="{C69D8477-911C-49EE-B589-B2574B3CD0EF}"
-      DTS:ExecutableType="Microsoft.ExecutePackageTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Import Contacts"
-      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExecutePackageTask>
-          <UseProjectReference>True</UseProjectReference>
-          <PackageName>Import-Contacts.dtsx</PackageName>
-          <EncryptedData
-            Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="cQMmpVcV89Y="
-            IV="GScDUMKyNyma1u/NQ+gHsQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
-            <EncryptionMethod
-              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
-            <CipherData>
-              <CipherValue>GScDUMKyNyma1u/NQ+gHsboRCOczcFFr4PXtsoJSLYUFOISBzTt1j3j+x2afgBcR8q353U4b9VQ9oERHr0MI7cV3RXhjFWLj3KkOgmpdFyA=</CipherValue>
-            </CipherData>
-          </EncryptedData>
-        </ExecutePackageTask>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Import Users"
-      DTS:CreationName="Microsoft.ExecutePackageTask"
-      DTS:Description="Execute Package Task"
-      DTS:DTSID="{FEF2A41B-9772-49F1-8E2E-250522F57ACC}"
-      DTS:ExecutableType="Microsoft.ExecutePackageTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Import Users"
-      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExecutePackageTask>
-          <UseProjectReference>True</UseProjectReference>
-          <PackageName>Import-Users.dtsx</PackageName>
-        </ExecutePackageTask>
-      </DTS:ObjectData>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Placeholder"
       DTS:CreationName="Microsoft.Pipeline"
@@ -94,6 +33,57 @@
           version="1" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Cases"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{308C2B7C-34BC-4BC8-9ABE-719A608E44D7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Cases"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Stage-Cases.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Contacts"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{C69D8477-911C-49EE-B589-B2574B3CD0EF}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Contacts"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Stage-Contacts.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Users"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{FEF2A41B-9772-49F1-8E2E-250522F57ACC}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Users"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Stage-Users.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -103,7 +93,7 @@
       DTS:From="Package\Placeholder"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Import Contacts" />
+      DTS:To="Package\Stage Contacts" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
@@ -111,7 +101,7 @@
       DTS:From="Package\Placeholder"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Import Users" />
+      DTS:To="Package\Stage Users" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -119,7 +109,7 @@
       DTS:From="Package\Placeholder"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Import Cases" />
+      DTS:To="Package\Stage Cases" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -134,8 +124,8 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="155,42"
-          Id="Package\Import Contacts"
+          Size="150,42"
+          Id="Package\Stage Contacts"
           TopLeft="343,233" />
         <NodeLayout
           Size="133,42"
@@ -143,30 +133,68 @@
           TopLeft="625,67" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="660.25,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-242.25,124"
+              Start="0,0"
+              End="-242.25,116.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.958230958231" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.958230958231"
+                    Point2="0,42.958230958231"
+                    Point3="-4,42.958230958231" />
+                  <mssgle:LineSegment
+                    End="-238.25,42.958230958231" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-238.25,42.958230958231"
+                    Point2="-242.25,42.958230958231"
+                    Point3="-242.25,46.958230958231" />
+                  <mssgle:LineSegment
+                    End="-242.25,116.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Stage Users"
+          TopLeft="609,230" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="691.5,109">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-271,124"
+              EndConnector="-15,121"
               Start="0,0"
-              End="-271,116.5">
+              End="-15,113.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58" />
+                    End="0,56.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,58"
-                    Point2="0,62"
-                    Point3="-4,62" />
+                    Point1="0,56.5"
+                    Point2="0,60.5"
+                    Point3="-4,60.5" />
                   <mssgle:LineSegment
-                    End="-267,62" />
+                    End="-11,60.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-267,62"
-                    Point2="-271,62"
-                    Point3="-271,66" />
+                    Point1="-11,60.5"
+                    Point2="-15,60.5"
+                    Point3="-15,64.5" />
                   <mssgle:LineSegment
-                    End="-271,116.5" />
+                    End="-15,113.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -176,46 +204,8 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="140,42"
-          Id="Package\Import Users"
-          TopLeft="609,230" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="712.333333333333,109">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-33.3333333333334,121"
-              Start="0,0"
-              End="-33.3333333333334,113.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.2630014858841" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,45.2630014858841"
-                    Point2="0,49.2630014858841"
-                    Point3="-4,49.2630014858841" />
-                  <mssgle:LineSegment
-                    End="-29.3333333333334,49.2630014858841" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-29.3333333333334,49.2630014858841"
-                    Point2="-33.3333333333334,49.2630014858841"
-                    Point3="-33.3333333333334,53.2630014858841" />
-                  <mssgle:LineSegment
-                    End="-33.3333333333334,113.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="142,42"
-          Id="Package\Import Cases"
+          Size="136,42"
+          Id="Package\Stage Cases"
           TopLeft="824,234" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
@@ -223,9 +213,9 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="172.25,125"
+              EndConnector="169.25,125"
               Start="0,0"
-              End="172.25,117.5">
+              End="169.25,117.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -236,13 +226,13 @@
                     Point2="0,43.3046683046683"
                     Point3="4,43.3046683046683" />
                   <mssgle:LineSegment
-                    End="168.25,43.3046683046683" />
+                    End="165.25,43.3046683046683" />
                   <mssgle:CubicBezierSegment
-                    Point1="168.25,43.3046683046683"
-                    Point2="172.25,43.3046683046683"
-                    Point3="172.25,47.3046683046683" />
+                    Point1="165.25,43.3046683046683"
+                    Point2="169.25,43.3046683046683"
+                    Point3="169.25,47.3046683046683" />
                   <mssgle:LineSegment
-                    End="172.25,117.5" />
+                    End="169.25,117.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

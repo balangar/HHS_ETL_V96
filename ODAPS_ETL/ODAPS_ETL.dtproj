@@ -26,15 +26,15 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="8b0BFOtzJkE=" SSIS:IV="h2lbU1i2FlelspFHIIB0Iw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">3AhrCbsAP4Ycy47RQdVRPY6FClxBI4LRoueF5KQrfBeWM0yLuPcN4Nvahz+QIa2pOghzYj9rYJad89D4qTP/NPQARkE9P4LylehuaNf/ttifDStW9cH0DZUOK55hZVjJX4v+i73TszuqJEa1w31WDJo74yG0lTcOrotOLggGEp3nIkbVi0rl5lmLN5PpxbNa</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6Z4Kdv4+QZs=" SSIS:IV="fG0XEojDCWua2uVEDMY00Q==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">TnzOp/TrjGnqQ/DpNQDqKHb2AyyxuEHdBPwPBUuz8vCfXKolVFjCHQfcs9/SvvD81RvpbP33v/IxCRnBmPfJq+LLGRTDBvp3iGaWX1YS41Bv3hgK/ReS/NgjA55LEl3UBlHjowCEhdrbaO/GFNB0yDuBKUwBbTXCU6cTR+pyo1i6X8Tqna+gVTyVPaxx3p9R</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="Master.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Master-Import.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Import-Contacts.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Import-Users.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Import-Cases.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Master-Stage.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Stage-Cases.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Stage-Users.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Stage-Contacts.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="MS-DCFS-PSQL1.DSAS_ODAPS .Cuy_DataLoader.conmgr" />
@@ -864,10 +864,10 @@
                 <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{1C880B15-2A4C-4518-B021-FEB28652CFAC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D9EA6D11-4ED2-4D1C-86BD-3E1A8588C11A}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -875,67 +875,67 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Master-Import.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Master-Stage.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{45B82E31-39F4-4DC1-9147-3F60EA1F3CD0}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Master-Import</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2866B1A5-69B6-4986-951C-29BF9EB0D629}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Import-Contacts.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{F6673874-874C-4933-8671-2ED1D6195918}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Import-Contacts</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">43</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{58E8BCAB-6512-45FB-90E9-78DBC79F9716}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Import-Users.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{529BB4DE-0FAC-4008-80D0-D69610B9F074}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Import-Users</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{0C404C75-6CA5-463C-A621-D9805395F793}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Import-Cases.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{4B6099AD-BDCF-4AAA-9153-0FCA99970C50}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Import-Cases</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{55812ED4-3AA2-4474-A794-EDF54F1BFD97}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Master-Stage</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{78A1A279-6F96-4769-9148-0FF1E60FDCA0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F9DA5CEA-D23E-4BDF-9F32-771364B4D53F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Stage-Cases.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C3AB7866-291D-4A9D-A0DF-1AA62773E7C2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Stage-Cases</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{25BA84FB-3FBC-4C56-B418-64E388A4A1AB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Stage-Users.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{3026A612-981C-4772-A9E5-26AC71314FBB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Stage-Users</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{3F048CB8-E7A4-436D-AD35-6C1914751953}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Stage-Contacts.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{BAE65EB7-5931-4DFD-B90F-06E44E360130}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Stage-Contacts</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">44</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{BE43F9C5-D87B-4672-935D-81D5BCBAD639}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
