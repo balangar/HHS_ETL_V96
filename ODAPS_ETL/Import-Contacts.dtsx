@@ -12,8 +12,8 @@
   DTS:ObjectName="Import-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{1CC0DFEA-97A6-453C-90A2-D0EDBEABCF37}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{58E8BCAB-6512-45FB-90E9-78DBC79F9716}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -66,12 +66,12 @@
           version="1">
           <components>
             <component
-              refId="Package\Import Staging Contacts\Contacts"
+              refId="Package\Import Staging Contacts\SF Contact Extract"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
               localeId="1033"
-              name="Contacts"
+              name="SF Contact Extract"
               usesDispositions="true"
               version="1">
               <properties>
@@ -86,25 +86,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Import Staging Contacts\Contacts.Connections[FlatFileConnection]"
+                  refId="Package\Import Staging Contacts\SF Contact Extract.Connections[FlatFileConnection]"
                   connectionManagerID="{7075B883-E921-437B-A657-401A293FCE50}:external"
                   connectionManagerRefId="Project.ConnectionManagers[SFContactExtract]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output]"
+                  refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Id]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Id]"
                       length="18"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Id]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Id]"
                       name="Id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -119,14 +119,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[OwnerId]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[OwnerId]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
                       length="18"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[OwnerId]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[OwnerId]"
                       name="OwnerId"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -141,14 +141,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[AccountId]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[AccountId]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
                       length="18"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[AccountId]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[AccountId]"
                       name="AccountId"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -163,14 +163,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MasterRecordId]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MasterRecordId]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
                       length="18"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MasterRecordId]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MasterRecordId]"
                       name="MasterRecordId"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -185,12 +185,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[IsDeleted]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[IsDeleted]"
                       dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[IsDeleted]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[IsDeleted]"
                       name="IsDeleted"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -205,14 +205,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[CreatedById]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[CreatedById]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
                       length="18"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[CreatedById]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[CreatedById]"
                       name="CreatedById"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -227,14 +227,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[CreatedDate]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[CreatedDate]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
                       length="50"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[CreatedDate]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[CreatedDate]"
                       name="CreatedDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -249,14 +249,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedById]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastModifiedById]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
                       length="18"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedById]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastModifiedById]"
                       name="LastModifiedById"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -271,14 +271,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
                       length="50"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastModifiedDate]"
                       name="LastModifiedDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -293,14 +293,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[SystemModstamp]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[SystemModstamp]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
                       length="50"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[SystemModstamp]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[SystemModstamp]"
                       name="SystemModstamp"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -315,14 +315,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastName]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastName]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[LastName]"
                       length="80"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastName]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -337,14 +337,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[FirstName]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[FirstName]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
                       length="40"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[FirstName]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -359,14 +359,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Name]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Name]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Name]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Name]"
                       length="128"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Name]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Name]"
                       name="Name"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -381,14 +381,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingStreet]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingStreet]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingStreet]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingStreet]"
                       name="MailingStreet"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -403,14 +403,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingCity]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingCity]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
                       length="40"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingCity]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingCity]"
                       name="MailingCity"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -425,14 +425,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingStateCode]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingStateCode]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
                       length="10"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingStateCode]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingStateCode]"
                       name="MailingStateCode"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -447,14 +447,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
                       length="20"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingPostalCode]"
                       name="MailingPostalCode"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -469,14 +469,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingAddress]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingAddress]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingAddress]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingAddress]"
                       name="MailingAddress"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -491,14 +491,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Phone]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Phone]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Phone]"
                       length="40"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Phone]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Phone]"
                       name="Phone"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -513,14 +513,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[HomePhone]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[HomePhone]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
                       length="40"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[HomePhone]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[HomePhone]"
                       name="HomePhone"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -535,14 +535,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Email]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Email]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Email]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Email]"
                       length="80"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Email]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Email]"
                       name="Email"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -557,14 +557,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Birthdate]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Birthdate]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
                       length="50"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Birthdate]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Birthdate]"
                       name="Birthdate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -579,14 +579,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
                       length="50"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Approx_Age__c]"
                       name="Approx_Age__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -601,14 +601,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
                       length="1500"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Gender_Code__c]"
                       name="Gender_Code__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -623,14 +623,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Gender__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Gender__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Gender__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Gender__c]"
                       name="Gender__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -645,12 +645,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
                       dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]"
                       name="Hoarding_or_animal_hoarding__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -665,14 +665,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Income_Source__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Income_Source__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
                       length="4096"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Income_Source__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Income_Source__c]"
                       name="Income_Source__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -687,14 +687,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Marital_Status__c]"
                       name="Marital_Status__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -709,14 +709,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Medicaid__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Medicaid__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Medicaid__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Medicaid__c]"
                       name="Medicaid__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -731,14 +731,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Medicare__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Medicare__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Medicare__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Medicare__c]"
                       name="Medicare__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -753,14 +753,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Race__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Race__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Race__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Race__c]"
                       name="Race__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -775,14 +775,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[SSN__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[SSN__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
                       length="50"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[SSN__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[SSN__c]"
                       name="SSN__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -797,14 +797,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Person_Id__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Person_Id__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
                       length="30"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Person_Id__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Person_Id__c]"
                       name="Person_Id__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -819,14 +819,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
                       length="255"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Veteran_Status__c]"
                       name="Veteran_Status__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -841,12 +841,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
                       dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
+                      externalMetadataColumnId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]"
                       name="Bed_Bugs__c"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -864,233 +864,233 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Id]"
                       codePage="1252"
                       dataType="str"
                       length="18"
                       name="Id" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[OwnerId]"
                       codePage="1252"
                       dataType="str"
                       length="18"
                       name="OwnerId" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[AccountId]"
                       codePage="1252"
                       dataType="str"
                       length="18"
                       name="AccountId" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MasterRecordId]"
                       codePage="1252"
                       dataType="str"
                       length="18"
                       name="MasterRecordId" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[IsDeleted]"
                       dataType="bool"
                       name="IsDeleted" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[CreatedById]"
                       codePage="1252"
                       dataType="str"
                       length="18"
                       name="CreatedById" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[CreatedDate]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="CreatedDate" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[LastModifiedById]"
                       codePage="1252"
                       dataType="str"
                       length="18"
                       name="LastModifiedById" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[LastModifiedDate]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="LastModifiedDate" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[SystemModstamp]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="SystemModstamp" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[LastName]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[LastName]"
                       codePage="1252"
                       dataType="str"
                       length="80"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
                       codePage="1252"
                       dataType="str"
                       length="40"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Name]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Name]"
                       codePage="1252"
                       dataType="str"
                       length="128"
                       name="Name" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingStreet]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="MailingStreet" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingCity]"
                       codePage="1252"
                       dataType="str"
                       length="40"
                       name="MailingCity" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingStateCode]"
                       codePage="1252"
                       dataType="str"
                       length="10"
                       name="MailingStateCode" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingPostalCode]"
                       codePage="1252"
                       dataType="str"
                       length="20"
                       name="MailingPostalCode" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[MailingAddress]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="MailingAddress" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Phone]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Phone]"
                       codePage="1252"
                       dataType="str"
                       length="40"
                       name="Phone" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[HomePhone]"
                       codePage="1252"
                       dataType="str"
                       length="40"
                       name="HomePhone" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Email]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Email]"
                       codePage="1252"
                       dataType="str"
                       length="80"
                       name="Email" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Birthdate]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Birthdate" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Approx_Age__c]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="Approx_Age__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Gender_Code__c]"
                       codePage="1252"
                       dataType="str"
                       length="1500"
                       name="Gender_Code__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Gender__c]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="Gender__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
                       dataType="bool"
                       name="Hoarding_or_animal_hoarding__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Income_Source__c]"
                       codePage="1252"
                       dataType="str"
                       length="4096"
                       name="Income_Source__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Marital_Status__c]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="Marital_Status__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Medicaid__c]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="Medicaid__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Medicare__c]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="Medicare__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Race__c]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="Race__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[SSN__c]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="SSN__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Person_Id__c]"
                       codePage="1252"
                       dataType="str"
                       length="30"
                       name="Person_Id__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Veteran_Status__c]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="Veteran_Status__c" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].ExternalColumns[Bed_Bugs__c]"
                       dataType="bool"
                       name="Bed_Bugs__c" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output]"
+                  refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="65001"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1154,7 +1154,7 @@
                       cachedLength="18"
                       cachedName="Id"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Id]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Id]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[OwnerId]"
                       cachedCodepage="1252"
@@ -1162,7 +1162,7 @@
                       cachedLength="18"
                       cachedName="OwnerId"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[OwnerId]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[OwnerId]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[OwnerId]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[AccountId]"
                       cachedCodepage="1252"
@@ -1170,7 +1170,7 @@
                       cachedLength="18"
                       cachedName="AccountId"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[AccountId]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[AccountId]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[AccountId]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MasterRecordId]"
                       cachedCodepage="1252"
@@ -1178,13 +1178,13 @@
                       cachedLength="18"
                       cachedName="MasterRecordId"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MasterRecordId]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MasterRecordId]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MasterRecordId]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[IsDeleted]"
                       cachedDataType="bool"
                       cachedName="IsDeleted"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[IsDeleted]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[IsDeleted]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[IsDeleted]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[CreatedById]"
                       cachedCodepage="1252"
@@ -1192,7 +1192,7 @@
                       cachedLength="18"
                       cachedName="CreatedById"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[CreatedByID]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[CreatedById]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[CreatedById]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[CreatedDate]"
                       cachedCodepage="1252"
@@ -1200,7 +1200,7 @@
                       cachedLength="50"
                       cachedName="CreatedDate"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[CreatedDate]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[CreatedDate]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[CreatedDate]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[LastModifiedById]"
                       cachedCodepage="1252"
@@ -1208,7 +1208,7 @@
                       cachedLength="18"
                       cachedName="LastModifiedById"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedById]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedById]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastModifiedById]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[LastModifiedDate]"
                       cachedCodepage="1252"
@@ -1216,7 +1216,7 @@
                       cachedLength="50"
                       cachedName="LastModifiedDate"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedDate]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastModifiedDate]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastModifiedDate]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[SystemModstamp]"
                       cachedCodepage="1252"
@@ -1224,7 +1224,7 @@
                       cachedLength="50"
                       cachedName="SystemModstamp"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SystemModstamp]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[SystemModstamp]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[SystemModstamp]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[LastName]"
                       cachedCodepage="1252"
@@ -1232,7 +1232,7 @@
                       cachedLength="80"
                       cachedName="LastName"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[LastName]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[FirstName]"
                       cachedCodepage="1252"
@@ -1240,7 +1240,7 @@
                       cachedLength="40"
                       cachedName="FirstName"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[FirstName]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Name]"
                       cachedCodepage="1252"
@@ -1248,7 +1248,7 @@
                       cachedLength="128"
                       cachedName="Name"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Name]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Name]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingStreet]"
                       cachedCodepage="1252"
@@ -1256,7 +1256,7 @@
                       cachedLength="255"
                       cachedName="MailingStreet"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingStreet]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingStreet]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingStreet]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingCity]"
                       cachedCodepage="1252"
@@ -1264,7 +1264,7 @@
                       cachedLength="40"
                       cachedName="MailingCity"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingCity]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingCity]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingCity]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingStateCode]"
                       cachedCodepage="1252"
@@ -1272,7 +1272,7 @@
                       cachedLength="10"
                       cachedName="MailingStateCode"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingStateCode]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingStateCode]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingStateCode]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingPostalCode]"
                       cachedCodepage="1252"
@@ -1280,7 +1280,7 @@
                       cachedLength="20"
                       cachedName="MailingPostalCode"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingPostalCode]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingPostalCode]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingPostalCode]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[MailingAddress]"
                       cachedCodepage="1252"
@@ -1288,7 +1288,7 @@
                       cachedLength="255"
                       cachedName="MailingAddress"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[MailingAddress]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[MailingAddress]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[MailingAddress]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Phone]"
                       cachedCodepage="1252"
@@ -1296,7 +1296,7 @@
                       cachedLength="40"
                       cachedName="Phone"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Phone]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Phone]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Phone]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[HomePhone]"
                       cachedCodepage="1252"
@@ -1304,7 +1304,7 @@
                       cachedLength="40"
                       cachedName="HomePhone"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[HomePhone]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[HomePhone]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[HomePhone]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Email]"
                       cachedCodepage="1252"
@@ -1312,7 +1312,7 @@
                       cachedLength="80"
                       cachedName="Email"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Email]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Email]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Email]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Birthdate]"
                       cachedCodepage="1252"
@@ -1320,7 +1320,7 @@
                       cachedLength="50"
                       cachedName="Birthdate"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Birthdate]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Birthdate]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Birthdate]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Approx_Age__c]"
                       cachedCodepage="1252"
@@ -1328,7 +1328,7 @@
                       cachedLength="50"
                       cachedName="Approx_Age__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Approx_Age__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Approx_Age__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Approx_Age__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Gender_Code__c]"
                       cachedCodepage="1252"
@@ -1336,7 +1336,7 @@
                       cachedLength="1500"
                       cachedName="Gender_Code__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Gender_Code__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Gender_Code__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Gender_Code__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Gender__c]"
                       cachedCodepage="1252"
@@ -1344,13 +1344,13 @@
                       cachedLength="255"
                       cachedName="Gender__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Gender__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Gender__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Gender__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Hoarding_or_animal_hoarding__c]"
                       cachedDataType="bool"
                       cachedName="Hoarding_or_animal_hoarding__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Hoarding_or_animal_hoarding__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Hoarding_or_animal_hoarding__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Income_Source__c]"
                       cachedCodepage="1252"
@@ -1358,7 +1358,7 @@
                       cachedLength="4096"
                       cachedName="Income_Source__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Income_Source__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Income_Source__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Income_Source__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Marital_Status__c]"
                       cachedCodepage="1252"
@@ -1366,7 +1366,7 @@
                       cachedLength="255"
                       cachedName="Marital_Status__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Marital_Status__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Marital_Status__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Marital_Status__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Medicaid__c]"
                       cachedCodepage="1252"
@@ -1374,7 +1374,7 @@
                       cachedLength="255"
                       cachedName="Medicaid__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Medicaid__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Medicaid__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Medicaid__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Medicare__c]"
                       cachedCodepage="1252"
@@ -1382,7 +1382,7 @@
                       cachedLength="255"
                       cachedName="Medicare__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Medicare__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Medicare__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Medicare__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Race__c]"
                       cachedCodepage="1252"
@@ -1390,7 +1390,7 @@
                       cachedLength="255"
                       cachedName="Race__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Race__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Race__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Race__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[SSN__c]"
                       cachedCodepage="1252"
@@ -1398,7 +1398,7 @@
                       cachedLength="50"
                       cachedName="SSN__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SSN__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[SSN__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[SSN__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Person_Id__c]"
                       cachedCodepage="1252"
@@ -1406,7 +1406,7 @@
                       cachedLength="30"
                       cachedName="Person_Id__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Person_Id__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Person_Id__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Person_Id__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Veteran_Status__c]"
                       cachedCodepage="1252"
@@ -1414,13 +1414,13 @@
                       cachedLength="255"
                       cachedName="Veteran_Status__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Veteran_Status__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Veteran_Status__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Veteran_Status__c]" />
                     <inputColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].Columns[Bed_Bugs__c]"
                       cachedDataType="bool"
                       cachedName="Bed_Bugs__c"
                       externalMetadataColumnId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Bed_Bugs__c]"
-                      lineageId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]" />
+                      lineageId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output].Columns[Bed_Bugs__c]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1660,7 +1660,7 @@
               refId="Package\Import Staging Contacts.Paths[Flat File Source Output]"
               endId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input]"
               name="Flat File Source Output"
-              startId="Package\Import Staging Contacts\Contacts.Outputs[Flat File Source Output]" />
+              startId="Package\Import Staging Contacts\SF Contact Extract.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1727,16 +1727,16 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="120,42"
-          Id="Package\Import Staging Contacts\Contacts"
-          TopLeft="593,115" />
+          Size="166,42"
+          Id="Package\Import Staging Contacts\SF Contact Extract"
+          TopLeft="559,115" />
         <NodeLayout
           Size="158,42"
           Id="Package\Import Staging Contacts\Staging Contacts"
           TopLeft="567,282" />
         <EdgeLayout
           Id="Package\Import Staging Contacts.Paths[Flat File Source Output]"
-          TopLeft="649.5,157">
+          TopLeft="644,157">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
