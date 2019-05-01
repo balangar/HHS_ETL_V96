@@ -12,17 +12,33 @@
   DTS:ObjectName="Master-Import"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{A79B7607-85E4-4DBF-9796-5F8F70BA6DEB}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{2866B1A5-69B6-4986-951C-29BF9EB0D629}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Import Cases"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{308C2B7C-34BC-4BC8-9ABE-719A608E44D7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Cases"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Import-Cases.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Import Contacts"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{C69D8477-911C-49EE-B589-B2574B3CD0EF}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
@@ -35,12 +51,12 @@
           <PackageName>Import-Contacts.dtsx</PackageName>
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="MUFGgdjl2lg="
-            IV="mLJUv5Ra1SKL3xZlTqhuYA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="cQMmpVcV89Y="
+            IV="GScDUMKyNyma1u/NQ+gHsQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>mLJUv5Ra1SKL3xZlTqhuYFavTFJ+OwgQY7hPlQBRQqVKXDR1cOU9RXo1Fxp8AJJAQ0kudOCbkG+COniMabh9rU1Wpy8+xnO4skO7WtxzUp0=</CipherValue>
+              <CipherValue>GScDUMKyNyma1u/NQ+gHsboRCOczcFFr4PXtsoJSLYUFOISBzTt1j3j+x2afgBcR8q353U4b9VQ9oERHr0MI7cV3RXhjFWLj3KkOgmpdFyA=</CipherValue>
             </CipherData>
           </EncryptedData>
         </ExecutePackageTask>
@@ -96,6 +112,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Import Users" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1F806D3-B693-4A57-B938-DBB529ACEBD3}"
+      DTS:From="Package\Placeholder"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Import Cases" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -181,6 +205,44 @@
                     Point3="-33.3333333333334,53.2630014858841" />
                   <mssgle:LineSegment
                     End="-33.3333333333334,113.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Import Cases"
+          TopLeft="824,234" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="722.75,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="172.25,125"
+              Start="0,0"
+              End="172.25,117.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.3046683046683" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.3046683046683"
+                    Point2="0,43.3046683046683"
+                    Point3="4,43.3046683046683" />
+                  <mssgle:LineSegment
+                    End="168.25,43.3046683046683" />
+                  <mssgle:CubicBezierSegment
+                    Point1="168.25,43.3046683046683"
+                    Point2="172.25,43.3046683046683"
+                    Point3="172.25,47.3046683046683" />
+                  <mssgle:LineSegment
+                    End="172.25,117.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
