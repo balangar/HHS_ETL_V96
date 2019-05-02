@@ -193,6 +193,7 @@ namespace ProbeODAPS
                             }
                             Console.WriteLine();
                             needHeader = false;
+                            int idumb = 0;
                         }
 
                         foreach (var field in item.Any)
