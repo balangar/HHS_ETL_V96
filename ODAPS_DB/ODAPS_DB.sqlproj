@@ -154,4 +154,7 @@
     <None Include="_Auxiliary\ODAPS_PROD_Recreate.publish.xml" />
     <None Include="_Documents\PODObjectsAndFields.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Post.sql" />
+  </ItemGroup>
 </Project>
