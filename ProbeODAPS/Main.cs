@@ -177,27 +177,35 @@ namespace ProbeODAPS
             {
                 bool needHeader = true;
 
-                Console.WriteLine("Enter Query. Press Enter to quit:");
+                Console.Write("Enter Query. Press Enter to quit: ");
                 string query = Console.ReadLine();
                 if (query == "") return 0;
 
-                foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
+                try
                 {
-                    if (needHeader)
+                    foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
                     {
+                        if (needHeader)
+                        {
+                            foreach (var field in item.Any)
+                            {
+                                Console.Write(field.NodeType + "\t");
+                            }
+                            Console.WriteLine();
+                            needHeader = false;
+                        }
+
                         foreach (var field in item.Any)
                         {
-                            Console.Write(field.NodeType + "\t");
+                            Console.Write(field.InnerText + "|");
                         }
                         Console.WriteLine();
-                        needHeader = false;
                     }
+                }
+                catch (Exception ex)
+                {
 
-                    foreach (var field in item.Any)
-                    {
-                        Console.Write(field.InnerText + "|");
-                    }
-                    Console.WriteLine();
+                    Program.Logger.Error(ex.Message);
                 }
             }
         }
