@@ -131,12 +131,9 @@ namespace ProbeODAPS
 
                 builder.AppendLine();
 
-                for (int i = 0; i < dsr.fields.Length; i++)
+                foreach(var field in dsr.fields)
                 {
-                    // Get the field 
-                    Field field = dsr.fields[i];
-
-                    // Get some field properties
+                    // Get basic field properties
                     builder.Append(field.name + "\t: ");
                     builder.Append("\tType: " + field.type);
                     builder.Append(field.length > 0 ? "\tLength :" + field.length : "\t");
@@ -148,6 +145,14 @@ namespace ProbeODAPS
                         builder.Append(field.custom ? "\tIS_Custom" : " ");
                     }
                     builder.Append(field.nillable ? "\tIS_Nullable" : " ");
+                    if(field.type == fieldType.reference)
+                    {
+                        builder.Append("\t\tReferences : ");
+                        foreach(var reference in field.referenceTo)
+                        {
+                            builder.Append(" " + reference);
+                        }
+                    }
 
                     builder.AppendLine();
                 }

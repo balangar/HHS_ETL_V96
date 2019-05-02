@@ -1,13 +1,13 @@
-APS_Case__c: 	398 fields	IS_Custom  	04/30/2019 07:52:21
+APS_Case__c: 	398 fields	IS_Custom  	05/02/2019 01:36:17
 Id	: 	Type: id	Length :18	Label :Record ID 
-OwnerId	: 	Type: reference	Length :18	Label :Owner ID 
+OwnerId	: 	Type: reference	Length :18	Label :Owner ID 		References :  Group User
 IsDeleted	: 	Type: boolean		Label :Deleted 
 Name	: 	Type: string	Length :80	Label :Case Number	IS_Nullable
-RecordTypeId	: 	Type: reference	Length :18	Label :Record Type ID	IS_Nullable
+RecordTypeId	: 	Type: reference	Length :18	Label :Record Type ID	IS_Nullable		References :  RecordType
 CreatedDate	: 	Type: datetime		Label :Created Date 
-CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID 		References :  User
 LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
-LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 		References :  User
 SystemModstamp	: 	Type: datetime		Label :System Modstamp 
 LastActivityDate	: 	Type: date		Label :Last Activity Date	IS_Nullable
 LastViewedDate	: 	Type: datetime		Label :Last Viewed Date	IS_Nullable
@@ -53,12 +53,12 @@ Cause_Harm_or_Loss__c	: 	Type: picklist	Length :255	Label :Cause Harm or Loss	IS
 Client_Address__c	: 	Type: string	Length :1300	Label :Client Mailing Address	IS_Nullable
 Client_Alleged_Perpetrator_History__c	: 	Type: textarea	Length :5000	Label :Client & Alleged Perpetrator History	IS_Nullable
 Client_At_Risk_Info__c	: 	Type: string	Length :1300	Label :Client At-Risk Info	IS_Nullable
-Client_Name__c	: 	Type: reference	Length :18	Label :Client Name	IS_Nullable
+Client_Name__c	: 	Type: reference	Length :18	Label :Client Name	IS_Nullable		References :  Contact
 Client_s_Age__c	: 	Type: double		Label :Client's Age	IS_Nullable
 Client_s_Age_at_Time_of_Report__c	: 	Type: double		Label :Client's Age at Time of Report	IS_Nullable
 Client_s_Current_Location__c	: 	Type: picklist	Length :255	Label :Client's Current Location	IS_Nullable
 Client_s_Home_Phone_Number__c	: 	Type: string	Length :1300	Label :Client's Home Phone Number	IS_Nullable
-Community_User_Account__c	: 	Type: reference	Length :18	Label :Community User Account	IS_Nullable
+Community_User_Account__c	: 	Type: reference	Length :18	Label :Community User Account	IS_Nullable		References :  Account
 Complicating_Risks_Vulnerabilities__c	: 	Type: textarea	Length :5000	Label :Complicating Risks & Vulnerabilities	IS_Nullable
 ConditionNone__c	: 	Type: boolean		Label :Condition None 
 ConditionUnabletoManageNone__c	: 	Type: boolean		Label :Condition Unable to Manage None 
@@ -68,8 +68,8 @@ Condition_Requiring_Total_Physical_Care__c	: 	Type: boolean		Label :Condition Re
 Confidential__c	: 	Type: boolean		Label :Confidential 
 Contagious_disease__c	: 	Type: boolean		Label :Contagious disease 
 Corrections_Completed__c	: 	Type: boolean		Label :Corrections Completed 
-County_Calendar__c	: 	Type: reference	Length :18	Label :County Calendar	IS_Nullable
-County_Held_Legal_Authority__c	: 	Type: reference	Length :18	Label :Support Network	IS_Nullable
+County_Calendar__c	: 	Type: reference	Length :18	Label :County Calendar	IS_Nullable		References :  BusinessHours
+County_Held_Legal_Authority__c	: 	Type: reference	Length :18	Label :Support Network	IS_Nullable		References :  Support_Network__c
 County_Held__c	: 	Type: string	Length :1300	Label :County Held?	IS_Nullable
 County_Type_of_Authority__c	: 	Type: string	Length :1300	Label :County Type of Authority	IS_Nullable
 County_Web2Case_Email_field__c	: 	Type: string	Length :1300	Label :County Web2Case Email field	IS_Nullable
@@ -239,7 +239,7 @@ Report_came_from_Law_Enforcement__c	: 	Type: picklist	Length :255	Label :Report 
 ReportingPartyActionsAlreadyTaken__c	: 	Type: textarea	Length :32768	Label :What interventions have been tried?	IS_Nullable
 ReportingPartyActions__c	: 	Type: textarea	Length :32768	Label :Reporting Party Actions	IS_Nullable
 Reporting_Party_Agency_Name__c	: 	Type: string	Length :1300	Label :Reporting Party Agency Name	IS_Nullable
-Reporting_Party_Name__c	: 	Type: reference	Length :18	Label :Reporting Party Name	IS_Nullable
+Reporting_Party_Name__c	: 	Type: reference	Length :18	Label :Reporting Party Name	IS_Nullable		References :  Contact
 Reporting_Party_Relationship_Notes__c	: 	Type: string	Length :255	Label :Reporting Party Relationship Notes	IS_Nullable
 Reporting_Party_Relationship_Role__c	: 	Type: picklist	Length :255	Label :Relationship	IS_Nullable
 Reporting_Party_Relationship_to_Client__c	: 	Type: picklist	Length :255	Label :Relationship Type	IS_Nullable
@@ -282,11 +282,11 @@ Substance_Abuse_including_RX_meds__c	: 	Type: boolean		Label :Substance Abuse (i
 Substance_abuse__c	: 	Type: boolean		Label :Substance abuse 
 Supervisor_E_mail__c	: 	Type: email	Length :80	Label :Supervisor E-mail	IS_Nullable
 Supervisor_Name__c	: 	Type: string	Length :1300	Label :Supervisor Name	IS_Nullable
-Supervisor__c	: 	Type: reference	Length :18	Label :Supervisor	IS_Nullable
+Supervisor__c	: 	Type: reference	Length :18	Label :Supervisor	IS_Nullable		References :  User
 Support_Network_Lives_with_Client__c	: 	Type: picklist	Length :255	Label :Support Network Lives with Client	IS_Nullable
 Support_Network_Narrative__c	: 	Type: textarea	Length :15000	Label :Support Network Narrative	IS_Nullable
 Team_Members__c	: 	Type: textarea	Length :1000	Label :Team Members	IS_Nullable
-TemporaryContact__c	: 	Type: reference	Length :18	Label :Contact	IS_Nullable
+TemporaryContact__c	: 	Type: reference	Length :18	Label :Contact	IS_Nullable		References :  Contact
 Test_support_number_of_county_held_auth__c	: 	Type: string	Length :1300	Label :Test support number of county held  auth	IS_Nullable
 Timely_Initial_Assessment__c	: 	Type: string	Length :1300	Label :Timely Initial Assessment	IS_Nullable
 Timely_Initial_Case_Plan__c	: 	Type: string	Length :1300	Label :Timely Initial Case Plan	IS_Nullable
@@ -348,7 +348,7 @@ Case_Plan_Date_Timely__c	: 	Type: string	Length :3	Label :Case Plan Date Timely	
 Case_Stage__c	: 	Type: picklist	Length :255	Label :Case Stage	IS_Nullable
 Case_Transfer_Required__c	: 	Type: boolean		Label :Case Transfer Required 
 Client_Current_Address__c	: 	Type: string	Length :1300	Label :Client Current Address	IS_Nullable
-Companion_Case__c	: 	Type: reference	Length :18	Label :Companion Case	IS_Nullable
+Companion_Case__c	: 	Type: reference	Length :18	Label :Companion Case	IS_Nullable		References :  APS_Case__c
 Confidential_Reason__c	: 	Type: picklist	Length :255	Label :Confidential Reason	IS_Nullable
 Date_Notice_of_Intent_Letter_Provided__c	: 	Type: date		Label :Date Notice of Intent Letter Provided	IS_Nullable
 Demeaning_insults__c	: 	Type: boolean		Label :Demeaning/insults 
