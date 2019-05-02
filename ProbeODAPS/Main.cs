@@ -171,6 +171,36 @@ namespace ProbeODAPS
             }
             return exitStatus;
         }
+        private static int RunRepl(ReplOptions o, SoapClient endPointClient)
+        {
+            while (true)
+            {
+                bool needHeader = true;
+
+                Console.WriteLine("Enter Query. Press Enter to quit:");
+                string query = Console.ReadLine();
+                if (query == "") return 0;
+
+                foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
+                {
+                    if (needHeader)
+                    {
+                        foreach (var field in item.Any)
+                        {
+                            Console.Write(field.NodeType + "\t");
+                        }
+                        Console.WriteLine();
+                        needHeader = false;
+                    }
+
+                    foreach (var field in item.Any)
+                    {
+                        Console.Write(field.InnerText + "|");
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
         internal static int Work(string[] args)
         {
             const string SF_USER_NAME = "api.user@jfs.ohio.gov.uat";
@@ -327,47 +357,6 @@ namespace ProbeODAPS
             }
 
             return exitStatus;
-        }
-
-        private static int RunRepl(ReplOptions o, SoapClient endPointClient)
-        {
-
-
-            while (true)
-            {
-
-                Console.WriteLine("Enter Query. Press Enter to quit:");
-                string query = Console.ReadLine();
-                if (query == "") return 0;
-
-                //StringBuilder builder = new StringBuilder();
-
-
-                var returnItems = SF.GetNextSFRecord(query, endPointClient, "");
-
-
-                bool needHeader = true;
-
-                foreach (var item in returnItems)
-                {
-                    if (needHeader)
-                    {
-
-                        foreach (var field in item.Any)
-                        {
-                            Console.Write(field.LocalName + "|");
-                        }
-                        Console.WriteLine();
-                        needHeader = false;
-                    }
-
-                    foreach (var field in item.Any)
-                    {
-                        Console.Write(field.InnerText + "|");
-                    }
-                    Console.WriteLine();
-                }
-            }
         }
     }
 }
