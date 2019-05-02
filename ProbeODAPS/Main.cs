@@ -9,6 +9,7 @@ using CommandLine;
 using System.IO;
 
 using ProbeODAPS.sforce;
+using System.Text;
 
 namespace ProbeODAPS
 {
@@ -60,6 +61,11 @@ namespace ProbeODAPS
 
             [Option("Path", Required = false, Default = @"C:\Temp", HelpText = "Output file path")]
             public string OutPath { get; set; }
+        }
+        [Verb("Repl", HelpText = "Read Execute Print Loop")]
+        internal class ReplOptions
+        {
+
         }
         private static int ListSFObjects(ListOptions Options, SoapClient EndPoint)
         {
@@ -301,12 +307,13 @@ namespace ProbeODAPS
             {
                 if (SF.Login(SF_USER_NAME, SF_PASS_WORD, out SoapClient EndpointClient))
                 {
-                    exitStatus = CommandLine.Parser.Default.ParseArguments<DocumentOptions, ExtractOptions, ListOptions, CountOptions>(args)
+                    exitStatus = CommandLine.Parser.Default.ParseArguments<DocumentOptions, ExtractOptions, ListOptions, CountOptions, ReplOptions>(args)
                         .MapResult(
                             (DocumentOptions o) => DocumentSFObjects(o, EndpointClient),
                             (ExtractOptions o) => ExtractSFObjects(o, sfObjectQueries, EndpointClient),
                             (ListOptions o) => ListSFObjects(o, EndpointClient),
                             (CountOptions o) => CountSFObjects(o, EndpointClient),
+                            (ReplOptions o) => RunRepl(o, EndpointClient),
                             errs => 1);
 
                 }
@@ -320,6 +327,47 @@ namespace ProbeODAPS
             }
 
             return exitStatus;
+        }
+
+        private static int RunRepl(ReplOptions o, SoapClient endPointClient)
+        {
+
+
+            while (true)
+            {
+
+                Console.WriteLine("Enter Query. Press Enter to quit:");
+                string query = Console.ReadLine();
+                if (query == "") return 0;
+
+                //StringBuilder builder = new StringBuilder();
+
+
+                var returnItems = SF.GetNextSFRecord(query, endPointClient, "");
+
+
+                bool needHeader = true;
+
+                foreach (var item in returnItems)
+                {
+                    if (needHeader)
+                    {
+
+                        foreach (var field in item.Any)
+                        {
+                            Console.Write(field.LocalName + "|");
+                        }
+                        Console.WriteLine();
+                        needHeader = false;
+                    }
+
+                    foreach (var field in item.Any)
+                    {
+                        Console.Write(field.InnerText + "|");
+                    }
+                    Console.WriteLine();
+                }
+            }
         }
     }
 }
