@@ -193,7 +193,6 @@ namespace ProbeODAPS
                             }
                             Console.WriteLine();
                             needHeader = false;
-                            int idumb = 0;
                         }
 
                         foreach (var field in item.Any)
@@ -205,7 +204,6 @@ namespace ProbeODAPS
                 }
                 catch (Exception ex)
                 {
-
                     Program.Logger.Error(ex.Message);
                 }
             }
@@ -251,7 +249,7 @@ namespace ProbeODAPS
                         From
 	                        Contact
                         Where
-                            AccountID = '001t0000009WiXVAA0'"},
+                            Account.Name = 'Cuyahoga'"},
                     {"Case_Notes__c",
                         @"SELECT
                             Id,
