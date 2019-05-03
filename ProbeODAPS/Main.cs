@@ -221,6 +221,7 @@ namespace ProbeODAPS
                             IsDeleted,
                             CreatedById,CreatedDate,
                             LastModifiedById, LastModifiedDate, SystemModstamp,
+                            Salutation,
                             Lastname,
                             FirstName,
                             Name,
@@ -319,7 +320,9 @@ namespace ProbeODAPS
                             Emotional_Verbal_Abuse__c,
                             Referral_Submitted_Date_Time__c,
                             Bed_Bugs__c,
-                            Substance_abuse__c
+                            Substance_abuse__c,
+                            Diagnosed_Mental_Illness_Info__c,	 
+                            Diagnosed_Mental_Illness__c
                         FROM
                             APS_Case__c"},
                 {"Account",
