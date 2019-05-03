@@ -5,6 +5,7 @@ OwnerId,Owner_County__c,
 IsDeleted,
 CreatedById,CreatedDate,
 LastModifiedById, LastModifiedDate, SystemModstamp,
+Salutation,  /* Implied.  Used in Bharathi's view [vw_APS_Case_Worker_Sup_ba] */
 LastName, FirstName,
 Name,
 Approximate_Age_C,

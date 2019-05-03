@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{25BA84FB-3FBC-4C56-B418-64E388A4A1AB}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{3D485D02-917F-4FD6-BD8F-685057521795}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -824,6 +824,50 @@
                           name="UseBinaryFormat">false</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness_Info__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Diagnosed_Mental_Illness_Info__c]"
+                      length="4096"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness_Info__c]"
+                      name="Diagnosed_Mental_Illness_Info__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Diagnosed_Mental_Illness__c]"
+                      length="255"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness__c]"
+                      name="Diagnosed_Mental_Illness__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1011,6 +1055,18 @@
                       refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Substance_abuse__c]"
                       dataType="bool"
                       name="Substance_abuse__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Diagnosed_Mental_Illness_Info__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="4096"
+                      name="Diagnosed_Mental_Illness_Info__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Diagnosed_Mental_Illness__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="Diagnosed_Mental_Illness__c" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1116,6 +1172,14 @@
                       externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Owner_County__c]"
                       lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Owner_County__c]" />
                     <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[RecordTypeId]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="RecordTypeId"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[RecordTypeID]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[RecordTypeId]" />
+                    <inputColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[IsDeleted]"
                       cachedDataType="bool"
                       cachedName="IsDeleted"
@@ -1169,6 +1233,14 @@
                       cachedName="Name"
                       externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
                       lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Approximate_Age__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Approximate_Age__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Approximate_Age__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Approximate_Age__c]" />
                     <inputColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Caretaker_Neglect__c]"
                       cachedDataType="bool"
@@ -1328,13 +1400,21 @@
                       externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Substance_abuse__c]"
                       lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Substance_abuse__c]" />
                     <inputColumn
-                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Approximate_Age__c]"
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Diagnosed_Mental_Illness_Info__c]"
                       cachedCodepage="65001"
                       cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="Approximate_Age__c"
-                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Approximate_Age_C]"
-                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Approximate_Age__c]" />
+                      cachedLength="4096"
+                      cachedName="Diagnosed_Mental_Illness_Info__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Diagnosed_Mental_Illness_Info__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness_Info__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Diagnosed_Mental_Illness__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Diagnosed_Mental_Illness__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Diagnosed_Mental_Illness__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness__c]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1387,6 +1467,11 @@
                       length="18"
                       name="OwnerId" />
                     <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[RecordTypeID]"
+                      dataType="wstr"
+                      length="18"
+                      name="RecordTypeID" />
+                    <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Owner_County__c]"
                       dataType="wstr"
                       length="255"
@@ -1401,10 +1486,10 @@
                       length="80"
                       name="Name" />
                     <externalMetadataColumn
-                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Approximate_Age_C]"
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Approximate_Age__c]"
                       dataType="wstr"
                       length="50"
-                      name="Approximate_Age_C" />
+                      name="Approximate_Age__c" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Caretaker_Neglect__c]"
                       dataType="bool"
@@ -1506,6 +1591,16 @@
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Substance_abuse__c]"
                       dataType="bool"
                       name="Substance_abuse__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Diagnosed_Mental_Illness_Info__c]"
+                      dataType="wstr"
+                      length="4096"
+                      name="Diagnosed_Mental_Illness_Info__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Diagnosed_Mental_Illness__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Diagnosed_Mental_Illness__c" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
                       dataType="bool"
