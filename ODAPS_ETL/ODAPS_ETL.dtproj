@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="uYQbqJaYTn4=" SSIS:IV="bN1vbPGy2mh4YycGI9ueGw==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">NZXDjmyCyqxjsKI2ZKF+PFrcqD2xjg0Oq6bbPXALSnrRY0oFpAiqVWCC5ihkg9krgf/6zDxSjBOkT+8k8WiYRMdjx0m+A69Su2LwW8x64Vt9QvRijKbPtKlJy6rAYsgVX3L/2X3YyA7Xz9dKnHtj8wC8/rEDXN970xqqXfl0p1Xev+7fZrtj1FyHL91+r9Cr</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="/8ubd1N2Nyk=" SSIS:IV="CZBEJl3UT9DEI1Z5FHoHow==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">rWC/ZPE58gbBRY5Ai8qhf263r1pIc8y8p4tuH3k6YvrPeMjX9RffTmrp5Ze2kaa+MY2Y/g6ce5f3t76T2tToQg3cmdrxqW52Un5OGG5nx4YAS3u1G1S3aMpUSAcAKuIIGJEhksoTq1HoVTM+6ObV4eiGgoVxhCr6OiYcc93/lBbaOV65fKt16Qp1qveoFtZB</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -36,6 +36,8 @@
           <SSIS:Package SSIS:Name="Stage-Users.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage-Contacts.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage_Accounts.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Master-Validate.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Validate-Accounts.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="MS-DCFS-PSQL1.DSAS_ODAPS .Cuy_DataLoader.conmgr" />
@@ -161,7 +163,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">1252</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">65001</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -960,6 +962,40 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{BD63595E-AF25-49B5-BF97-0C61E55E2680}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Master-Validate.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{4FA79E74-B790-4EB9-A2BF-11CC146EBF12}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Master-Validate</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5F988C98-56A8-4C5C-A8CD-4E392403D8D0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Validate-Accounts.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{BE7C5629-D573-4053-B6EE-8F73BE445049}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Validate-Accounts</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{500B8387-29E9-4296-A16D-15E5CF3211F0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
