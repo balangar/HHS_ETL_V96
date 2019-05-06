@@ -175,37 +175,38 @@ namespace ProbeODAPS
         {
             while (true)
             {
-                bool needHeader = true;
+                bool needHeader;
+                string query = string.Empty;
 
-                Console.Write("Enter Query. Press Enter to quit: ");
-                string query = Console.ReadLine();
-                if (query == "") return 0;
-
-                try
+                for (needHeader = true, Console.Write("Enter Query : "), query = Console.ReadLine(); query != ""; needHeader = true, Console.Write("Enter Query : "), query = Console.ReadLine())
                 {
-                    foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
+                    try
                     {
-                        if (needHeader)
+                        foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
                         {
+                            if (needHeader)
+                            {
+                                foreach (var field in item.Any)
+                                {
+                                    Console.Write(field.LocalName + "|");
+                                }
+                                Console.WriteLine();
+                                needHeader = false;
+                            }
+
                             foreach (var field in item.Any)
                             {
-                                Console.Write(field.NodeType + "\t");
+                                Console.Write(field.InnerText + "|");
                             }
                             Console.WriteLine();
-                            needHeader = false;
                         }
-
-                        foreach (var field in item.Any)
-                        {
-                            Console.Write(field.InnerText + "|");
-                        }
-                        Console.WriteLine();
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.Logger.Error(ex.Message);
                     }
                 }
-                catch (Exception ex)
-                {
-                    Program.Logger.Error(ex.Message);
-                }
+                return 0;
             }
         }
         internal static int Work(string[] args)
