@@ -1,4 +1,4 @@
-User: 	164 fields	04/30/2019 07:52:22
+User: 	164 fields	05/02/2019 01:36:18
 Id	: 	Type: id	Length :18	Label :User ID 
 Username	: 	Type: string	Length :80	Label :Username 
 LastName	: 	Type: string	Length :80	Label :Last Name 
@@ -39,7 +39,7 @@ CommunityNickname	: 	Type: string	Length :40	Label :Nickname
 BadgeText	: 	Type: string	Length :80	Label :User Photo badge text overlay	IS_Nullable
 IsActive	: 	Type: boolean		Label :Active 
 TimeZoneSidKey	: 	Type: picklist	Length :40	Label :Time Zone 
-UserRoleId	: 	Type: reference	Length :18	Label :Role ID	IS_Nullable
+UserRoleId	: 	Type: reference	Length :18	Label :Role ID	IS_Nullable		References :  UserRole
 LocaleSidKey	: 	Type: picklist	Length :40	Label :Locale 
 ReceivesInfoEmails	: 	Type: boolean		Label :Info Emails 
 ReceivesAdminInfoEmails	: 	Type: boolean		Label :Admin Info Emails 
@@ -47,13 +47,13 @@ EmailEncodingKey	: 	Type: picklist	Length :40	Label :Email Encoding
 UserType	: 	Type: picklist	Length :40	Label :User Type	IS_Nullable
 LanguageLocaleKey	: 	Type: picklist	Length :40	Label :Language 
 EmployeeNumber	: 	Type: string	Length :20	Label :Employee Number	IS_Nullable
-DelegatedApproverId	: 	Type: reference	Length :18	Label :Delegated Approver ID	IS_Nullable
-ManagerId	: 	Type: reference	Length :18	Label :Manager ID	IS_Nullable
+DelegatedApproverId	: 	Type: reference	Length :18	Label :Delegated Approver ID	IS_Nullable		References :  Group User
+ManagerId	: 	Type: reference	Length :18	Label :Manager ID	IS_Nullable		References :  User
 LastLoginDate	: 	Type: datetime		Label :Last Login	IS_Nullable
 CreatedDate	: 	Type: datetime		Label :Created Date 
-CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID 		References :  User
 LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
-LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 		References :  User
 SystemModstamp	: 	Type: datetime		Label :System Modstamp 
 OfflineTrialExpirationDate	: 	Type: datetime		Label :Offline Edition Trial Expiration Date	IS_Nullable
 OfflinePdaTrialExpirationDate	: 	Type: datetime		Label :Sales Anywhere Trial Expiration Date	IS_Nullable
@@ -141,9 +141,9 @@ UserPreferencesPreviewCustomTheme	: 	Type: boolean		Label :PreviewCustomTheme
 UserPreferencesHasCelebrationBadge	: 	Type: boolean		Label :HasCelebrationBadge 
 UserPreferencesUserDebugModePref	: 	Type: boolean		Label :UserDebugModePref 
 UserPreferencesNewLightningReportRunPageEnabled	: 	Type: boolean		Label :NewLightningReportRunPageEnabled 
-ContactId	: 	Type: reference	Length :18	Label :Contact ID	IS_Nullable
-AccountId	: 	Type: reference	Length :18	Label :Account ID	IS_Nullable
-CallCenterId	: 	Type: reference	Length :18	Label :Call Center ID	IS_Nullable
+ContactId	: 	Type: reference	Length :18	Label :Contact ID	IS_Nullable		References :  Contact
+AccountId	: 	Type: reference	Length :18	Label :Account ID	IS_Nullable		References :  Account
+CallCenterId	: 	Type: reference	Length :18	Label :Call Center ID	IS_Nullable		References :  CallCenter
 Extension	: 	Type: phone	Length :40	Label :Extension	IS_Nullable
 PortalRole	: 	Type: picklist	Length :40	Label :Portal Role Level	IS_Nullable
 IsPortalEnabled	: 	Type: boolean		Label :Is Portal Enabled 
@@ -162,5 +162,5 @@ BannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for banner photo	IS_Nullable
 SmallBannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for IOS banner photo	IS_Nullable
 MediumBannerPhotoUrl	: 	Type: url	Length :1024	Label :Url for Android banner photo	IS_Nullable
 IsProfilePhotoActive	: 	Type: boolean		Label :Has Profile Photo 
-supervisor__c	: 	Type: reference	Length :18	Label :Supervisor	IS_Nullable
+supervisor__c	: 	Type: reference	Length :18	Label :Supervisor	IS_Nullable		References :  User
 

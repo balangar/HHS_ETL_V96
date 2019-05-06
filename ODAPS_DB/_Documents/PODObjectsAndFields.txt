@@ -5,6 +5,7 @@ OwnerId,Owner_County__c,
 IsDeleted,
 CreatedById,CreatedDate,
 LastModifiedById, LastModifiedDate, SystemModstamp,
+Salutation,  /* Implied.  Used in Bharathi's view [vw_APS_Case_Worker_Sup_ba] */
 LastName, FirstName,
 Name,
 Approximate_Age_C,
@@ -29,7 +30,9 @@ Hoarding_or_animal_hoarding__c,
 Emotional_Verbal_Abuse__c,
 Referral_Submitted_Date_Time__c,
 Bed_Bugs__c,
-Substance_abuse__c
+Substance_abuse__c,
+Diagnosed_Mental_Illness_Info__c,	 
+Diagnosed_Mental_Illness__c
 
 
 /* -- Contact -- */
@@ -37,6 +40,7 @@ ID, OwnerId, AccountId, MasterRecordId,
 IsDeleted,
 CreatedById,CreatedDate,
 LastModifiedById, LastModifiedDate, SystemModstamp,
+Salutation,
 Lastname,
 FirstName,
 Name,

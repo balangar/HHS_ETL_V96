@@ -175,30 +175,38 @@ namespace ProbeODAPS
         {
             while (true)
             {
-                bool needHeader = true;
+                bool needHeader;
+                string query = string.Empty;
 
-                Console.WriteLine("Enter Query. Press Enter to quit:");
-                string query = Console.ReadLine();
-                if (query == "") return 0;
-
-                foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
+                for (needHeader = true, Console.Write("Enter Query : "), query = Console.ReadLine(); query != ""; needHeader = true, Console.Write("Enter Query : "), query = Console.ReadLine())
                 {
-                    if (needHeader)
+                    try
                     {
-                        foreach (var field in item.Any)
+                        foreach (sObject item in SF.GetNextSFRecord(query, endPointClient, ""))
                         {
-                            Console.Write(field.NodeType + "\t");
-                        }
-                        Console.WriteLine();
-                        needHeader = false;
-                    }
+                            if (needHeader)
+                            {
+                                foreach (var field in item.Any)
+                                {
+                                    Console.Write(field.LocalName + "|");
+                                }
+                                Console.WriteLine();
+                                needHeader = false;
+                            }
 
-                    foreach (var field in item.Any)
-                    {
-                        Console.Write(field.InnerText + "|");
+                            foreach (var field in item.Any)
+                            {
+                                Console.Write(field.InnerText + "|");
+                            }
+                            Console.WriteLine();
+                        }
                     }
-                    Console.WriteLine();
+                    catch (Exception ex)
+                    {
+                        Program.Logger.Error(ex.Message);
+                    }
                 }
+                return 0;
             }
         }
         internal static int Work(string[] args)
@@ -214,6 +222,7 @@ namespace ProbeODAPS
                             IsDeleted,
                             CreatedById,CreatedDate,
                             LastModifiedById, LastModifiedDate, SystemModstamp,
+                            Salutation,
                             Lastname,
                             FirstName,
                             Name,
@@ -242,7 +251,7 @@ namespace ProbeODAPS
                         From
 	                        Contact
                         Where
-                            AccountID = '001t0000009WiXVAA0'"},
+                            Account.Name = 'Cuyahoga'"},
                     {"Case_Notes__c",
                         @"SELECT
                             Id,
@@ -312,7 +321,9 @@ namespace ProbeODAPS
                             Emotional_Verbal_Abuse__c,
                             Referral_Submitted_Date_Time__c,
                             Bed_Bugs__c,
-                            Substance_abuse__c
+                            Substance_abuse__c,
+                            Diagnosed_Mental_Illness_Info__c,	 
+                            Diagnosed_Mental_Illness__c
                         FROM
                             APS_Case__c"},
                 {"Account",

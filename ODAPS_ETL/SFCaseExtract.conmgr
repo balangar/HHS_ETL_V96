@@ -22,7 +22,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Id"
-          DTS:DTSID="{08A31D90-16FA-43E6-AA41-E8CFD0DDFCF2}"
+          DTS:DTSID="{2DB7A4B4-766B-404E-B5D7-D449932E2FF2}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -31,7 +31,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="OwnerId"
-          DTS:DTSID="{FAFB1EF1-62DA-42C8-B446-40CFD9D018A3}"
+          DTS:DTSID="{8D20B1CB-D46B-49D9-B670-DB44EA2AFC22}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -40,7 +40,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Owner_County__c"
-          DTS:DTSID="{1E9BDEF6-8E52-4DE3-9B9F-B2B792EE6D16}"
+          DTS:DTSID="{73D29CB6-DF3B-4715-8C56-FFE7674C56D2}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -49,7 +49,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="RecordTypeId"
-          DTS:DTSID="{D15DF10C-1CCD-44F2-B6DA-797A344C6E20}"
+          DTS:DTSID="{A7528A13-6A8A-4742-9153-C9B7599A4C75}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="IsDeleted"
-          DTS:DTSID="{D7C50AE0-914B-4E00-9AB1-A7B4F1527E92}"
+          DTS:DTSID="{91AC5FEB-ABA5-4775-98A1-8C154C1D9151}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -66,7 +66,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="CreatedById"
-          DTS:DTSID="{99DBDBAD-7539-4508-8BA2-444E8EFB4C88}"
+          DTS:DTSID="{65B8233B-3B99-444B-A783-E486270F32FF}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -75,7 +75,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="CreatedDate"
-          DTS:DTSID="{117ABCE8-A74C-48B7-805E-114D6361621A}"
+          DTS:DTSID="{45DD566F-432F-4EDF-A090-B21620FE11B2}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -84,7 +84,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="LastModifiedById"
-          DTS:DTSID="{71461274-19A6-4854-8811-33EA938F5749}"
+          DTS:DTSID="{225E9B77-4DD1-466B-B1E7-ED639F8B3B7F}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="LastModifiedDate"
-          DTS:DTSID="{9E2B1FF9-2F58-46D7-8D53-B7DC4E7FC5BC}"
+          DTS:DTSID="{B3A892DF-99EF-47C9-8993-8A51D6CC5101}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -102,7 +102,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="SystemModstamp"
-          DTS:DTSID="{905B7B52-47E7-4740-BAAA-E464A3F64647}"
+          DTS:DTSID="{25D7D6AC-DAD1-46C3-9273-87FCA508912B}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -111,7 +111,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Name"
-          DTS:DTSID="{E3D50875-836D-4D7F-986D-1D95BEFFAA5A}"
+          DTS:DTSID="{85E155F1-F262-4054-9171-D7E059291A58}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -120,7 +120,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Approximate_Age__c"
-          DTS:DTSID="{5C1FC3FC-1B48-4821-BDD8-AE401A1F410B}"
+          DTS:DTSID="{7D92CBCD-7C76-462D-8CB1-8EADB5D51411}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -128,7 +128,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Caretaker_Neglect__c"
-          DTS:DTSID="{5D85FAEB-21D5-4F4E-A4D3-3162309A3528}"
+          DTS:DTSID="{CA88CAAC-948D-47BB-972D-973BBE2222A3}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -137,7 +137,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Client_Address__c"
-          DTS:DTSID="{776C8042-28C6-4C7A-9F2C-F44F996CDA86}"
+          DTS:DTSID="{1A7CFAE9-3CE4-4252-844D-81EE02466898}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -146,7 +146,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Client_Name__c"
-          DTS:DTSID="{A1FFCB48-61C9-476D-A0BD-0573602B5DE3}"
+          DTS:DTSID="{A796C9D5-8F24-46F4-8120-ED0F102C7225}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -155,7 +155,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Client_s_Age__c"
-          DTS:DTSID="{03566DDF-4269-4B9F-9FF3-8E4E578C51FE}"
+          DTS:DTSID="{6FEA1A7B-A990-46DA-921A-BFFE429D2F2F}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -164,7 +164,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Client_s_Home_Phone_Number__c"
-          DTS:DTSID="{CE8CADFC-4CC2-46D5-A410-E4EE54BFD7EA}"
+          DTS:DTSID="{83DE8C3F-AC60-42E0-ABD1-14F1F86EEA3D}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -173,7 +173,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Date_of_Birth__c"
-          DTS:DTSID="{FB4B31FA-D138-4881-8128-13E359400291}"
+          DTS:DTSID="{C9FAB290-AFA0-40E5-A860-85E38B8D6ED9}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -181,7 +181,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Exploitation__c"
-          DTS:DTSID="{24742CBB-FD8A-495C-A69B-528DD049C49A}"
+          DTS:DTSID="{27BFA7FB-B390-41B1-A477-5AB2F5F2300C}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -190,7 +190,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Gender_Code__c"
-          DTS:DTSID="{97304E58-F107-4650-93ED-AAA6C9D7FC46}"
+          DTS:DTSID="{61976EAC-3CE2-4744-86E3-03BCB5DC86C5}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -199,7 +199,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Marital_Status_Code__c"
-          DTS:DTSID="{2045B774-5DEB-4498-A798-B11204014B4F}"
+          DTS:DTSID="{2F2E2F54-A443-48E6-9288-3F69870868D7}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -207,7 +207,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Physical_Abuse__c"
-          DTS:DTSID="{5ECA5CDD-3FE5-4145-8574-922F7B25958E}"
+          DTS:DTSID="{7B5750E8-5BBB-4DE5-90FC-597038B67F89}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -216,7 +216,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Reporting_Party_Agency_Name__c"
-          DTS:DTSID="{F8A4F713-C7C6-4B9D-98D8-B1A6C9E94511}"
+          DTS:DTSID="{799A966D-F86F-42FF-AA23-C676551C1114}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -225,7 +225,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Reporting_Party_Name__c"
-          DTS:DTSID="{C5920478-0D04-49C2-BC93-A526FDA9F03A}"
+          DTS:DTSID="{697AB87A-08CF-4770-8F6D-77ADFF69F3B9}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -233,7 +233,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Self_Neglect__c"
-          DTS:DTSID="{A97748AC-C999-48DC-AA57-533AE5E9B5A2}"
+          DTS:DTSID="{E2331352-399E-4984-A584-B0A6181412EF}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -241,7 +241,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Sexual_Abuse__c"
-          DTS:DTSID="{E5869592-EF65-4122-9EBB-E67D66071F50}"
+          DTS:DTSID="{71C189D9-B120-4687-9F4E-8BE73A92450D}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -250,7 +250,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Supervisor_E_mail__c"
-          DTS:DTSID="{9CCA38E6-BCFB-4F35-A59A-E596E142BED7}"
+          DTS:DTSID="{E0BEC8A5-140A-4333-9D5F-8929DE34F31F}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -259,7 +259,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Supervisor_Name__c"
-          DTS:DTSID="{FA17AA6A-DEA5-43F2-A1CE-8EAFDD0E99AD}"
+          DTS:DTSID="{2F438F1D-0E83-4776-B0F3-4336FCCDB934}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -268,7 +268,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Supervisor__c"
-          DTS:DTSID="{B0A8B304-14D0-4ED1-A9B5-0F382E777F33}"
+          DTS:DTSID="{2D5C3068-A939-4163-9D79-9ECEDF0D69F8}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -276,7 +276,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Hoarding_or_animal_hoarding__c"
-          DTS:DTSID="{00B5DFD7-99A4-4FD6-BAF2-780B10DA1D80}"
+          DTS:DTSID="{1358C4AB-72A5-49C9-826A-FF654F82ED28}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -284,7 +284,7 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Emotional_Verbal_Abuse__c"
-          DTS:DTSID="{90468FF4-5585-4835-85F6-801F83F1B78A}"
+          DTS:DTSID="{A0F1A00C-771A-4D5B-AE36-D1660D19CF5A}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -293,7 +293,7 @@
           DTS:DataType="129"
           DTS:TextQualified="True"
           DTS:ObjectName="Referral_Submitted_Date_Time__c"
-          DTS:DTSID="{C106A155-A3BE-4D45-836E-F3F69F19E879}"
+          DTS:DTSID="{4EBE8B36-7243-497C-89C0-2898E3FE7F22}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
@@ -301,15 +301,33 @@
           DTS:DataType="11"
           DTS:TextQualified="True"
           DTS:ObjectName="Bed_Bugs__c"
-          DTS:DTSID="{D4B68B8B-1744-4F0E-9705-3B87381A28A2}"
+          DTS:DTSID="{5EA5158C-FA9D-4081-9ED3-D980F4E2DF9B}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:DataType="11"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Substance_abuse__c"
+          DTS:DTSID="{B2B921A2-EE88-407E-A4F0-3F1E00069FD2}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="4096"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="Diagnosed_Mental_Illness_Info__c"
+          DTS:DTSID="{0041CCD2-F181-4EB6-AD3D-1F5E34F77C9D}"
           DTS:CreationName="" />
         <DTS:FlatFileColumn
           DTS:ColumnType="Delimited"
           DTS:ColumnDelimiter="_x000D__x000A_"
-          DTS:DataType="11"
+          DTS:MaximumWidth="255"
+          DTS:DataType="129"
           DTS:TextQualified="True"
-          DTS:ObjectName="Substance_abuse__c"
-          DTS:DTSID="{32952F32-A12D-4042-88AF-04FFB8DDF69C}"
+          DTS:ObjectName="Diagnosed_Mental_Illness__c"
+          DTS:DTSID="{1455E609-E625-466E-B137-8EBB0AF3FCD2}"
           DTS:CreationName="" />
       </DTS:FlatFileColumns>
     </DTS:ConnectionManager>

@@ -1,15 +1,15 @@
-Contact: 	178 fields	04/29/2019 08:38:52
+Contact: 	178 fields	05/02/2019 01:36:17
 Id	: 	Type: id	Length :18	Label :Contact ID 
 IsDeleted	: 	Type: boolean		Label :Deleted 
-MasterRecordId	: 	Type: reference	Length :18	Label :Master Record ID	IS_Nullable
-AccountId	: 	Type: reference	Length :18	Label :Account ID	IS_Nullable
+MasterRecordId	: 	Type: reference	Length :18	Label :Master Record ID	IS_Nullable		References :  Contact
+AccountId	: 	Type: reference	Length :18	Label :Account ID	IS_Nullable		References :  Account
 LastName	: 	Type: string	Length :80	Label :Last Name 
 FirstName	: 	Type: string	Length :40	Label :First Name	IS_Nullable
 Salutation	: 	Type: picklist	Length :40	Label :Salutation	IS_Nullable
 MiddleName	: 	Type: string	Length :40	Label :Middle Name	IS_Nullable
 Suffix	: 	Type: string	Length :40	Label :Suffix	IS_Nullable
 Name	: 	Type: string	Length :121	Label :Full Name 
-RecordTypeId	: 	Type: reference	Length :18	Label :Record Type ID	IS_Nullable
+RecordTypeId	: 	Type: reference	Length :18	Label :Record Type ID	IS_Nullable		References :  RecordType
 OtherStreet	: 	Type: textarea	Length :255	Label :Other Street	IS_Nullable
 OtherCity	: 	Type: string	Length :40	Label :Other City	IS_Nullable
 OtherState	: 	Type: string	Length :80	Label :Other State/Province	IS_Nullable
@@ -38,7 +38,7 @@ MobilePhone	: 	Type: phone	Length :40	Label :Mobile Phone	IS_Nullable
 HomePhone	: 	Type: phone	Length :40	Label :Home Phone	IS_Nullable
 OtherPhone	: 	Type: phone	Length :40	Label :Other Phone	IS_Nullable
 AssistantPhone	: 	Type: phone	Length :40	Label :Asst. Phone	IS_Nullable
-ReportsToId	: 	Type: reference	Length :18	Label :Reports To ID	IS_Nullable
+ReportsToId	: 	Type: reference	Length :18	Label :Reports To ID	IS_Nullable		References :  Contact
 Email	: 	Type: email	Length :80	Label :Email	IS_Nullable
 Title	: 	Type: string	Length :128	Label :Title	IS_Nullable
 Department	: 	Type: string	Length :80	Label :Department	IS_Nullable
@@ -46,14 +46,14 @@ AssistantName	: 	Type: string	Length :40	Label :Assistant's Name	IS_Nullable
 LeadSource	: 	Type: picklist	Length :40	Label :Lead Source	IS_Nullable
 Birthdate	: 	Type: date		Label :Birthdate	IS_Nullable
 Description	: 	Type: textarea	Length :32000	Label :Contact Description	IS_Nullable
-OwnerId	: 	Type: reference	Length :18	Label :Owner ID 
+OwnerId	: 	Type: reference	Length :18	Label :Owner ID 		References :  User
 HasOptedOutOfEmail	: 	Type: boolean		Label :Email Opt Out 
 HasOptedOutOfFax	: 	Type: boolean		Label :Fax Opt Out 
 DoNotCall	: 	Type: boolean		Label :Do Not Call 
 CreatedDate	: 	Type: datetime		Label :Created Date 
-CreatedById	: 	Type: reference	Length :18	Label :Created By ID 
+CreatedById	: 	Type: reference	Length :18	Label :Created By ID 		References :  User
 LastModifiedDate	: 	Type: datetime		Label :Last Modified Date 
-LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 
+LastModifiedById	: 	Type: reference	Length :18	Label :Last Modified By ID 		References :  User
 SystemModstamp	: 	Type: datetime		Label :System Modstamp 
 LastActivityDate	: 	Type: date		Label :Last Activity	IS_Nullable
 LastCURequestDate	: 	Type: datetime		Label :Last Stay-in-Touch Request Date	IS_Nullable
