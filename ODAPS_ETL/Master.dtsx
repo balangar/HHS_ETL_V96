@@ -12,8 +12,8 @@
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{0D518432-EE44-46A4-AB01-E64421FD8EC8}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{D9B1BEC7-6AC6-4190-A1A4-14E23A0052FF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -48,7 +48,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Master-Validate.dtsx</PackageName>
+          <PackageName>Master-ValidateSyntax.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>

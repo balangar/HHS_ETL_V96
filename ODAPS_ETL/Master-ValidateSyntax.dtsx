@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS430619"
   DTS:CreatorName="CUYAHOGA\GREENG"
-  DTS:DTSID="{4FA79E74-B790-4EB9-A2BF-11CC146EBF12}"
+  DTS:DTSID="{EA569011-A8D7-417B-BD30-73ACF8169238}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.40"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Master-Validate"
+  DTS:ObjectName="Master-ValidateSyntax"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{A3CA6379-EE81-4495-A418-6353217D886A}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{39810991-8A86-4B62-B50B-CAD921E3BD47}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
