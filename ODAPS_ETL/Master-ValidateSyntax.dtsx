@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-ValidateSyntax"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{39810991-8A86-4B62-B50B-CAD921E3BD47}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{E8724E3E-B11E-4206-BFA0-1F339530A744}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -54,6 +54,7 @@
       DTS:refId="Package\Validate Casses"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{92E792E5-D987-473A-9772-999C3DD4A332}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
@@ -71,6 +72,7 @@
       DTS:refId="Package\Validate Contacts"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{4AF04910-0571-4C5B-9E39-55D9F27FB64A}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
@@ -88,6 +90,7 @@
       DTS:refId="Package\Validate Users"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
       DTS:DTSID="{3FD2C622-4767-43F4-AF63-350D9A6D803B}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
@@ -156,6 +159,18 @@
           Size="162,42"
           Id="Package\Validate Accounts"
           TopLeft="579,197" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Validate Casses"
+          TopLeft="382,468" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Validate Contacts"
+          TopLeft="577,325" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Validate Users"
+          TopLeft="764,465" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="658.25,107">
@@ -178,10 +193,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Validate Contacts"
-          TopLeft="577,325" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="658.5,239">
@@ -204,14 +215,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="183,42"
-          Id="Package\Validate Casses"
-          TopLeft="382,468" />
-        <NodeLayout
-          Size="192,42"
-          Id="Package\Validate Users"
-          TopLeft="764,465" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="657,367">
