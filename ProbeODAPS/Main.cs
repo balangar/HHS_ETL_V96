@@ -325,7 +325,9 @@ namespace ProbeODAPS
                             Diagnosed_Mental_Illness_Info__c,	 
                             Diagnosed_Mental_Illness__c
                         FROM
-                            APS_Case__c"},
+                            APS_Case__c
+                        Where
+                            Case_County__c = 'Cuyahoga'"},
                 {"Account",
                     @"Select
                             Id,
