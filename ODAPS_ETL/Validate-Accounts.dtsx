@@ -12,26 +12,12 @@
   DTS:ObjectName="Validate-Accounts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{E16EC757-985E-487E-939E-FEFA2E227AFB}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{108E80ED-8967-4DCD-8C23-325091A18029}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Execute SQL Task"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{033EDA70-7232-4761-8677-0112BDF65CF6}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Validate Syntax - Accounts"
       DTS:CreationName="Microsoft.Pipeline"
@@ -128,6 +114,84 @@
                       refId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conver NVarchar to Varchar"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Comments"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output].Columns[Comments_Converted]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output].Columns[Comments_Converted]"
+                      name="Comments_Converted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -697,998 +761,138 @@
               </outputs>
             </component>
             <component
-              refId="Package\Validate Syntax - Accounts\Union All"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All"
-              version="1">
+              refId="Package\Validate Syntax - Accounts\Update Invalid rows"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Invalid rows"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update Staging.Accounts
+    Set
+        IsValid = ?,
+        Comments = ?
+    Where
+        AccountKey = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Connections[OleDbConnection]"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
               <inputs>
                 <input
-                  refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1]"
-                  name="Union All Input 1">
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[AccountKey]"
-                      cachedDataType="i4"
-                      cachedName="AccountKey"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[AccountKey]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[AccountKey]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[SysInsertUser]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="SysInsertUser"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertUser]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SysInsertUser]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[SysInsertDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="SysInsertDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[ID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="ID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[ID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[CreatedByID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="CreatedByID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedByID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[CreatedByID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[CreatedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="CreatedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[CreatedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[LastModifiedById]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="LastModifiedById"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedById]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[LastModifiedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastModifiedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[SystemModstamp]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="SystemModstamp"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SystemModstamp]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[IsDeleted]"
-                      cachedDataType="bool"
-                      cachedName="IsDeleted"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsDeleted]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsDeleted]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[MasterRecordID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="MasterRecordID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[MasterRecordID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[MasterRecordID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[OwnerID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="OwnerID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[OwnerID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[OwnerID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[ParentID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="ParentID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ParentID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[ParentID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[RecordTypeID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="RecordTypeID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[RecordTypeID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[RecordTypeID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[Type]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="Type"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Type]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Type]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[Name]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Name"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Name]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[Description]"
-                      cachedDataType="nText"
-                      cachedName="Description"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Description]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Description]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[LastActivityDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastActivityDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastActivityDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastActivityDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[LastViewedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastViewedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastViewedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastViewedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[LastReferencedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastReferencedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastReferencedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastReferencedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[IsValid]"
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].Columns[IsValid]"
                       cachedDataType="bool"
                       cachedName="IsValid"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
-                      </properties>
-                    </inputColumn>
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]" />
                     <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[IsLoaded]"
-                      cachedDataType="bool"
-                      cachedName="IsLoaded"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsLoaded]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsLoaded]}</property>
-                      </properties>
-                    </inputColumn>
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].Columns[AccountKey]"
+                      cachedDataType="i4"
+                      cachedName="AccountKey"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[AccountKey]" />
                     <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[LoadDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="LoadDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LoadDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LoadDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1].Columns[Comments]"
-                      cachedDataType="wstr"
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].Columns[Comments_Converted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
                       cachedLength="1024"
-                      cachedName="Comments"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]">
+                      cachedName="Comments_Converted"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output].Columns[Comments_Converted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="bool"
+                      name="Param_0">
                       <properties>
                         <property
-                          containsID="true"
                           dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Comments]}</property>
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
                       </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 2]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 2">
-                  <externalMetadataColumns />
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[AccountKey]"
-                      dataType="i4"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[AccountKey]"
-                      name="AccountKey" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SysInsertUser]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SysInsertUser]"
-                      name="SysInsertUser" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]"
-                      name="SysInsertDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[ID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[ID]"
-                      name="ID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[CreatedByID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[CreatedByID]"
-                      name="CreatedByID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[CreatedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[CreatedDate]"
-                      name="CreatedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]"
-                      name="LastModifiedById" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]"
-                      name="LastModifiedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]"
-                      name="SystemModstamp" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsDeleted]"
-                      dataType="bool"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsDeleted]"
-                      name="IsDeleted" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[MasterRecordID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[MasterRecordID]"
-                      name="MasterRecordID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[OwnerID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[OwnerID]"
-                      name="OwnerID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[ParentID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[ParentID]"
-                      name="ParentID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[RecordTypeID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[RecordTypeID]"
-                      name="RecordTypeID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Type]"
-                      dataType="wstr"
-                      length="40"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Type]"
-                      name="Type" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Name]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Name]"
-                      name="Name" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Description]"
-                      dataType="nText"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Description]"
-                      name="Description" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastActivityDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastActivityDate]"
-                      name="LastActivityDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastViewedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastViewedDate]"
-                      name="LastViewedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastReferencedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LastReferencedDate]"
-                      name="LastReferencedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsValid]"
-                      dataType="bool"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsValid]"
-                      name="IsValid" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsLoaded]"
-                      dataType="bool"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[IsLoaded]"
-                      name="IsLoaded" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LoadDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[LoadDate]"
-                      name="LoadDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Comments]"
-                      dataType="wstr"
-                      length="1024"
-                      lineageId="Package\Validate Syntax - Accounts\Union All.Outputs[Union All Output 1].Columns[Comments]"
-                      name="Comments" />
-                  </outputColumns>
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]">
                   <externalMetadataColumns />
                 </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Validate Syntax - Accounts\Union All 1"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All 1"
-              version="1">
-              <inputs>
-                <input
-                  refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1]"
-                  name="Union All Input 1">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[AccountKey]"
-                      cachedDataType="i4"
-                      cachedName="AccountKey"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[AccountKey]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[AccountKey]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[SysInsertUser]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="SysInsertUser"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertUser]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SysInsertUser]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[SysInsertDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="SysInsertDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SysInsertDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[ID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="ID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[ID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[CreatedByID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="CreatedByID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedByID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[CreatedByID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[CreatedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="CreatedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[CreatedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[LastModifiedById]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="LastModifiedById"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedById]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastModifiedById]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[LastModifiedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastModifiedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastModifiedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[SystemModstamp]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="SystemModstamp"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SystemModstamp]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SystemModstamp]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[IsDeleted]"
-                      cachedDataType="bool"
-                      cachedName="IsDeleted"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsDeleted]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsDeleted]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[MasterRecordID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="MasterRecordID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[MasterRecordID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[MasterRecordID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[OwnerID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="OwnerID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[OwnerID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[OwnerID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[ParentID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="ParentID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ParentID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[ParentID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[RecordTypeID]"
-                      cachedDataType="wstr"
-                      cachedLength="18"
-                      cachedName="RecordTypeID"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[RecordTypeID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[RecordTypeID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[Type]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="Type"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Type]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Type]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[Name]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="Name"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Name]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Name]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[Description]"
-                      cachedDataType="nText"
-                      cachedName="Description"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Description]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Description]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[LastActivityDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastActivityDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastActivityDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastActivityDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[LastViewedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastViewedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastViewedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastViewedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[LastReferencedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastReferencedDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastReferencedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastReferencedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[IsValid]"
-                      cachedDataType="bool"
-                      cachedName="IsValid"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsValid]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[IsLoaded]"
-                      cachedDataType="bool"
-                      cachedName="IsLoaded"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsLoaded]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsLoaded]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[LoadDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="LoadDate"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LoadDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LoadDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1].Columns[Comments]"
-                      cachedDataType="wstr"
-                      cachedLength="1024"
-                      cachedName="Comments"
-                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Comments]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 2]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 2">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
                 <output
-                  refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[AccountKey]"
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[AccountKey]"
-                      name="AccountKey" />
+                      lineageId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
                     <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SysInsertUser]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SysInsertUser]"
-                      name="SysInsertUser" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SysInsertDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SysInsertDate]"
-                      name="SysInsertDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[ID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[ID]"
-                      name="ID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[CreatedByID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[CreatedByID]"
-                      name="CreatedByID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[CreatedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[CreatedDate]"
-                      name="CreatedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastModifiedById]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastModifiedById]"
-                      name="LastModifiedById" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastModifiedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastModifiedDate]"
-                      name="LastModifiedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SystemModstamp]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[SystemModstamp]"
-                      name="SystemModstamp" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsDeleted]"
-                      dataType="bool"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsDeleted]"
-                      name="IsDeleted" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[MasterRecordID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[MasterRecordID]"
-                      name="MasterRecordID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[OwnerID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[OwnerID]"
-                      name="OwnerID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[ParentID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[ParentID]"
-                      name="ParentID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[RecordTypeID]"
-                      dataType="wstr"
-                      length="18"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[RecordTypeID]"
-                      name="RecordTypeID" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Type]"
-                      dataType="wstr"
-                      length="40"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Type]"
-                      name="Type" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Name]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Name]"
-                      name="Name" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Description]"
-                      dataType="nText"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Description]"
-                      name="Description" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastActivityDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastActivityDate]"
-                      name="LastActivityDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastViewedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastViewedDate]"
-                      name="LastViewedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastReferencedDate]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LastReferencedDate]"
-                      name="LastReferencedDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsValid]"
-                      dataType="bool"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsValid]"
-                      name="IsValid" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsLoaded]"
-                      dataType="bool"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[IsLoaded]"
-                      name="IsLoaded" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LoadDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[LoadDate]"
-                      name="LoadDate" />
-                    <outputColumn
-                      refId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Comments]"
-                      dataType="wstr"
-                      length="1024"
-                      lineageId="Package\Validate Syntax - Accounts\Union All 1.Outputs[Union All Output 1].Columns[Comments]"
-                      name="Comments" />
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2878,8 +2082,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               name="ADO NET Source Output"
               startId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output]" />
             <path
+              refId="Package\Validate Syntax - Accounts.Paths[Data Conversion Output]"
+              endId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]"
+              name="Data Conversion Output"
+              startId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output]" />
+            <path
               refId="Package\Validate Syntax - Accounts.Paths[InvalidRows]"
-              endId="Package\Validate Syntax - Accounts\Union All.Inputs[Union All Input 1]"
+              endId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]"
               name="InvalidRows"
               startId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[InvalidRows]" />
             <path
@@ -2887,26 +2096,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               endId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input]"
               name="Output 0"
               startId="Package\Validate Syntax - Accounts\Validate.Outputs[Output 0]" />
-            <path
-              refId="Package\Validate Syntax - Accounts.Paths[ValidRows]"
-              endId="Package\Validate Syntax - Accounts\Union All 1.Inputs[Union All Input 1]"
-              name="ValidRows"
-              startId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[ValidRows]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
-  <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
-      DTS:CreationName=""
-      DTS:DTSID="{F896760C-95B5-40E9-8976-02173A9D6A93}"
-      DTS:From="Package\Validate Syntax - Accounts"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
-      DTS:To="Package\Execute SQL Task" />
-  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -2918,29 +2112,45 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="204,42"
           Id="Package\Validate Syntax - Accounts"
           TopLeft="531,71" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Validate Syntax - Accounts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
-          Size="163,42"
-          Id="Package\Execute SQL Task"
-          TopLeft="549,198" />
+          Size="154,42"
+          Id="Package\Validate Syntax - Accounts\Staging Accouts"
+          TopLeft="560,114" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Validate Syntax - Accounts\Validate"
+          TopLeft="580,215" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Validate Syntax - Accounts\Conditional Split"
+          TopLeft="564,323" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="631.75,113">
+          Id="Package\Validate Syntax - Accounts.Paths[Output 0]"
+          TopLeft="640,257">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,85"
+              StartConnector="{x:Null}"
+              EndConnector="0,66"
               Start="0,0"
-              End="0,77.5">
+              End="0,58.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,77.5" />
+                    End="0,58.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2949,28 +2159,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Validate Syntax - Accounts">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="117,42"
-          Id="Package\Validate Syntax - Accounts\Validate"
-          TopLeft="580,215" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Validate Syntax - Accounts\Staging Accouts"
-          TopLeft="560,114" />
         <EdgeLayout
           Id="Package\Validate Syntax - Accounts.Paths[ADO NET Source Output]"
           TopLeft="637.75,156">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,59"
               Start="0,0"
               End="0,51.5">
@@ -2988,23 +2182,51 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="155,42"
-          Id="Package\Validate Syntax - Accounts\Conditional Split"
-          TopLeft="564,323" />
+          Size="173,42"
+          Id="Package\Validate Syntax - Accounts\Update Invalid rows"
+          TopLeft="555,587" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar"
+          TopLeft="541,440" />
         <EdgeLayout
-          Id="Package\Validate Syntax - Accounts.Paths[Output 0]"
-          TopLeft="640,257">
+          Id="Package\Validate Syntax - Accounts.Paths[InvalidRows]"
+          TopLeft="644,365">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,66"
+              StartConnector="{x:Null}"
+              EndConnector="0,75"
               Start="0,0"
-              End="0,58.5">
+              End="0,67.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58.5" />
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.2641796875,28.87548828125,54.528359375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - Accounts.Paths[Data Conversion Output]"
+          TopLeft="644,482">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,105"
+              Start="0,0"
+              End="0,97.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,97.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3013,86 +2235,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="121,42"
-          Id="Package\Validate Syntax - Accounts\Union All"
-          TopLeft="432,461" />
-        <EdgeLayout
-          Id="Package\Validate Syntax - Accounts.Paths[InvalidRows]"
-          TopLeft="641.5,365">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-149,96"
-              Start="0,0"
-              End="-149,88.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,44" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,44"
-                    Point2="0,48"
-                    Point3="-4,48" />
-                  <mssgle:LineSegment
-                    End="-145,48" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-145,48"
-                    Point2="-149,48"
-                    Point3="-149,52" />
-                  <mssgle:LineSegment
-                    End="-149,88.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-110.49123046875,53,71.9824609375,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Validate Syntax - Accounts\Union All 1"
-          TopLeft="750,449" />
-        <EdgeLayout
-          Id="Package\Validate Syntax - Accounts.Paths[ValidRows]"
-          TopLeft="666,365">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="149,84"
-              Start="0,0"
-              End="149,76.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.1149425287356" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.1149425287356"
-                    Point2="0,34.1149425287356"
-                    Point3="4,34.1149425287356" />
-                  <mssgle:LineSegment
-                    End="145,34.1149425287356" />
-                  <mssgle:CubicBezierSegment
-                    Point1="145,34.1149425287356"
-                    Point2="149,34.1149425287356"
-                    Point3="149,38.1149425287356" />
-                  <mssgle:LineSegment
-                    End="149,76.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="51.14923828125,39.1149425287356,46.7015234375,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <AnnotationLayout
+          Text="Because SSIS INSISTS on using UNICODE."
+          ParentId="Package\Validate Syntax - Accounts"
+          Size="237,60"
+          Id="756e0c22-ff27-46e4-b5f8-b48a1b07adcf"
+          TopLeft="831,432">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FFF1F1F1">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
