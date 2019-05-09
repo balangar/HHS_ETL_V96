@@ -12,8 +12,8 @@
   DTS:ObjectName="Validate-Accounts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{F5484091-1F3C-4928-9939-C50B2D41CA7D}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{80EAD65B-7D24-4535-A5F1-2AFD238E7978}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1154,8 +1154,8 @@ public class ScriptMain : UserComponent
         bool isValid = true;
         DateTime dumbDate;  //Needed for DateTime.TryParse
 
-        // Required fields: ID, OwnerID, CreatedByID, CreatedDate , LastModifiedById, LastModifiedDate, SystemModstamp, Name 
-        #region Required Fields
+        // Non-nullable fields: ID, OwnerID, CreatedByID, CreatedDate , LastModifiedById, LastModifiedDate, SystemModstamp, Name 
+        #region Non-nullaable Fields
         if (Row.ID_IsNull || Row.ID.Trim() == string.Empty)
         {
             isValid = isValid && false;
@@ -1196,6 +1196,7 @@ public class ScriptMain : UserComponent
             isValid = isValid && false;
             runningComments += " Name is required.";
         }
+        // Non-nullable reference fields
         if(Row.ID.Length != REFERENCE_FIELD_LENGTH)
         {
             isValid = isValid && false;
@@ -1623,7 +1624,7 @@ namespace SC_5ccb1be6bb244db2a2f07331f7319f69.Properties {
     <msb:CodeName>SC_5ccb1be6bb244db2a2f07331f7319f69</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>SC_5ccb1be6bb244db2a2f07331f7319f69</msb:DisplayName>
-    <msb:ProjectId>{56F1954D-34C8-426B-B8D8-7EA05633F6A7}</msb:ProjectId>
+    <msb:ProjectId>{BDF0C53E-4323-4383-8A50-2367671AB182}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="SC_5ccb1be6bb244db2a2f07331f7319f69.csproj" />
@@ -1790,7 +1791,7 @@ using System.Runtime.CompilerServices;
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAEMS01wAAAAAAAAAAOAAIiALATAAACAAAAAIAAAAAAAAVj4A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMxo1FwAAAAAAAAAAOAAIiALATAAACAAAAAIAAAAAAAAVj4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAAQ+AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1919,8 +1920,8 @@ TgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0
 AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQA
 aABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AAA9JAG4AcAB1AHQAIAAwAABxUwBD
 AF8ANQBjAGMAYgAxAGIAZQA2AGIAYgAyADQANABkAGIAMgBhADIAZgAwADcAMwAzADEAZgA3ADMA
-MQA5AGYANgA5AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABQAdcJ
-DshBSJgTx9k/pRkdAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdBgcDDgIROQIGDgMgAA4FAAIC
+MQA5AGYANgA5AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAACn7W7T
+CsWUTr9seUNcN9maAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdBgcDDgIROQIGDgMgAA4FAAIC
 Dg4FAAIODg4HAAICDhAROQMgAAgFAAIODhwJIAMBEkEdCBJFAwYSQQMGHQgFIAEROQgEIAECCAQg
 AQ4IBSACAQgcAyAAAgYgAgIOEX0FIAEdCAgIAAESgIERgIUFIAASgIkHIAIBDhKAiQi3elxWGTTg
 iQiJhF3NgIDMkQMGEhQDBhIYAwYSSQMGElUDBhJZAwYSIAUgAQESDAQgABE5BCABAQIJIAQBCA4S
@@ -2171,39 +2172,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
-          Size="154,42"
-          Id="Package\Validate Syntax - Accounts\Staging Accouts"
-          TopLeft="560,114" />
+          Size="211,42"
+          Id="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar"
+          TopLeft="541,440" />
         <NodeLayout
           Size="117,42"
           Id="Package\Validate Syntax - Accounts\Validate"
           TopLeft="580,215" />
         <NodeLayout
+          Size="154,42"
+          Id="Package\Validate Syntax - Accounts\Staging Accouts"
+          TopLeft="560,114" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Validate Syntax - Accounts\Update Invalid rows"
+          TopLeft="555,587" />
+        <NodeLayout
           Size="155,42"
           Id="Package\Validate Syntax - Accounts\Conditional Split"
           TopLeft="564,323" />
-        <EdgeLayout
-          Id="Package\Validate Syntax - Accounts.Paths[Output 0]"
-          TopLeft="640,257">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,66"
-              Start="0,0"
-              End="0,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Validate Syntax - Accounts.Paths[ADO NET Source Output]"
           TopLeft="637.75,156">
@@ -2226,14 +2213,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Validate Syntax - Accounts\Update Invalid rows"
-          TopLeft="555,587" />
-        <NodeLayout
-          Size="211,42"
-          Id="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar"
-          TopLeft="541,440" />
+        <EdgeLayout
+          Id="Package\Validate Syntax - Accounts.Paths[Output 0]"
+          TopLeft="640,257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Validate Syntax - Accounts.Paths[InvalidRows]"
           TopLeft="644,365">
@@ -2283,7 +2284,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         <AnnotationLayout
           Text="Because SSIS INSISTS on using UNICODE."
           ParentId="Package\Validate Syntax - Accounts"
-          Size="237,60"
+          Size="237,37"
           Id="756e0c22-ff27-46e4-b5f8-b48a1b07adcf"
           TopLeft="831,432">
           <AnnotationLayout.FontInfo>

@@ -12,12 +12,1862 @@
   DTS:ObjectName="Validate-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{D1D214A5-E1CB-4B5A-8B71-1FA6820400F8}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{C3068D60-5D56-4ECE-ADB9-2373C8378DF0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Validate Syntax - Contacts"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{AEF05D26-E004-4B0E-B810-C370917E58E3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Validate Syntax - Contacts"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Validate Syntax - Contacts\Staging Contacts"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Staging Contacts"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Staging"."Contacts"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Validate Syntax - Contacts\Staging Contacts.Connections[IDbConnection]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ContactKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[ContactKey]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ContactKey]"
+                      name="ContactKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      name="SysInsertUser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      name="SysInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[CreatedByID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[CreatedByID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[CreatedByID]"
+                      name="CreatedByID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastModifiedById]"
+                      name="LastModifiedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
+                      name="SystemModstamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[OwnerId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[OwnerId]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[OwnerId]"
+                      name="OwnerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[AccountId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[AccountId]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[AccountId]"
+                      name="AccountId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MasterRecordId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MasterRecordId]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MasterRecordId]"
+                      name="MasterRecordId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Salutation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Salutation]"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Salutation]"
+                      name="Salutation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="80"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      length="128"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingStreet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingStreet]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingStreet]"
+                      name="MailingStreet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingCity]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingCity]"
+                      name="MailingCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingStateCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingStateCode]"
+                      length="10"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingStateCode]"
+                      name="MailingStateCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingPostalCode]"
+                      length="20"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingPostalCode]"
+                      name="MailingPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingAddress]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingAddress]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingAddress]"
+                      name="MailingAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Phone]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[HomePhone]"
+                      name="HomePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Email]"
+                      length="80"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Birthdate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Birthdate]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Birthdate]"
+                      name="Birthdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Approx_Age__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Approx_Age__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Approx_Age__c]"
+                      name="Approx_Age__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Gender_Code__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Gender_Code__c]"
+                      length="1500"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Gender_Code__c]"
+                      name="Gender_Code__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Gender__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Gender__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Gender__c]"
+                      name="Gender__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      name="Hoarding_or_animal_hoarding__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Income_Source__c]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Income_Source__c]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Income_Source__c]"
+                      name="Income_Source__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Marital_Status__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Marital_Status__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Marital_Status__c]"
+                      name="Marital_Status__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Medicaid__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Medicaid__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Medicaid__c]"
+                      name="Medicaid__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Medicare__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Medicare__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Medicare__c]"
+                      name="Medicare__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Race__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Race__c]"
+                      length="1500"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Race__c]"
+                      name="Race__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SSN__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SSN__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SSN__c]"
+                      name="SSN__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Person_Id__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Person_Id__c]"
+                      length="30"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Person_Id__c]"
+                      name="Person_Id__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Veteran_Status__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Veteran_Status__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Veteran_Status__c]"
+                      name="Veteran_Status__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Bed_Bugs__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Bed_Bugs__c]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Bed_Bugs__c]"
+                      name="Bed_Bugs__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsLoaded]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[IsLoaded]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsLoaded]"
+                      name="IsLoaded"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LoadDate]"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LoadDate]"
+                      name="LoadDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[ContactKey]"
+                      dataType="i4"
+                      name="ContactKey" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      dataType="wstr"
+                      length="18"
+                      name="SysInsertUser" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      dataType="wstr"
+                      length="18"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[CreatedByID]"
+                      dataType="wstr"
+                      length="18"
+                      name="CreatedByID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="LastModifiedById" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
+                      dataType="wstr"
+                      length="255"
+                      name="SystemModstamp" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[OwnerId]"
+                      dataType="wstr"
+                      length="18"
+                      name="OwnerId" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[AccountId]"
+                      dataType="wstr"
+                      length="18"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MasterRecordId]"
+                      dataType="wstr"
+                      length="18"
+                      name="MasterRecordId" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Salutation]"
+                      dataType="wstr"
+                      length="40"
+                      name="Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="40"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="80"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="128"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingStreet]"
+                      dataType="wstr"
+                      length="255"
+                      name="MailingStreet" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingCity]"
+                      dataType="wstr"
+                      length="50"
+                      name="MailingCity" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingStateCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="MailingStateCode" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingPostalCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="MailingPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[MailingAddress]"
+                      dataType="nText"
+                      name="MailingAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="50"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[HomePhone]"
+                      dataType="wstr"
+                      length="50"
+                      name="HomePhone" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="80"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Birthdate]"
+                      dataType="wstr"
+                      length="255"
+                      name="Birthdate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Approx_Age__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Approx_Age__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Gender_Code__c]"
+                      dataType="wstr"
+                      length="1500"
+                      name="Gender_Code__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Gender__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Hoarding_or_animal_hoarding__c]"
+                      dataType="bool"
+                      name="Hoarding_or_animal_hoarding__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Income_Source__c]"
+                      dataType="nText"
+                      name="Income_Source__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Marital_Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Marital_Status__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Medicaid__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Medicaid__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Medicare__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Medicare__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Race__c]"
+                      dataType="wstr"
+                      length="1500"
+                      name="Race__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SSN__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="SSN__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Person_Id__c]"
+                      dataType="wstr"
+                      length="30"
+                      name="Person_Id__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Veteran_Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Veteran_Status__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Bed_Bugs__c]"
+                      dataType="bool"
+                      name="Bed_Bugs__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      name="LoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ContactKey]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ContactKey]"
+                      name="ContactKey" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      name="SysInsertUser" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[CreatedByID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[CreatedByID]"
+                      name="CreatedByID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LastModifiedById]"
+                      name="LastModifiedById" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
+                      name="SystemModstamp" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[OwnerId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[OwnerId]"
+                      name="OwnerId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[AccountId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MasterRecordId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MasterRecordId]"
+                      name="MasterRecordId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Salutation]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Salutation]"
+                      name="Salutation" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingStreet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingStreet]"
+                      name="MailingStreet" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingCity]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingCity]"
+                      name="MailingCity" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingStateCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingStateCode]"
+                      name="MailingStateCode" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingPostalCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingPostalCode]"
+                      name="MailingPostalCode" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingAddress]"
+                      dataType="nText"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[MailingAddress]"
+                      name="MailingAddress" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Email]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Birthdate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Birthdate]"
+                      name="Birthdate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Approx_Age__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Approx_Age__c]"
+                      name="Approx_Age__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Gender_Code__c]"
+                      dataType="wstr"
+                      length="1500"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Gender_Code__c]"
+                      name="Gender_Code__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Gender__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Gender__c]"
+                      name="Gender__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Hoarding_or_animal_hoarding__c]"
+                      name="Hoarding_or_animal_hoarding__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Income_Source__c]"
+                      dataType="nText"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Income_Source__c]"
+                      name="Income_Source__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Marital_Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Marital_Status__c]"
+                      name="Marital_Status__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Medicaid__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Medicaid__c]"
+                      name="Medicaid__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Medicare__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Medicare__c]"
+                      name="Medicare__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Race__c]"
+                      dataType="wstr"
+                      length="1500"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Race__c]"
+                      name="Race__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SSN__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SSN__c]"
+                      name="SSN__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Person_Id__c]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Person_Id__c]"
+                      name="Person_Id__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Veteran_Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Veteran_Status__c]"
+                      name="Veteran_Status__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Bed_Bugs__c]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Bed_Bugs__c]"
+                      name="Bed_Bugs__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[IsLoaded]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[IsLoaded]"
+                      name="IsLoaded" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[LoadDate]"
+                      name="LoadDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - Contacts\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[ContactKey]"
+                      cachedDataType="i4"
+                      cachedName="ContactKey"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ContactKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[ContactKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[SysInsertUser]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="SysInsertUser"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertUser]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SysInsertUser]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[SysInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SysInsertDate"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[ID]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="ID"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[ID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[CreatedByID]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="CreatedByID"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[CreatedByID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[CreatedByID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[CreatedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CreatedDate"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[CreatedDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[CreatedDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[LastModifiedById]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="LastModifiedById"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastModifiedById]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[LastModifiedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastModifiedDate"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[SystemModstamp]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SystemModstamp"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SystemModstamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[OwnerId]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="OwnerId"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[OwnerId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[OwnerId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[AccountId]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="AccountId"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[AccountId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[AccountId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[MasterRecordId]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="MasterRecordId"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MasterRecordId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MasterRecordId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[IsDeleted]"
+                      cachedDataType="bool"
+                      cachedName="IsDeleted"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsDeleted]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsDeleted]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Salutation]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="Salutation"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Salutation]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Salutation]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="FirstName"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[FirstName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="LastName"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LastName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="Name"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[MailingStreet]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MailingStreet"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingStreet]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingStreet]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[MailingCity]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MailingCity"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingCity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingCity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[MailingStateCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="MailingStateCode"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingStateCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingStateCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[MailingPostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="MailingPostalCode"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingPostalCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingPostalCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[MailingAddress]"
+                      cachedDataType="nText"
+                      cachedName="MailingAddress"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[MailingAddress]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingAddress]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Phone"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[HomePhone]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="HomePhone"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[HomePhone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[HomePhone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Email]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Email"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Email]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Email]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Birthdate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Birthdate"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Birthdate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Birthdate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Approx_Age__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Approx_Age__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Approx_Age__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Approx_Age__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Gender_Code__c]"
+                      cachedDataType="wstr"
+                      cachedLength="1500"
+                      cachedName="Gender_Code__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Gender_Code__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Gender_Code__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Gender__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Gender__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Gender__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Hoarding_or_animal_hoarding__c]"
+                      cachedDataType="bool"
+                      cachedName="Hoarding_or_animal_hoarding__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Hoarding_or_animal_hoarding__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Hoarding_or_animal_hoarding__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Income_Source__c]"
+                      cachedDataType="nText"
+                      cachedName="Income_Source__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Income_Source__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Income_Source__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Marital_Status__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Marital_Status__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Marital_Status__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Marital_Status__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Medicaid__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Medicaid__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Medicaid__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Medicaid__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Medicare__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Medicare__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Medicare__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Medicare__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Race__c]"
+                      cachedDataType="wstr"
+                      cachedLength="1500"
+                      cachedName="Race__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Race__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Race__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[SSN__c]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SSN__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SSN__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SSN__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Person_Id__c]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Person_Id__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Person_Id__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Person_Id__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Veteran_Status__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Veteran_Status__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Veteran_Status__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Veteran_Status__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Bed_Bugs__c]"
+                      cachedDataType="bool"
+                      cachedName="Bed_Bugs__c"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Bed_Bugs__c]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Bed_Bugs__c]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[IsLoaded]"
+                      cachedDataType="bool"
+                      cachedName="IsLoaded"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[IsLoaded]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsLoaded]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[LoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LoadDate"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[LoadDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LoadDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Comments"
+                      lineageId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Comments]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Comments]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[ContactKey]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[ContactKey]"
+                      name="ContactKey" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SysInsertUser]"
+                      name="SysInsertUser" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]"
+                      name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[ID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[CreatedByID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[CreatedByID]"
+                      name="CreatedByID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[CreatedDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]"
+                      name="LastModifiedById" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]"
+                      name="LastModifiedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]"
+                      name="SystemModstamp" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[OwnerId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[OwnerId]"
+                      name="OwnerId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[AccountId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MasterRecordId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MasterRecordId]"
+                      name="MasterRecordId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Salutation]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Salutation]"
+                      name="Salutation" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[FirstName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastName]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingStreet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingStreet]"
+                      name="MailingStreet" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingCity]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingCity]"
+                      name="MailingCity" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingStateCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingStateCode]"
+                      name="MailingStateCode" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingPostalCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingPostalCode]"
+                      name="MailingPostalCode" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingAddress]"
+                      dataType="nText"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[MailingAddress]"
+                      name="MailingAddress" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Phone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[HomePhone]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[HomePhone]"
+                      name="HomePhone" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Email]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Birthdate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Birthdate]"
+                      name="Birthdate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Approx_Age__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Approx_Age__c]"
+                      name="Approx_Age__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Gender_Code__c]"
+                      dataType="wstr"
+                      length="1500"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Gender_Code__c]"
+                      name="Gender_Code__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Gender__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Gender__c]"
+                      name="Gender__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Hoarding_or_animal_hoarding__c]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Hoarding_or_animal_hoarding__c]"
+                      name="Hoarding_or_animal_hoarding__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Income_Source__c]"
+                      dataType="nText"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Income_Source__c]"
+                      name="Income_Source__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Marital_Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Marital_Status__c]"
+                      name="Marital_Status__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Medicaid__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Medicaid__c]"
+                      name="Medicaid__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Medicare__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Medicare__c]"
+                      name="Medicare__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Race__c]"
+                      dataType="wstr"
+                      length="1500"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Race__c]"
+                      name="Race__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SSN__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[SSN__c]"
+                      name="SSN__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Person_Id__c]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Person_Id__c]"
+                      name="Person_Id__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Veteran_Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Veteran_Status__c]"
+                      name="Veteran_Status__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Bed_Bugs__c]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Bed_Bugs__c]"
+                      name="Bed_Bugs__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsLoaded]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[IsLoaded]"
+                      name="IsLoaded" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[LoadDate]"
+                      name="LoadDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Contacts\Union All.Outputs[Union All Output 1].Columns[Comments]"
+                      name="Comments" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Validate Syntax - Contacts.Paths[ADO NET Source Output]"
+              endId="Package\Validate Syntax - Contacts\Union All.Inputs[Union All Input 1]"
+              name="ADO NET Source Output"
+              startId="Package\Validate Syntax - Contacts\Staging Contacts.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -25,5 +1875,65 @@
 <Objects
   Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Validate Syntax - Contacts"
+          TopLeft="462,89" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Validate Syntax - Contacts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Validate Syntax - Contacts\Staging Contacts"
+          TopLeft="506,75" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Validate Syntax - Contacts\Union All"
+          TopLeft="524,293" />
+        <EdgeLayout
+          Id="Package\Validate Syntax - Contacts.Paths[ADO NET Source Output]"
+          TopLeft="584.75,117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,176"
+              Start="0,0"
+              End="0,168.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,168.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,76.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Validate Syntax - Contacts\Staging Contacts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
