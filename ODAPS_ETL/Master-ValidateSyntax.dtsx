@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-ValidateSyntax"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{698FAFCC-906B-4173-B061-C5CF9B4F2240}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{0EB53861-5B81-4172-8CBF-A5DF8AFFA69E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -54,7 +54,6 @@
       DTS:refId="Package\Validate Casses"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{92E792E5-D987-473A-9772-999C3DD4A332}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
