@@ -148,6 +148,19 @@
     <Build Include="_Ancillary\InsertStagingContacts.sql" />
     <Build Include="_Ancillary\InsertStagingUsers.sql" />
     <Build Include="Security\POD.sql" />
+    <Build Include="Staging\Tables\Accounts.sql" />
+    <Build Include="dbo\Views\vw_User_Search_Staging.sql" />
+    <Build Include="dbo\Views\vw_possible_dups.sql" />
+    <Build Include="dbo\Views\vw_POD_AssignmentLetter_ba.sql" />
+    <Build Include="dbo\Views\VW_DSAS_POD.sql" />
+    <Build Include="dbo\Views\vw_Beese_Cases.sql" />
+    <Build Include="dbo\Views\vw_APS_Case_Worker_Sup_ba.sql" />
+    <Build Include="dbo\Views\View_5.sql" />
+    <Build Include="dbo\Views\View_3.sql" />
+    <Build Include="Security\HHS_ReportWriter.sql" />
+    <Build Include="Security\Cuy_ReportWriter.sql" />
+    <Build Include="Security\Cuy_DataLoader.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />

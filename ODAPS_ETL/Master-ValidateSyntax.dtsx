@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="4/30/2019 11:12:59 AM"
+  DTS:CreationDate="5/6/2019 10:23:31 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="JFS430619"
   DTS:CreatorName="CUYAHOGA\GREENG"
-  DTS:DTSID="{55812ED4-3AA2-4474-A794-EDF54F1BFD97}"
+  DTS:DTSID="{EA569011-A8D7-417B-BD30-73ACF8169238}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.40"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Master-Stage"
+  DTS:ObjectName="Master-ValidateSyntax"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{6B85E07B-813D-41F9-BF5F-DB995F57A913}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{1BEF4B2C-2C6F-45DB-ACCA-5B803DD001DA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -22,7 +22,7 @@
       DTS:refId="Package\Placeholder"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{3EFF85F3-2FA7-46AC-BD49-7FC296EF27CC}"
+      DTS:DTSID="{7B8EDAFF-3B08-4900-BB5F-1F87AEB5C236}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Placeholder"
@@ -34,70 +34,70 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Stage Accounts"
+      DTS:refId="Package\Validate Accounts"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{6B58CC15-AA9F-4166-B660-3189739530AA}"
+      DTS:DTSID="{A9144DE6-3D8B-4192-BE6C-4D6C39FE6AE0}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Stage Accounts"
+      DTS:ObjectName="Validate Accounts"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Stage_Accounts.dtsx</PackageName>
+          <PackageName>Validate-Accounts.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Stage Cases"
+      DTS:refId="Package\Validate Casses"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{308C2B7C-34BC-4BC8-9ABE-719A608E44D7}"
+      DTS:DTSID="{92E792E5-D987-473A-9772-999C3DD4A332}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Stage Cases"
+      DTS:ObjectName="Validate Casses"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Stage-Cases.dtsx</PackageName>
+          <PackageName>Validate-Cases.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Stage Contacts"
+      DTS:refId="Package\Validate Contacts"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{C69D8477-911C-49EE-B589-B2574B3CD0EF}"
+      DTS:DTSID="{4AF04910-0571-4C5B-9E39-55D9F27FB64A}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Stage Contacts"
+      DTS:ObjectName="Validate Contacts"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Stage-Contacts.dtsx</PackageName>
+          <PackageName>Validate-Contacts.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Stage Users"
+      DTS:refId="Package\Validate Users"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{FEF2A41B-9772-49F1-8E2E-250522F57ACC}"
+      DTS:DTSID="{3FD2C622-4767-43F4-AF63-350D9A6D803B}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Stage Users"
+      DTS:ObjectName="Validate Users"
       DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Stage-Users.dtsx</PackageName>
+          <PackageName>Validate-Users.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -106,35 +106,35 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{92404E10-F117-4A8D-9928-DD53F2D66009}"
-      DTS:From="Package\Stage Accounts"
+      DTS:DTSID="{55255747-64C9-4EB7-85B0-E08D00E7786E}"
+      DTS:From="Package\Placeholder"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Stage Contacts" />
+      DTS:To="Package\Validate Accounts" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{125F7341-4511-4030-B4FF-0CD6CEC0A479}"
-      DTS:From="Package\Stage Contacts"
+      DTS:DTSID="{F46A20BF-C2A8-4971-97A4-318243181B71}"
+      DTS:From="Package\Validate Accounts"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Stage Cases" />
+      DTS:To="Package\Validate Contacts" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{CF2BCED4-0E96-433A-984A-3738A0BCCDEC}"
-      DTS:From="Package\Stage Contacts"
+      DTS:DTSID="{B7700788-2F39-40CE-B56E-B94EFC45E7D9}"
+      DTS:From="Package\Validate Contacts"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Stage Users" />
+      DTS:To="Package\Validate Casses" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{F68A5F25-8E4A-486A-9111-B266BEBF4F0C}"
-      DTS:From="Package\Placeholder"
+      DTS:DTSID="{4FF6AEEF-DEB7-46B6-95BF-DC3CF1521442}"
+      DTS:From="Package\Validate Contacts"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
-      DTS:To="Package\Stage Accounts" />
+      DTS:To="Package\Validate Users" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -151,37 +151,37 @@
         <NodeLayout
           Size="133,42"
           Id="Package\Placeholder"
-          TopLeft="625,67" />
+          TopLeft="590,65" />
         <NodeLayout
-          Size="151,42"
-          Id="Package\Stage Accounts"
-          TopLeft="617,194" />
+          Size="162,42"
+          Id="Package\Validate Accounts"
+          TopLeft="579,197" />
         <NodeLayout
-          Size="136,42"
-          Id="Package\Stage Cases"
-          TopLeft="474,440" />
+          Size="183,42"
+          Id="Package\Validate Casses"
+          TopLeft="382,468" />
         <NodeLayout
-          Size="150,42"
-          Id="Package\Stage Contacts"
-          TopLeft="612,319" />
+          Size="160,42"
+          Id="Package\Validate Contacts"
+          TopLeft="577,325" />
         <NodeLayout
-          Size="135,42"
-          Id="Package\Stage Users"
-          TopLeft="753,439" />
+          Size="192,42"
+          Id="Package\Validate Users"
+          TopLeft="764,465" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="689.75,236">
+          TopLeft="658.25,107">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,83"
+              EndConnector="0,90"
               Start="0,0"
-              End="0,75.5">
+              End="0,82.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.5" />
+                    End="0,82.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -192,30 +192,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="687,361">
+          TopLeft="658.5,239">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-145,79"
+              EndConnector="0,86"
               Start="0,0"
-              End="-145,71.5">
+              End="0,78.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.5"
-                    Point2="0,39.5"
-                    Point3="-4,39.5" />
-                  <mssgle:LineSegment
-                    End="-141,39.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-141,39.5"
-                    Point2="-145,39.5"
-                    Point3="-145,43.5" />
-                  <mssgle:LineSegment
-                    End="-145,71.5" />
+                    End="0,78.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -226,30 +214,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="685.666666666667,361">
+          TopLeft="657,367">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="134.833333333333,78"
+              EndConnector="-183.5,101"
               Start="0,0"
-              End="134.833333333333,70.5">
+              End="-183.5,93.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.6939313984169" />
+                    End="0,46.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,33.6939313984169"
-                    Point2="0,37.6939313984169"
-                    Point3="4,37.6939313984169" />
+                    Point1="0,46.5"
+                    Point2="0,50.5"
+                    Point3="-4,50.5" />
                   <mssgle:LineSegment
-                    End="130.833333333333,37.6939313984169" />
+                    End="-179.5,50.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="130.833333333333,37.6939313984169"
-                    Point2="134.833333333333,37.6939313984169"
-                    Point3="134.833333333333,41.6939313984169" />
+                    Point1="-179.5,50.5"
+                    Point2="-183.5,50.5"
+                    Point3="-183.5,54.5" />
                   <mssgle:LineSegment
-                    End="134.833333333333,70.5" />
+                    End="-183.5,93.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -260,18 +248,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="692,109">
+          TopLeft="656.333333333333,367">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,85"
+              EndConnector="203.666666666667,98"
               Start="0,0"
-              End="0,77.5">
+              End="203.666666666667,90.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,77.5" />
+                    End="0,45.7821782178218" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.7821782178218"
+                    Point2="0,49.7821782178218"
+                    Point3="4,49.7821782178218" />
+                  <mssgle:LineSegment
+                    End="199.666666666667,49.7821782178218" />
+                  <mssgle:CubicBezierSegment
+                    Point1="199.666666666667,49.7821782178218"
+                    Point2="203.666666666667,49.7821782178218"
+                    Point3="203.666666666667,53.7821782178218" />
+                  <mssgle:LineSegment
+                    End="203.666666666667,90.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -1,0 +1,7 @@
+Fetch since lastModifiedDate > last time we ran
+
+https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_user.htm
+https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_getupdated.htm#topic-title
+https://developer.salesforce.com/blogs/engineering/2014/11/force-com-soql-performance-tips-systemmodstamp-vs-lastmodifieddate-2.html
+https://developer.salesforce.com/forums/?id=906F00000008qOYIAY
+https://salesforce.stackexchange.com/questions/56527/how-to-query-the-data-that-has-been-modified-in-last-24-hours

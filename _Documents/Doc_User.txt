@@ -1,4 +1,4 @@
-User: 	164 fields	05/02/2019 01:36:18
+User: 	164 fields	05/10/2019 10:55:20
 Id	: 	Type: id	Length :18	Label :User ID 
 Username	: 	Type: string	Length :80	Label :Username 
 LastName	: 	Type: string	Length :80	Label :Last Name 
@@ -66,7 +66,7 @@ UserPermissionsSFContentUser	: 	Type: boolean		Label :Salesforce CRM Content Use
 UserPermissionsKnowledgeUser	: 	Type: boolean		Label :Knowledge User 
 UserPermissionsInteractionUser	: 	Type: boolean		Label :Flow User 
 UserPermissionsSupportUser	: 	Type: boolean		Label :Service Cloud User 
-UserPermissionsLiveAgentUser	: 	Type: boolean		Label :Live Agent User 
+UserPermissionsLiveAgentUser	: 	Type: boolean		Label :Chat User 
 ForecastEnabled	: 	Type: boolean		Label :Allow Forecasting 
 UserPreferencesActivityRemindersPopup	: 	Type: boolean		Label :ActivityRemindersPopup 
 UserPreferencesEventRemindersCheckboxDefault	: 	Type: boolean		Label :EventRemindersCheckboxDefault 
