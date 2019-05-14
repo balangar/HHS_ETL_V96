@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="wN66/ozza0Y=" SSIS:IV="JSXGxRDKQkJs3+5f8sthmA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">lm/D67+fgTi/prpJ6Q+Vx3thEip0cTbpG+ZD8uI22cDJ3C5IhO+FXP+f6w3kOZySxrO9M7kJjMptuPl+sQ+GTP7skAQOEXaHxVo6KCbzi6Cgrks3cM7kjyxDMO6+n73hrarhRL5umY3i6qMm0LTlEE30vF3iduQ3/dU6gcrd4YQ3Jx9Wlb0lL7vOt64hqvg1</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="jI+whfg+bmA=" SSIS:IV="u3OMBgSEkABcSIK37rIedA==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">CKKEqj1fDqhD5e3OAkhIFBQ+gAZOO+0yfYGKnaa6wwGUfx/pV92uSkEby3iR6ae6V8WqwCFt0KHpo9axsKd87cGsxSX+Dutw6eYPqTBXY8UGEAsJnMJix2tW2GmqIbSlB1X/JwaE7WAMDUuejTQ1YBLtW3ynk8zIe5Pp5izkyqPcj83sTqGWuw40QFP3ig+Q</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -43,6 +43,7 @@
           <SSIS:Package SSIS:Name="Master-ValidateSyntax.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Master-TransformLoad.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="TransformLoad-Accounts.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="TransformLoad-Users.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="MS-DCFS-PSQL1.DSAS_ODAPS .Cuy_DataLoader.conmgr" />
@@ -1172,10 +1173,27 @@
                 <SSIS:Property SSIS:Name="Name">TransformLoad-Accounts</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{789D5929-01E7-4CD0-A108-31F7445BEDBF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C1B5FB8D-26A5-42C6-911D-9741A4205AA1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="TransformLoad-Users.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{503A4FD5-4EDC-4D04-804C-7C004DD2D2C7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">TransformLoad-Users</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C90F6ED0-03B4-47EB-B984-B5AE6AA2DD69}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
