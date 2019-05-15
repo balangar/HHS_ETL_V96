@@ -62,6 +62,10 @@ namespace ProbeODAPS
         public static void Close()
         {
             CSVWriter.Flush();
+            //StrWriter.Flush();
+
+            CSVWriter.Dispose();
+            //StrWriter.Dispose();
 
             CSVWriter = null;
             StrWriter = null;

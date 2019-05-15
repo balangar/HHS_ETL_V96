@@ -5,10 +5,10 @@
 
     [ID]               VARCHAR (18)   NOT NULL,
     [CreatedByID]      CHAR (18)      NULL,
-    [CreatedDate]      DATE           NULL,
+    [CreatedDate]      VARCHAR(50)    NULL,
     [LastModifiedById] CHAR (18)      NULL,
-    [LastModifiedDate] DATE           NULL,
-    [SystemModstamp]   DATETIME       NULL,
+    [LastModifiedDate] VARCHAR(50)    NULL,
+    [SystemModstamp]   VARCHAR(50)    NULL,
 
     [AccountID]        VARCHAR (18)   NULL,
     [ContactID]        VARCHAR (18)   NULL,
