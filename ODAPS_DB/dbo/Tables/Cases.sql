@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Cases]
 (
 	[CaseKey] INT IDENTITY(1,1) NOT NULL,
-	[SysInsertUser] VARCHAR(50) NOT NULL DEFAULT 'System',
+	[SysInsertUser] VARCHAR(50) NOT NULL DEFAULT 'Sys_ETL',
 	[SysInsertDate] DATETIME NOT NULL DEFAULT getdate(),
 	[ID] CHAR(18) NOT NULL,
 
@@ -18,7 +18,7 @@
     [Name]                             VARCHAR (80)   NULL,
     [ContactPersonID]                  VARCHAR (50)   NULL,
     [CaseSeqNo]                        VARCHAR (30)   NULL,
-    [Approximate_Age__c]               VARCHAR (50)   NULL,
+    [Approximate_Age__c]               DECIMAL(4,2)   NULL,
     [Caretaker_Neglect__c]             BIT            NOT NULL,
     [Client_Address__c]                VARCHAR (255)  NULL,
     [Client_Name__c]                   VARCHAR (18)   NULL,
