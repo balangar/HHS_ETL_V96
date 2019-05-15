@@ -8,6 +8,7 @@
     [LastModifiedById]                 VARCHAR (18)   NOT NULL,
     [LastModifiedDate]                 VARCHAR (50)   NOT NULL,
     [SystemModStamp]                   VARCHAR (50)   NOT NULL,
+
     [OwnerId]                          VARCHAR (18)   NULL,
     [RecordTypeID]                     VARCHAR (18)   NULL,
     [Owner_County__c]                  VARCHAR (255)  NULL,
