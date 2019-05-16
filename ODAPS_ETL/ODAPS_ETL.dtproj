@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="qY29JnuHTPI=" SSIS:IV="px+KGelrKQVaRcwIvkwZgg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">jCYeTArFpn34zDN3SwiPgnXUK0wJEv8IAJIxGoYODDl0+jN/dgq/ps0UlLYdXhb0E/lE9+gG4NqumyUqEqtz42MvPMw1om1rRf9ilDIJAEBd4DmjdJ63LHRFALMzT5dtvvIt0MlICEdVmBZ3/b1MLM8/iD/8l6tgORcicOMh41gWajXDfsjeZsP+BthjlTu4</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="5B+jzF3bqJg=" SSIS:IV="9WWODx34KFwDWCOlnG9stQ==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">j74p/TsDkdWiAaAHTta804A5HcZx3adFpIpZ8IC6EO50qJB5Uetsp5y76sJO1sVRGHApERL33Epsmjd+38O3Ci47w8dxJ3+KKjHRtDLqD59+2BHVTSwGikNYnGZ4xicfF9P23llUV1L4gBRcW9na9mLLNPFvgjrHeGrML952K6eoCfAsqPIvq47QTzqt01LH</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -45,6 +45,7 @@
           <SSIS:Package SSIS:Name="TransformLoad-Accounts.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="TransformLoad-Users.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="TransformLoad-Cases.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Master-Extract.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="MS-DCFS-PSQL1.DSAS_ODAPS .Cuy_DataLoader.conmgr" />
@@ -970,10 +971,10 @@
                 <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{DC716814-CBB6-420C-9345-D53D87FCF91E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C2417D1E-0A80-4233-8DB7-300B374C3E8F}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1157,10 +1158,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-TransformLoad</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E99A3DC1-A375-4E47-9747-AAD91A49D8CD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4C5A61FC-9CD9-42E3-9E2A-10D1C6FD7BFA}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1212,6 +1213,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{D45BC82E-3E82-4BD9-BC3B-F6B113C102BB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Master-Extract.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{E682D0FD-D33A-4DB8-A660-22D49561537A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Master-Extract</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DD2578E2-E25F-493F-8067-BA6457615824}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

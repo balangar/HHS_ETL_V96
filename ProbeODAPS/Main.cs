@@ -109,7 +109,7 @@ namespace ProbeODAPS
             }
             catch (Exception)
             {
-
+                returnStatus = -1;
                 throw;
             }
 
@@ -153,7 +153,7 @@ namespace ProbeODAPS
         }
         private static int ExtractSFObjects(ExtractOptions Options, Dictionary<string, string> SFObjectQueries, SoapClient EndPoint)
         {
-            int exitStatus = -1;
+            int exitStatus = 0;
 
             try
             {
@@ -167,6 +167,7 @@ namespace ProbeODAPS
             catch (Exception ex)
             {
                 Program.Logger.Error(ex.Message);
+                exitStatus = -1;
                 throw;
             }
             return exitStatus;
@@ -328,24 +329,24 @@ namespace ProbeODAPS
                             APS_Case__c
                         Where
                             Case_County__c = 'Cuyahoga'"},
-                {"Account",
-                    @"Select
-                            Id,
-                            IsDeleted,
-                            CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,
-                            MasterRecordId,
-                            OwnerId,
-                            ParentId,
-                            RecordTypeId,
-                            Type,
-                            Name,
-                            Description,
-                            LastActivityDate,LastViewedDate,LastReferencedDate
-                     From
-                        Account"}
+                    {"Account",
+                        @"Select
+                                Id,
+                                IsDeleted,
+                                CreatedDate,CreatedById,LastModifiedDate,LastModifiedById,SystemModstamp,
+                                MasterRecordId,
+                                OwnerId,
+                                ParentId,
+                                RecordTypeId,
+                                Type,
+                                Name,
+                                Description,
+                                LastActivityDate,LastViewedDate,LastReferencedDate
+                         From
+                            Account"}
                 };
 
-            int exitStatus = -1;
+            int exitStatus = 0;
             try
             {
                 if (SF.Login(SF_USER_NAME, SF_PASS_WORD, out SoapClient EndpointClient))

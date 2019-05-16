@@ -16,7 +16,7 @@ namespace ProbeODAPS
 
         internal static ILog Logger => logger;
 
-        private static void Main(string[] args)
+        private static int Main(string[] args)
         {
             var logRepository = LogManager.GetRepository(Assembly.GetExecutingAssembly());
             string processName = Process.GetCurrentProcess().ProcessName;
@@ -55,11 +55,13 @@ namespace ProbeODAPS
             }
 
             Logger.Info($"{processName} finished. Time taken: {(double)stopWatch.ElapsedMilliseconds / 1000:0.000} secs");
-
+#if DEBUG
             Console.Write("\nAny key to exit: ");
             Console.ReadKey();
+#endif
 
-            Environment.ExitCode = exitCode;
+            //Environment.ExitCode = exitCode;
+            return 0;
         }
 
     }
