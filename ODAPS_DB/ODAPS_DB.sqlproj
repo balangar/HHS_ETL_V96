@@ -162,6 +162,8 @@
     <Build Include="Security\Cuy_DataLoader.sql" />
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Tables\Accounts.sql" />
+    <Build Include="dbo\Views\vw_DSAS_POD_Original.sql" />
+    <Build Include="dbo\Views\View_4.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />
