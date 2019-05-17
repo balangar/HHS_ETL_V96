@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{0735922E-6AB5-4D23-9D9F-5022BBCDF7E3}">
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{B7B821A0-9347-4C4A-911C-169B60BD01B6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1485,8 +1485,7 @@
                       name="CreatedByID" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[CreatedDate]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="dbTimeStamp"
                       name="CreatedDate" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedById]"
@@ -1495,13 +1494,11 @@
                       name="LastModifiedById" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedDate]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="dbTimeStamp"
                       name="LastModifiedDate" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SystemModstamp]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="dbTimeStamp"
                       name="SystemModstamp" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[OwnerId]"
@@ -1863,35 +1860,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="158,42"
-          Id="Package\Import Staging Contacts\Staging Contacts"
-          TopLeft="567,282" />
-        <NodeLayout
           Size="166,42"
           Id="Package\Import Staging Contacts\SF Contact Extract"
           TopLeft="559,115" />
-        <EdgeLayout
-          Id="Package\Import Staging Contacts.Paths[Flat File Source Output]"
-          TopLeft="644,157">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,125"
-              Start="0,0"
-              End="0,117.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,117.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Import Staging Contacts\Staging Contacts"
+          TopLeft="567,282" />
         <NodeLayout
           Size="121,42"
           Id="Package\Import Staging Contacts\Union All"
@@ -1918,6 +1893,28 @@
             <mssgm:EdgeLabel
               BoundingBox="20.62361328125,5,127.2527734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Staging Contacts.Paths[Flat File Source Output]"
+          TopLeft="644,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,125"
+              Start="0,0"
+              End="0,117.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,117.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

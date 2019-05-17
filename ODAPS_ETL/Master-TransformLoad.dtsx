@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-TransformLoad"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{5B504E42-4D83-4009-AFB8-9C64BB4F8838}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{684424FF-D128-4960-9D11-7F44255A2ED1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -26,21 +26,6 @@
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Placehoder"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Placeholder for Contacts"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{F38C3635-2295-4086-A3B1-11B77E7948DC}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Placeholder for Contacts"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -79,6 +64,24 @@
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
           <PackageName>TransformLoad-Cases.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform Load Contacts"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{7D262841-2046-4667-BE38-127504EFB212}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform Load Contacts"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>TransformLoad-Contacts.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -128,24 +131,24 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{B2B32642-F2CC-4FBA-81B7-85131275FD08}"
+      DTS:DTSID="{BEC79B79-648A-449D-BC66-85AC79F90EEC}"
       DTS:From="Package\Transform Load Accounts"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Placeholder for Contacts" />
+      DTS:To="Package\Transform Load Contacts" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{F95871BB-DF98-47FF-A2F9-37F18994150B}"
-      DTS:From="Package\Placeholder for Contacts"
+      DTS:DTSID="{094268B2-6052-40C3-9274-18007A12F9B6}"
+      DTS:From="Package\Transform Load Contacts"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Transform Load Cases" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{06CEE78F-C547-4056-99BA-D97ABCA5FAEA}"
-      DTS:From="Package\Placeholder for Contacts"
+      DTS:DTSID="{2C277878-0E09-40C4-A3C4-CDEE8FBAAEC4}"
+      DTS:From="Package\Transform Load Contacts"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
       DTS:To="Package\Transform Load Users" />
@@ -175,10 +178,6 @@
           Id="Package\Placehoder"
           TopLeft="573,67" />
         <NodeLayout
-          Size="193,42"
-          Id="Package\Placeholder for Contacts"
-          TopLeft="539,332" />
-        <NodeLayout
           Size="199,42"
           Id="Package\Transform Load Accounts"
           TopLeft="540,235" />
@@ -187,12 +186,42 @@
           Id="Package\Transform Load Cases"
           TopLeft="419,448" />
         <NodeLayout
+          Size="197,42"
+          Id="Package\Transform Load Contacts"
+          TopLeft="546,332" />
+        <NodeLayout
           Size="183,42"
           Id="Package\Transform Load Users"
           TopLeft="724,450" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Truncate Prod tables"
+          TopLeft="556,150" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="641.5,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="637.5,277">
+          TopLeft="642,277">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -214,13 +243,13 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="635.5,374">
+          TopLeft="644.5,374">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-124.5,74"
+              EndConnector="-133.5,74"
               Start="0,0"
-              End="-124.5,66.5">
+              End="-133.5,66.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -231,13 +260,13 @@
                     Point2="0,37"
                     Point3="-4,37" />
                   <mssgle:LineSegment
-                    End="-120.5,37" />
+                    End="-129.5,37" />
                   <mssgle:CubicBezierSegment
-                    Point1="-120.5,37"
-                    Point2="-124.5,37"
-                    Point3="-124.5,41" />
+                    Point1="-129.5,37"
+                    Point2="-133.5,37"
+                    Point3="-133.5,41" />
                   <mssgle:LineSegment
-                    End="-124.5,66.5" />
+                    End="-133.5,66.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -248,56 +277,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="666.333333333333,374">
+          TopLeft="644,374">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="149.166666666667,76"
+              EndConnector="171.5,76"
               Start="0,0"
-              End="149.166666666667,68.5">
+              End="171.5,68.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.7749229188078" />
+                    End="0,32.7673716012085" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26.7749229188078"
-                    Point2="0,30.7749229188078"
-                    Point3="4,30.7749229188078" />
+                    Point1="0,32.7673716012085"
+                    Point2="0,36.7673716012085"
+                    Point3="4,36.7673716012085" />
                   <mssgle:LineSegment
-                    End="145.166666666667,30.7749229188078" />
+                    End="167.5,36.7673716012085" />
                   <mssgle:CubicBezierSegment
-                    Point1="145.166666666667,30.7749229188078"
-                    Point2="149.166666666667,30.7749229188078"
-                    Point3="149.166666666667,34.7749229188078" />
+                    Point1="167.5,36.7673716012085"
+                    Point2="171.5,36.7673716012085"
+                    Point3="171.5,40.7673716012085" />
                   <mssgle:LineSegment
-                    End="149.166666666667,68.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Truncate Prod tables"
-          TopLeft="556,150" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="641.5,109">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,41"
-              Start="0,0"
-              End="0,33.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="171.5,68.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -331,7 +334,7 @@
         <AnnotationLayout
           Text="Temporary 'til incremental load ready. [geg]"
           ParentId="Package"
-          Size="244,60"
+          Size="244,37"
           Id="4fa7d1bd-39fb-48cd-9027-d4e5206403f4"
           TopLeft="801,165">
           <AnnotationLayout.FontInfo>
