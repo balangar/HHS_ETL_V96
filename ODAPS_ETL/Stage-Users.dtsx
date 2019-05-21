@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Users"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="30"
-  DTS:VersionGUID="{5B1B4F2D-BCF5-415C-9D15-F8B12A49DAC0}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{6B50FF4F-C811-4B5A-B514-09AA08E0F83C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -783,8 +783,7 @@
                       name="CreatedByID" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[CreatedDate]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbTimeStamp"
                       name="CreatedDate" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedById]"
@@ -793,13 +792,11 @@
                       name="LastModifiedById" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedDate]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbTimeStamp"
                       name="LastModifiedDate" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[SystemModstamp]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbTimeStamp"
                       name="SystemModstamp" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[AccountID]"
