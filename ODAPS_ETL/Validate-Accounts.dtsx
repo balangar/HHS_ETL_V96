@@ -1,0 +1,2311 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/6/2019 10:24:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GREENG"
+  DTS:DTSID="{BE7C5629-D573-4053-B6EE-8F73BE445049}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Validate-Accounts"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{80EAD65B-7D24-4535-A5F1-2AFD238E7978}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Validate Syntax - Accounts"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4BFBE204-9E50-4D33-A24F-9F668BE7D8EF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Validate Syntax - Accounts"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Validate Syntax - Accounts\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[InvalidRows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="InvalidRows"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">!#{Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!IsValid</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[ValidRows]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="ValidRows"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conver NVarchar to Varchar"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Comments"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output].Columns[Comments_Converted]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output].Columns[Comments_Converted]"
+                      name="Comments_Converted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - Accounts\Staging Accouts"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Staging Accouts"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Staging"."Accounts"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Validate Syntax - Accounts\Staging Accouts.Connections[IDbConnection]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[AccountKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[AccountKey]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[AccountKey]"
+                      name="AccountKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      name="SysInsertUser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      name="SysInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedByID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[CreatedByID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedByID]"
+                      name="CreatedByID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedById]"
+                      name="LastModifiedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
+                      name="SystemModstamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[MasterRecordID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[MasterRecordID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[MasterRecordID]"
+                      name="MasterRecordID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[OwnerID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[OwnerID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[OwnerID]"
+                      name="OwnerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ParentID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[ParentID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ParentID]"
+                      name="ParentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[RecordTypeID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[RecordTypeID]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[RecordTypeID]"
+                      name="RecordTypeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Type]"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Description]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastActivityDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastActivityDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastActivityDate]"
+                      name="LastActivityDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastViewedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastViewedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastViewedDate]"
+                      name="LastViewedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastReferencedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastReferencedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastReferencedDate]"
+                      name="LastReferencedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsLoaded]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[IsLoaded]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsLoaded]"
+                      name="IsLoaded"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LoadDate]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LoadDate]"
+                      name="LoadDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[AccountKey]"
+                      dataType="i4"
+                      name="AccountKey" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="SysInsertUser" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      dataType="wstr"
+                      length="18"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[CreatedByID]"
+                      dataType="wstr"
+                      length="18"
+                      name="CreatedByID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="LastModifiedById" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
+                      dataType="wstr"
+                      length="50"
+                      name="SystemModstamp" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[MasterRecordID]"
+                      dataType="wstr"
+                      length="18"
+                      name="MasterRecordID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[OwnerID]"
+                      dataType="wstr"
+                      length="18"
+                      name="OwnerID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[ParentID]"
+                      dataType="wstr"
+                      length="18"
+                      name="ParentID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[RecordTypeID]"
+                      dataType="wstr"
+                      length="18"
+                      name="RecordTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="40"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Description]"
+                      dataType="nText"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastActivityDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastActivityDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastViewedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastViewedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LastReferencedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastReferencedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      name="LoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[AccountKey]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[AccountKey]"
+                      name="AccountKey" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      name="SysInsertUser" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[CreatedByID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[CreatedByID]"
+                      name="CreatedByID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastModifiedById]"
+                      name="LastModifiedById" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
+                      name="SystemModstamp" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[MasterRecordID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[MasterRecordID]"
+                      name="MasterRecordID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[OwnerID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[OwnerID]"
+                      name="OwnerID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ParentID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ParentID]"
+                      name="ParentID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[RecordTypeID]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[RecordTypeID]"
+                      name="RecordTypeID" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Type]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Description]"
+                      dataType="nText"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastActivityDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastActivityDate]"
+                      name="LastActivityDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastViewedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastViewedDate]"
+                      name="LastViewedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastReferencedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LastReferencedDate]"
+                      name="LastReferencedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[IsLoaded]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[IsLoaded]"
+                      name="IsLoaded" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[LoadDate]"
+                      name="LoadDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - Accounts\Update Invalid rows"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Invalid rows"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update Staging.Accounts
+    Set
+        IsValid = ?,
+        Comments = ?
+    Where
+        AccountKey = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Connections[OleDbConnection]"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].Columns[AccountKey]"
+                      cachedDataType="i4"
+                      cachedName="AccountKey"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[AccountKey]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].Columns[Comments_Converted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Comments_Converted"
+                      externalMetadataColumnId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output].Columns[Comments_Converted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="bool"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - Accounts\Update Invalid rows.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - Accounts\Validate"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Validate"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        const int REFERENCE_FIELD_LENGTH = 18;
+
+        string runningComments = string.Empty;
+        bool isValid = true;
+        DateTime dumbDate;  //Needed for DateTime.TryParse
+
+        // Non-nullable fields: ID, OwnerID, CreatedByID, CreatedDate , LastModifiedById, LastModifiedDate, SystemModstamp, Name 
+        #region Non-nullaable Fields
+        if (Row.ID_IsNull || Row.ID.Trim() == string.Empty)
+        {
+            isValid = isValid && false;
+            runningComments += "ID is required.";
+        }
+        if (Row.OwnerID_IsNull || Row.OwnerID.Trim() == string.Empty)
+        {
+            isValid = isValid && false;
+            runningComments += " OwnerId is required.";
+        }
+        if (Row.CreatedByID_IsNull || Row.CreatedByID.Trim() == string.Empty)
+        {
+            isValid = isValid && false;
+            runningComments += " CreatedByID is required.";
+        }
+        if (Row.CreatedDate_IsNull || Row.CreatedDate.Trim() == string.Empty || !DateTime.TryParse(Row.CreatedDate, out dumbDate))
+        {
+            isValid = isValid && false;
+            runningComments += " CreatedDate is required.";
+        }
+        if (Row.LastModifiedById_IsNull || Row.LastModifiedById.Trim() == string.Empty)
+        {
+            isValid = isValid && false;
+            runningComments += " LastModifiedById is required.";
+        }
+        if (Row.LastModifiedDate_IsNull || Row.LastModifiedDate.Trim() == string.Empty || !DateTime.TryParse(Row.LastModifiedDate, out dumbDate))
+        {
+            isValid = isValid && false;
+            runningComments += " LastModifiedDate is required.";
+        }
+        if (Row.SystemModstamp_IsNull || Row.SystemModstamp.Trim() == string.Empty || !DateTime.TryParse(Row.SystemModstamp, out dumbDate))
+        {
+            isValid = isValid && false;
+            runningComments += " SystemModstamp is required.";
+        }
+        if (Row.Name_IsNull || Row.Name.Trim() == string.Empty)
+        {
+            isValid = isValid && false;
+            runningComments += " Name is required.";
+        }
+        // Non-nullable reference fields
+        if(Row.ID.Length != REFERENCE_FIELD_LENGTH)
+        {
+            isValid = isValid && false;
+            runningComments += string.Format("ID length {0} invalid.", Row.ID.Length);
+        }
+        if (Row.OwnerID.Length != REFERENCE_FIELD_LENGTH)
+        {
+            isValid = isValid && false;
+            runningComments += string.Format("OwnerID length {0} invalOwnerID.", Row.OwnerID.Length);
+        }
+        if (Row.CreatedByID.Length != REFERENCE_FIELD_LENGTH)
+        {
+            isValid = isValid && false;
+            runningComments += string.Format("CreatedByID length {0} invalCreatedByID.", Row.CreatedByID.Length);
+        }
+        if (Row.LastModifiedById.Length != REFERENCE_FIELD_LENGTH)
+        {
+            isValid = isValid && false;
+            runningComments += string.Format("LastModifiedById length {0} invalModifiedById.", Row.LastModifiedById.Length);
+        }
+        if (Row.LastModifiedById.Length != REFERENCE_FIELD_LENGTH)
+        {
+            isValid = isValid && false;
+            runningComments += string.Format("LastModifiedById length {0} invalModifiedById.", Row.LastModifiedById.Length);
+        }
+        #endregion
+
+
+
+        Row.IsValid = isValid;
+        Row.Comments = runningComments;
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public DateTime SysInsertDate
+    {
+        get
+        {
+            return Buffer.GetDateTime(BufferColumnIndexes[0]);
+        }
+    }
+    public bool SysInsertDate_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String CreatedDate
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool CreatedDate_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String LastModifiedDate
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool LastModifiedDate_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String SystemModstamp
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool SystemModstamp_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String LastActivityDate
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool LastActivityDate_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String LastViewedDate
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool LastViewedDate_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public Boolean IsValid
+    {
+        get
+        {
+            return Buffer.GetBoolean(BufferColumnIndexes[6]);
+        }
+        set
+        {
+            this[6] = value;
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(6);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+        set
+        {
+            this[7] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(7);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ID_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String CreatedByID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool CreatedByID_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public String LastModifiedById
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[10]);
+        }
+    }
+    public bool LastModifiedById_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public Boolean IsDeleted
+    {
+        get
+        {
+            return Buffer.GetBoolean(BufferColumnIndexes[11]);
+        }
+    }
+    public bool IsDeleted_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public String OwnerID
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[12]);
+        }
+    }
+    public bool OwnerID_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public String Name
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[13]);
+        }
+    }
+    public bool Name_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5ccb1be6bb244db2a2f07331f7319f69.Properties.Settings.get_Default():SC_5ccb1be6bb244db2a2f07331f7319f69.Properties.Sett" +
+    "ings")]
+
+namespace SC_5ccb1be6bb244db2a2f07331f7319f69.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5ccb1be6bb244db2a2f07331f7319f69.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5ccb1be6bb244db2a2f07331f7319f69.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_5ccb1be6bb244db2a2f07331f7319f69.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_5ccb1be6bb244db2a2f07331f7319f69.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_5ccb1be6bb244db2a2f07331f7319f69.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_5ccb1be6bb244db2a2f07331f7319f69</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_5ccb1be6bb244db2a2f07331f7319f69</msb:DisplayName>
+    <msb:ProjectId>{BDF0C53E-4323-4383-8A50-2367671AB182}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_5ccb1be6bb244db2a2f07331f7319f69.csproj" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_5ccb1be6bb244db2a2f07331f7319f69")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_5ccb1be6bb244db2a2f07331f7319f69")]
+[assembly: AssemblyCopyright("Copyright @  2019")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_5ccb1be6bb244db2a2f07331f7319f69.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{aac75f4f-1eef-43a9-900f-4295f6d28849}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_5ccb1be6bb244db2a2f07331f7319f69</RootNamespace>
+    <AssemblyName>SC_5ccb1be6bb244db2a2f07331f7319f69</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_5ccb1be6bb244db2a2f07331f7319f69" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC140</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_5ccb1be6bb244db2a2f07331f7319f69.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMxo1FwAAAAAAAAAAOAAIiALATAAACAAAAAIAAAAAAAAVj4A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAAQ+AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAXB4AAAAgAAAAIAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAiAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAKAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAA4
+PgAAAAAAAEgAAAACAAUAQCYAAAwXAAABAAAAAAAAAEw9AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAwD0AgAAAQAAEX4QAAAKChcLA28ZAAAGLRcDbxgAAAZv
+EQAACn4QAAAKKBIAAAosFAcsAxYrARYLBnIBAABwKBMAAAoKA28hAAAGLRcDbyAAAAZvEQAACn4Q
+AAAKKBIAAAosFAcsAxYrARYLBnIhAABwKBMAAAoKA28bAAAGLRcDbxoAAAZvEQAACn4QAAAKKBIA
+AAosFAcsAxYrARYLBnJNAABwKBMAAAoKA28HAAAGLSYDbwYAAAZvEQAACn4QAAAKKBIAAAotDwNv
+BgAABhICKBQAAAotFAcsAxYrARYLBnKBAABwKBMAAAoKA28dAAAGLRcDbxwAAAZvEQAACn4QAAAK
+KBIAAAosFAcsAxYrARYLBnK1AABwKBMAAAoKA28JAAAGLSYDbwgAAAZvEQAACn4QAAAKKBIAAAot
+DwNvCAAABhICKBQAAAotFAcsAxYrARYLBnLzAABwKBMAAAoKA28LAAAGLSYDbwoAAAZvEQAACn4Q
+AAAKKBIAAAotDwNvCgAABhICKBQAAAotFAcsAxYrARYLBnIxAQBwKBMAAAoKA28jAAAGLRcDbyIA
+AAZvEQAACn4QAAAKKBIAAAosFAcsAxYrARYLBnJrAQBwKBMAAAoKA28YAAAGbxUAAAofEi4pBywD
+FisBFgsGcpEBAHADbxgAAAZvFQAACowcAAABKBYAAAooEwAACgoDbyAAAAZvFQAACh8SLikHLAMW
+KwEWCwZyvwEAcANvIAAABm8VAAAKjBwAAAEoFgAACigTAAAKCgNvGgAABm8VAAAKHxIuKQcsAxYr
+ARYLBnIBAgBwA28aAAAGbxUAAAqMHAAAASgWAAAKKBMAAAoKA28cAAAGbxUAAAofEi4pBywDFisB
+FgsGclMCAHADbxwAAAZvFQAACowcAAABKBYAAAooEwAACgoDbxwAAAZvFQAACh8SLikHLAMWKwEW
+CwZyUwIAcANvHAAABm8VAAAKjBwAAAEoFgAACigTAAAKCgMHbxEAAAYDBm8VAAAGKh4CKCYAAAYq
+KgIDBAUoFwAACipSAnsYAAAKAnsZAAAKFpRvGgAACioiAhYoGwAACipSAnsYAAAKAnsZAAAKF5Rv
+HAAACioiAhcoGwAACipSAnsYAAAKAnsZAAAKGJRvHAAACioiAhgoGwAACipSAnsYAAAKAnsZAAAK
+GZRvHAAACioiAhkoGwAACipSAnsYAAAKAnsZAAAKGpRvHAAACioiAhooGwAACipSAnsYAAAKAnsZ
+AAAKG5RvHAAACioiAhsoGwAACipSAnsYAAAKAnsZAAAKHJRvHQAACio6AhwDjB0AAAEoHgAACioi
+AhwoGwAACipaAywIAhwoHwAACipysQIAcHMgAAAKelICexgAAAoCexkAAAodlG8cAAAKKiYCHQMo
+HgAACioiAh0oGwAACipaAywIAh0oHwAACipysQIAcHMgAAAKelICexgAAAoCexkAAAoelG8cAAAK
+KiICHigbAAAKKlYCexgAAAoCexkAAAofCZRvHAAACiomAh8JKBsAAAoqVgJ7GAAACgJ7GQAACh8K
+lG8cAAAKKiYCHwooGwAACipWAnsYAAAKAnsZAAAKHwuUbx0AAAoqJgIfCygbAAAKKlYCexgAAAoC
+exkAAAofDJRvHAAACiomAh8MKBsAAAoqVgJ7GAAACgJ7GQAACh8NlG8cAAAKKiYCHw0oGwAACioe
+AighAAAKKh4CKCIAAAoqfgIoIwAACgICcyoAAAZ9AQAABAICcysAAAZ9AgAABCqSBHJOAwBwGm8k
+AAAKLBUCBQIDKCUAAAoOBHMDAAAGbygAAAYqSisHAgNvKQAABgNvJAAABi3xKgYqOgIoJgAACgID
+fQMAAAQqOgIoJgAACgIDfQQAAAQqHgIoJgAACiqufgUAAAQtHnJeAwBw0AcAAAIoJwAACm8oAAAK
+cykAAAqABQAABH4FAAAEKhp+BgAABCoeAoAGAAAEKhp+BwAABCoeAigqAAAKKi5zMQAABoAHAAAE
+KgAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAWAgAACN+AADECAAAjAgAACNT
+dHJpbmdzAAAAAFARAADQAwAAI1VTACAVAAAQAAAAI0dVSUQAAAAwFQAA3AEAACNCbG9iAAAAAAAA
+AAIAAAFXFaIBCQEAAAD6ATMAFgAAAQAAACIAAAAIAAAABwAAADIAAAARAAAAKgAAABAAAAABAAAA
+AwAAAB8AAAAkAAAAAQAAAAQAAAABAAAAAADCAwEAAAAAAAYAxQKHBgYAWQOHBgYAEQJ0Bg8A+wYA
+AAYAPgK2BQYAqAK2BQYAiQK2BQYAQAO2BQYA5QK2BQYA/gK2BQYAVQK2BQYAcAJ9AwoAGQP2AAYA
+7QBeBQoARgb2AA4ANwb2AAoA/wX2AAoA6Qf2AAYArAdeBQYA9AF0BgYAVwanBgYA8wWhBRIAxAGs
+AxIAJQKsAxIARAGMBQYA2QGHBgYAmgNeBQYAAQBeBQYAeQVeBQYAyAVeBQYA4gVeBQYAFwFeBQYA
+swBeBQYAbgi2BQAAAAArAAAAAAABAAEAAQAQAIEFAAAQAAEAAQABABAAKgYAAD0AAQADAAEAEADL
+BwAASQABACYAAQAQAHgHAABNAAMAKgABABAAOQcAAE0ABAArAAAAEACuBgoHTQAFACwAAAEQAGgH
+CgdlAAcAMAAGAHgHqQAGADkHrQABANkHsQABANkHsQARAGoFtQARADQBuQARAKMAvQBQIAAAAADG
+AEsIwQABAFAjAAAAAIYYZwYGAAIAWCMAAAAAhhhnBkcAAgBjIwAAAACGCJ0BxwAFAHgjAAAAAIYI
+1gRvAAUAgSMAAAAAhgh6ASUABQCWIwAAAACGCKUEbwAFAJ8jAAAAAIYIZQElAAUAtCMAAAAAhgiJ
+BG8ABQC9IwAAAACGCBcGJQAFANIjAAAAAIYICwVvAAUA2yMAAAAAhgivASUABQDwIwAAAACGCO8E
+bwAFAPkjAAAAAIYIigElAAUADiQAAAAAhgi8BG8ABQAXJAAAAACGCIsAbwAFACwkAAAAAIYIlwDM
+AAUAOyQAAAAAhghTBG8ABgBEJAAAAACGCGYEzAAGAFskAAAAAIYIhAclAAcAcCQAAAAAhgiRBxAA
+BwB6JAAAAACGCCUFbwAIAIMkAAAAAIYIOQXMAAgAmiQAAAAAhgg0ACUACQCvJAAAAACGCOoDbwAJ
+ALgkAAAAAIYITwAlAAkAziQAAAAAhggLBG8ACQDYJAAAAACGCGgAJQAJAO4kAAAAAIYIIgRvAAkA
++CQAAAAAhgh9AG8ACQAOJQAAAACGCD4EbwAJABglAAAAAIYIOwAlAAkALiUAAAAAhgj4A28ACQA4
+JQAAAACGCNcAJQAJAE4lAAAAAIYIeQRvAAkAWCUAAAAAhgBiCG8ACQBgJQAAAACGALMHbwAJAGgl
+AAAAAIYYZwYGAAkAiCUAAAAAxgA+CNEACQCtJQAAAADGATcIwQANAMAlAAAAAMYBSwjBAA4AwiUA
+AAAAhhhnBtsADwDRJQAAAACGGGcG2wAQAOAlAAAAAIMYZwYGABEA6CUAAAAAkwhTBuEAEQAUJgAA
+AACTCBwB5gARABsmAAAAAJMIKAHrABEAIyYAAAAAlgi/B/EAEgAqJgAAAACGGGcGBgASADImAAAA
+AJEYbQb2ABIAAAABAGYIAAABAEwGAAACAEMHAAADAA0GAAABAHcDAAABAHcDAAABAHcDAAABAHcD
+AAABAEcAAAACAOAAAAADAEwGAAAEAA0GAAABAEwGAAABAGYIAAABAO8HAAABAO8HAAABAHcDCQBn
+BgEAEQBnBgYAGQBnBgoAKQBnBhAAMQBnBhAAOQBnBhAAQQBnBhAASQBnBhAAUQBnBhAAWQBnBhAA
+YQBnBhAAaQBnBgYAoQBnBgYAwQBnBhUA0QBnBgYA2QCDCCIA2QBlBSUA2QB3CCkA2QCeBy8AcQBc
+ATUA2QChAz0A2QClB0EAeQBnBkcAeQBMBlEAeQBDB1UAgQDqAFkAeQBGBV8AgQCXA2QAgQB2BV8A
+eQBVBWkAeQBNBQEA8QBnBhAAeQBiCG8AeQCzB28AkQBnBgYA2QBxB3MAkQBXB3oAmQBnBgYAAQHF
+AIAAAQFqCIkAqQBnBo8AyQBnBgYALgALABYBLgATAB8BLgAbAD4BLgAjAEcBLgArAHABLgAzAHAB
+LgA7AHABLgBDAEcBLgBLAHYBLgBTAHABLgBbAI0BQwBjANcB4QB7ANcB4wBrANcBqQNzAD4ByQNz
+AD4BGwADAAEABwAdAAgAHwAAAKEB+gAAANoE/wAAAH4BAwEAAKkE/wAAAGkBAwEAAI0E/wAAABsG
+AwEAAA8F/wAAALMBAwEAAPME/wAAAI4BAwEAAMAE/wAAAJsA/wAAAGoE/wAAAJUHAwEAAD0F/wAA
+AFwAAwEAABgE/wAAAFMAAwEAAA8E/wAAAGwAAwEAACYE/wAAAIEA/wAAAEIE/wAAAD8AAwEAAPwD
+/wAAAOUAAwEAAH0E/wAAAFcGBwEAADwBDAEAAMMHEQECAAQAAwACAAUABQACAAYABwACAAcACQAC
+AAgACwACAAkADQACAAoADwACAAsAEQACAAwAEwACAA0AFQACAA4AFwACAA8AGQACABAAGwABABEA
+GwACABIAHQABABMAHQACABQAHwABABUAHwACABYAIQABABcAIQACABgAIwACABkAJQACABoAJwAC
+ABsAKQACABwAKwACAB0ALQACAB4ALwACAB8AMQACACAAMwACACEANQACACIANwACACMAOQACAC0A
+OwACAC4APQABAC8APQACADAAPwAEgAAAAQAAAAAAAAAAAAAAAAAHAAAABAAAAAAAAAAAAAAAlwBf
+AAAAAAAOAAAAAAAAAAAAAACgAPkHAAAAAA4AAAAAAAAAAAAAAKAAFggAAAAABAAAAAAAAAAAAAAA
+lwBeBQAAAAAAAAAAAQAAALgGAAAAAAAAAEludDMyAFNDXzVjY2IxYmU2YmIyNDRkYjJhMmYwNzMz
+MWY3MzE5ZjY5ADxNb2R1bGU+AGdldF9JRABnZXRfT3duZXJJRABJbnB1dElEAGdldF9DcmVhdGVk
+QnlJRABtc2NvcmxpYgBnZXRfTGFzdE1vZGlmaWVkQnlJZABnZXRfSXNEZWxldGVkAGdldF9Jc1Zh
+bGlkAHNldF9Jc1ZhbGlkAGRlZmF1bHRJbnN0YW5jZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBl
+RnJvbUhhbmRsZQBnZXRfTmFtZQBJbnB1dE5hbWUAR2V0RGF0ZVRpbWUATWljcm9zb2Z0LlNxbFNl
+cnZlci5EdHMuUGlwZWxpbmUAVHlwZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQByZXNvdXJjZUN1
+bHR1cmUAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAVHJ5UGFyc2UAZ2V0X0xhc3RNb2RpZmllZERh
+dGUAZ2V0X0NyZWF0ZWREYXRlAGdldF9MYXN0Vmlld2VkRGF0ZQBnZXRfU3lzSW5zZXJ0RGF0ZQBn
+ZXRfTGFzdEFjdGl2aXR5RGF0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRl
+ZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1
+dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1i
+bHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29u
+ZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0
+aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5
+Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRDb21wb25lbnRFbnRyeVBvaW50QXR0cmlidXRl
+AEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQB2
+YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAEdldFN0cmluZwBnZXRfTGVuZ3RoAFN5c3Rl
+bS5Db21wb25lbnRNb2RlbABTQ181Y2NiMWJlNmJiMjQ0ZGIyYTJmMDczMzFmNzMxOWY2OS5kbGwA
+Z2V0X0lEX0lzTnVsbABnZXRfT3duZXJJRF9Jc051bGwAZ2V0X0NyZWF0ZWRCeUlEX0lzTnVsbABn
+ZXRfTGFzdE1vZGlmaWVkQnlJZF9Jc051bGwAZ2V0X0lzRGVsZXRlZF9Jc051bGwAZ2V0X0lzVmFs
+aWRfSXNOdWxsAHNldF9Jc1ZhbGlkX0lzTnVsbABnZXRfTmFtZV9Jc051bGwAZ2V0X0xhc3RNb2Rp
+ZmllZERhdGVfSXNOdWxsAGdldF9DcmVhdGVkRGF0ZV9Jc051bGwAZ2V0X0xhc3RWaWV3ZWREYXRl
+X0lzTnVsbABnZXRfU3lzSW5zZXJ0RGF0ZV9Jc051bGwAZ2V0X0xhc3RBY3Rpdml0eURhdGVfSXNO
+dWxsAGdldF9TeXN0ZW1Nb2RzdGFtcF9Jc051bGwAZ2V0X0NvbW1lbnRzX0lzTnVsbABzZXRfQ29t
+bWVudHNfSXNOdWxsAFNldE51bGwAc2V0X0l0ZW0AU3lzdGVtAFRyaW0AcmVzb3VyY2VNYW4AR2V0
+Qm9vbGVhbgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0
+aW9uAFN5c3RlbS5SZWZsZWN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24AU3RyaW5nQ29t
+cGFyaXNvbgBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABnZXRfU3lzdGVtTW9k
+c3RhbXAASW5wdXQwQnVmZmVyAFBpcGVsaW5lQnVmZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3Vy
+Y2VNYW5hZ2VyAC5jdG9yAC5jY3RvcgBTeXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUu
+Q29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzVjY2IxYmU2YmIyNDRkYjJhMmYw
+NzMzMWY3MzE5ZjY5LlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2Rl
+cwBTQ181Y2NiMWJlNmJiMjQ0ZGIyYTJmMDczMzFmNzMxOWY2OS5Qcm9wZXJ0aWVzAFZhcmlhYmxl
+cwBCdWZmZXJDb2x1bW5JbmRleGVzAEdldENvbHVtbkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAENv
+bm5lY3Rpb25zAGdldF9Db21tZW50cwBzZXRfQ29tbWVudHMAQ29uY2F0AEZvcm1hdABPYmplY3QA
+RW5kT2ZSb3dzZXQAZ2V0X0RlZmF1bHQAVXNlckNvbXBvbmVudABQYXJlbnRDb21wb25lbnQAU2Ny
+aXB0Q29tcG9uZW50AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWljcm9zb2Z0LlNxbFNl
+cnZlci5QaXBlbGluZUhvc3QASW5wdXQwX1Byb2Nlc3NJbnB1dABJbnB1dDBfUHJvY2Vzc0lucHV0
+Um93AE5leHRSb3cAZ2V0X0Fzc2VtYmx5AG9wX0VxdWFsaXR5AEVtcHR5AAAAAAAfSQBEACAAaQBz
+ACAAcgBlAHEAdQBpAHIAZQBkAC4AACsgAE8AdwBuAGUAcgBJAGQAIABpAHMAIAByAGUAcQB1AGkA
+cgBlAGQALgAAMyAAQwByAGUAYQB0AGUAZABCAHkASQBEACAAaQBzACAAcgBlAHEAdQBpAHIAZQBk
+AC4AADMgAEMAcgBlAGEAdABlAGQARABhAHQAZQAgAGkAcwAgAHIAZQBxAHUAaQByAGUAZAAuAAA9
+IABMAGEAcwB0AE0AbwBkAGkAZgBpAGUAZABCAHkASQBkACAAaQBzACAAcgBlAHEAdQBpAHIAZQBk
+AC4AAD0gAEwAYQBzAHQATQBvAGQAaQBmAGkAZQBkAEQAYQB0AGUAIABpAHMAIAByAGUAcQB1AGkA
+cgBlAGQALgAAOSAAUwB5AHMAdABlAG0ATQBvAGQAcwB0AGEAbQBwACAAaQBzACAAcgBlAHEAdQBp
+AHIAZQBkAC4AACUgAE4AYQBtAGUAIABpAHMAIAByAGUAcQB1AGkAcgBlAGQALgAALUkARAAgAGwA
+ZQBuAGcAdABoACAAewAwAH0AIABpAG4AdgBhAGwAaQBkAC4AAEFPAHcAbgBlAHIASQBEACAAbABl
+AG4AZwB0AGgAIAB7ADAAfQAgAGkAbgB2AGEAbABPAHcAbgBlAHIASQBEAC4AAFFDAHIAZQBhAHQA
+ZQBkAEIAeQBJAEQAIABsAGUAbgBnAHQAaAAgAHsAMAB9ACAAaQBuAHYAYQBsAEMAcgBlAGEAdABl
+AGQAQgB5AEkARAAuAABdTABhAHMAdABNAG8AZABpAGYAaQBlAGQAQgB5AEkAZAAgAGwAZQBuAGcA
+dABoACAAewAwAH0AIABpAG4AdgBhAGwATQBvAGQAaQBmAGkAZQBkAEIAeQBJAGQALgAAgJtJAHMA
+TgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0
+AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQA
+aABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AAA9JAG4AcAB1AHQAIAAwAABxUwBD
+AF8ANQBjAGMAYgAxAGIAZQA2AGIAYgAyADQANABkAGIAMgBhADIAZgAwADcAMwAzADEAZgA3ADMA
+MQA5AGYANgA5AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAACn7W7T
+CsWUTr9seUNcN9maAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdBgcDDgIROQIGDgMgAA4FAAIC
+Dg4FAAIODg4HAAICDhAROQMgAAgFAAIODhwJIAMBEkEdCBJFAwYSQQMGHQgFIAEROQgEIAECCAQg
+AQ4IBSACAQgcAyAAAgYgAgIOEX0FIAEdCAgIAAESgIERgIUFIAASgIkHIAIBDhKAiQi3elxWGTTg
+iQiJhF3NgIDMkQMGEhQDBhIYAwYSSQMGElUDBhJZAwYSIAUgAQESDAQgABE5BCABAQIJIAQBCA4S
+QRJFBSABARJJBAAAElUEAAASWQUAAQESWQQAABIgAwAAAQQoABE5AygAAgMoAA4ECAASVQQIABJZ
+BAgAEiAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEA
+I1NDXzVjY2IxYmU2YmIyNDRkYjJhMmYwNzMzMWY3MzE5ZjY5AAAFAQAAAAAWAQARQ29weXJpZ2h0
+IEAgIDIwMTkAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNQEAVA4URnJhbWV3b3JrRGlz
+cGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC41BAEAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5S
+ZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1
+cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3Vy
+Y2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAALD4AAAAAAAAAAAAA
+Rj4AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg+AAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNj
+b3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQ
+AAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhA
+AADsAwAAAAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv
+/gAAAQAAAAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYA
+YQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAA
+ALAETAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAAMAAwADQA
+YgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBh
+AG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMA
+XwA1AGMAYwBiADEAYgBlADYAYgBiADIANAA0AGQAYgAyAGEAMgBmADAANwAzADMAMQBmADcAMwAx
+ADkAZgA2ADkAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4AMAAuADAA
+AABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADUAYwBjAGIAMQBiAGUANgBi
+AGIAMgA0ADQAZABiADIAYQAyAGYAMAA3ADMAMwAxAGYANwAzADEAOQBmADYAOQAuAGQAbABsAAAA
+SAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABA
+ACAAIAAyADAAMQA5AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMAAAAAAAAA
+AAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8ANQBjAGMAYgAx
+AGIAZQA2AGIAYgAyADQANABkAGIAMgBhADIAZgAwADcAMwAzADEAZgA3ADMAMQA5AGYANgA5AC4A
+ZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfADUAYwBjAGIAMQBi
+AGUANgBiAGIAMgA0ADQAZABiADIAYQAyAGYAMAA3ADMAMwAxAGYANwAzADEAOQBmADYAOQAAADQA
+CAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4AAgAAQBB
+AHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAWD4AAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_5ccb1be6bb244db2a2f07331f7319f69</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">19</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[SysInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SysInsertDate"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SysInsertDate]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[CreatedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CreatedDate"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedDate]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[LastModifiedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastModifiedDate"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedDate]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[SystemModstamp]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SystemModstamp"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[SystemModstamp]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[LastActivityDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastActivityDate"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastActivityDate]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[LastViewedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastViewedDate"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastViewedDate]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Comments"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Comments]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[ID]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="ID"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[CreatedByID]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="CreatedByID"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[CreatedByID]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[LastModifiedById]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="LastModifiedById"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[LastModifiedById]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[IsDeleted]"
+                      cachedDataType="bool"
+                      cachedName="IsDeleted"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[IsDeleted]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[OwnerID]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="OwnerID"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[OwnerID]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Name"
+                      lineageId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output].Columns[Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - Accounts\Validate.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Validate Syntax - Accounts.Paths[ADO NET Source Output]"
+              endId="Package\Validate Syntax - Accounts\Validate.Inputs[Input 0]"
+              name="ADO NET Source Output"
+              startId="Package\Validate Syntax - Accounts\Staging Accouts.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Validate Syntax - Accounts.Paths[Data Conversion Output]"
+              endId="Package\Validate Syntax - Accounts\Update Invalid rows.Inputs[OLE DB Command Input]"
+              name="Data Conversion Output"
+              startId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Validate Syntax - Accounts.Paths[InvalidRows]"
+              endId="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar.Inputs[Data Conversion Input]"
+              name="InvalidRows"
+              startId="Package\Validate Syntax - Accounts\Conditional Split.Outputs[InvalidRows]" />
+            <path
+              refId="Package\Validate Syntax - Accounts.Paths[Output 0]"
+              endId="Package\Validate Syntax - Accounts\Conditional Split.Inputs[Conditional Split Input]"
+              name="Output 0"
+              startId="Package\Validate Syntax - Accounts\Validate.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Validate Syntax - Accounts"
+          TopLeft="531,71" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Validate Syntax - Accounts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Validate Syntax - Accounts\Conver NVarchar to Varchar"
+          TopLeft="541,440" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Validate Syntax - Accounts\Validate"
+          TopLeft="580,215" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Validate Syntax - Accounts\Staging Accouts"
+          TopLeft="560,114" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Validate Syntax - Accounts\Update Invalid rows"
+          TopLeft="555,587" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Validate Syntax - Accounts\Conditional Split"
+          TopLeft="564,323" />
+        <EdgeLayout
+          Id="Package\Validate Syntax - Accounts.Paths[ADO NET Source Output]"
+          TopLeft="637.75,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - Accounts.Paths[Output 0]"
+          TopLeft="640,257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - Accounts.Paths[InvalidRows]"
+          TopLeft="644,365">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.2641796875,28.87548828125,54.528359375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - Accounts.Paths[Data Conversion Output]"
+          TopLeft="644,482">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,105"
+              Start="0,0"
+              End="0,97.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,97.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Because SSIS INSISTS on using UNICODE."
+          ParentId="Package\Validate Syntax - Accounts"
+          Size="237,37"
+          Id="756e0c22-ff27-46e4-b5f8-b48a1b07adcf"
+          TopLeft="831,432">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FFF1F1F1">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Validate Syntax - Accounts\Staging Accouts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

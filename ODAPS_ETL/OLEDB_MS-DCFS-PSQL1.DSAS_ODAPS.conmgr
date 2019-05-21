@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS"
+  DTS:DTSID="{092EB4A9-963C-4427-B035-E559179E78E5}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=DSAS_ODAPS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="xZI8EmBIXh0="
+        p4:IV="XNJDy0DfIpAEPZLyAnfrYQ=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">KfkmEsIZWrxNW51Au7zO/Zvyc6KT/BroHorm+CTCV3Z34kfSWIuYUG7B/aFX5p9EAvqJxLcK0c+kU4lCsUMkG8Tmn5PHOXXDllrcCkrRL77qWoGbPdGod2oRCMZTAweDcerf9P97NCP5ejfKoRex3YiKoXxw23r4YzAgOJmZCREOSDgarejavmyDsqiFbQrp</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

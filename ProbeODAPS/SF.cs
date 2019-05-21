@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
-
-using System.IO;
 using System.ServiceModel;
 
 using ProbeODAPS.sforce;
@@ -24,14 +20,14 @@ namespace ProbeODAPS
 
             SoapClient loginClient = new SoapClient();
 
-            LoginResult lr; 
+            LoginResult lr;
             try
             {
                 lr = loginClient.login(null, null, UserName, Password);
                 if (lr.passwordExpired)
                 {
-                    Console.WriteLine("An error has occurred. Your password has expired.");
-                    Console.WriteLine("User Name: {0}  Password: {1}", UserName, Password);
+                    Program.Logger.Warn("Password has expired");
+                    Program.Logger.Debug(string.Format("User Name: {0}  Password: {1}", UserName, Password));
 
                     returnStatus = false;
                 }
@@ -49,8 +45,8 @@ namespace ProbeODAPS
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("User Name: {0}  Password: {1}", UserName, Password);
+                Program.Logger.Error(e.Message);
+                Program.Logger.Debug(e.StackTrace);
 
                 returnStatus = false;
             }
@@ -72,14 +68,41 @@ namespace ProbeODAPS
                 Program.Logger.Debug(e.StackTrace);
             }
         }
-        public static IEnumerable<sObject> GetNextSFRecord(string SFObjectName, string SoqlQuery, SoapClient EndPoint)
+        public static IEnumerable<sObject> GetNextSFRecord(string SoqlQuery, SoapClient EndPoint, string SFObjectName)
         {
             bool foundRecords = false;
             QueryResult qr;
 
+            /* I assume that for the last batch of records available, qr.size > 0 and qr.done is true.  [geg] */
+            for(EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr); qr.size > 0; EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr))
+            {
+                if (!foundRecords) // First batch?  
+                {
+                    foundRecords = true; 
+                }
+
+                foreach (sObject item in qr.records)
+                {
+                    yield return item;
+                }
+
+                if (qr.done) break;
+            }
+
+            if (!foundRecords)
+            {
+                Program.Logger.Warn("No records found: " + SFObjectName + ".");
+            }
+        }
+        public static int GetRecordCount(string SFObjectName, SoapClient EndPoint)
+        {
+            int recordCount;
+
             try
             {
-                EndPoint.query(Header, null, null, null, null, SoqlQuery, out qr);
+                string SoqlQuery = "Select Count(Id) From " + SFObjectName;
+                EndPoint.query(Header, null, null, null, null, SoqlQuery, out QueryResult qr);
+                recordCount = qr.records.Length;
             }
             catch (Exception ex)
             {
@@ -87,22 +110,7 @@ namespace ProbeODAPS
                 throw;
             }
 
-            while (qr.size > 0)
-            {
-                if (!foundRecords) foundRecords = true;
-                foreach (sObject item in qr.records)
-                {
-                    yield return item;
-                }
-
-                if (qr.done) break;
-                else EndPoint.queryMore(Header, null, null, qr.queryLocator, out qr);
-            }
-
-            if (!foundRecords)
-            {
-                Program.Logger.Warn("No records found: " + SFObjectName + ".");
-            }
+            return recordCount;
         }
         public static string GetObjectDocumentation(SoapClient EndPoint, string SFObjectName, bool Verbose)
         {
@@ -119,15 +127,13 @@ namespace ProbeODAPS
                 builder.Append(dsr.name + ": ");
                 builder.Append("\t" + dsr.fields.Length + " fields");
                 if (dsr.custom) builder.Append("\tIS_Custom  ");
+                builder.Append("\t" + DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
 
                 builder.AppendLine();
 
-                for (int i = 0; i < dsr.fields.Length; i++)
+                foreach(var field in dsr.fields)
                 {
-                    // Get the field 
-                    Field field = dsr.fields[i];
-
-                    // Get some field properties
+                    // Get basic field properties
                     builder.Append(field.name + "\t: ");
                     builder.Append("\tType: " + field.type);
                     builder.Append(field.length > 0 ? "\tLength :" + field.length : "\t");
@@ -135,22 +141,31 @@ namespace ProbeODAPS
                     if (Verbose)
                     {
                         builder.Append(field.nameField ? "\tIS_NameField" : " ");
-                        builder.Append(field.restrictedPicklist ? " IS_Restricted_Picklist" : " ");
-                        builder.Append(field.custom ? " IS_Custom" : " ");
+                        builder.Append(field.restrictedPicklist ? "\tIS_Restricted_Picklist" : " ");
+                        builder.Append(field.custom ? "\tIS_Custom" : " ");
                     }
-                    builder.Append(field.nillable ? "IS_Nullable" : " ");
+                    builder.Append(field.nillable ? "\tIS_Nullable" : " ");
+                    if(field.type == fieldType.reference)
+                    {
+                        builder.Append("\t\tReferences : ");
+                        foreach(var reference in field.referenceTo)
+                        {
+                            builder.Append(" " + reference);
+                        }
+                    }
 
                     builder.AppendLine();
                 }
-                
+
                 sfObjectDescription = builder.ToString();
             }
 
             catch (Exception ex)
             {
                 sfObjectDescription = null;
-                Console.WriteLine("An exception has occurred: " + ex.Message +
-                    "\nStack trace: " + ex.StackTrace);
+                Program.Logger.Error(ex.Message);
+                Program.Logger.Debug(ex.StackTrace);
+
                 throw;
             }
 
@@ -177,14 +192,13 @@ namespace ProbeODAPS
             }
             catch (Exception e)
             {
-                Console.WriteLine("An exception has occurred: " + e.Message +
-                    "\nStack trace: " + e.StackTrace);
+                Program.Logger.Error(e.Message);
+                Program.Logger.Debug(e.StackTrace);
             }
 
             return sfObjectList;
 
         }
-
     }
 
 }
