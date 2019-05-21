@@ -1,6 +1,6 @@
 ﻿CREATE VIEW dbo.VW_DSAS_POD
 AS
-SELECT  sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmail, sw.Phone AS SocialWOrkerPhone, 
+SELECT  sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmail, sw.Phone AS SocialWorkerPhone, 
 			sup.Name AS Supervisor, sup.phone AS SupervisorPhone  , 
             Staging.Cases.Supervisor_E_mail__c as SupervisorEmail, Staging.Cases.Client_Address__c AS ClientAddress  , 
 			CONVERT(date, Staging.Cases.Referral_Submitted_Date_Time__c)   AS ReferralSubDate , 
@@ -12,7 +12,10 @@ SELECT  sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmail, sw.Phone AS Soci
 				Staging.Contacts.Gender__c AS Gender, 
                 Staging.Contacts.Income_Source__c AS IncomeSource, Staging.Contacts.Marital_Status__c AS MaritalStatus, 
 				Staging.Contacts.Medicaid__c AS Medicaid, Staging.Contacts.Medicare__c AS Medicare, 
-                Staging.Contacts.Race__c AS Race, Staging.Contacts.SSN__c AS SSN,   Staging.Contacts.Veteran_Status__c AS Veteran, 
+                Staging.Contacts.Race__c AS Race, 
+         /*                                                       Staging.Contacts.Social_Security_Number__c AS SSN,        */
+     /*                                                       Staging.Contacts.SSN AS SSN,        */
+                                                                Staging.Contacts.Veteran_Status__c AS Veteran, 
 				Staging.Contacts.Person_Id__c AS PersonID, Staging.Cases.Name AS CaseNumber, 
                 iif((Staging.Cases.Caretaker_Neglect__c = 1), 'X', ' ') AS CaretakerNeglect, 
 				iif((Staging.Cases.Sexual_Abuse__c = 1), 'X', ' ') AS SexualAbuse, 
@@ -24,7 +27,7 @@ SELECT  sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmail, sw.Phone AS Soci
 				iif((Staging.Cases.Self_Neglect__c = 1), 'X', ' ') AS SelfNeglect, 
 				iif((Staging.Cases.Exploitation__c = 1), 'X', ' ') AS Exploitation,              
 			   					 		 
-			
+		
 				SUBSTRING( IIF( Staging.Cases.Self_Neglect__c = 1, ', Self-Neglect', '') + 
 						   iif(Staging.Cases.Sexual_Abuse__c = 1, ', Sexual Abuse', ' ') + 
 				           IIF(Staging.Cases.Bed_Bugs__c = 1, ', Bed Bugs', '') +  
@@ -34,8 +37,6 @@ SELECT  sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmail, sw.Phone AS Soci
 					       IIF(Staging.Cases.Emotional_Verbal_Abuse__c = 1, ', Emotional/Verbal Abuse', '') + 
 						   IIF(Staging.Cases.Physical_Abuse__c = 1, ', Physical Abuse', '')  + 
 						   IIF(Staging.Cases.Exploitation__c = 1, ', Exploitation', ''),      3, 99999)  as Allegation,  	
-
-
 						 
 				iif((Staging.Cases.Diagnosed_Mental_Illness__c = 1), 'X', ' ') AS MentalIllness, 
 				Staging.Cases.Diagnosed_Mental_Illness_Info__c AS MentalIllnessInfo, 
@@ -65,7 +66,7 @@ Begin DesignProperties =
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[20] 4[6] 2[35] 3) )"
+         Configuration = "(H (1[14] 4[6] 2[29] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -214,6 +215,8 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'VW_DSAS_POD';
+
+
 
 
 
