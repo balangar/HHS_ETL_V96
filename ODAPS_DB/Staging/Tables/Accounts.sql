@@ -21,8 +21,10 @@
     [LastReferencedDate] VARCHAR (50)   NULL,
     [IsValid]            BIT            DEFAULT ((1)) NOT NULL,
     [IsLoaded]           BIT            DEFAULT ((0)) NOT NULL,
-    [LoadDate]           DATETIME       NULL,
+    [LoadDate]           DATETIME       CONSTRAINT [DF_Accounts_LoadDate] DEFAULT ('1900-01-01') NULL,
     [Comments]           VARCHAR (1024) NULL,
     CONSTRAINT [PK_Accounts] PRIMARY KEY CLUSTERED ([AccountKey] ASC)
 );
+
+
 

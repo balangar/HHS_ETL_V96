@@ -4,10 +4,10 @@
     [SysInsertDate]                  DATETIME       CONSTRAINT [DF__tmp_ms_xx__SysIn__4D94879B] DEFAULT (getdate()) NOT NULL,
     [ID]                             VARCHAR (18)   NOT NULL,
     [CreatedByID]                    VARCHAR (18)   NULL,
-    [CreatedDate]                    VARCHAR (255)  NULL,
+    [CreatedDate]                    DATETIME       NULL,
     [LastModifiedById]               VARCHAR (18)   NULL,
-    [LastModifiedDate]               VARCHAR (255)  NULL,
-    [SystemModstamp]                 VARCHAR (255)  NULL,
+    [LastModifiedDate]               DATETIME       NULL,
+    [SystemModstamp]                 DATETIME       NULL,
     [OwnerId]                        VARCHAR (18)   NULL,
     [AccountId]                      VARCHAR (18)   NULL,
     [MasterRecordId]                 VARCHAR (18)   NULL,
@@ -44,4 +44,6 @@
     [Comments]                       VARCHAR (1024) NULL,
     CONSTRAINT [PK_Contacts] PRIMARY KEY CLUSTERED ([ContactKey] ASC)
 );
+
+
 

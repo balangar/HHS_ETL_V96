@@ -8,7 +8,6 @@
     [LastModifiedById]                 VARCHAR (18)   NOT NULL,
     [LastModifiedDate]                 VARCHAR (50)   NOT NULL,
     [SystemModStamp]                   VARCHAR (50)   NOT NULL,
-
     [OwnerId]                          VARCHAR (18)   NULL,
     [RecordTypeID]                     VARCHAR (18)   NULL,
     [Owner_County__c]                  VARCHAR (255)  NULL,
@@ -43,9 +42,11 @@
     [Diagnosed_Mental_Illness__c]      VARCHAR (255)  NULL,
     [IsValid]                          BIT            CONSTRAINT [DF__Cases__IsValid__367C1819] DEFAULT ((1)) NOT NULL,
     [IsLoaded]                         BIT            CONSTRAINT [DF__Cases__IsLoaded__37703C52] DEFAULT ((0)) NOT NULL,
-    [LoadDate]                         DATETIME       NULL,
+    [LoadDate]                         DATETIME       CONSTRAINT [DF_Cases_LoadDate] DEFAULT ('1900-01-01') NOT NULL,
     [Comments]                         VARCHAR (1024) NULL,
     CONSTRAINT [PK_Cases] PRIMARY KEY CLUSTERED ([CaseKey] ASC)
 );
+
+
 
 
