@@ -2,6 +2,44 @@
     [ContactKey]                     INT            IDENTITY (1, 1) NOT NULL,
     [SysInsertUser]                  VARCHAR (18)   CONSTRAINT [DF__tmp_ms_xx__SysIn__4CA06362] DEFAULT ('System') NOT NULL,
     [SysInsertDate]                  DATETIME       CONSTRAINT [DF__tmp_ms_xx__SysIn__4D94879B] DEFAULT (getdate()) NOT NULL,
+	HASHBYTES('SHA1',
+		ISNULL(ID, '') +
+		ISNULL(CreatedByID, '') +
+		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
+		ISNULL(LastModifiedById, '') +
+		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
+		CONVERT(varchar, ISNULL(IsDeleted, 0)) +
+		ISNULL(OwnerID,'') +
+		ISNULL(AccountId, '') +
+		ISNULL(MasterRecordId, '') +
+		ISNULL(Salutation, '') +
+		ISNULL(FirstName, '') +
+		ISNULL(LastName, '') +
+		ISNULL([Name], '') +
+		ISNULL(MailingStreet, '') +
+		ISNULL(MailingCity, '') +
+		ISNULL(MailingStateCode, '') +
+		ISNULL(MailingPostalCode, '') +
+		ISNULL(MailingAddress, '') +
+		ISNULL(Phone, '') +
+		ISNULL(HomePhone, '') +
+		ISNULL(Email, '') +
+		CONVERT(varchar, ISNULL(Birthdate, '1900-01-01'), 121) +
+		CONVERT(varchar, ISNULL(Approx_Age__c, '0.0')) +
+		ISNULL(Gender_Code__c, '') +
+		ISNULL(Gender__c, '') +
+		CONVERT(varchar, ISNULL(Hoarding_or_animal_hoarding__c, 0)) +
+		ISNULL(Income_Source__c, '') +
+		ISNULL(Marital_Status__c, '') +
+		ISNULL(Medicaid__c, '') +
+		ISNULL(Medicare__c, '') +
+		ISNULL(Race__c, '') +
+		ISNULL(SSN__c, '') +
+		ISNULL(Person_Id__c, '') +
+		ISNULL(Veteran_Status__c, '') +
+		CONVERT(varchar, ISNULL(Bed_Bugs__c, 0))
+	) As HashedBytes,
+
     [ID]                             VARCHAR (18)   NOT NULL,
     [CreatedByID]                    VARCHAR (18)   NULL,
     [CreatedDate]                    DATETIME       NULL,

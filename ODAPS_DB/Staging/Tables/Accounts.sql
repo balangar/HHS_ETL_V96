@@ -2,6 +2,24 @@
     [AccountKey]         INT            IDENTITY (1, 1) NOT NULL,
     [SysInsertUser]      VARCHAR (50)   DEFAULT ('System') NOT NULL,
     [SysInsertDate]      DATETIME       DEFAULT (getdate()) NOT NULL,
+	HASHBYTES('SHA1',
+		ISNULL(ID, '') +
+		ISNULL(CreatedByID, '') +
+		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
+		ISNULL(LastModifiedById, '') +
+		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
+		CONVERT(varchar, ISNULL(IsDeleted, 0)) +
+		ISNULL(MasterRecordID, '')  +
+		ISNULL(OwnerID,'') +
+		ISNULL(ParentID, '') +
+		ISNULL(RecordTypeID, '') +
+		ISNULL([Type], '') +
+		ISNULL([Name], '') + 
+		ISNULL([Description], '') +
+		CONVERT(varchar, ISNULL(LastActivityDate, '1900-01-01'), 121) +
+		CONVERT(varchar, ISNULL(LastViewedDate, '1900-01-01'), 121) +
+		CONVERT(varchar, ISNULL(LastReferencedDate, '1900-01-01'), 121)
+		) As HashedBytes,
     [ID]                 VARCHAR (18)   NULL,
     [CreatedByID]        CHAR (18)      NULL,
     [CreatedDate]        VARCHAR (50)   NULL,

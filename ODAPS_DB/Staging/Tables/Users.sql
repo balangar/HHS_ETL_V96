@@ -2,6 +2,24 @@
     [UserKey]          INT            IDENTITY (1, 1) NOT NULL,
     [SysInsertUser]    VARCHAR (50)   CONSTRAINT [DF__Users__SysInsert__5812160E] DEFAULT ('System') NOT NULL,
     [SysInsertDate]    DATETIME       CONSTRAINT [DF__Users__SysInsert__59063A47] DEFAULT (getdate()) NOT NULL,
+	HASHBYTES('SHA1',
+		ISNULL(ID, '') +
+		ISNULL(CreatedByID, '') +
+		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
+		ISNULL(LastModifiedById, '') +
+		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
+		ISNULL(AccountID, '') +
+		ISNULL(ContactID, '') +
+		ISNULL(UserName, '') +
+		ISNULL(FirstName, '') +
+		ISNULL(LastName, '') +
+		ISNULL([Name], '') +
+		ISNULL(EMail, '') +
+		ISNULL(Phone, '') +
+		ISNULL(ManagerID, '') +
+		ISNULL(Supervisor__c, '')
+	) As HashedBytes,
+
     [ID]               VARCHAR (18)   NULL,
     [CreatedByID]      CHAR (18)      NULL,
     [CreatedDate]      DATE   NULL,
