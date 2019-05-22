@@ -8214,7 +8214,7 @@ Return the renameable nouns from the server for use in presentation using the sa
 	<service name="SforceService">
 		<documentation>Sforce SOAP API</documentation>
 		<port binding="tns:SoapBinding" name="Soap">
-			<soap:address location="https://odjfs2--uat.cs32.my.salesforce.com/services/Soap/u/45.0"/>
+			<soap:address location="https://odjfs2.my.salesforce.com/services/Soap/u/45.0"/>
 		</port>
 	</service>
 </definitions>

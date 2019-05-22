@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="43c6cc04-1705-4d09-b4ff-9ab65b056e20" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="348521fb-4aec-4461-84a3-fc24a7eaf6a3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,7 +22,7 @@
     <MetadataSource Address="C:\Source\Repositories\Playground\ODAPS_Master\_Auxiliary\SForce.wsdl" Protocol="file" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SForce.wsdl" MetadataType="Wsdl" ID="a2ca7aa9-daf6-4b43-80ea-c7c90ba7aa54" SourceId="1" SourceUrl="file:///C:/Source/Repositories/Playground/ODAPS_Master/_Auxiliary/SForce.wsdl" />
+    <MetadataFile FileName="SForce.wsdl" MetadataType="Wsdl" ID="2d42b743-11fd-4182-bf86-826a855c8009" SourceId="1" SourceUrl="file:///C:/Source/Repositories/Playground/ODAPS_Master/_Auxiliary/SForce.wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
