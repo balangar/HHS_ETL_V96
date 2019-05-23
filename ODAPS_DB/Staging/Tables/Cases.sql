@@ -39,7 +39,7 @@
 				CONVERT(varchar, ISNULL(Substance_abuse__c, 0)) +
 				ISNULL(Diagnosed_Mental_Illness_Info__c, '') +
 				ISNULL(Diagnosed_Mental_Illness__c, '')
-				) As HashBytes,
+				) As HashSignature,
 
     [ID]                               VARCHAR (18)   NULL,
     [CreatedById]                      VARCHAR (18)   NULL,

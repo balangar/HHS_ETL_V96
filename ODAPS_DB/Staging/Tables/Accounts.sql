@@ -19,7 +19,7 @@
 		CONVERT(varchar, ISNULL(LastActivityDate, '1900-01-01'), 121) +
 		CONVERT(varchar, ISNULL(LastViewedDate, '1900-01-01'), 121) +
 		CONVERT(varchar, ISNULL(LastReferencedDate, '1900-01-01'), 121)
-		) As HashedBytes,
+		) As HashSignature,
     [ID]                 VARCHAR (18)   NULL,
     [CreatedByID]        CHAR (18)      NULL,
     [CreatedDate]        VARCHAR (50)   NULL,

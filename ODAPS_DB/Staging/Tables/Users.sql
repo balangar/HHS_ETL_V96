@@ -18,7 +18,7 @@
 		ISNULL(Phone, '') +
 		ISNULL(ManagerID, '') +
 		ISNULL(Supervisor__c, '')
-	) As HashedBytes,
+	) As HashSignature,
 
     [ID]               VARCHAR (18)   NULL,
     [CreatedByID]      CHAR (18)      NULL,

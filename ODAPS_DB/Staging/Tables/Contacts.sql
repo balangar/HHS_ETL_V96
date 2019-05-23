@@ -38,7 +38,7 @@
 		ISNULL(Person_Id__c, '') +
 		ISNULL(Veteran_Status__c, '') +
 		CONVERT(varchar, ISNULL(Bed_Bugs__c, 0))
-	) As HashedBytes,
+	) As HashSignature,
 
     [ID]                             VARCHAR (18)   NOT NULL,
     [CreatedByID]                    VARCHAR (18)   NULL,
