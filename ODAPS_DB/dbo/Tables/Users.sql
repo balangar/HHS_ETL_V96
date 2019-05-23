@@ -3,6 +3,23 @@
 	[UserKey] INT IDENTITY(1,1) NOT NULL,
 	[SysInsertUser] VARCHAR(50) NOT NULL DEFAULT 'Sys_ETL',
 	[SysInsertDate] DATETIME NOT NULL DEFAULT getdate(),
+	HASHBYTES('SHA1',
+		ISNULL(ID, '') +
+		ISNULL(CreatedByID, '') +
+		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
+		ISNULL(LastModifiedById, '') +
+		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
+		ISNULL(AccountID, '') +
+		ISNULL(ContactID, '') +
+		ISNULL(UserName, '') +
+		ISNULL(FirstName, '') +
+		ISNULL(LastName, '') +
+		ISNULL([Name], '') +
+		ISNULL(EMail, '') +
+		ISNULL(Phone, '') +
+		ISNULL(ManagerID, '') +
+		ISNULL(Supervisor__c, '')
+	) As HashSignature,
 
 	[ID] CHAR(18) NOT NULL,
 	[CreatedByID] CHAR(18) NULL,
