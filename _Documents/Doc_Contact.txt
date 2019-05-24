@@ -1,8 +1,8 @@
-Contact: 	178 fields	05/02/2019 01:36:17
+Contact: 	178 fields	05/24/2019 07:21:34
 Id	: 	Type: id	Length :18	Label :Contact ID 
 IsDeleted	: 	Type: boolean		Label :Deleted 
 MasterRecordId	: 	Type: reference	Length :18	Label :Master Record ID	IS_Nullable		References :  Contact
-AccountId	: 	Type: reference	Length :18	Label :Account ID	IS_Nullable		References :  Account
+AccountId	: 	Type: reference	Length :18	Label :County Name	IS_Nullable		References :  Account
 LastName	: 	Type: string	Length :80	Label :Last Name 
 FirstName	: 	Type: string	Length :40	Label :First Name	IS_Nullable
 Salutation	: 	Type: picklist	Length :40	Label :Salutation	IS_Nullable
