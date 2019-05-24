@@ -12,8 +12,8 @@
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{34BA4020-D774-4296-B0FD-75A05A92A9E9}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{E59478F5-2E32-4493-B3F5-688147917AC8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -124,7 +124,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="147,42"
           Id="Package\Master Extract"
@@ -146,7 +146,7 @@
           TopLeft="554,221">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,54"
               Start="0,0"
               End="0,46.5">
@@ -168,7 +168,7 @@
           TopLeft="556.25,317">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,65"
               Start="0,0"
               End="0,57.5">
@@ -190,7 +190,7 @@
           TopLeft="553.5,99">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,80"
               Start="0,0"
               End="0,72.5">
