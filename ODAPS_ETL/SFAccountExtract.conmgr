@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="SFAccountExtract"
   DTS:DTSID="{2EA633CD-A959-4714-A314-42000A123224}"

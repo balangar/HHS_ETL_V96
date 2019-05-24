@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="4/30/2019 11:13:13 AM"
@@ -13,7 +13,7 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
   DTS:VersionBuild="51"
-  DTS:VersionGUID="{B7B821A0-9347-4C4A-911C-169B60BD01B6}">
+  DTS:VersionGUID="{61BFF45C-BDCC-4E4A-9D55-A94B2616A8D0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -87,8 +87,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Contacts\SF Contact Extract.Connections[FlatFileConnection]"
-                  connectionManagerID="{7075B883-E921-437B-A657-401A293FCE50}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[SFContactExtract]"
+                  connectionManagerID="{7075B883-E921-437B-A657-401A293FCE50}:invalid"
+                  connectionManagerRefId="{7075B883-E921-437B-A657-401A293FCE50}:invalid"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -1163,8 +1163,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Contacts\Staging Contacts.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1814,7 +1814,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="4/30/2019 11:12:42 AM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{E59478F5-2E32-4493-B3F5-688147917AC8}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{5C41D89B-12F5-449E-BE87-A2DB4A623A58}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -118,7 +118,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
