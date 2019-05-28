@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/16/2019 8:59:52 AM"
@@ -13,7 +13,7 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
   DTS:VersionBuild="38"
-  DTS:VersionGUID="{8B8414F0-9965-4645-A2B7-ED21B488FF07}">
+  DTS:VersionGUID="{323D546E-B257-4F22-AD0B-B5EC39512BCA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -85,8 +85,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Contacts\ADO NET Destination.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -694,8 +694,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Contacts\Staging Contacts.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1601,7 +1601,7 @@
               contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
               description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
               name="Transform Staging Columns"
-              version="11">
+              version="8">
               <properties>
                 <property
                   dataType="System.String"
@@ -2458,7 +2458,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

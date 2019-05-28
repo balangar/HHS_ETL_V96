@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader"
   DTS:DTSID="{7856EB34-71E4-475D-8EC9-70043F980BF7}"
@@ -9,9 +9,8 @@
       <DTS:Password
         DTS:Name="Password"
         Sensitive="1"
-        p4:Salt="i60PQlba/cY="
-        p4:IV="Sk3Tika0+GliPI1fIxVR+w=="
-        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">Y2sWwYbMP3O8DRJswCDA7/p4qWu6KyX+d+Dv7hCfXQvVBcWx6mNn3Vl470kHbmHxsPc5OBaOKV5+SwX4dkPENWxXqNCZHrjTwcuy8+MxKpoB41sk3oeTytgEWVpTm7loXgXNlpYs4MFwfZ74dXVnegWv58/r9U8pb4PAwE8QW9wVmV8ejfMAln6MSAgjs/1l</DTS:Password>
+        p4:Salt="1CzgHtT8oA=="
+        p4:IV="PLAFGLCRnRk=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">eX45yhfDK1Q9RMeY80BEOKXtG+IGxh0WMdsYaRVbj3qaxo6ITaUavsawHfOBBMI9nembeJR/zQ6ZOEEEJrbVQAigsXpyuaAhU/5dNy7ed9xRfAqXcdn8VztGfnUmuaIuqNz3xIt+72zfy2LDC1yyvZ6CbKZhaZvtllrIxLiY4ZVnsgLVbn/ETg==</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

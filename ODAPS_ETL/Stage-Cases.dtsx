@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/1/2019 11:09:28 AM"
@@ -13,7 +13,7 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
   DTS:VersionBuild="16"
-  DTS:VersionGUID="{52662E19-52B3-40A7-9A01-A4808D4D0D13}">
+  DTS:VersionGUID="{EC892447-4A95-406F-BF2B-DE46CF6DD5CA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -71,7 +71,7 @@
               contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
               description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
               name="Parse Contact Name"
-              version="11">
+              version="8">
               <properties>
                 <property
                   dataType="System.String"
@@ -950,8 +950,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               <connections>
                 <connection
                   refId="Package\Import Staging Cases\SF Case Extract.Connections[FlatFileConnection]"
-                  connectionManagerID="{1579D236-254D-426B-A873-3E2D7D9251D8}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[SFCaseExtract]"
+                  connectionManagerID="{1579D236-254D-426B-A873-3E2D7D9251D8}:invalid"
+                  connectionManagerRefId="{1579D236-254D-426B-A873-3E2D7D9251D8}:invalid"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -1998,8 +1998,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               <connections>
                 <connection
                   refId="Package\Import Staging Cases\Staging Cases.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -2567,7 +2567,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

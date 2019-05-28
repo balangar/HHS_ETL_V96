@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/1/2019 9:46:23 AM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Users"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{6B50FF4F-C811-4B5A-B514-09AA08E0F83C}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{E4BD6201-DABC-4326-A3F1-794432773228}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -87,8 +87,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Users\SF User Extract.Connections[FlatFileConnection]"
-                  connectionManagerID="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[SFUserExtract]"
+                  connectionManagerID="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}:invalid"
+                  connectionManagerRefId="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}:invalid"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -615,15 +615,15 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Users\Staging Users.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input]"
-                  errorRowDisposition="RedirectRow"
+                  errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="ADO NET Destination Input">
                   <inputColumns>
@@ -772,6 +772,11 @@
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
                     <externalMetadataColumn
+                      refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
+                    <externalMetadataColumn
                       refId="Package\Import Staging Users\Staging Users.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
                       dataType="wstr"
                       length="18"
@@ -894,427 +899,6 @@
               </outputs>
             </component>
             <component
-              refId="Package\Import Staging Users\Union All"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All"
-              version="1">
-              <inputs>
-                <input
-                  refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1]"
-                  name="Union All Input 1">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[Id]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="Id"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[Id]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Id]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[AccountId]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="AccountId"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[AccountId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[AccountId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[ContactId]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="ContactId"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[ContactId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ContactId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[CreatedById]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="CreatedById"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[CreatedById]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[CreatedById]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[CreatedDate]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="CreatedDate"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[CreatedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[CreatedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[LastModifiedById]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="LastModifiedById"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[LastModifiedById]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[LastModifiedDate]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="LastModifiedDate"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[LastModifiedDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[SystemModstamp]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="SystemModstamp"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[SystemModstamp]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[Username]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="80"
-                      cachedName="Username"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[Username]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Username]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[FirstName]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="40"
-                      cachedName="FirstName"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[FirstName]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[FirstName]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[LastName]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="80"
-                      cachedName="LastName"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[LastName]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastName]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[Name]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="128"
-                      cachedName="Name"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[Name]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[Email]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="128"
-                      cachedName="Email"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[Email]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Email]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[Phone]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="40"
-                      cachedName="Phone"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[Phone]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Phone]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[ManagerId]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="ManagerId"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[ManagerId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ManagerId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[supervisor__c]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="18"
-                      cachedName="supervisor__c"
-                      lineageId="Package\Import Staging Users\SF User Extract.Outputs[Flat File Source Output].Columns[supervisor__c]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[supervisor__c]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      lineageId="Package\Import Staging Users\Staging Users.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import Staging Users\Union All.Inputs[Union All Input 1].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      lineageId="Package\Import Staging Users\Staging Users.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Import Staging Users\Union All.Inputs[Union All Input 2]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 2">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Id]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Id]"
-                      name="Id" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[AccountId]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[AccountId]"
-                      name="AccountId" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ContactId]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ContactId]"
-                      name="ContactId" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[CreatedById]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[CreatedById]"
-                      name="CreatedById" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[CreatedDate]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[CreatedDate]"
-                      name="CreatedDate" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastModifiedById]"
-                      name="LastModifiedById" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastModifiedDate]"
-                      name="LastModifiedDate" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]"
-                      codePage="65001"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[SystemModstamp]"
-                      name="SystemModstamp" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Username]"
-                      codePage="65001"
-                      dataType="str"
-                      length="80"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Username]"
-                      name="Username" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[FirstName]"
-                      codePage="65001"
-                      dataType="str"
-                      length="40"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[FirstName]"
-                      name="FirstName" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastName]"
-                      codePage="65001"
-                      dataType="str"
-                      length="80"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[LastName]"
-                      name="LastName" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Name]"
-                      codePage="65001"
-                      dataType="str"
-                      length="128"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Name]"
-                      name="Name" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Email]"
-                      codePage="65001"
-                      dataType="str"
-                      length="128"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Email]"
-                      name="Email" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Phone]"
-                      codePage="65001"
-                      dataType="str"
-                      length="40"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[Phone]"
-                      name="Phone" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ManagerId]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ManagerId]"
-                      name="ManagerId" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[supervisor__c]"
-                      codePage="65001"
-                      dataType="str"
-                      length="18"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[supervisor__c]"
-                      name="supervisor__c" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ErrorCode]"
-                      name="ErrorCode" />
-                    <outputColumn
-                      refId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Import Staging Users\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]"
-                      name="ErrorColumn" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Import Staging Users\Union All 1"
               componentClassID="Microsoft.UnionAll"
               contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
@@ -1407,11 +991,6 @@
           </components>
           <paths>
             <path
-              refId="Package\Import Staging Users.Paths[ADO NET Destination Error Output]"
-              endId="Package\Import Staging Users\Union All.Inputs[Union All Input 1]"
-              name="ADO NET Destination Error Output"
-              startId="Package\Import Staging Users\Staging Users.Outputs[ADO NET Destination Error Output]" />
-            <path
               refId="Package\Import Staging Users.Paths[Flat File Source Error Output]"
               endId="Package\Import Staging Users\Union All 1.Inputs[Union All Input 1]"
               name="Flat File Source Error Output"
@@ -1441,7 +1020,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -1487,14 +1066,6 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="121,42"
-          Id="Package\Import Staging Users\Union All"
-          TopLeft="1060,287" />
-        <NodeLayout
-          Size="144,42"
-          Id="Package\Import Staging Users\Staging Users"
-          TopLeft="672,287" />
-        <NodeLayout
           Size="151,42"
           Id="Package\Import Staging Users\SF User Extract"
           TopLeft="663,159" />
@@ -1502,28 +1073,6 @@
           Size="130,42"
           Id="Package\Import Staging Users\Union All 1"
           TopLeft="1051,166" />
-        <EdgeLayout
-          Id="Package\Import Staging Users.Paths[Flat File Source Output]"
-          TopLeft="741.25,201">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,86"
-              Start="0,0"
-              End="0,78.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Import Staging Users.Paths[Flat File Source Error Output]"
           TopLeft="814,183.5">
@@ -1548,28 +1097,30 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Import Staging Users\Staging Users"
+          TopLeft="665,280" />
         <EdgeLayout
-          Id="Package\Import Staging Users.Paths[ADO NET Destination Error Output]"
-          TopLeft="816,308">
+          Id="Package\Import Staging Users.Paths[Flat File Source Output]"
+          TopLeft="737.75,201">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="244,0"
+              EndConnector="0,79"
               Start="0,0"
-              End="236.5,0">
+              End="0,71.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="236.5,0" />
+                    End="0,71.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="32.5599609375,5,171.380078125,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
