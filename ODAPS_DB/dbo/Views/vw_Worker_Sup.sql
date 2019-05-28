@@ -1,9 +1,13 @@
-﻿CREATE VIEW dbo.View_1
+﻿CREATE VIEW dbo.vw_Worker_Sup
 AS
-SELECT        dbo.Contacts.BirthDate, dbo.Contacts.ApproxAge, dbo.Contacts.Gender, dbo.Contacts.PrimaryLanguage, dbo.Contacts.MailingStreet, dbo.Contacts.MailingCity, dbo.Contacts.MailingState, 
-                         dbo.Contacts.MailingStateCode, dbo.Contacts.MailingPostalCode, dbo.Users.Name AS WOrker, dbo.Contacts.ContactKey, dbo.Contacts.ContactID, dbo.Users.LastName, dbo.Users.FirstName
-FROM            dbo.Contacts INNER JOIN
-                         dbo.Users ON dbo.Contacts.CreatedByID = dbo.Users.UserID
+SELECT        TOP (100) PERCENT sw.UserName, sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmail, sw.Phone AS SocialWOrkerPhone, Sup.Name AS Supervisor, Sup.FirstName AS Expr1, Sup.LastName AS Expr2, sw.ID, 
+                         sw.SupervisorID, sw.ContactID
+FROM            dbo.Users AS Sup RIGHT OUTER JOIN
+                         dbo.Users AS sw ON Sup.ID = sw.SupervisorID
+ORDER BY sw.UserName
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vw_Worker_Sup';
+
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane1', @value = N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
@@ -11,7 +15,7 @@ Begin DesignProperties =
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[42] 4[19] 2[20] 3) )"
+         Configuration = "(H (1[52] 4[10] 2[19] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -77,25 +81,25 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "Contacts"
+         Begin Table = "Sup"
             Begin Extent = 
-               Top = 24
-               Left = 142
-               Bottom = 331
-               Right = 465
+               Top = 0
+               Left = 896
+               Bottom = 241
+               Right = 1081
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 9
          End
-         Begin Table = "Users"
+         Begin Table = "sw"
             Begin Extent = 
-               Top = 6
-               Left = 503
-               Bottom = 308
-               Right = 688
+               Top = 14
+               Left = 204
+               Bottom = 244
+               Right = 389
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 9
          End
       End
    End
@@ -104,27 +108,11 @@ Begin DesignProperties =
    Begin DataPane = 
       Begin ParameterDefaults = ""
       End
-      Begin ColumnWidths = 29
+      Begin ColumnWidths = 13
          Width = 284
-         Width = 3045
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1185
-         Width = 3555
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
+         Width = 4305
+         Width = 4050
+         Width = 4275
          Width = 1500
          Width = 1500
          Width = 1500
@@ -147,16 +135,12 @@ Begin DesignProperties =
          SortType = 1350
          SortOrder = 1410
          GroupBy = 1350
-         Filter = 1350
+         Filter = 5040
          Or = 1350
          Or = 1350
          Or = 1350
       End
    End
 End
-', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'View_1';
-
-
-GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'View_1';
+', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vw_Worker_Sup';
 

@@ -3,43 +3,9 @@
     [ContactKey]                     INT            IDENTITY (1, 1) NOT NULL,
     [SysInsertUser]                  VARCHAR (18)   NOT NULL DEFAULT 'Sys_ETL',
     [SysInsertDate]                  DATETIME       NOT NULL DEFAULT  getdate(),
-	HASHBYTES('SHA1',
-		ISNULL(ID, '') +
-		ISNULL(CreatedByID, '') +
-		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
-		ISNULL(LastModifiedById, '') +
-		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(IsDeleted, 0)) +
-		ISNULL(OwnerID,'') +
-		ISNULL(AccountId, '') +
-		ISNULL(MasterRecordId, '') +
-		ISNULL(Salutation, '') +
-		ISNULL(FirstName, '') +
-		ISNULL(LastName, '') +
-		ISNULL([Name], '') +
-		ISNULL(MailingStreet, '') +
-		ISNULL(MailingCity, '') +
-		ISNULL(MailingStateCode, '') +
-		ISNULL(MailingPostalCode, '') +
-		ISNULL(MailingAddress, '') +
-		ISNULL(Phone, '') +
-		ISNULL(HomePhone, '') +
-		ISNULL(Email, '') +
-		CONVERT(varchar, ISNULL(Birthdate, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(Approx_Age__c, '0.0')) +
-		ISNULL(Gender_Code__c, '') +
-		ISNULL(Gender__c, '') +
-		CONVERT(varchar, ISNULL(Hoarding_or_animal_hoarding__c, 0)) +
-		ISNULL(Income_Source__c, '') +
-		ISNULL(Marital_Status__c, '') +
-		ISNULL(Medicaid__c, '') +
-		ISNULL(Medicare__c, '') +
-		ISNULL(Race__c, '') +
-		ISNULL(SSN__c, '') +
-		ISNULL(Person_Id__c, '') +
-		ISNULL(Veteran_Status__c, '') +
-		CONVERT(varchar, ISNULL(Bed_Bugs__c, 0))
-	) As HashSignature,
+	[SysModifyUser]					 VARCHAR(50)	NULL,
+	[SysModifyDate]					 DATETIME		NULL,
+    [HashSignature]                  AS             (hashbytes('SHA1',(((((((((((((((((((((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([OwnerID],''))+isnull([AccountId],''))+isnull([MasterRecordId],''))+isnull([Salutation],''))+isnull([FirstName],''))+isnull([LastName],''))+isnull([Name],''))+isnull([MailingStreet],''))+isnull([MailingCity],''))+isnull([MailingStateCode],''))+isnull([MailingPostalCode],''))+isnull([MailingAddress],''))+isnull([Phone],''))+isnull([HomePhone],''))+isnull([Email],''))+CONVERT([varchar],isnull([Birthdate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Approx_Age__c],'0.0')))+isnull([Gender_Code__c],''))+isnull([Gender__c],''))+CONVERT([varchar],isnull([Hoarding_or_animal_hoarding__c],(0))))+isnull([Income_Source__c],''))+isnull([Marital_Status__c],''))+isnull([Medicaid__c],''))+isnull([Medicare__c],''))+isnull([Race__c],''))+isnull([SSN__c],''))+isnull([Person_Id__c],''))+isnull([Veteran_Status__c],''))+CONVERT([varchar],isnull([Bed_Bugs__c],(0))))),
 
     [ID]                             CHAR(18)   NOT NULL,
     [CreatedByID]                    CHAR(18)   NOT NULL,
