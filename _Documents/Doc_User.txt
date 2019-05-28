@@ -1,4 +1,4 @@
-User: 	164 fields	05/10/2019 10:55:20
+User: 	162 fields	05/24/2019 07:21:35
 Id	: 	Type: id	Length :18	Label :User ID 
 Username	: 	Type: string	Length :80	Label :Username 
 LastName	: 	Type: string	Length :80	Label :Last Name 
@@ -66,7 +66,7 @@ UserPermissionsSFContentUser	: 	Type: boolean		Label :Salesforce CRM Content Use
 UserPermissionsKnowledgeUser	: 	Type: boolean		Label :Knowledge User 
 UserPermissionsInteractionUser	: 	Type: boolean		Label :Flow User 
 UserPermissionsSupportUser	: 	Type: boolean		Label :Service Cloud User 
-UserPermissionsLiveAgentUser	: 	Type: boolean		Label :Chat User 
+UserPermissionsLiveAgentUser	: 	Type: boolean		Label :Live Agent User 
 ForecastEnabled	: 	Type: boolean		Label :Allow Forecasting 
 UserPreferencesActivityRemindersPopup	: 	Type: boolean		Label :ActivityRemindersPopup 
 UserPreferencesEventRemindersCheckboxDefault	: 	Type: boolean		Label :EventRemindersCheckboxDefault 
@@ -78,8 +78,6 @@ UserPreferencesDisableProfilePostEmail	: 	Type: boolean		Label :DisableProfilePo
 UserPreferencesDisableChangeCommentEmail	: 	Type: boolean		Label :DisableChangeCommentEmail 
 UserPreferencesDisableLaterCommentEmail	: 	Type: boolean		Label :DisableLaterCommentEmail 
 UserPreferencesDisProfPostCommentEmail	: 	Type: boolean		Label :DisProfPostCommentEmail 
-UserPreferencesContentNoEmail	: 	Type: boolean		Label :ContentNoEmail 
-UserPreferencesContentEmailAsAndWhen	: 	Type: boolean		Label :ContentEmailAsAndWhen 
 UserPreferencesHideCSNGetChatterMobileTask	: 	Type: boolean		Label :HideCSNGetChatterMobileTask 
 UserPreferencesDisableMentionsPostEmail	: 	Type: boolean		Label :DisableMentionsPostEmail 
 UserPreferencesDisMentionsCommentEmail	: 	Type: boolean		Label :DisMentionsCommentEmail 
@@ -142,7 +140,7 @@ UserPreferencesHasCelebrationBadge	: 	Type: boolean		Label :HasCelebrationBadge
 UserPreferencesUserDebugModePref	: 	Type: boolean		Label :UserDebugModePref 
 UserPreferencesNewLightningReportRunPageEnabled	: 	Type: boolean		Label :NewLightningReportRunPageEnabled 
 ContactId	: 	Type: reference	Length :18	Label :Contact ID	IS_Nullable		References :  Contact
-AccountId	: 	Type: reference	Length :18	Label :Account ID	IS_Nullable		References :  Account
+AccountId	: 	Type: reference	Length :18	Label :County ID	IS_Nullable		References :  Account
 CallCenterId	: 	Type: reference	Length :18	Label :Call Center ID	IS_Nullable		References :  CallCenter
 Extension	: 	Type: phone	Length :40	Label :Extension	IS_Nullable
 PortalRole	: 	Type: picklist	Length :40	Label :Portal Role Level	IS_Nullable

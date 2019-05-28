@@ -24,9 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">
-          </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="xSgKf9lBIuA=" SSIS:IV="145gdZUtUA8hFQEXv2o3BQ==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">rNKu7nMYY/5WapKIJpW1LuIz/lMkMq05yqgPxmdOnniBCx1UMD8QrqLL/dPGZv4EBGFM93gkwVLlMqq5ebX+Z23xU6t1JKM7ze9Ajpc7Kr/OfJgjzKcibadnm2fUGKs/IU0EG/0L36IzruapoX3/I0G3AAfLkFLyePhSh8TH6t1TYx/BwKxEOqIX3GKIYsl6</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">Release\1.0.0</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="G9XwcPG70g==" SSIS:IV="0ZrzZ3S2mg8=">2rAS7zYj1tMlIS3iKQfQrwGP6tiElNaihM2+9wpB18uV3aN58UXh8dRqFL7IJMzzeyQ460XLf+djAP6ycTelQvkWLLbS/oR93XFZ+cGcx8IVk3lTpfor+41VUmXZ94CzY2CFUimv+/Sq6t+k2L8RE9E4Wo0C9aXv628DDdkKhIw3UHCpblJWIg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -972,10 +971,10 @@
                 <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{9C13B45D-2708-4847-8391-F18D24C4EE3A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5C41D89B-12F5-449E-BE87-A2DB4A623A58}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1023,10 +1022,10 @@
                 <SSIS:Property SSIS:Name="Name">Stage-Users</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{3F048CB8-E7A4-436D-AD35-6C1914751953}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{BD16688C-95F0-4412-B1A0-EB3C42DCCC42}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1227,10 +1226,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-Extract</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{485CE8DD-02E9-40D3-A4F5-D942E84E6BFE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{69C5D19B-52AF-41C9-BE03-CD63259C0F4C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1271,7 +1270,7 @@
         <ConnectionProviderMappings />
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
-        <TargetServerVersion>SQLServer2017</TargetServerVersion>
+        <TargetServerVersion>SQLServer2014</TargetServerVersion>
         <ParameterConfigurationValues>
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>

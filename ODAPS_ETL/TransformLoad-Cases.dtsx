@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/15/2019 2:07:10 PM"
@@ -13,7 +13,7 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
   DTS:VersionBuild="12"
-  DTS:VersionGUID="{6916CEDB-1FED-4202-8CBD-484B773D7243}">
+  DTS:VersionGUID="{A0AD33F9-0FF0-4E03-987A-C571D26BADF4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -85,8 +85,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Cases\dbo Cases.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -607,8 +607,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Cases\Mark Not Loaded.Connections[OleDbConnection]"
-                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
+                  connectionManagerRefId="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -810,8 +810,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Cases\Staging Cases.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1781,7 +1781,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

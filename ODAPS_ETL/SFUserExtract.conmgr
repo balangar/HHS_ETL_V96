@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="SFUserExtract"
   DTS:DTSID="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}"
