@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/1/2019 2:19:33 PM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage_Accounts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{47EBE8A8-71FD-43CE-91AB-4D2F47D58532}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{094BB7C9-8B49-4693-9222-07E83B3E4CDD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -87,8 +87,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Accounts\SF Accounts Extract.Connections[FlatFileConnection]"
-                  connectionManagerID="{2EA633CD-A959-4714-A314-42000A123224}:invalid"
-                  connectionManagerRefId="{2EA633CD-A959-4714-A314-42000A123224}:invalid"
+                  connectionManagerID="{2EA633CD-A959-4714-A314-42000A123224}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SFAccountExtract]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -639,8 +639,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Accounts\Staging Accounts.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -801,6 +801,11 @@
                       refId="Package\Import Staging Accounts\Staging Accounts.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Accounts\Staging Accounts.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Accounts\Staging Accounts.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
                       dataType="wstr"
@@ -1003,13 +1008,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="172,42"
-          Id="Package\Import Staging Accounts\SF Accounts Extract"
-          TopLeft="607,122" />
-        <NodeLayout
           Size="160,42"
           Id="Package\Import Staging Accounts\Staging Accounts"
           TopLeft="619,271" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Import Staging Accounts\SF Accounts Extract"
+          TopLeft="607,122" />
         <EdgeLayout
           Id="Package\Import Staging Accounts.Paths[Flat File Source Output]"
           TopLeft="696,164">
