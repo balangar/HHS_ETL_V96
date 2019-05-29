@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/15/2019 2:32:21 PM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-Extract"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{DB1EBF48-3246-4D78-A104-5FECB8FE1473}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{DF06D70A-F424-4D30-969B-B42388BC43FE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -31,7 +31,7 @@
       <DTS:ObjectData>
         <ExecuteProcessData
           Executable="ProbeODAPS.bat"
-          WorkingDirectory="\\MS-CJFS-SIS\Source\Development\Packages\Extract-ODAPS\" />
+          WorkingDirectory="\\MS-CJFS-SIS\Source\Production\Packages\Extract-ODAPS\" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
