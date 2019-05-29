@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/1/2019 9:46:23 AM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Users"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{E4BD6201-DABC-4326-A3F1-794432773228}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{3042F6FC-D18F-4297-B486-F59C0E9C06F3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -87,8 +87,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Users\SF User Extract.Connections[FlatFileConnection]"
-                  connectionManagerID="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}:invalid"
-                  connectionManagerRefId="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}:invalid"
+                  connectionManagerID="{99206453-C727-4EF2-ABCC-9F05A33C8EA7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SFUserExtract]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -615,8 +615,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Users\Staging Users.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1066,6 +1066,10 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="144,42"
+          Id="Package\Import Staging Users\Staging Users"
+          TopLeft="665,280" />
+        <NodeLayout
           Size="151,42"
           Id="Package\Import Staging Users\SF User Extract"
           TopLeft="663,159" />
@@ -1097,10 +1101,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="144,42"
-          Id="Package\Import Staging Users\Staging Users"
-          TopLeft="665,280" />
         <EdgeLayout
           Id="Package\Import Staging Users.Paths[Flat File Source Output]"
           TopLeft="737.75,201">

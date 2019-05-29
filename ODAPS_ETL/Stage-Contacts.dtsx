@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="4/30/2019 11:13:13 AM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="51"
-  DTS:VersionGUID="{61BFF45C-BDCC-4E4A-9D55-A94B2616A8D0}">
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{827CA295-9270-42C3-B79D-E2ABE6A522C3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -87,8 +87,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Contacts\SF Contact Extract.Connections[FlatFileConnection]"
-                  connectionManagerID="{7075B883-E921-437B-A657-401A293FCE50}:invalid"
-                  connectionManagerRefId="{7075B883-E921-437B-A657-401A293FCE50}:invalid"
+                  connectionManagerID="{7075B883-E921-437B-A657-401A293FCE50}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SFContactExtract]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -1163,8 +1163,8 @@
               <connections>
                 <connection
                   refId="Package\Import Staging Contacts\Staging Contacts.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1473,6 +1473,11 @@
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Contacts\Staging Contacts.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
                       dataType="wstr"

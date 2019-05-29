@@ -1,47 +1,35 @@
-﻿CREATE TABLE [dbo].[Accounts] (
-    [AccountKey]         INT            IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]      VARCHAR (50)   CONSTRAINT [DF__Accounts__SysIns__05A3D694] DEFAULT ('Sys_ETL') NOT NULL,
-    [SysInsertDate]      DATETIME       CONSTRAINT [DF_Accounts_SysInsertDate] DEFAULT (getdate()) NOT NULL,
-	HASHBYTES('SHA1',
-		ISNULL(ID, '') +
-		ISNULL(CreatedByID, '') +
-		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
-		ISNULL(LastModifiedById, '') +
-		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(IsDeleted, 0)) +
-		ISNULL(MasterRecordID, '')  +
-		ISNULL(OwnerID,'') +
-		ISNULL(ParentID, '') +
-		ISNULL(RecordTypeID, '') +
-		ISNULL([Type], '') +
-		ISNULL([Name], '') + 
-		ISNULL([Description], '') +
-		CONVERT(varchar, ISNULL(LastActivityDate, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(LastViewedDate, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(LastReferencedDate, '1900-01-01'), 121)
-		) As HashSignature,
+﻿CREATE TABLE [dbo].[Accounts](
+	[AccountKey] [int] IDENTITY(1,1) NOT NULL,
+	[SysInsertUser] [varchar](50) NOT NULL DEFAULT  'Sys_ETL',
+	[SysInsertDate] [datetime] NOT NULL DEFAULT getdate(),
+	[SysModifyUser] VARCHAR(50) NULL,
+	[SysModifyDate]	DATETIME	NULL,
+	[HashSignature]  AS (hashbytes('SHA1',((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([MasterRecordID],''))+isnull([OwnerID],''))+isnull([ParentID],''))+isnull([RecordTypeID],''))+isnull([Name],''))+isnull([Type],''))+isnull([Description],''))+CONVERT([varchar],isnull([LastActivityDate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([LastViewedDate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([LastReferencedDate],'1900-01-01'),(121)))),
 
-    [ID]                 VARCHAR (18)   NULL,
-    [CreatedByID]        CHAR (18)      NULL,
-    [CreatedDate]        DATE           NULL,
-    [LastModifiedById]   CHAR (18)      NULL,
-    [LastModifiedDate]   DATE           NULL,
-    [SystemModstamp]     DATETIME       NULL,
+	[ID] [varchar](18) NULL,
+	[CreatedByID] [char](18) NULL,
+	[CreatedDate] [date] NULL,
+	[LastModifiedById] [char](18) NULL,
+	[LastModifiedDate] [date] NULL,
+	[SystemModstamp] [datetime] NULL,
 
-    [IsDeleted]          BIT            NULL,
+	[IsDeleted] [bit] NULL,
 
-    [MasterRecordID]     VARCHAR (18)   NULL,
-    [OwnerID]            VARCHAR (18)   NULL,
-    [ParentID]           VARCHAR (18)   NULL,
-    [RecordTypeID]       VARCHAR (18)   NULL,
-    [Type]               VARCHAR (40)   NULL,
-    [Name]               VARCHAR (255)  NULL,
-    [Description]        VARCHAR (4096) NULL,
-    [LastActivityDate]   VARCHAR (50)   NULL,
-    [LastViewedDate]     VARCHAR (50)   NULL,
-    [LastReferencedDate] VARCHAR (50)   NULL,
+	[MasterRecordID] [varchar](18) NULL,
+	[OwnerID] [varchar](18) NULL,
+	[ParentID] [varchar](18) NULL,
+	[RecordTypeID] [varchar](18) NULL,
 
-    CONSTRAINT [PK_Accounts] PRIMARY KEY CLUSTERED ([AccountKey] ASC)
-);
+	[Type] [varchar](40) NULL,
+	[Name] [varchar](255) NULL,
+	[Description] [varchar](4096) NULL,
 
+	[LastActivityDate] [varchar](50) NULL,
+	[LastViewedDate] [varchar](50) NULL,
+	[LastReferencedDate] [varchar](50) NULL,
+
+	CONSTRAINT [PK_Accounts] PRIMARY KEY CLUSTERED ([AccountKey] ASC)
+
+	)
+ ;
 
