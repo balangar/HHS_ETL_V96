@@ -44,7 +44,6 @@
 										ISNULL(Supervisor_Email__c, '') +
 										ISNULL(Created_in_Error_Formatted__c, '')
 										),
-
 	
 	[Id]										VARCHAR(18)	NOT NULL,
 	[CreatedDate]								DATETIME	NOT NULL,
