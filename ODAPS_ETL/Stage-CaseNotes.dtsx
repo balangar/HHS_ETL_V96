@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-CaseNotes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{4A246BFE-E35A-4504-88DF-F8B2F1E52213}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{3F042287-40C9-464D-AD85-E15690F10B55}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1310,14 +1310,6 @@
                       externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[RecordTypeId]"
                       lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[RecordTypeId]" />
                     <inputColumn
-                      refId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].Columns[Name]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="255"
-                      cachedName="Name"
-                      externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
-                      lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[Name]" />
-                    <inputColumn
                       refId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].Columns[LastActivityDate]"
                       cachedCodepage="65001"
                       cachedDataType="str"
@@ -1545,6 +1537,14 @@
                       cachedName="Parent__c"
                       externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[Parent__c]"
                       lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[Parent__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].Columns[Name]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[Name]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1936,6 +1936,10 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="219,42"
+          Id="Package\Cleanse SF CaseNotes Extract"
+          TopLeft="424,170" />
+        <NodeLayout
           Size="267,42"
           Id="Package\Conditional Truncate Staging CaseNotes"
           TopLeft="402,57" />
@@ -1943,10 +1947,6 @@
           Size="202,42"
           Id="Package\Import Staging CaseNotes"
           TopLeft="439,299" />
-        <NodeLayout
-          Size="219,42"
-          Id="Package\Cleanse SF CaseNotes Extract"
-          TopLeft="424,170" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="534.5,99">
