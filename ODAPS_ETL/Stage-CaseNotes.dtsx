@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-CaseNotes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{575382B0-A6C2-4CD3-A91A-961AF04360CB}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{4A246BFE-E35A-4504-88DF-F8B2F1E52213}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -28,6 +28,22 @@
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cleanse SF CaseNotes Extract"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{D8B3804A-E177-4BC6-A9D8-58C1938E6401}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cleanse SF CaseNotes Extract"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="\\MS-CJFS-SIS\Source\Production\Packages\Extract-ODAPS\ReplaceNonPrintableCharacters.bat"
+          WorkingDirectory="\\MS-CJFS-SIS\Source\Production\Packages\Extract-ODAPS" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Conditional Truncate Staging CaseNotes"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -1893,10 +1909,18 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{6D4C83BC-0792-4C0C-A784-6C91CC91441D}"
+      DTS:DTSID="{2601AC91-EDB3-4457-AC15-F502EC2F94D6}"
       DTS:From="Package\Conditional Truncate Staging CaseNotes"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
+      DTS:To="Package\Cleanse SF CaseNotes Extract" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{18B22547-60A0-42DD-8A57-BF474239DBF4}"
+      DTS:From="Package\Cleanse SF CaseNotes Extract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
       DTS:To="Package\Import Staging CaseNotes" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -1910,7 +1934,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="267,42"
           Id="Package\Conditional Truncate Staging CaseNotes"
@@ -1918,21 +1942,47 @@
         <NodeLayout
           Size="202,42"
           Id="Package\Import Staging CaseNotes"
-          TopLeft="434,203" />
+          TopLeft="439,299" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Cleanse SF CaseNotes Extract"
+          TopLeft="424,170" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="535.25,99">
+          TopLeft="534.5,99">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,104"
+              EndConnector="0,71"
               Start="0,0"
-              End="0,96.5">
+              End="0,63.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,96.5" />
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="536.75,212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,87"
+              Start="0,0"
+              End="0,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1950,13 +2000,17 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="179,42"
-          Id="Package\Import Staging CaseNotes\SF CaseNotes Extract"
-          TopLeft="498,47" />
+          Size="121,42"
+          Id="Package\Import Staging CaseNotes\Union All"
+          TopLeft="908,41" />
         <NodeLayout
           Size="167,42"
           Id="Package\Import Staging CaseNotes\Staging CaseNotes"
           TopLeft="509,189" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Import Staging CaseNotes\SF CaseNotes Extract"
+          TopLeft="498,47" />
         <EdgeLayout
           Id="Package\Import Staging CaseNotes.Paths[Flat File Source Output]"
           TopLeft="590,89">
@@ -1979,43 +2033,27 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="121,42"
-          Id="Package\Import Staging CaseNotes\Union All"
-          TopLeft="913,72" />
         <EdgeLayout
           Id="Package\Import Staging CaseNotes.Paths[Flat File Source Error Output]"
-          TopLeft="677,68">
+          TopLeft="677,65">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="236,25"
+              EndConnector="231,0"
               Start="0,0"
-              End="228.5,25">
+              End="223.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="114,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="114,0"
-                    Point2="118,0"
-                    Point3="118,4" />
-                  <mssgle:LineSegment
-                    End="118,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="118,21"
-                    Point2="118,25"
-                    Point3="122,25" />
-                  <mssgle:LineSegment
-                    End="228.5,25" />
+                    End="223.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="54.37361328125,-17.609375,127.2527734375,11.609375"
+              BoundingBox="48.12361328125,5,127.2527734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
