@@ -25,7 +25,7 @@
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">Release\1.1.2</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="0Gz3AY/T1w==" SSIS:IV="y7/+650c+wc=">c1mCZNHPVPf53aMqUwJD3vV9rqukh237S3VkD+2KDr20MOWAtFWCo49A5bkJReH88ivJQzZWA1QuomICvjkjyMqcsf7p7Qxebem886fUGEie/nN8+A0PpY6JLPoVm0SWUBP+lmRBrfaqxmKrUyeDkgxU+5Mz3dD8QncGumnVTyrj5VfmMs/eUw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="bxWQ+UTJ8A==" SSIS:IV="B0n8HUe+YFQ=">op6p5IU+JHf8Y5sAHqPn7ibziNjYNg6La4vsf/36ICYwHza1krXJ6B2ASl2QgO92uxPnmG3Nv4HnXU+71HJeH0pHI7Hi4jwtPs+0kNCraBY54FHq/we4ea99Y+Eh1NNyvS/iRTCFvvqQ17yM+3gA0uhbR7mANRpsR5DbFy3FWvLchcxGogoadg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -47,6 +47,7 @@
           <SSIS:Package SSIS:Name="Master-Extract.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="TransformLoad-Contacts.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Stage-CaseNotes.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Validate-CaseNotes.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="MS-DCFS-PSQL1.DSAS_ODAPS .Cuy_DataLoader.conmgr" />
@@ -1464,6 +1465,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{3F042287-40C9-464D-AD85-E15690F10B55}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Validate-CaseNotes.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{4729732E-F3D7-4734-8F83-B1A003387429}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Validate-CaseNotes</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{9F9BC66E-39F7-4B39-BFE9-36AD4FCD63B2}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
