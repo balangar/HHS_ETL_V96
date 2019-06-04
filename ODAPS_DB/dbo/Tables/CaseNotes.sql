@@ -7,21 +7,21 @@
 	[SysModifyDate]	DATETIME		NOT NULL DEFAULT getdate(),
 	[HashSignature]					AS	HashBytes('SHA1', 
 										IsNull(ID, '') +
-										Convert(varchar, ISNull(CreatedDate, '1900-01-01')) +
+										ISNull(CreatedDate, '1900-01-01') +
 										IsNull(CreatedByID, '') +
-										CONVERT(VARCHAR, ISNULL(LastModifiedDate, '1900-01-01')) +
+										ISNULL(LastModifiedDate, '1900-01-01') +
 										ISNULL(LastModifiedById, '') +
-										CONVERT(VARCHAR, ISNULL(SystemModstamp, '')) +
+										ISNULL(SystemModstamp, '1900-01-01') +
 										CONVERT(VARCHAR, ISNULL(IsDeleted, 0)) +
 										ISNULL(RecordTypeId, '') +
 										ISNULL(Name, '') +
-										CONVERT(VARCHAR, ISNULL(LastActivityDate, '1900 -01-01')) +
-										CONVERT(VARCHAR, ISNULL(LastViewedDate, '1900-01-01')) +
-										CONVERT(VARCHAR, ISNULL(LastReferencedDate, '1900-01-01')) +
+										ISNULL(LastActivityDate, '1900 -01-01') +
+										ISNULL(LastViewedDate, '1900-01-01') +
+										ISNULL(LastReferencedDate, '1900-01-01') +
 										ISNULL(APS_Case_Number__c, '') +
 										ISNULL(APSClientName__c, '') +
 										ISNULL(Case_Note_Create_Date_Only__c, '') +
-										CONVERT(VARCHAR, ISNULL(Case_Note_Interview_Date__c, '1900-01-01')) +
+										ISNULL(Case_Note_Interview_Date__c, '1900-01-01') +
 										ISNULL(Characters_in_Note_Text__c, '') +
 										ISNULL(Client_Interview_Outside_Perp_Presence__c, '') +
 										CONVERT(VARCHAR, ISNULL(Client_Interview__c, 0)) +

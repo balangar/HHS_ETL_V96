@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-Stage"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{2F060069-8F6E-4AFA-B1E6-79EC131D4A4E}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{7B41B77A-0075-432F-9C77-39621669779B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -172,7 +172,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="133,42"
           Id="Package\Placeholder"
@@ -181,6 +181,10 @@
           Size="151,42"
           Id="Package\Stage Accounts"
           TopLeft="617,194" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Stage CaseNotes"
+          TopLeft="607,435" />
         <NodeLayout
           Size="136,42"
           Id="Package\Stage Cases"
@@ -198,7 +202,7 @@
           TopLeft="689.75,236">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,83"
               Start="0,0"
               End="0,75.5">
@@ -220,7 +224,7 @@
           TopLeft="684.333333333333,361">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="-209.333333333333,78"
               Start="0,0"
               End="-209.333333333333,70.5">
@@ -254,7 +258,7 @@
           TopLeft="684.666666666667,361">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="224.833333333333,78"
               Start="0,0"
               End="224.833333333333,70.5">
@@ -288,7 +292,7 @@
           TopLeft="692,109">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,85"
               Start="0,0"
               End="0,77.5">
@@ -305,16 +309,12 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Stage CaseNotes"
-          TopLeft="607,435" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="686.5,361">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,74"
               Start="0,0"
               End="0,66.5">

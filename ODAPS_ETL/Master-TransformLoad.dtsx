@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/8/2019 1:33:24 PM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-TransformLoad"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{2DF638D3-A6CB-47F1-85AC-8C95BCF1902F}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{624BE7F8-7A0A-420E-9E2B-919318741AA9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -47,6 +47,23 @@
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
           <PackageName>TransformLoad-Accounts.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform Load Case Notes"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{1A661EBF-9E19-44AD-A238-1F37D24D66C1}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform Load Case Notes"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>TransformLoad-CaseNotes.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -159,6 +176,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\Transform Load Accounts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{59EE94FE-BB24-4677-BD9D-985FFFEEE478}"
+      DTS:From="Package\Transform Load Cases"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Transform Load Case Notes" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -183,7 +208,7 @@
         <NodeLayout
           Size="184,42"
           Id="Package\Transform Load Cases"
-          TopLeft="419,448" />
+          TopLeft="304,448" />
         <NodeLayout
           Size="197,42"
           Id="Package\Transform Load Contacts"
@@ -191,7 +216,7 @@
         <NodeLayout
           Size="183,42"
           Id="Package\Transform Load Users"
-          TopLeft="724,450" />
+          TopLeft="910,447" />
         <NodeLayout
           Size="177,42"
           Id="Package\Truncate Prod tables"
@@ -242,30 +267,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="644.5,374">
+          TopLeft="642,374">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="-133.5,74"
+              EndConnector="-246,74"
               Start="0,0"
-              End="-133.5,66.5">
+              End="-246,66.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33" />
+                    End="0,25.9577039274924" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,33"
-                    Point2="0,37"
-                    Point3="-4,37" />
+                    Point1="0,25.9577039274924"
+                    Point2="0,29.9577039274924"
+                    Point3="-4,29.9577039274924" />
                   <mssgle:LineSegment
-                    End="-129.5,37" />
+                    End="-242,29.9577039274924" />
                   <mssgle:CubicBezierSegment
-                    Point1="-129.5,37"
-                    Point2="-133.5,37"
-                    Point3="-133.5,41" />
+                    Point1="-242,29.9577039274924"
+                    Point2="-246,29.9577039274924"
+                    Point3="-246,33.9577039274924" />
                   <mssgle:LineSegment
-                    End="-133.5,66.5" />
+                    End="-246,66.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -276,30 +301,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="644,374">
+          TopLeft="641,374">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="171.5,76"
+              EndConnector="360.5,73"
               Start="0,0"
-              End="171.5,68.5">
+              End="360.5,65.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.7673716012085" />
+                    End="0,25.5528700906344" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,32.7673716012085"
-                    Point2="0,36.7673716012085"
-                    Point3="4,36.7673716012085" />
+                    Point1="0,25.5528700906344"
+                    Point2="0,29.5528700906344"
+                    Point3="4,29.5528700906344" />
                   <mssgle:LineSegment
-                    End="167.5,36.7673716012085" />
+                    End="356.5,29.5528700906344" />
                   <mssgle:CubicBezierSegment
-                    Point1="167.5,36.7673716012085"
-                    Point2="171.5,36.7673716012085"
-                    Point3="171.5,40.7673716012085" />
+                    Point1="356.5,29.5528700906344"
+                    Point2="360.5,29.5528700906344"
+                    Point3="360.5,33.5528700906344" />
                   <mssgle:LineSegment
-                    End="171.5,68.5" />
+                    End="360.5,65.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -345,6 +370,32 @@
             </mssge:FontInfo>
           </AnnotationLayout.FontInfo>
         </AnnotationLayout>
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Transform Load Case Notes"
+          TopLeft="295,573" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="397.75,490">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
