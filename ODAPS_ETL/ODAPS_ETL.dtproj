@@ -24,8 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">EXP\2.X.1</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="cv5K8BqA+Q==" SSIS:IV="+WAfKsMFZ4w=">9jecagB8IgTOH0CBOwY4VF/SdacXDQJ+qadv5RRt2gMh6Bn0zIdij5ZIh0YNlbhdkwXSm+UL/1ePBOjlpylJ0oWLu1QKkUrplE4KJhW8BfDUomsIHipA1K1xIUzryVx/hMrrKCodUqEK3lVofVjs3jIqfQa8br5u70LW6k4blmh5eVolp1NtGQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">2.0.0</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="BeICLRIyYg==" SSIS:IV="viRJ0G4SufM=">wUeJqg7sq5K4x4vnR9SXj9mgaJyajoeQOZ/D2seDdDHb4akVK9H1IlKdEcSm0hUEGec/tzb+azO7Hkz0DQpEdFqh9dkEVP6gss5Xc/KKvq26ZRw/GhSD4WaXxvxYPDZk/9M1Ql/ZFPBA25YHxyjMF6U/qyGYQ6HNi26zd40rSJYLAPw7R19VLg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
