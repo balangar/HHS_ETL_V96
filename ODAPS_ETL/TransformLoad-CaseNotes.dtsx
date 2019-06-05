@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-CaseNotes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{9CDC63CD-A4C2-40F1-A890-0BDD2B640B50}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{28D96E6A-00E1-483F-A250-D2E58686D8B5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -48,6 +48,160 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Transform Load - Case Notes\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input].Columns[Characters_in_Note_Text__c]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Characters_in_Note_Text__c"
+                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Characters_in_Note_Text__c]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input].Columns[Days_Between_Contact_and_Today__c]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Days_Between_Contact_and_Today__c"
+                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_Between_Contact_and_Today__c]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input].Columns[Days_Since_Note_Created__c]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Days_Since_Note_Created__c"
+                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_Since_Note_Created__c]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input].Columns[Days_since_last_assessment__c]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Days_since_last_assessment__c"
+                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_since_last_assessment__c]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_CharactersInNoteText]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_CharactersInNoteText]"
+                      name="Count_CharactersInNoteText"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Characters_in_Note_Text__c]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysBetweenContactAndToday]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysBetweenContactAndToday]"
+                      name="Count_DaysBetweenContactAndToday"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_Between_Contact_and_Today__c]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysSinceNoteCreated]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysSinceNoteCreated]"
+                      name="Count_DaysSinceNoteCreated"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_Since_Note_Created__c]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysSinceLastAssessment]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysSinceLastAssessment]"
+                      name="Count_DaysSinceLastAssessment"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_since_last_assessment__c]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Transform Load - Case Notes\dbo Case Notes"
               componentClassID="Microsoft.ManagedComponentHost"
@@ -97,6 +251,13 @@
                   hasSideEffects="true"
                   name="ADO NET Destination Input">
                   <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[HashSignature]"
+                      cachedDataType="bytes"
+                      cachedLength="8000"
+                      cachedName="HashSignature"
+                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[HashSignature]" />
                     <inputColumn
                       refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Id]"
                       cachedDataType="wstr"
@@ -209,13 +370,6 @@
                       externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Case_Note_Interview_Date__c]"
                       lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Case_Note_Interview_Date__c]" />
                     <inputColumn
-                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Characters_in_Note_Text__c]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Characters_in_Note_Text__c"
-                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Characters_in_Note_Text__c]"
-                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Characters_in_Note_Text__c]" />
-                    <inputColumn
                       refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Client_Interview_Outside_Perp_Presence__c]"
                       cachedDataType="wstr"
                       cachedLength="255"
@@ -249,27 +403,6 @@
                       cachedName="Copy_of_first_255_char_in_note__c"
                       externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Copy_of_first_255_char_in_note__c]"
                       lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Copy_of_first_255_char_in_note__c]" />
-                    <inputColumn
-                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Days_Between_Contact_and_Today__c]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Days_Between_Contact_and_Today__c"
-                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Days_Between_Contact_and_Today__c]"
-                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_Between_Contact_and_Today__c]" />
-                    <inputColumn
-                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Days_Since_Note_Created__c]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Days_Since_Note_Created__c"
-                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Days_Since_Note_Created__c]"
-                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_Since_Note_Created__c]" />
-                    <inputColumn
-                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Days_since_last_assessment__c]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Days_since_last_assessment__c"
-                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Days_since_last_assessment__c]"
-                      lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Days_since_last_assessment__c]" />
                     <inputColumn
                       refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Explain_Why_Perp_Attended_Interview__c]"
                       cachedDataType="wstr"
@@ -359,6 +492,30 @@
                       cachedName="Parent__c"
                       externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Parent__c]"
                       lineageId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output].Columns[Parent__c]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Count_CharactersInNoteText]"
+                      cachedDataType="i2"
+                      cachedName="Count_CharactersInNoteText"
+                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Characters_in_Note_Text__c]"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_CharactersInNoteText]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Count_DaysBetweenContactAndToday]"
+                      cachedDataType="i2"
+                      cachedName="Count_DaysBetweenContactAndToday"
+                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Days_Between_Contact_and_Today__c]"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysBetweenContactAndToday]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Count_DaysSinceNoteCreated]"
+                      cachedDataType="i2"
+                      cachedName="Count_DaysSinceNoteCreated"
+                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Days_Since_Note_Created__c]"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysSinceNoteCreated]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].Columns[Count_DaysSinceLastAssessment]"
+                      cachedDataType="i2"
+                      cachedName="Count_DaysSinceLastAssessment"
+                      externalMetadataColumnId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Days_since_last_assessment__c]"
+                      lineageId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output].Columns[Count_DaysSinceLastAssessment]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -384,6 +541,11 @@
                       refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[SysModifyDate]"
                       dataType="dbTimeStamp"
                       name="SysModifyDate" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
                       dataType="wstr"
@@ -1812,8 +1974,13 @@
               name="ADO NET Source Output"
               startId="Package\Transform Load - Case Notes\Staging  Case Notes.Outputs[ADO NET Source Output]" />
             <path
-              refId="Package\Transform Load - Case Notes.Paths[Valid]"
+              refId="Package\Transform Load - Case Notes.Paths[Data Conversion Output]"
               endId="Package\Transform Load - Case Notes\dbo Case Notes.Inputs[ADO NET Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Transform Load - Case Notes\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Transform Load - Case Notes.Paths[Valid]"
+              endId="Package\Transform Load - Case Notes\Data Conversion.Inputs[Data Conversion Input]"
               name="Valid"
               startId="Package\Transform Load - Case Notes\Sieve Valid and Unloaded.Outputs[Valid]" />
           </paths>
@@ -1842,21 +2009,21 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="216,42"
-          Id="Package\Transform Load - Case Notes"
-          TopLeft="534,71" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="231,42"
           Id="Package\Mark Staging CaseNotes Loaded"
           TopLeft="523,214" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Transform Load - Case Notes"
+          TopLeft="534,71" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="640.25,113">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,101"
               Start="0,0"
               End="0,93.5">
@@ -1880,21 +2047,29 @@
     design-time-name="Package\Transform Load - Case Notes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="174,42"
-          Id="Package\Transform Load - Case Notes\Staging  Case Notes"
-          TopLeft="547,77" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="198,42"
           Id="Package\Transform Load - Case Notes\Sieve Valid and Unloaded"
           TopLeft="537,183" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Transform Load - Case Notes\Mark Not Loaded"
+          TopLeft="558,524" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Transform Load - Case Notes\dbo Case Notes"
+          TopLeft="555,392" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Transform Load - Case Notes\Staging  Case Notes"
+          TopLeft="547,77" />
         <EdgeLayout
           Id="Package\Transform Load - Case Notes.Paths[ADO NET Source Output]"
           TopLeft="635,119">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,64"
               Start="0,0"
               End="0,56.5">
@@ -1911,44 +2086,12 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="152,42"
-          Id="Package\Transform Load - Case Notes\dbo Case Notes"
-          TopLeft="561,311" />
-        <EdgeLayout
-          Id="Package\Transform Load - Case Notes.Paths[Valid]"
-          TopLeft="636.5,225">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,86"
-              Start="0,0"
-              End="0,78.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-11.351171875,34.37548828125,22.70234375,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Transform Load - Case Notes\Mark Not Loaded"
-          TopLeft="564,443" />
         <EdgeLayout
           Id="Package\Transform Load - Case Notes.Paths[ADO NET Destination Error Output]"
-          TopLeft="640.25,353">
+          TopLeft="634.25,434">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,90"
               Start="0,0"
               End="0,82.5">
@@ -1967,11 +2110,61 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Transform Load - Case Notes\Data Conversion"
+          TopLeft="560,287" />
+        <EdgeLayout
+          Id="Package\Transform Load - Case Notes.Paths[Valid]"
+          TopLeft="637,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.351171875,22.37548828125,22.70234375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Load - Case Notes.Paths[Data Conversion Output]"
+          TopLeft="634.5,329">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Transform Load - Case Notes\Staging  Case Notes">
+    design-time-name="Package\Transform Load - Case Notes\dbo Case Notes">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1979,7 +2172,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Transform Load - Case Notes\dbo Case Notes">
+    design-time-name="Package\Transform Load - Case Notes\Staging  Case Notes">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
