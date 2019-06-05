@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/15/2019 2:07:10 PM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{A0AD33F9-0FF0-4E03-987A-C571D26BADF4}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{34D3A503-EDD0-4AB2-B469-3CAAE30AC827}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -85,8 +85,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Cases\dbo Cases.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -187,13 +187,6 @@
                       cachedName="CaseSeqNo"
                       externalMetadataColumnId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[CaseSeqNo]"
                       lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[CaseSeqNo]" />
-                    <inputColumn
-                      refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].Columns[Approximate_Age__c]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Approximate_Age__c"
-                      externalMetadataColumnId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Approximate_Age__c]"
-                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Approximate_Age__c]" />
                     <inputColumn
                       refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].Columns[Caretaker_Neglect__c]"
                       cachedDataType="bool"
@@ -607,8 +600,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Cases\Mark Not Loaded.Connections[OleDbConnection]"
-                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
-                  connectionManagerRefId="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -810,8 +803,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Cases\Staging Cases.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1827,6 +1820,10 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="198,42"
+          Id="Package\Transform Load - Cases\Sieve Valid and Unloaded"
+          TopLeft="490,190" />
+        <NodeLayout
           Size="145,42"
           Id="Package\Transform Load - Cases\Staging Cases"
           TopLeft="517,78" />
@@ -1838,10 +1835,28 @@
           Size="159,42"
           Id="Package\Transform Load - Cases\Mark Not Loaded"
           TopLeft="508,450" />
-        <NodeLayout
-          Size="198,42"
-          Id="Package\Transform Load - Cases\Sieve Valid and Unloaded"
-          TopLeft="490,190" />
+        <EdgeLayout
+          Id="Package\Transform Load - Cases.Paths[ADO NET Source Output]"
+          TopLeft="589.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Transform Load - Cases.Paths[ADO NET Destination Error Output]"
           TopLeft="586.5,351">
@@ -1888,28 +1903,6 @@
             <mssgm:EdgeLabel
               BoundingBox="-11.351171875,29.87548828125,22.70234375,9.7490234375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Transform Load - Cases.Paths[ADO NET Source Output]"
-          TopLeft="589.25,120">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,70"
-              Start="0,0"
-              End="0,62.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,62.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
