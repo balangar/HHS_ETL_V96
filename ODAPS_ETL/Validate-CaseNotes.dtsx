@@ -12,8 +12,8 @@
   DTS:ObjectName="Validate-CaseNotes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{9F9BC66E-39F7-4B39-BFE9-36AD4FCD63B2}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{0CF47CBE-EA8B-4DDD-A6C3-079097A702EA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2037,20 +2037,20 @@ public class Variables
                       dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>SC_4be4733e9b46420b9a0bca93825143c5</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_4be4733e9b46420b9a0bca93825143c5</msb:DisplayName>
 		<msb:ProjectId>{E2E9F6E0-EEDC-4617-9F0C-0EB7451407AE}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_4be4733e9b46420b9a0bca93825143c5.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="BufferWrapper.cs"/>
-		<msb:File Include="main.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
 		<msb:File Include="ComponentWrapper.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></arrayElement>
@@ -2187,7 +2187,7 @@ namespace SC_4be4733e9b46420b9a0bca93825143c5.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMtw8VwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAA2jgA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAE/x+FwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAA2jgA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAIg4AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2245,7 +2245,7 @@ AABDANkAAAC2A90AAAByAN0AAADzA90AAABWAN0AAADQA90AAADNAN0AAAB4BN0AAAA9B9kAAADl
 BN0AAAD/BeEAAABiAeYAAABkB+sAAgAEAAMAAgAFAAUAAgAGAAcAAgAHAAkAAgAIAAsAAgAJAA0A
 AgAKAA8AAgALABEAAgAMABMAAgANABUAAgAOABcAAgAPABkAAgAQABsAAgARAB0AAgASAB8AAgAT
 ACEAAgAUACMAAgAVACUAAgAWACcAAgAXACkAAgAYACsAAQAZACsAAgAaAC0AAQAbAC0AAgAcAC8A
-AQAdAC8AAgAeADEAAQAfADEAAgApADMAAgAqADUAAQArADUAAgAsADcABIAAAAEAAACyGwVlAAAA
+AQAdAC8AAgAeADEAAQAfADEAAgApADMAAgAqADUAAQArADUAAgAsADcABIAAAAEAAAC4G8cwAAAA
 AAAAAQAAAAQAAAAAAAAAAAAAAHsANgAAAAAADAAAAAAAAAAAAAAAhACaBwAAAAAMAAAAAAAAAAAA
 AACEALcHAAAAAAQAAAAAAAAAAAAAAHsABgUAAAAAAAAAAAEAAABgBgAAAAAAAABTQ180YmU0NzMz
 ZTliNDY0MjBiOWEwYmNhOTM4MjUxNDNjNQA8TW9kdWxlPgBJbnB1dElEAG1zY29ybGliAGdldF9B
@@ -2293,7 +2293,7 @@ AHQAbwAgAEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAA
 dABoAGUAIABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBwAHUAdAAgADAAAHFT
 AEMAXwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4ADIA
 NQAxADQAMwBjADUALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAA
-IMzeV5dwiUCiNENG4SrFqgAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERWQQHAg4CAgYOAyAADgUA
+G0QjMBX2cE+JuPU5HHMXZwAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERWQQHAg4CAgYOAyAADgUA
 AgIODgUAAg4ODgkgAwESPR0IEkEDBhI9AwYdCAQgAQ4IBCABAggFIAIBCBwDIAACBiACAg4RdQUg
 AR0ICAYAARJ5EX0FIAASgIEHIAIBDhKAgQi3elxWGTTgiQiJhF3NgIDMkQMGEhQDBhIYAwYSRQMG
 ElEDBhJVAwYSIAUgAQESDAQgAQECCSAEAQgOEj0SQQUgAQESRQQAABJRBAAAElUFAAEBElUEAAAS
@@ -2313,14 +2313,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAA
 AFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAA
-vQTv/gAAAQAAAAEABWWyGwAAAQAFZbIbPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
+vQTv/gAAAQAAAAEAxzC4GwAAAQDHMLgbPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
 AFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAA
 AAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAAMAAw
 ADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkA
 TgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABT
 AEMAXwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4ADIA
 NQAxADQAMwBjADUAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANwAw
-ADkAMAAuADIANQA4ADYAMQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMA
+ADkANgAuADEAMgA0ADgANwAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMA
 XwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4ADIANQAx
 ADQAMwBjADUALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMA
 bwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEAOQAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBk
@@ -2329,8 +2329,8 @@ ZQAAAFMAQwBfADQAYgBlADQANwAzADMAZQA5AGIANAA2ADQAMgAwAGIAOQBhADAAYgBjAGEAOQAz
 ADgAMgA1ADEANAAzAGMANQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAA
 AABTAEMAXwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4
 ADIANQAxADQAMwBjADUAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4A
-MAAuADcAMAA5ADAALgAyADUAOAA2ADEAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQBy
-AHMAaQBvAG4AAAAxAC4AMAAuADcAMAA5ADAALgAyADUAOAA2ADEAAAAAAAAAAAAAAAAAAAAAAAAA
+MAAuADcAMAA5ADYALgAxADIANAA4ADcAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQBy
+AHMAaQBvAG4AAAAxAC4AMAAuADcAMAA5ADYALgAxADIANAA4ADcAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2531,7 +2531,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     design-time-name="Package\Validate Syntax - CaseNotes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Validate Syntax - CaseNotes\Sieve Invalid"
+          TopLeft="506,304" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Validate Syntax - CaseNotes\Mark Invalid Records"
+          TopLeft="482,540" />
         <NodeLayout
           Size="167,42"
           Id="Package\Validate Syntax - CaseNotes\Staging CaseNotes"
@@ -2540,38 +2548,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Size="117,42"
           Id="Package\Validate Syntax - CaseNotes\Validate"
           TopLeft="521,183" />
-        <EdgeLayout
-          Id="Package\Validate Syntax - CaseNotes.Paths[ADO NET Source Output]"
-          TopLeft="579.5,101">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,82"
-              Start="0,0"
-              End="0,74.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,74.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="139,42"
-          Id="Package\Validate Syntax - CaseNotes\Sieve Invalid"
-          TopLeft="506,304" />
+          Size="212,42"
+          Id="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII"
+          TopLeft="472,420" />
         <EdgeLayout
           Id="Package\Validate Syntax - CaseNotes.Paths[Output 0]"
           TopLeft="577.5,225">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,79"
               Start="0,0"
               End="0,71.5">
@@ -2588,16 +2574,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="212,42"
-          Id="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII"
-          TopLeft="472,420" />
         <EdgeLayout
           Id="Package\Validate Syntax - CaseNotes.Paths[Invalid]"
           TopLeft="576.75,346">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,74"
               Start="0,0"
               End="0,66.5">
@@ -2616,16 +2598,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="178,42"
-          Id="Package\Validate Syntax - CaseNotes\Mark Invalid Records"
-          TopLeft="482,540" />
         <EdgeLayout
           Id="Package\Validate Syntax - CaseNotes.Paths[Data Conversion Output]"
           TopLeft="574.5,462">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,78"
               Start="0,0"
               End="0,70.5">
@@ -2642,10 +2620,32 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - CaseNotes.Paths[ADO NET Source Output]"
+          TopLeft="579.5,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <AnnotationLayout
           Text="WIP.  [geg]"
           ParentId="Package\Validate Syntax - CaseNotes"
-          Size="86,60"
+          Size="86,37"
           Id="7e4696a3-795a-485e-a356-d5c0d225ca60"
           TopLeft="705,193">
           <AnnotationLayout.FontInfo>

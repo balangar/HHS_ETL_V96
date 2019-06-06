@@ -5,45 +5,7 @@
 	[SysInsertDate] DATETIME		NOT NULL DEFAULT getdate(),
 	[SysModifyUser] VARCHAR(50)		NOT NULL DEFAULT 'Sys_Etl',
 	[SysModifyDate]	DATETIME		NOT NULL DEFAULT getdate(),
-	[HashSignature]					AS	HashBytes('SHA1', 
-										IsNull(ID, '') +
-										ISNull(CreatedDate, '1900-01-01') +
-										IsNull(CreatedByID, '') +
-										ISNULL(LastModifiedDate, '1900-01-01') +
-										ISNULL(LastModifiedById, '') +
-										ISNULL(SystemModstamp, '1900-01-01') +
-										CONVERT(VARCHAR, ISNULL(IsDeleted, 0)) +
-										ISNULL(RecordTypeId, '') +
-										ISNULL(Name, '') +
-										ISNULL(LastActivityDate, '1900 -01-01') +
-										ISNULL(LastViewedDate, '1900-01-01') +
-										ISNULL(LastReferencedDate, '1900-01-01') +
-										ISNULL(APS_Case_Number__c, '') +
-										ISNULL(APSClientName__c, '') +
-										ISNULL(Case_Note_Create_Date_Only__c, '') +
-										ISNULL(Case_Note_Interview_Date__c, '1900-01-01') +
-										ISNULL(Characters_in_Note_Text__c, '') +
-										ISNULL(Client_Interview_Outside_Perp_Presence__c, '') +
-										CONVERT(VARCHAR, ISNULL(Client_Interview__c, 0)) +
-										ISNULL(Client_Name__c, '') +
-										ISNULL(Contact_is_Timely__c, '') +
-										ISNULL(Copy_of_first_255_char_in_note__c, '') +
-										ISNULL(Days_Between_Contact_and_Today__c, '') +
-										ISNULL(Days_Since_Note_Created__c, '') +
-										ISNULL(Days_since_last_assessment__c, '') +
-										ISNULL(Explain_Why_Perp_Attended_Interview__c, '') +
-										ISNULL(Interview_Conducted_With__c, '') +
-										ISNULL(Non_Participating_Contact__c, '') +
-										CONVERT(VARCHAR, ISNULL(Note_Created_Contact_Date__c, '1900-01-01')) +
-										ISNULL(Note_Type__c, '') +
-										ISNULL(Note__c, '') +
-										ISNULL(TemporaryAPSCase__c, '') +
-										CONVERT(VARCHAR, ISNULL(Case_Note_Created_in_Error__c, 0)) +
-										ISNULL(Case_Note__c, '') +
-										ISNULL(Status__c, '') +
-										ISNULL(Supervisor_Email__c, '') +
-										ISNULL(Created_in_Error_Formatted__c, '')
-										),
+	[HashSignature]	VARBINARY(8000)	NULL,
 	
 	[Id]										VARCHAR(18)	NOT NULL,
 	[CreatedDate]								DATETIME	NOT NULL,
