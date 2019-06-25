@@ -24,8 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">T\2.1.0</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="ob2iuDySrQ==" SSIS:IV="w+gWs8Qmy0k=">62LczWnsuLyA5KARn055CVaES9JqRev29SPzV4abthyRneSrgKQiCFdb5zLZwkFyRViblE8uz/0aDQR1QAIbiTsFS+h7oNexdaX1dWUztxP1ay0ghmUqZC8771gdzUzbdkOqHa5w/pS21+FunmJ6J/TEcuJzyRlyJ2BApFy8H5O6cmTdplwlDA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">T\2.2.0</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="QYXr0te91g==" SSIS:IV="6zWnbpwneo8=">7adzuOD2POmsF5GBU9xRcwmLw1k5leQ2Db1qOj0AHJDwNFcHBZeNJJg7ULZfi8rOF8ZUcFtft12PQ8Va1JFIN1FTQJRkb960HPxn/z1Dwnswpcz4+5Nkq84YhL6RbiMwOEjsOKDvjLELr4iuqIIbg6NmW1LUJIqWKTx2p4L2wit7LLg7HkOr8g==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1535,6 +1535,24 @@
     </Configuration>
     <Configuration>
       <Name>Staging</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2014</TargetServerVersion>
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2019-04-30T16:46:09.9164086Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Release</Name>
       <Options>
         <OutputPath>bin</OutputPath>
         <ConnectionMappings />

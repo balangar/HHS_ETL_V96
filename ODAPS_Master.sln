@@ -38,6 +38,7 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Development|Any CPU = Development|Any CPU
+		Release|Any CPU = Release|Any CPU
 		Staging|Any CPU = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -45,6 +46,8 @@ Global
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Development|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
 		{7A9289ED-3B62-4201-BE77-1492627A6E8F}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -53,6 +56,9 @@ Global
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Development|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Development|Any CPU.Deploy.0 = Debug|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Staging|Any CPU.Build.0 = Staging|Any CPU
 		{B6A3A4CF-A761-49E7-A807-6EE8E6E426B5}.Staging|Any CPU.Deploy.0 = Staging|Any CPU
@@ -60,6 +66,8 @@ Global
 		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Debug|Any CPU.Build.0 = Development
 		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Development|Any CPU.ActiveCfg = Development
 		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Development|Any CPU.Build.0 = Development
+		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Release|Any CPU.ActiveCfg = Release
+		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Release|Any CPU.Build.0 = Release
 		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Staging|Any CPU.ActiveCfg = Staging
 		{46E67C89-986F-449B-A5E0-FB2F2EAFEE07}.Staging|Any CPU.Build.0 = Staging
 	EndGlobalSection
