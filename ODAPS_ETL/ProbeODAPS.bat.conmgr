@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ProbeODAPS.bat"
+  DTS:DTSID="{0194A5C2-4FE1-4799-A858-2967D7C878B2}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="\\ms-cjfs-sis\source\Development\Packages\Extract-ODAPS\ProbeODAPS.bat" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

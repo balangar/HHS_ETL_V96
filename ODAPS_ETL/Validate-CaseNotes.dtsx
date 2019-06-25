@@ -1,0 +1,2672 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/31/2019 2:06:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JFS430619"
+  DTS:CreatorName="CUYAHOGA\GREENG"
+  DTS:DTSID="{4729732E-F3D7-4734-8F83-B1A003387429}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Validate-CaseNotes"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{0CF47CBE-EA8B-4DDD-A6C3-079097A702EA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Validate Syntax - CaseNotes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5241EF36-9413-4460-BB7C-8EEA66111EC4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Validate Syntax - CaseNotes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Convert Comments to ASCII"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Inputs[Data Conversion Input].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Comments"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Comments]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Output].Columns[Comments_ASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Output].Columns[Comments_ASCII]"
+                      name="Comments_ASCII"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Comments]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Mark Invalid Records"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update Staging.CaseNotes
+    Set
+        IsValid = ?,
+        Comments = ?
+    Where
+        CaseNoteKey = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Connections[OleDbConnection]"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].Columns[IsLoaded]"
+                      cachedDataType="bool"
+                      cachedName="IsLoaded"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsLoaded]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].Columns[CaseNoteKey]"
+                      cachedDataType="i4"
+                      cachedName="CaseNoteKey"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CaseNoteKey]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].Columns[Comments_ASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Comments_ASCII"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Output].Columns[Comments_ASCII]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="bool"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - CaseNotes\Sieve Invalid"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Sieve Invalid"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Inputs[Conditional Split Input].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Invalid]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Invalid"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">!#{Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsValid]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!IsValid</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Valid]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Valid"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Staging CaseNotes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Staging"."CaseNotes"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Connections[IDbConnection]"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CaseNoteKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[CaseNoteKey]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CaseNoteKey]"
+                      name="CaseNoteKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SysInsertUser]"
+                      name="SysInsertUser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
+                      name="SysInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      length="8000"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      name="HashSignature"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CreatedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[CreatedById]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CreatedById]"
+                      name="CreatedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastModifiedById]"
+                      name="LastModifiedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
+                      name="SystemModstamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[RecordTypeId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[RecordTypeId]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[RecordTypeId]"
+                      name="RecordTypeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      length="80"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastActivityDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastActivityDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastActivityDate]"
+                      name="LastActivityDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastViewedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastViewedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastViewedDate]"
+                      name="LastViewedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastReferencedDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastReferencedDate]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastReferencedDate]"
+                      name="LastReferencedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[APS_Case_Number__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[APS_Case_Number__c]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[APS_Case_Number__c]"
+                      name="APS_Case_Number__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[APSClientName__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[APSClientName__c]"
+                      length="100"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[APSClientName__c]"
+                      name="APSClientName__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Create_Date_Only__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note_Create_Date_Only__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Create_Date_Only__c]"
+                      name="Case_Note_Create_Date_Only__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Interview_Date__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note_Interview_Date__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Interview_Date__c]"
+                      name="Case_Note_Interview_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Characters_in_Note_Text__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Characters_in_Note_Text__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Characters_in_Note_Text__c]"
+                      name="Characters_in_Note_Text__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Interview_Outside_Perp_Presence__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Client_Interview_Outside_Perp_Presence__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Interview_Outside_Perp_Presence__c]"
+                      name="Client_Interview_Outside_Perp_Presence__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Interview__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Client_Interview__c]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Interview__c]"
+                      name="Client_Interview__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Name__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Client_Name__c]"
+                      length="1300"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Name__c]"
+                      name="Client_Name__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Contact_is_Timely__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Contact_is_Timely__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Contact_is_Timely__c]"
+                      name="Contact_is_Timely__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Copy_of_first_255_char_in_note__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Copy_of_first_255_char_in_note__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Copy_of_first_255_char_in_note__c]"
+                      name="Copy_of_first_255_char_in_note__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Days_Between_Contact_and_Today__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Days_Between_Contact_and_Today__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Days_Between_Contact_and_Today__c]"
+                      name="Days_Between_Contact_and_Today__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Days_Since_Note_Created__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Days_Since_Note_Created__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Days_Since_Note_Created__c]"
+                      name="Days_Since_Note_Created__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Days_since_last_assessment__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Days_since_last_assessment__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Days_since_last_assessment__c]"
+                      name="Days_since_last_assessment__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Explain_Why_Perp_Attended_Interview__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Explain_Why_Perp_Attended_Interview__c]"
+                      length="500"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Explain_Why_Perp_Attended_Interview__c]"
+                      name="Explain_Why_Perp_Attended_Interview__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Interview_Conducted_With__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Interview_Conducted_With__c]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Interview_Conducted_With__c]"
+                      name="Interview_Conducted_With__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Non_Participating_Contact__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Non_Participating_Contact__c]"
+                      length="100"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Non_Participating_Contact__c]"
+                      name="Non_Participating_Contact__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Note_Created_Contact_Date__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Note_Created_Contact_Date__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Note_Created_Contact_Date__c]"
+                      name="Note_Created_Contact_Date__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Note_Type__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Note_Type__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Note_Type__c]"
+                      name="Note_Type__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Note__c]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Note__c]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Note__c]"
+                      name="Note__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[TemporaryAPSCase__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[TemporaryAPSCase__c]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[TemporaryAPSCase__c]"
+                      name="TemporaryAPSCase__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Created_in_Error__c]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note_Created_in_Error__c]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Created_in_Error__c]"
+                      name="Case_Note_Created_in_Error__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note__c]"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note__c]"
+                      name="Case_Note__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Status__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Status__c]"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Status__c]"
+                      name="Status__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Supervisor_Email__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Supervisor_Email__c]"
+                      length="80"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Supervisor_Email__c]"
+                      name="Supervisor_Email__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Created_in_Error_Formatted__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Created_in_Error_Formatted__c]"
+                      length="1300"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Created_in_Error_Formatted__c]"
+                      name="Created_in_Error_Formatted__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Parent__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Parent__c]"
+                      length="1300"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Parent__c]"
+                      name="Parent__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsLoaded]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[IsLoaded]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsLoaded]"
+                      name="IsLoaded"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LoadDate]"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LoadDate]"
+                      name="LoadDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Comments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[CaseNoteKey]"
+                      dataType="i4"
+                      name="CaseNoteKey" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[SysInsertUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="SysInsertUser" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Id]"
+                      dataType="wstr"
+                      length="18"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[CreatedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="CreatedById" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="LastModifiedById" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
+                      dataType="wstr"
+                      length="50"
+                      name="SystemModstamp" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[RecordTypeId]"
+                      dataType="wstr"
+                      length="18"
+                      name="RecordTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="80"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastActivityDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastActivityDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastViewedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastViewedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LastReferencedDate]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastReferencedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[APS_Case_Number__c]"
+                      dataType="wstr"
+                      length="18"
+                      name="APS_Case_Number__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[APSClientName__c]"
+                      dataType="wstr"
+                      length="100"
+                      name="APSClientName__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note_Create_Date_Only__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Case_Note_Create_Date_Only__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note_Interview_Date__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Case_Note_Interview_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Characters_in_Note_Text__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Characters_in_Note_Text__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Client_Interview_Outside_Perp_Presence__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Client_Interview_Outside_Perp_Presence__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Client_Interview__c]"
+                      dataType="bool"
+                      name="Client_Interview__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Client_Name__c]"
+                      dataType="wstr"
+                      length="1300"
+                      name="Client_Name__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Contact_is_Timely__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Contact_is_Timely__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Copy_of_first_255_char_in_note__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Copy_of_first_255_char_in_note__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Days_Between_Contact_and_Today__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Days_Between_Contact_and_Today__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Days_Since_Note_Created__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Days_Since_Note_Created__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Days_since_last_assessment__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Days_since_last_assessment__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Explain_Why_Perp_Attended_Interview__c]"
+                      dataType="wstr"
+                      length="500"
+                      name="Explain_Why_Perp_Attended_Interview__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Interview_Conducted_With__c]"
+                      dataType="wstr"
+                      length="18"
+                      name="Interview_Conducted_With__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Non_Participating_Contact__c]"
+                      dataType="wstr"
+                      length="100"
+                      name="Non_Participating_Contact__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Note_Created_Contact_Date__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Note_Created_Contact_Date__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Note_Type__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Note_Type__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Note__c]"
+                      dataType="nText"
+                      name="Note__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[TemporaryAPSCase__c]"
+                      dataType="wstr"
+                      length="18"
+                      name="TemporaryAPSCase__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note_Created_in_Error__c]"
+                      dataType="bool"
+                      name="Case_Note_Created_in_Error__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Case_Note__c]"
+                      dataType="wstr"
+                      length="18"
+                      name="Case_Note__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Status__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Status__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Supervisor_Email__c]"
+                      dataType="wstr"
+                      length="80"
+                      name="Supervisor_Email__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Created_in_Error_Formatted__c]"
+                      dataType="wstr"
+                      length="1300"
+                      name="Created_in_Error_Formatted__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Parent__c]"
+                      dataType="wstr"
+                      length="1300"
+                      name="Parent__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[IsLoaded]"
+                      dataType="bool"
+                      name="IsLoaded" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      name="LoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].ExternalColumns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      name="Comments" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[CaseNoteKey]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[CaseNoteKey]"
+                      name="CaseNoteKey" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[SysInsertUser]"
+                      name="SysInsertUser" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
+                      name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      name="HashSignature" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Id]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[CreatedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[CreatedById]"
+                      name="CreatedById" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastModifiedById]"
+                      name="LastModifiedById" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
+                      name="SystemModstamp" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[RecordTypeId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[RecordTypeId]"
+                      name="RecordTypeId" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastActivityDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastActivityDate]"
+                      name="LastActivityDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastViewedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastViewedDate]"
+                      name="LastViewedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastReferencedDate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LastReferencedDate]"
+                      name="LastReferencedDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[APS_Case_Number__c]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[APS_Case_Number__c]"
+                      name="APS_Case_Number__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[APSClientName__c]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[APSClientName__c]"
+                      name="APSClientName__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note_Create_Date_Only__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note_Create_Date_Only__c]"
+                      name="Case_Note_Create_Date_Only__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note_Interview_Date__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note_Interview_Date__c]"
+                      name="Case_Note_Interview_Date__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Characters_in_Note_Text__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Characters_in_Note_Text__c]"
+                      name="Characters_in_Note_Text__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Client_Interview_Outside_Perp_Presence__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Client_Interview_Outside_Perp_Presence__c]"
+                      name="Client_Interview_Outside_Perp_Presence__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Client_Interview__c]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Client_Interview__c]"
+                      name="Client_Interview__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Client_Name__c]"
+                      dataType="wstr"
+                      length="1300"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Client_Name__c]"
+                      name="Client_Name__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Contact_is_Timely__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Contact_is_Timely__c]"
+                      name="Contact_is_Timely__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Copy_of_first_255_char_in_note__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Copy_of_first_255_char_in_note__c]"
+                      name="Copy_of_first_255_char_in_note__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Days_Between_Contact_and_Today__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Days_Between_Contact_and_Today__c]"
+                      name="Days_Between_Contact_and_Today__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Days_Since_Note_Created__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Days_Since_Note_Created__c]"
+                      name="Days_Since_Note_Created__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Days_since_last_assessment__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Days_since_last_assessment__c]"
+                      name="Days_since_last_assessment__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Explain_Why_Perp_Attended_Interview__c]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Explain_Why_Perp_Attended_Interview__c]"
+                      name="Explain_Why_Perp_Attended_Interview__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Interview_Conducted_With__c]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Interview_Conducted_With__c]"
+                      name="Interview_Conducted_With__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Non_Participating_Contact__c]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Non_Participating_Contact__c]"
+                      name="Non_Participating_Contact__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Note_Created_Contact_Date__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Note_Created_Contact_Date__c]"
+                      name="Note_Created_Contact_Date__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Note_Type__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Note_Type__c]"
+                      name="Note_Type__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Note__c]"
+                      dataType="nText"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Note__c]"
+                      name="Note__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[TemporaryAPSCase__c]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[TemporaryAPSCase__c]"
+                      name="TemporaryAPSCase__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note_Created_in_Error__c]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note_Created_in_Error__c]"
+                      name="Case_Note_Created_in_Error__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note__c]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Case_Note__c]"
+                      name="Case_Note__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Status__c]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Status__c]"
+                      name="Status__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Supervisor_Email__c]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Supervisor_Email__c]"
+                      name="Supervisor_Email__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Created_in_Error_Formatted__c]"
+                      dataType="wstr"
+                      length="1300"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Created_in_Error_Formatted__c]"
+                      name="Created_in_Error_Formatted__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Parent__c]"
+                      dataType="wstr"
+                      length="1300"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Parent__c]"
+                      name="Parent__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[IsLoaded]"
+                      dataType="bool"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[IsLoaded]"
+                      name="IsLoaded" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[LoadDate]"
+                      name="LoadDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[Comments]"
+                      name="Comments" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Validate Syntax - CaseNotes\Validate"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;9"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Validate"
+              version="9">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_4be4733e9b46420b9a0bca93825143c5.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0b368086-0301-44ef-96e8-dac3d3cbaeb9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_4be4733e9b46420b9a0bca93825143c5</RootNamespace>
+    <AssemblyName>SC_4be4733e9b46420b9a0bca93825143c5</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_4be4733e9b46420b9a0bca93825143c5" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC120</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPoint]
+public class ScriptMain : UserComponent
+{
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        const int REFERENCE_FIELD_LENGTH = 18;
+
+        string runningComments = string.Empty;
+        bool isValid = true;
+
+        //Needed for DateTime.TryParse
+        #region Non-nullaable Fields
+        if (Row.Id_IsNull || Row.Id.Trim() == string.Empty)
+        {
+            isValid = false;
+            runningComments += "ID is required.";
+        }
+        if (Row.IsDeleted_IsNull)
+        {
+            isValid = false;
+            runningComments += " IsDeleted is required.";
+        }
+        if (Row.CreatedById_IsNull || Row.CreatedById.Trim() == string.Empty)
+        {
+            isValid = false;
+            runningComments += " CreatedByID is required.";
+        }
+        //if (Row.CreatedD CreatedDate_IsNull || Row.CreatedDate.Trim() == string.Empty || !DateTime.TryParse(Row.CreatedDate, out DateTime dumbDate))
+        //{
+        //    isValid = false;
+        //    runningComments += " CreatedDate is required.";
+        //}
+        if (Row.LastModifiedById_IsNull || Row.LastModifiedById.Trim() == string.Empty)
+        {
+            isValid = false;
+            runningComments += " LastModifiedById is required.";
+        }
+        //if (Row.LastModifiedDate_IsNull || Row.LastModifiedDate.Trim() == string.Empty || !DateTime.TryParse(Row.LastModifiedDate, out dumbDate))
+        //{
+        //    isValid = false;
+        //    runningComments += " LastModifiedDate is required.";
+        //}
+        //if (Row.SystemModStamp_IsNull || Row.SystemModStamp.Trim() == string.Empty || !DateTime.TryParse(Row.SystemModStamp, out dumbDate))
+        //{
+        //    isValid = false;
+        //    runningComments += " SystemModstamp is required.";
+        //}
+
+        // Non-nullable reference fields
+        //if (Row.ID.Length != REFERENCE_FIELD_LENGTH)
+        //{
+        //    isValid = false;
+        //    runningComments += string.Format("ID length {0} invalid.", Row.ID.Length);
+        //}
+        //if (Row.OwnerId.Length != REFERENCE_FIELD_LENGTH)
+        //{
+        //    isValid = false;
+        //    runningComments += string.Format("OwnerID length {0} invalOwnerID.", Row.OwnerId.Length);
+        //}
+        //if (Row.CreatedById.Length != REFERENCE_FIELD_LENGTH)
+        //{
+        //    isValid = false;
+        //    runningComments += string.Format("CreatedByID length {0} invalCreatedByID.", Row.CreatedById.Length);
+        //}
+        //if (Row.LastModifiedById.Length != REFERENCE_FIELD_LENGTH)
+        //{
+        //    isValid = false;
+        //    runningComments += string.Format("LastModifiedById length {0} invalModifiedById.", Row.LastModifiedById.Length);
+        //}
+        //if (Row.LastModifiedById.Length != REFERENCE_FIELD_LENGTH)
+        //{
+        //    isValid = false;
+        //    runningComments += string.Format("LastModifiedById length {0} invalModifiedById.", Row.LastModifiedById.Length);
+        //}
+        #endregion
+
+        Row.IsValid = isValid;
+        Row.Comments = runningComments;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String Id
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool Id_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public Boolean IsDeleted
+    {
+        get
+        {
+            return Buffer.GetBoolean(BufferColumnIndexes[1]);
+        }
+    }
+    public bool IsDeleted_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String Name
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool Name_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String CreatedById
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool CreatedById_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String LastModifiedDate
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool LastModifiedDate_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String LastModifiedById
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[5]);
+        }
+    }
+    public bool LastModifiedById_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public String SystemModstamp
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[6]);
+        }
+    }
+    public bool SystemModstamp_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public String APSCaseNumberc
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[7]);
+        }
+    }
+    public bool APSCaseNumberc_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public Boolean ClientInterviewc
+    {
+        get
+        {
+            return Buffer.GetBoolean(BufferColumnIndexes[8]);
+        }
+    }
+    public bool ClientInterviewc_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public Boolean CaseNoteCreatedinErrorc
+    {
+        get
+        {
+            return Buffer.GetBoolean(BufferColumnIndexes[9]);
+        }
+    }
+    public bool CaseNoteCreatedinErrorc_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public Boolean IsValid
+    {
+        get
+        {
+            return Buffer.GetBoolean(BufferColumnIndexes[10]);
+        }
+        set
+        {
+            this[10] = value;
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(10);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Comments
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+        set
+        {
+            this[11] = value;
+        }
+    }
+    public bool Comments_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(11);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4be4733e9b46420b9a0bca93825143c5.Properties.Settings.get_Default():SC_4be4733e9b46420b9a0bca93825143c5.Properties.Sett" +
+    "ings")]
+
+namespace SC_4be4733e9b46420b9a0bca93825143c5.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_4be4733e9b46420b9a0bca93825143c5</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_4be4733e9b46420b9a0bca93825143c5</msb:DisplayName>
+		<msb:ProjectId>{E2E9F6E0-EEDC-4617-9F0C-0EB7451407AE}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_4be4733e9b46420b9a0bca93825143c5.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_4be4733e9b46420b9a0bca93825143c5")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_4be4733e9b46420b9a0bca93825143c5")]
+[assembly: AssemblyCopyright("Copyright @  2019")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4be4733e9b46420b9a0bca93825143c5.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4be4733e9b46420b9a0bca93825143c5.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4be4733e9b46420b9a0bca93825143c5.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_4be4733e9b46420b9a0bca93825143c5.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_4be4733e9b46420b9a0bca93825143c5.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_4be4733e9b46420b9a0bca93825143c5.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAE/x+FwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAA2jgA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAIg4AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA4BgAAAAgAAAAGgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAcAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAIgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAC8
+OAAAAAAAAEgAAAACAAUAxCMAAAwUAAABAAAAAAAAANA3AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAgC0AAAAAQAAEX4QAAAKChcLA28FAAAGLRcDbwQAAAZv
+EQAACn4QAAAKKBIAAAosDhYLBnIBAABwKBMAAAoKA28HAAAGLA4WCwZyIQAAcCgTAAAKCgNvCwAA
+Bi0XA28KAAAGbxEAAAp+EAAACigSAAAKLA4WCwZyUQAAcCgTAAAKCgNvDwAABi0XA28OAAAGbxEA
+AAp+EAAACigSAAAKLA4WCwZyhQAAcCgTAAAKCgMHbxkAAAYDBm8dAAAGKh4CKCIAAAYqKgIDBAUo
+FAAACipSAnsVAAAKAnsWAAAKFpRvFwAACioiAhYoGAAACipSAnsVAAAKAnsWAAAKF5RvGQAACioi
+AhcoGAAACipSAnsVAAAKAnsWAAAKGJRvFwAACioiAhgoGAAACipSAnsVAAAKAnsWAAAKGZRvFwAA
+CioiAhkoGAAACipSAnsVAAAKAnsWAAAKGpRvFwAACioiAhooGAAACipSAnsVAAAKAnsWAAAKG5Rv
+FwAACioiAhsoGAAACipSAnsVAAAKAnsWAAAKHJRvFwAACioiAhwoGAAACipSAnsVAAAKAnsWAAAK
+HZRvFwAACioiAh0oGAAACipSAnsVAAAKAnsWAAAKHpRvGQAACioiAh4oGAAACipWAnsVAAAKAnsW
+AAAKHwmUbxkAAAoqJgIfCSgYAAAKKlYCexUAAAoCexYAAAofCpRvGQAACio+Ah8KA4wbAAABKBoA
+AAoqJgIfCigYAAAKKl4DLAkCHwooGwAACipywwAAcHMcAAAKelYCexUAAAoCexYAAAofC5RvFwAA
+CioqAh8LAygaAAAKKiYCHwsoGAAACipeAywJAh8LKBsAAAoqcsMAAHBzHAAACnoeAigdAAAKKh4C
+KB4AAAoqfgIoHwAACgICcyYAAAZ9AQAABAICcycAAAZ9AgAABCqSBHJgAQBwGm8gAAAKLBUCBQID
+KCEAAAoOBHMDAAAGbyQAAAYqSisHAgNvJQAABgNvIAAABi3xKgYqOgIoIgAACgIDfQMAAAQqOgIo
+IgAACgIDfQQAAAQqHgIoIgAACiqufgUAAAQtHnJwAQBw0AcAAAIoIwAACm8kAAAKcyUAAAqABQAA
+BH4FAAAEKhp+BgAABCoeAoAGAAAEKhp+BwAABCoeAigmAAAKKi5zLQAABoAHAAAEKgAAQlNKQgEA
+AQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAzAcAACN+AAA4CAAALAgAACNTdHJpbmdzAAAA
+AGQQAADkAQAAI1VTAEgSAAAQAAAAI0dVSUQAAABYEgAAtAEAACNCbG9iAAAAAAAAAAIAAAFXFaIB
+CQEAAAD6ATMAFgAAAQAAACAAAAAIAAAABwAAAC4AAAARAAAAJgAAABAAAAABAAAAAwAAABsAAAAg
+AAAAAQAAAAQAAAABAAAAAACKAwEAAAAAAAYAmAIvBgYALAMvBgYA5AEcBg8AowYAAAYAEQJeBQYA
+ewJeBQYAXAJeBQYAEwNeBQYAuAJeBQYA0QJeBQYAKAJeBQYAQwJQAwoA7AIcAQoA7gUcAQ4A3wUc
+AQoApwUcAQoAigccAQYATQcGBQYAxwEcBgYA/wVPBgYAmwVJBRIAlwF0AxIA+AF0AxIAagE0BQYA
+rAEvBgYAbQMGBQYAIQUGBQYAcAUGBQYAigUGBQYAPQEGBQYA5QAGBQYADwheBQAAAAAlAAAAAAAB
+AAEAAQAQACkFAAAQAAEAAQABABAA0gUAADkAAQADAAEAEABsBwAARQABACIAAQAQACAHAABJAAMA
+JgABABAA4QYAAEkABAAnAAAAEABWBrIGSQAFACgAAAEQABAHsgZhAAcALAAGACAHjQAGAOEGkQAB
+AHoHlQABAHoHlQARABIFmQARAFoBnQARANUAoQBQIAAAAADGAOwHpQABABAhAAAAAIYYDwYGAAIA
+GCEAAAAAhhgPBjMAAgAjIQAAAACGCIMAIwAFADghAAAAAIYICwRVAAUAQSEAAAAAhgivAFUABQBW
+IQAAAACGCEwEVQAFAF8hAAAAAIYICQEjAAUAdCEAAAAAhgiHBFUABQB9IQAAAACGCJ8AIwAFAJIh
+AAAAAIYINQRVAAUAmyEAAAAAhgiCASMABQCwIQAAAACGCJcEVQAFALkhAAAAAIYIigAjAAUAziEA
+AAAAhggZBFUABQDXIQAAAACGCL8FIwAFAOwhAAAAAIYIswRVAAUA9SEAAAAAhgg/ACMABQAKIgAA
+AACGCLIDVQAFABMiAAAAAIYIbgBVAAUAKCIAAAAAhgjvA1UABQAxIgAAAACGCFIAVQAFAEciAAAA
+AIYIzANVAAUAUSIAAAAAhgi9AFUABQBnIgAAAACGCMkAqwAFAHciAAAAAIYIYQRVAAYAgSIAAAAA
+hgh0BKsABgCZIgAAAACGCCwHIwAHAK8iAAAAAIYIOQcQAAcAuiIAAAAAhgjNBFUACADEIgAAAACG
+COEEqwAIANwiAAAAAIYAAwhVAAkA5CIAAAAAhgBUB1UACQDsIgAAAACGGA8GBgAJAAwjAAAAAMYA
+3wewAAkAMSMAAAAAxgHYB6UADQBEIwAAAADGAewHpQAOAEYjAAAAAIYYDwa6AA8AVSMAAAAAhhgP
+BroAEABkIwAAAACDGA8GBgARAGwjAAAAAJMI+wXAABEAmCMAAAAAkwhCAcUAEQCfIwAAAACTCE4B
+ygARAKcjAAAAAJYIYAfQABIAriMAAAAAhhgPBgYAEgC2IwAAAACRGBUG1QASAAAAAQAHCAAAAQD0
+BQAAAgDrBgAAAwC1BQAAAQBKAwAAAQBKAwAAAQBKAwAAAQBKAwAAAQAuAAAAAgASAQAAAwD0BQAA
+BAC1BQAAAQD0BQAAAQAHCAAAAQCQBwAAAQCQBwAAAQBKAwkADwYBABEADwYGABkADwYKACkADwYQ
+ADEADwYQADkADwYQAEEADwYQAEkADwYQAFEADwYQAFkADwYQAGEADwYQAGkADwYGAJkADwYGALkA
+DwYVAMkADwYGANEAJAggANEADQUjANEAGAgnANEARgctAHEADwYzAHEA9AU9AHEA6wZBAHkAagNF
+AHEA7gRKAHkAHgVKAHEA/QRPAHEA9QQBAOEADwYQAHEAAwhVAHEAVAdVAIkADwYGANEAGQdZAIkA
+/wZgAJEADwYGAPEA9wBmAPEACwhtAKEADwZzAMEADwYGAC4ACwDwAC4AEwD5AC4AGwAYAS4AIwAh
+AS4AKwBKAS4AMwBKAS4AOwBKAS4AQwAhAS4ASwBQAS4AUwBKAS4AWwBnAUMAYwCvAeEAewCvAeMA
+awCvASkDcwAYAUkDcwAYARsAAwABAAcAGQAIABsAAACsANkAAABCBN0AAACzAN0AAABQBN0AAAAX
+AdkAAACLBN0AAACjANkAAAA5BN0AAACGAdkAAACbBN0AAACOANkAAAAdBN0AAADDBdkAAAC3BN0A
+AABDANkAAAC2A90AAAByAN0AAADzA90AAABWAN0AAADQA90AAADNAN0AAAB4BN0AAAA9B9kAAADl
+BN0AAAD/BeEAAABiAeYAAABkB+sAAgAEAAMAAgAFAAUAAgAGAAcAAgAHAAkAAgAIAAsAAgAJAA0A
+AgAKAA8AAgALABEAAgAMABMAAgANABUAAgAOABcAAgAPABkAAgAQABsAAgARAB0AAgASAB8AAgAT
+ACEAAgAUACMAAgAVACUAAgAWACcAAgAXACkAAgAYACsAAQAZACsAAgAaAC0AAQAbAC0AAgAcAC8A
+AQAdAC8AAgAeADEAAQAfADEAAgApADMAAgAqADUAAQArADUAAgAsADcABIAAAAEAAAC4G8cwAAAA
+AAAAAQAAAAQAAAAAAAAAAAAAAHsANgAAAAAADAAAAAAAAAAAAAAAhACaBwAAAAAMAAAAAAAAAAAA
+AACEALcHAAAAAAQAAAAAAAAAAAAAAHsABgUAAAAAAAAAAAEAAABgBgAAAAAAAABTQ180YmU0NzMz
+ZTliNDY0MjBiOWEwYmNhOTM4MjUxNDNjNQA8TW9kdWxlPgBJbnB1dElEAG1zY29ybGliAGdldF9B
+UFNDYXNlTnVtYmVyYwBnZXRfQ2FzZU5vdGVDcmVhdGVkaW5FcnJvcmMAZ2V0X0NsaWVudEludGVy
+dmlld2MAZ2V0X0lkAGdldF9MYXN0TW9kaWZpZWRCeUlkAGdldF9DcmVhdGVkQnlJZABnZXRfSXNE
+ZWxldGVkAGdldF9Jc1ZhbGlkAHNldF9Jc1ZhbGlkAGRlZmF1bHRJbnN0YW5jZQBSdW50aW1lVHlw
+ZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBnZXRfTmFtZQBJbnB1dE5hbWUATWljcm9zb2Z0LlNx
+bFNlcnZlci5EdHMuUGlwZWxpbmUAVHlwZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQByZXNvdXJj
+ZUN1bHR1cmUAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAZ2V0X0xhc3RNb2RpZmllZERhdGUARWRp
+dG9yQnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25V
+c2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJp
+YnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRh
+cmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNz
+ZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRl
+AEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lT
+U2NyaXB0Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1
+dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUuVmVy
+c2lvbmluZwBHZXRTdHJpbmcAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNDXzRiZTQ3MzNlOWI0NjQy
+MGI5YTBiY2E5MzgyNTE0M2M1LmRsbABnZXRfQVBTQ2FzZU51bWJlcmNfSXNOdWxsAGdldF9DYXNl
+Tm90ZUNyZWF0ZWRpbkVycm9yY19Jc051bGwAZ2V0X0NsaWVudEludGVydmlld2NfSXNOdWxsAGdl
+dF9JZF9Jc051bGwAZ2V0X0xhc3RNb2RpZmllZEJ5SWRfSXNOdWxsAGdldF9DcmVhdGVkQnlJZF9J
+c051bGwAZ2V0X0lzRGVsZXRlZF9Jc051bGwAZ2V0X0lzVmFsaWRfSXNOdWxsAHNldF9Jc1ZhbGlk
+X0lzTnVsbABnZXRfTmFtZV9Jc051bGwAZ2V0X0xhc3RNb2RpZmllZERhdGVfSXNOdWxsAGdldF9T
+eXN0ZW1Nb2RzdGFtcF9Jc051bGwAZ2V0X0NvbW1lbnRzX0lzTnVsbABzZXRfQ29tbWVudHNfSXNO
+dWxsAFNldE51bGwAc2V0X0l0ZW0AU3lzdGVtAFRyaW0AcmVzb3VyY2VNYW4AR2V0Qm9vbGVhbgBT
+Y3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3Rl
+bS5SZWZsZWN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24AU3RyaW5nQ29tcGFyaXNvbgBD
+dWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABnZXRfU3lzdGVtTW9kc3RhbXAASW5w
+dXQwQnVmZmVyAFBpcGVsaW5lQnVmZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2Vy
+AC5jdG9yAC5jY3RvcgBTeXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJT
+ZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzRiZTQ3MzNlOWI0NjQyMGI5YTBiY2E5MzgyNTE0
+M2M1LlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTQ180YmU0
+NzMzZTliNDY0MjBiOWEwYmNhOTM4MjUxNDNjNS5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJD
+b2x1bW5JbmRleGVzAEdldENvbHVtbkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAENvbm5lY3Rpb25z
+AGdldF9Db21tZW50cwBzZXRfQ29tbWVudHMAQ29uY2F0AE9iamVjdABFbmRPZlJvd3NldABnZXRf
+RGVmYXVsdABVc2VyQ29tcG9uZW50AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWlj
+cm9zb2Z0LlNxbFNlcnZlci5UeFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9z
+dABJbnB1dDBfUHJvY2Vzc0lucHV0AElucHV0MF9Qcm9jZXNzSW5wdXRSb3cATmV4dFJvdwBnZXRf
+QXNzZW1ibHkAb3BfRXF1YWxpdHkARW1wdHkAAAAAH0kARAAgAGkAcwAgAHIAZQBxAHUAaQByAGUA
+ZAAuAAAvIABJAHMARABlAGwAZQB0AGUAZAAgAGkAcwAgAHIAZQBxAHUAaQByAGUAZAAuAAAzIABD
+AHIAZQBhAHQAZQBkAEIAeQBJAEQAIABpAHMAIAByAGUAcQB1AGkAcgBlAGQALgAAPSAATABhAHMA
+dABNAG8AZABpAGYAaQBlAGQAQgB5AEkAZAAgAGkAcwAgAHIAZQBxAHUAaQByAGUAZAAuAACAm0kA
+cwBOAHUAbABsACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUAdAAg
+AHQAbwAgAEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAA
+dABoAGUAIABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBwAHUAdAAgADAAAHFT
+AEMAXwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4ADIA
+NQAxADQAMwBjADUALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAA
+G0QjMBX2cE+JuPU5HHMXZwAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERWQQHAg4CAgYOAyAADgUA
+AgIODgUAAg4ODgkgAwESPR0IEkEDBhI9AwYdCAQgAQ4IBCABAggFIAIBCBwDIAACBiACAg4RdQUg
+AR0ICAYAARJ5EX0FIAASgIEHIAIBDhKAgQi3elxWGTTgiQiJhF3NgIDMkQMGEhQDBhIYAwYSRQMG
+ElEDBhJVAwYSIAUgAQESDAQgAQECCSAEAQgOEj0SQQUgAQESRQQAABJRBAAAElUFAAEBElUEAAAS
+IAMAAAEDKAAOAygAAgQIABJRBAgAElUECAASIAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2Vw
+dGlvblRocm93cwEIAQACAAAAAAAoAQAjU0NfNGJlNDczM2U5YjQ2NDIwYjlhMGJjYTkzODI1MTQz
+YzUAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAxOQAARwEAGi5ORVRGcmFtZXdvcmssVmVyc2lv
+bj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0BAEAAAC0AAAA
+zsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBW
+ZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYx
+OTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBB
+RFBBRFC0AAAAsDgAAAAAAAAAAAAAyjgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAALw4AAAAAAAA
+AAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAA
+AFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAA
+vQTv/gAAAQAAAAEAxzC4GwAAAQDHMLgbPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
+AFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAA
+AAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAwADAAMAAw
+ADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkA
+TgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABT
+AEMAXwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4ADIA
+NQAxADQAMwBjADUAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANwAw
+ADkANgAuADEAMgA0ADgANwAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMA
+XwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4ADIANQAx
+ADQAMwBjADUALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMA
+bwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEAOQAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBk
+AGUAbQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0A
+ZQAAAFMAQwBfADQAYgBlADQANwAzADMAZQA5AGIANAA2ADQAMgAwAGIAOQBhADAAYgBjAGEAOQAz
+ADgAMgA1ADEANAAzAGMANQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAA
+AABTAEMAXwA0AGIAZQA0ADcAMwAzAGUAOQBiADQANgA0ADIAMABiADkAYQAwAGIAYwBhADkAMwA4
+ADIANQAxADQAMwBjADUAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4A
+MAAuADcAMAA5ADYALgAxADIANAA4ADcAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQBy
+AHMAaQBvAG4AAAAxAC4AMAAuADcAMAA5ADYALgAxADIANAA4ADcAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAA3DgAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_4be4733e9b46420b9a0bca93825143c5</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">f61874f715694c264674388fd27e2838</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">fb8002630801329ed163923c8d0ec034b314b2d3</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[Id]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="Id"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Id]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[IsDeleted]"
+                      cachedDataType="bool"
+                      cachedName="IsDeleted"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsDeleted]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Name"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[CreatedById]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="CreatedById"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[CreatedById]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[LastModifiedDate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastModifiedDate"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastModifiedDate]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[LastModifiedById]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="LastModifiedById"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[LastModifiedById]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[SystemModstamp]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SystemModstamp"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[SystemModstamp]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[APS_Case_Number__c]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="APS_Case_Number__c"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[APS_Case_Number__c]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[Client_Interview__c]"
+                      cachedDataType="bool"
+                      cachedName="Client_Interview__c"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Client_Interview__c]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[Case_Note_Created_in_Error__c]"
+                      cachedDataType="bool"
+                      cachedName="Case_Note_Created_in_Error__c"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Case_Note_Created_in_Error__c]" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      usageType="readWrite" />
+                    <inputColumn
+                      refId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0].Columns[Comments]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Comments"
+                      lineageId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output].Columns[Comments]"
+                      usageType="readWrite" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Validate Syntax - CaseNotes\Validate.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Validate Syntax - CaseNotes.Paths[ADO NET Source Output]"
+              endId="Package\Validate Syntax - CaseNotes\Validate.Inputs[Input 0]"
+              name="ADO NET Source Output"
+              startId="Package\Validate Syntax - CaseNotes\Staging CaseNotes.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Validate Syntax - CaseNotes.Paths[Data Conversion Output]"
+              endId="Package\Validate Syntax - CaseNotes\Mark Invalid Records.Inputs[OLE DB Command Input]"
+              name="Data Conversion Output"
+              startId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Validate Syntax - CaseNotes.Paths[Invalid]"
+              endId="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII.Inputs[Data Conversion Input]"
+              name="Invalid"
+              startId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Outputs[Invalid]" />
+            <path
+              refId="Package\Validate Syntax - CaseNotes.Paths[Output 0]"
+              endId="Package\Validate Syntax - CaseNotes\Sieve Invalid.Inputs[Conditional Split Input]"
+              name="Output 0"
+              startId="Package\Validate Syntax - CaseNotes\Validate.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Validate Syntax - CaseNotes"
+          TopLeft="505,114" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Validate Syntax - CaseNotes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Validate Syntax - CaseNotes\Sieve Invalid"
+          TopLeft="506,304" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Validate Syntax - CaseNotes\Mark Invalid Records"
+          TopLeft="482,540" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Validate Syntax - CaseNotes\Staging CaseNotes"
+          TopLeft="496,59" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Validate Syntax - CaseNotes\Validate"
+          TopLeft="521,183" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Validate Syntax - CaseNotes\Convert Comments to ASCII"
+          TopLeft="472,420" />
+        <EdgeLayout
+          Id="Package\Validate Syntax - CaseNotes.Paths[Output 0]"
+          TopLeft="577.5,225">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - CaseNotes.Paths[Invalid]"
+          TopLeft="576.75,346">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.26458984375,28.37548828125,30.5291796875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - CaseNotes.Paths[Data Conversion Output]"
+          TopLeft="574.5,462">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,78"
+              Start="0,0"
+              End="0,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - CaseNotes.Paths[ADO NET Source Output]"
+          TopLeft="579.5,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="WIP.  [geg]"
+          ParentId="Package\Validate Syntax - CaseNotes"
+          Size="86,37"
+          Id="7e4696a3-795a-485e-a356-d5c0d225ca60"
+          TopLeft="705,193">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FFF1F1F1">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Validate Syntax - CaseNotes\Staging CaseNotes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

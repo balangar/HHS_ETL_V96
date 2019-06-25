@@ -6,7 +6,7 @@ SELECT        sw.UserName, sw.Name AS SocialWorker, sw.EMail AS SocialWorkerEmai
                          Staging.Cases.Emotional_Verbal_Abuse__c, Staging.Cases.Referral_Submitted_Date_Time__c AS ReferralSubDate, Staging.Cases.Bed_Bugs__c, Staging.Cases.Substance_abuse__c, 
                          Staging.Cases.Diagnosed_Mental_Illness_Info__c AS MentalIllnessInfo, Staging.Cases.Diagnosed_Mental_Illness__c AS MentalIllness, Staging.Cases.Comments, Staging.Contacts.Salutation, Staging.Contacts.FirstName, 
                          Staging.Contacts.LastName, Staging.Contacts.Name AS ClientName, Staging.Contacts.MailingStreet, Staging.Contacts.MailingCity, Staging.Contacts.MailingStateCode, Staging.Contacts.MailingPostalCode, 
-                         Staging.Contacts.MailingAddress, Staging.Contacts.Phone, Staging.Contacts.HomePhone, Staging.Contacts.Email, Staging.Contacts.Birthdate AS BirthDate, Staging.Contacts.Approx_Age__c AS ApproxAge, 
+                         Staging.Contacts.MailingAddress, Staging.Contacts.Phone, Staging.Contacts.HomePhone, Staging.Contacts.Email, Staging.Contacts.Birthdate, Staging.Contacts.Approx_Age__c AS ApproxAge, 
                          Staging.Contacts.Gender__c AS Gender, Staging.Contacts.Income_Source__c AS IncomeSource, Staging.Contacts.Marital_Status__c AS MaritalStatus, Staging.Contacts.Medicaid__c AS Medicaid, 
                          Staging.Contacts.Medicare__c AS Medicare, Staging.Contacts.Race__c AS Race, Staging.Contacts.SSN__c AS SSN, Staging.Contacts.Person_Id__c AS PersonID, Staging.Contacts.Veteran_Status__c AS Veteran, 
                          Staging.Contacts.Name AS ReportingParty, Staging.Contacts.MailingStreet AS ReportingMailingStreet, Staging.Contacts.MailingCity AS ReportingMailingCity, Staging.Contacts.MailingStateCode AS ReportingStateCode, 
@@ -83,7 +83,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'idth = 150
          SortType = 1350
          SortOrder = 1410
          GroupBy = 1350
-         Filter = 1350
+         Filter = 3975
          Or = 1350
          Or = 1350
          Or = 1350
@@ -91,6 +91,8 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'idth = 150
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vw_Beese_Cases';
+
+
 
 
 GO
@@ -175,6 +177,16 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
+         Begin Table = "sw"
+            Begin Extent = 
+               Top = 6
+               Left = 261
+               Bottom = 136
+               Right = 446
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
          Begin Table = "Cases (Staging)"
             Begin Extent = 
                Top = 6
@@ -205,16 +217,6 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "sw"
-            Begin Extent = 
-               Top = 6
-               Left = 261
-               Bottom = 136
-               Right = 446
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
       End
    End
    Begin SQLPane = 
@@ -237,4 +239,6 @@ Begin DesignProperties =
          Width = 1500
          Width = 1500
          W', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vw_Beese_Cases';
+
+
 

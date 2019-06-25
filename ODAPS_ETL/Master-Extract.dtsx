@@ -13,7 +13,7 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
   DTS:VersionBuild="8"
-  DTS:VersionGUID="{9E206631-224D-4B4E-9BE3-05054CC0A871}">
+  DTS:VersionGUID="{DF06D70A-F424-4D30-969B-B42388BC43FE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

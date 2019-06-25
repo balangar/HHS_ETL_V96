@@ -97,7 +97,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugSymbols>true</DebugSymbols>
@@ -113,6 +112,18 @@
     <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
@@ -136,8 +147,6 @@
     <Build Include="dbo\Tables\Contacts.sql" />
     <Build Include="Staging\Tables\Cases.sql" />
     <Build Include="dbo\Tables\Cases.sql" />
-    <Build Include="dbo\Views\View_2.sql" />
-    <Build Include="dbo\Views\View_1.sql" />
     <Build Include="Security\Staging.sql" />
     <Build Include="Security\Permissions.sql" />
     <Build Include="Staging\Tables\CaseNotes.sql" />
@@ -147,28 +156,22 @@
     <Build Include="_Ancillary\InsertStagingCaseNotes.sql" />
     <Build Include="_Ancillary\InsertStagingContacts.sql" />
     <Build Include="_Ancillary\InsertStagingUsers.sql" />
-    <Build Include="Security\POD.sql" />
     <Build Include="Staging\Tables\Accounts.sql" />
     <Build Include="dbo\Views\vw_User_Search_Staging.sql" />
     <Build Include="dbo\Views\vw_possible_dups.sql" />
     <Build Include="dbo\Views\vw_POD_AssignmentLetter_ba.sql" />
     <Build Include="dbo\Views\VW_DSAS_POD.sql" />
     <Build Include="dbo\Views\vw_Beese_Cases.sql" />
-    <Build Include="dbo\Views\vw_APS_Case_Worker_Sup_ba.sql" />
-    <Build Include="dbo\Views\View_5.sql" />
-    <Build Include="dbo\Views\View_3.sql" />
-    <Build Include="Security\HHS_ReportWriter.sql" />
-    <Build Include="Security\Cuy_ReportWriter.sql" />
-    <Build Include="Security\Cuy_DataLoader.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Tables\Accounts.sql" />
-    <Build Include="dbo\Views\vw_DSAS_POD_Original.sql" />
-    <Build Include="dbo\Views\View_4.sql" />
+    <Build Include="dbo\Views\vw_Worker_Sup.sql" />
+    <Build Include="dbo\Views\vw_DSAS_POD_Live.sql" />
+    <Build Include="dbo\Views\vw_Carol_Beese_Live_Cases.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />
     <None Include="_Auxiliary\ODAPS_PROD_Recreate.publish.xml" />
     <None Include="_Documents\PODObjectsAndFields.txt" />
+    <None Include="_Auxiliary\ODAPS_TEST_Recreate.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post.sql" />

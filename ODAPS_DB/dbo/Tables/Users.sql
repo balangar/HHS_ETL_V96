@@ -3,23 +3,8 @@
 	[UserKey] INT IDENTITY(1,1) NOT NULL,
 	[SysInsertUser] VARCHAR(50) NOT NULL DEFAULT 'Sys_ETL',
 	[SysInsertDate] DATETIME NOT NULL DEFAULT getdate(),
-	HASHBYTES('SHA1',
-		ISNULL(ID, '') +
-		ISNULL(CreatedByID, '') +
-		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
-		ISNULL(LastModifiedById, '') +
-		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
-		ISNULL(AccountID, '') +
-		ISNULL(ContactID, '') +
-		ISNULL(UserName, '') +
-		ISNULL(FirstName, '') +
-		ISNULL(LastName, '') +
-		ISNULL([Name], '') +
-		ISNULL(EMail, '') +
-		ISNULL(Phone, '') +
-		ISNULL(ManagerID, '') +
-		ISNULL(Supervisor__c, '')
-	) As HashSignature,
+	[HashSignature]  AS (hashbytes('SHA1',(((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+isnull([AccountID],''))+isnull([ContactID],''))+isnull([UserName],''))+isnull([FirstName],''))+isnull([LastName],''))+isnull([Name],''))+isnull([EMail],''))+isnull([Phone],''))+isnull([ManagerID],''))+isnull([SupervisorID],''))),
+
 
 	[ID] CHAR(18) NOT NULL,
 	[CreatedByID] CHAR(18) NULL,
@@ -31,15 +16,15 @@
 	[AccountID]        CHAR (18)   NULL,
     [ContactID]        CHAR (18)   NULL,
 
-	[ManagerID] CHAR(18) NULL,
-	[SupervisorID] CHAR(18) NULL,
-
     [UserName]         VARCHAR (80)   NOT NULL,
     [FirstName]        VARCHAR (40)   NULL,
     [LastName]         VARCHAR (80)   NOT NULL,
     [Name]             VARCHAR (128)  NOT NULL,
     [EMail]            VARCHAR (128)  NOT NULL,
     [Phone]            VARCHAR (40)   NULL,
+
+	[ManagerID] CHAR(18) NULL,
+	[SupervisorID] CHAR(18) NULL,
 
 	CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([UserKey] ASC)
 )

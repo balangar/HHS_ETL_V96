@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/8/2019 1:34:49 PM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Accounts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{29108F70-7565-499E-95DA-75B217209537}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{F42E0FDB-4DDD-4F88-9671-9338C1AAE118}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -85,8 +85,8 @@
               <connections>
                 <connection
                   refId="Package\TransformLoad - Accounts\dbo Accounts.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -231,6 +231,11 @@
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
                     <externalMetadataColumn
+                      refId="Package\TransformLoad - Accounts\dbo Accounts.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
+                    <externalMetadataColumn
                       refId="Package\TransformLoad - Accounts\dbo Accounts.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
                       dataType="wstr"
                       length="18"
@@ -372,8 +377,8 @@
               <connections>
                 <connection
                   refId="Package\TransformLoad - Accounts\Mark Unloadable.Connections[OleDbConnection]"
-                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
-                  connectionManagerRefId="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -575,8 +580,8 @@
               <connections>
                 <connection
                   refId="Package\TransformLoad - Accounts\Staging Accounts.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>

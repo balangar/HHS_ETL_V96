@@ -2,43 +2,7 @@
     [ContactKey]                     INT            IDENTITY (1, 1) NOT NULL,
     [SysInsertUser]                  VARCHAR (18)   CONSTRAINT [DF__tmp_ms_xx__SysIn__4CA06362] DEFAULT ('System') NOT NULL,
     [SysInsertDate]                  DATETIME       CONSTRAINT [DF__tmp_ms_xx__SysIn__4D94879B] DEFAULT (getdate()) NOT NULL,
-	HASHBYTES('SHA1',
-		ISNULL(ID, '') +
-		ISNULL(CreatedByID, '') +
-		CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
-		ISNULL(LastModifiedById, '') +
-		CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(IsDeleted, 0)) +
-		ISNULL(OwnerID,'') +
-		ISNULL(AccountId, '') +
-		ISNULL(MasterRecordId, '') +
-		ISNULL(Salutation, '') +
-		ISNULL(FirstName, '') +
-		ISNULL(LastName, '') +
-		ISNULL([Name], '') +
-		ISNULL(MailingStreet, '') +
-		ISNULL(MailingCity, '') +
-		ISNULL(MailingStateCode, '') +
-		ISNULL(MailingPostalCode, '') +
-		ISNULL(MailingAddress, '') +
-		ISNULL(Phone, '') +
-		ISNULL(HomePhone, '') +
-		ISNULL(Email, '') +
-		CONVERT(varchar, ISNULL(Birthdate, '1900-01-01'), 121) +
-		CONVERT(varchar, ISNULL(Approx_Age__c, '0.0')) +
-		ISNULL(Gender_Code__c, '') +
-		ISNULL(Gender__c, '') +
-		CONVERT(varchar, ISNULL(Hoarding_or_animal_hoarding__c, 0)) +
-		ISNULL(Income_Source__c, '') +
-		ISNULL(Marital_Status__c, '') +
-		ISNULL(Medicaid__c, '') +
-		ISNULL(Medicare__c, '') +
-		ISNULL(Race__c, '') +
-		ISNULL(SSN__c, '') +
-		ISNULL(Person_Id__c, '') +
-		ISNULL(Veteran_Status__c, '') +
-		CONVERT(varchar, ISNULL(Bed_Bugs__c, 0))
-	) As HashSignature,
+    [HashSignature]                  AS             (hashbytes('SHA1',(((((((((((((((((((((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([OwnerID],''))+isnull([AccountId],''))+isnull([MasterRecordId],''))+isnull([Salutation],''))+isnull([FirstName],''))+isnull([LastName],''))+isnull([Name],''))+isnull([MailingStreet],''))+isnull([MailingCity],''))+isnull([MailingStateCode],''))+isnull([MailingPostalCode],''))+isnull([MailingAddress],''))+isnull([Phone],''))+isnull([HomePhone],''))+isnull([Email],''))+CONVERT([varchar],isnull([Birthdate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Approx_Age__c],'0.0')))+isnull([Gender_Code__c],''))+isnull([Gender__c],''))+CONVERT([varchar],isnull([Hoarding_or_animal_hoarding__c],(0))))+isnull([Income_Source__c],''))+isnull([Marital_Status__c],''))+isnull([Medicaid__c],''))+isnull([Medicare__c],''))+isnull([Race__c],''))+isnull([SSN__c],''))+isnull([Person_Id__c],''))+isnull([Veteran_Status__c],''))+CONVERT([varchar],isnull([Bed_Bugs__c],(0))))),
 
     [ID]                             VARCHAR (18)   NOT NULL,
     [CreatedByID]                    VARCHAR (18)   NULL,
@@ -46,10 +10,13 @@
     [LastModifiedById]               VARCHAR (18)   NULL,
     [LastModifiedDate]               DATETIME       NULL,
     [SystemModstamp]                 DATETIME       NULL,
+
     [OwnerId]                        VARCHAR (18)   NULL,
     [AccountId]                      VARCHAR (18)   NULL,
     [MasterRecordId]                 VARCHAR (18)   NULL,
+
     [IsDeleted]                      BIT            NULL,
+
     [Salutation]                     VARCHAR (40)   NULL,
     [FirstName]                      VARCHAR (40)   NULL,
     [LastName]                       VARCHAR (80)   NULL,
@@ -76,10 +43,12 @@
     [Person_Id__c]                   VARCHAR (30)   NULL,
     [Veteran_Status__c]              VARCHAR (255)  NULL,
     [Bed_Bugs__c]                    BIT            NULL,
+
     [IsValid]                        BIT            CONSTRAINT [DF_Contacts_IsValid] DEFAULT ((1)) NOT NULL,
     [IsLoaded]                       BIT            CONSTRAINT [DF_Contacts_IsLoaded_1] DEFAULT ((0)) NOT NULL,
     [LoadDate]                       DATETIME       CONSTRAINT [DF_Contacts_IsLoaded] DEFAULT ((0)) NULL,
     [Comments]                       VARCHAR (1024) NULL,
+
     CONSTRAINT [PK_Contacts] PRIMARY KEY CLUSTERED ([ContactKey] ASC)
 );
 

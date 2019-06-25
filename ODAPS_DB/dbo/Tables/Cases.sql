@@ -3,44 +3,10 @@
 	[CaseKey] INT IDENTITY(1,1) NOT NULL,
 	[SysInsertUser] VARCHAR(50) NOT NULL DEFAULT 'Sys_ETL',
 	[SysInsertDate] DATETIME NOT NULL DEFAULT getdate(),
-	HASHBYTES('SHA1',
-				ISNULL(ID, '') +
-				ISNULL(CreatedByID, '') +
-				CONVERT(varchar, ISNULL(CreatedDate, '1900-01-01'), 121) +
-				ISNULL(LastModifiedById, '') +
-				CONVERT(varchar, ISNULL(SystemModstamp, '1900-01-01'), 121) +
-				CONVERT(varchar, ISNULL(IsDeleted, 0)) +
-				ISNULL(OwnerID,'') +
-				ISNULL(RecordTypeID, '') +
-				ISNULL(Owner_County__c, '') +
-				ISNULL([Name], '') +
-				ISNULL(ContactPersonID, '') +
-				ISNULL(CaseSeqNo, '') +
-				CONVERT(varchar, ISNULL(Approximate_Age__c, '')) +
-				CONVERT(varchar, ISNULL(Caretaker_Neglect__c, '')) +
-				ISNULL(Client_Address__c, '') +
-				ISNULL(Client_s_Age__c, '') +
-				ISNULL(Client_s_Home_Phone_Number__c, '') +
-				CONVERT(varchar, ISNULL(Date_of_Birth__c, '1900-01-01'), 121) +
-				CONVERT(varchar, ISNULL(Exploitation__c, 0)) +
-				ISNULL(Gender_Code__c, '') +
-				ISNULL(Marital_Status_Code__c, '') +
-				CONVERT(varchar, ISNULL(Physical_Abuse__c, 0)) +
-				ISNULL(Reporting_Party_Agency_Name__c, '') +
-				ISNULL(Reporting_Party_Name__c, '') +
-				CONVERT(varchar, ISNULL(Self_Neglect__c, 0)) +
-				CONVERT(varchar, ISNULL(Sexual_Abuse__c, 0)) +
-				ISNULL(Supervisor_E_mail__c, '') +
-				ISNULL(Supervisor_Name__c, '') +
-				ISNULL(Supervisor__c, '') +
-				CONVERT(varchar, ISNULL(Hoarding_or_animal_hoarding__c, 0)) +
-				CONVERT(varchar, ISNULL(Emotional_Verbal_Abuse__c, 0)) +
-				CONVERT(varchar, ISNULL(Referral_Submitted_Date_Time__c, '1900-01-01'), 121) +
-				CONVERT(varchar, ISNULL(Bed_Bugs__c, 0)) +
-				CONVERT(varchar, ISNULL(Substance_abuse__c, 0)) +
-				ISNULL(Diagnosed_Mental_Illness_Info__c, '') +
-				ISNULL(Diagnosed_Mental_Illness__c, '')
-				) As HashSignature,
+	[SysModifyUser]	VARCHAR(50)	NULL,
+	[SysModifyDate]	DATETIME	NULL,
+	[HashSignature]  AS (hashbytes('SHA1',((((((((((((((((((((((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([OwnerID],''))+isnull([RecordTypeID],''))+isnull([Owner_County__c],''))+isnull([Name],''))+isnull([ContactPersonID],''))+isnull([CaseSeqNo],''))+CONVERT([varchar],isnull([Approximate_Age__c],'')))+CONVERT([varchar],isnull([Caretaker_Neglect__c],'')))+isnull([Client_Address__c],''))+isnull([Client_s_Age__c],''))+isnull([Client_s_Home_Phone_Number__c],''))+CONVERT([varchar],isnull([Date_of_Birth__c],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Exploitation__c],(0))))+isnull([Gender_Code__c],''))+isnull([Marital_Status_Code__c],''))+CONVERT([varchar],isnull([Physical_Abuse__c],(0))))+isnull([Reporting_Party_Agency_Name__c],''))+isnull([Reporting_Party_Name__c],''))+CONVERT([varchar],isnull([Self_Neglect__c],(0))))+CONVERT([varchar],isnull([Sexual_Abuse__c],(0))))+isnull([Supervisor_E_mail__c],''))+isnull([Supervisor_Name__c],''))+isnull([Supervisor__c],''))+CONVERT([varchar],isnull([Hoarding_or_animal_hoarding__c],(0))))+CONVERT([varchar],isnull([Emotional_Verbal_Abuse__c],(0))))+CONVERT([varchar],isnull([Referral_Submitted_Date_Time__c],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Bed_Bugs__c],(0))))+CONVERT([varchar],isnull([Substance_abuse__c],(0))))+isnull([Diagnosed_Mental_Illness_Info__c],''))+isnull([Diagnosed_Mental_Illness__c],''))),
+
 
 	[ID] CHAR(18) NOT NULL,
 	[CreatedByID] CHAR(18) NOT NULL,

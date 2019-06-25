@@ -12,7 +12,19 @@ Post-Deployment Script Template
 IF NOT EXISTS (Select principal_id from sys.database_principals Where Name = 'Cuy_DataLoader')
 BEGIN
 	CREATE USER Cuy_DataLoader FOR LOGIN Cuy_DataLoader;
-Exec sp_addrolemember 'db_datareader', @membername = 'Cuy_DataLoader';
-Exec sp_addrolemember 'db_datawriter', @membername = 'Cuy_DataLoader';
-Exec sp_addrolemember 'db_ddladmin', @membername = 'Cuy_DataLoader';
+	Exec sp_addrolemember 'db_datareader', @membername = 'Cuy_DataLoader';
+	Exec sp_addrolemember 'db_datawriter', @membername = 'Cuy_DataLoader';
+	Exec sp_addrolemember 'db_ddladmin', @membername = 'Cuy_DataLoader';
+END
+
+IF NOT EXISTS(Select principal_id from sys.database_principals Where Name = 'Cuy_ReportWriter')
+BEGIN
+	CREATE USER Cuy_ReportWriter FOR LOGIN Cuy_ReportWriter;
+	Exec sp_addrolemember 'db_datareader', @membername = 'Cuy_ReportWriter';
+END
+
+IF NOT EXISTS(Select principal_id from sys.database_principals Where Name = 'HHS_ReportWriter')
+BEGIN
+	CREATE USER HHS_ReportWriter FOR LOGIN HHS_ReportWriter;
+	Exec sp_addrolemember 'db_datareader', @membername = 'HHS_ReportWriter';
 END
