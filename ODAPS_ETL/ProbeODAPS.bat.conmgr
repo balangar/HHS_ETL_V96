@@ -5,6 +5,6 @@
   DTS:CreationName="FILE">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="\\ms-cjfs-sis\source\Development\Packages\Extract-ODAPS\ProbeODAPS.bat" />
+      DTS:ConnectionString="\\ms-cjfs-sis\source\Production\Packages\Extract-ODAPS\ProbeODAPS.bat" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
