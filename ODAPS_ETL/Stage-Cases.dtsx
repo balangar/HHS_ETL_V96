@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{988589CE-9DD1-4880-A91B-774E7C0A5C24}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{C1898D49-9A19-48F5-ACC5-37F57148AEC5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1741,6 +1741,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                           name="UseBinaryFormat">false</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Closed_Reason__C]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Case_Closed_Reason__C]"
+                      length="255"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Closed_Reason__C]"
+                      name="Case_Closed_Reason__C"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1940,6 +1962,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="str"
                       length="255"
                       name="Diagnosed_Mental_Illness__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Case_Closed_Reason__C]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="Case_Closed_Reason__C" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2289,6 +2317,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Diagnosed_Mental_Illness__c]"
                       lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Diagnosed_Mental_Illness__c]" />
                     <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Case_Closed_Reason__C]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Case_Closed_Reason__C"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Closed_Reason__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Closed_Reason__C]" />
+                    <inputColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[ContactPersonID]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -2398,6 +2434,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Caretaker_Neglect__c]"
                       dataType="bool"
                       name="Caretaker_Neglect__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Case_Closed_Reason__c" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Client_Address__c]"
                       dataType="wstr"
@@ -2632,39 +2673,27 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\Import Staging Cases\SF Case Extract"
           TopLeft="608,122" />
         <NodeLayout
-          Size="174,42"
-          Id="Package\Import Staging Cases\Parse Contact Name"
-          TopLeft="609,233" />
-        <NodeLayout
           Size="145,42"
           Id="Package\Import Staging Cases\Staging Cases"
           TopLeft="601,356" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Import Staging Cases\Parse Contact Name"
+          TopLeft="591,233" />
         <EdgeLayout
           Id="Package\Import Staging Cases.Paths[Output 0]"
-          TopLeft="696,275">
+          TopLeft="675.75,275">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-22.5,81"
+              EndConnector="0,81"
               Start="0,0"
-              End="-22.5,73.5">
+              End="0,73.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,36.5"
-                    Point2="0,40.5"
-                    Point3="-4,40.5" />
-                  <mssgle:LineSegment
-                    End="-18.5,40.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-18.5,40.5"
-                    Point2="-22.5,40.5"
-                    Point3="-22.5,44.5" />
-                  <mssgle:LineSegment
-                    End="-22.5,73.5" />
+                    End="0,73.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2675,30 +2704,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import Staging Cases.Paths[Flat File Source Output]"
-          TopLeft="684,164">
+          TopLeft="681,164">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12,69"
+              EndConnector="0,69"
               Start="0,0"
-              End="12,61.5">
+              End="0,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.5"
-                    Point2="0,34.5"
-                    Point3="4,34.5" />
-                  <mssgle:LineSegment
-                    End="8,34.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8,34.5"
-                    Point2="12,34.5"
-                    Point3="12,38.5" />
-                  <mssgle:LineSegment
-                    End="12,61.5" />
+                    End="0,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
