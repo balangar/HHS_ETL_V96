@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-Stage"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{7B41B77A-0075-432F-9C77-39621669779B}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{C57A8796-A23D-4797-9B31-291F8ED89F75}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

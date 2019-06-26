@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-TransformLoad"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{624BE7F8-7A0A-420E-9E2B-919318741AA9}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{AD6E2BFE-A9B7-42EA-956C-0F396B2C8B42}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -131,7 +131,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{7856EB34-71E4-475D-8EC9-70043F980BF7}"
-          SQLTask:SqlStatementSource="Truncate Table dbo.Accounts;&#xA;Truncate Table dbo.Contacts;&#xA;Truncate Table dbo.Cases;&#xA;Truncate Table dbo.Users;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="Truncate Table dbo.Accounts;&#xA;Truncate Table dbo.Contacts;&#xA;Truncate Table dbo.Cases;&#xA;Truncate Table dbo.Users;&#xA;Truncate Table dbo.CaseNotes;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -205,6 +205,10 @@
           Size="199,42"
           Id="Package\Transform Load Accounts"
           TopLeft="540,235" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Transform Load Case Notes"
+          TopLeft="295,573" />
         <NodeLayout
           Size="184,42"
           Id="Package\Transform Load Cases"
@@ -355,25 +359,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="Temporary 'til incremental load ready. [geg]"
-          ParentId="Package"
-          Size="244,37"
-          Id="4fa7d1bd-39fb-48cd-9027-d4e5206403f4"
-          TopLeft="801,165">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo
-              Color="#FFF1F1F1">
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
-        <NodeLayout
-          Size="209,42"
-          Id="Package\Transform Load Case Notes"
-          TopLeft="295,573" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="397.75,490">
@@ -396,6 +381,21 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="Temporary 'til incremental load ready. [geg]"
+          ParentId="Package"
+          Size="244,37"
+          Id="4fa7d1bd-39fb-48cd-9027-d4e5206403f4"
+          TopLeft="801,165">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Color="#FFF1F1F1">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>

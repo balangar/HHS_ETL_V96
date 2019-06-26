@@ -24,8 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">EXP\2.X.1</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="cv5K8BqA+Q==" SSIS:IV="+WAfKsMFZ4w=">9jecagB8IgTOH0CBOwY4VF/SdacXDQJ+qadv5RRt2gMh6Bn0zIdij5ZIh0YNlbhdkwXSm+UL/1ePBOjlpylJ0oWLu1QKkUrplE4KJhW8BfDUomsIHipA1K1xIUzryVx/hMrrKCodUqEK3lVofVjs3jIqfQa8br5u70LW6k4blmh5eVolp1NtGQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">2.1.1</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="SwerG9vhMA==" SSIS:IV="YZ6hDDsm258=">uelXWTMwcTs5QAZQUd8FnGdteqpW7XTvfOzFwlCJwFK4zhA4aujpKQGfQ+z2Zv0T6epUjBJZe7Ss6t2n/ioNyy+ldAYsnXWDbqapgRNx3yl1JdXMyVnBhD99Rr7Mo04ZSLF77Au0SRIg7rksYvOK6FZetb8hbc9vPjJVfsEObxsLtc13p1lNig==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -389,7 +389,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Development\Working\Extract-ODAPS\User.csv</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\User.csv</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -571,7 +571,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Development\Working\Extract-ODAPS\APS_Case__c.csv</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\APS_Case__c.csv</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -753,7 +753,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Development\Working\Extract-ODAPS\Account.csv</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\Account.csv</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -979,7 +979,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">\\ms-cjfs-sis\source\Development\Packages\Extract-ODAPS\ProbeODAPS.bat</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">\\ms-cjfs-sis\source\Production\Packages\Extract-ODAPS\ProbeODAPS.bat</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -1039,7 +1039,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Development\Working\Extract-ODAPS\CaseNotes.csv</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\CaseNotes.csv</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -1173,10 +1173,10 @@
                 <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">19</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{42430B47-FF0C-4A5D-8BF0-6A2B2E754669}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B94058E3-89E3-4CDC-A16E-9706A31F1112}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1190,10 +1190,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-Stage</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{ED255A05-DC09-426C-9A54-62D9B4F7C0AE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C57A8796-A23D-4797-9B31-291F8ED89F75}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1207,10 +1207,10 @@
                 <SSIS:Property SSIS:Name="Name">Stage-Cases</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{988589CE-9DD1-4880-A91B-774E7C0A5C24}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C1898D49-9A19-48F5-ACC5-37F57148AEC5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1343,10 +1343,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-ValidateSyntax</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E12EF7F7-6F9A-475E-AD76-48D415EA4869}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CC658C08-EA12-4345-A232-4318FDECB134}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1360,10 +1360,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-TransformLoad</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{979EDD07-090D-4F7C-AEDC-766D2909D98C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{AD6E2BFE-A9B7-42EA-956C-0F396B2C8B42}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1411,10 +1411,10 @@
                 <SSIS:Property SSIS:Name="Name">TransformLoad-Cases</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E2474B80-747B-48D4-B304-F79DEAA4F97E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{28236745-D846-4CB3-9C0F-45C84FF5D57E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1479,10 +1479,10 @@
                 <SSIS:Property SSIS:Name="Name">Validate-CaseNotes</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{9F9BC66E-39F7-4B39-BFE9-36AD4FCD63B2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0CF47CBE-EA8B-4DDD-A6C3-079097A702EA}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1496,10 +1496,10 @@
                 <SSIS:Property SSIS:Name="Name">TransformLoad-CaseNotes</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CB038717-A4F6-408D-A86D-523F3D240766}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DF420C60-FA13-484D-857D-5AFF3EB41366}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1517,6 +1517,42 @@
   <Configurations>
     <Configuration>
       <Name>Development</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2014</TargetServerVersion>
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2019-04-30T16:46:09.9164086Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Staging</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2014</TargetServerVersion>
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2019-04-30T16:46:09.9164086Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Release</Name>
       <Options>
         <OutputPath>bin</OutputPath>
         <ConnectionMappings />

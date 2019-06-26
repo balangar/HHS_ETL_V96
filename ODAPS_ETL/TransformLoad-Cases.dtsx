@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{34D3A503-EDD0-4AB2-B469-3CAAE30AC827}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{28236745-D846-4CB3-9C0F-45C84FF5D57E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -188,11 +188,25 @@
                       externalMetadataColumnId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[CaseSeqNo]"
                       lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[CaseSeqNo]" />
                     <inputColumn
+                      refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].Columns[Approximate_Age__c]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Approximate_Age__c"
+                      externalMetadataColumnId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Approximate_Age__c]"
+                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Approximate_Age__c]" />
+                    <inputColumn
                       refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].Columns[Caretaker_Neglect__c]"
                       cachedDataType="bool"
                       cachedName="Caretaker_Neglect__c"
                       externalMetadataColumnId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Caretaker_Neglect__c]"
                       lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Caretaker_Neglect__c]" />
+                    <inputColumn
+                      refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].Columns[Case_Closed_Reason__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Case_Closed_Reason__c"
+                      externalMetadataColumnId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Closed_Reason__c]"
+                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Closed_Reason__c]" />
                     <inputColumn
                       refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].Columns[Client_Address__c]"
                       cachedDataType="wstr"
@@ -432,6 +446,11 @@
                       refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Caretaker_Neglect__c]"
                       dataType="bool"
                       name="Caretaker_Neglect__c" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Case_Closed_Reason__c" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Cases\dbo Cases.Inputs[ADO NET Destination Input].ExternalColumns[Client_Address__c]"
                       dataType="wstr"
@@ -842,6 +861,16 @@
                       name="SysInsertDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      length="8000"
+                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      name="HashSignature"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[ID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -988,6 +1017,16 @@
                       externalMetadataColumnId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Caretaker_Neglect__c]"
                       lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Caretaker_Neglect__c]"
                       name="Caretaker_Neglect__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Case_Closed_Reason__c]"
+                      length="255"
+                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Closed_Reason__c]"
+                      name="Case_Closed_Reason__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Client_Address__c]"
@@ -1264,6 +1303,11 @@
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
                     <externalMetadataColumn
+                      refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
+                    <externalMetadataColumn
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[ID]"
                       dataType="wstr"
                       length="18"
@@ -1336,6 +1380,11 @@
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Caretaker_Neglect__c]"
                       dataType="bool"
                       name="Caretaker_Neglect__c" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Case_Closed_Reason__c" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Client_Address__c]"
                       dataType="wstr"
@@ -1483,6 +1532,12 @@
                       lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
                       name="SysInsertDate" />
                     <outputColumn
+                      refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      name="HashSignature" />
+                    <outputColumn
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[ID]"
                       dataType="wstr"
                       length="18"
@@ -1570,6 +1625,12 @@
                       dataType="bool"
                       lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Caretaker_Neglect__c]"
                       name="Caretaker_Neglect__c" />
+                    <outputColumn
+                      refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Case_Closed_Reason__c]"
+                      name="Case_Closed_Reason__c" />
                     <outputColumn
                       refId="Package\Transform Load - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Client_Address__c]"
                       dataType="wstr"
@@ -1780,7 +1841,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="209,42"
           Id="Package\Mark Staging Cases Loaded"
@@ -1794,7 +1855,7 @@
           TopLeft="571,104">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,72"
               Start="0,0"
               End="0,64.5">
@@ -1818,7 +1879,7 @@
     design-time-name="Package\Transform Load - Cases">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="198,42"
           Id="Package\Transform Load - Cases\Sieve Valid and Unloaded"
@@ -1840,7 +1901,7 @@
           TopLeft="589.25,120">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,70"
               Start="0,0"
               End="0,62.5">
@@ -1862,7 +1923,7 @@
           TopLeft="586.5,351">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,99"
               Start="0,0"
               End="0,91.5">
@@ -1886,7 +1947,7 @@
           TopLeft="587.25,232">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,77"
               Start="0,0"
               End="0,69.5">

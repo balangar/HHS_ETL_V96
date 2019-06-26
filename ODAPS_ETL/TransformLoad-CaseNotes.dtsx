@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-CaseNotes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{28D96E6A-00E1-483F-A250-D2E58686D8B5}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{DF420C60-FA13-484D-857D-5AFF3EB41366}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2009,21 +2009,21 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="231,42"
           Id="Package\Mark Staging CaseNotes Loaded"
-          TopLeft="523,214" />
+          TopLeft="526,227" />
         <NodeLayout
           Size="216,42"
           Id="Package\Transform Load - Case Notes"
-          TopLeft="534,71" />
+          TopLeft="537,84" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="640.25,113">
+          TopLeft="643.25,126">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,101"
               Start="0,0"
               End="0,93.5">
@@ -2047,69 +2047,23 @@
     design-time-name="Package\Transform Load - Case Notes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="198,42"
-          Id="Package\Transform Load - Case Notes\Sieve Valid and Unloaded"
-          TopLeft="537,183" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="159,42"
           Id="Package\Transform Load - Case Notes\Mark Not Loaded"
           TopLeft="558,524" />
         <NodeLayout
-          Size="152,42"
-          Id="Package\Transform Load - Case Notes\dbo Case Notes"
-          TopLeft="555,392" />
+          Size="198,42"
+          Id="Package\Transform Load - Case Notes\Sieve Valid and Unloaded"
+          TopLeft="537,183" />
         <NodeLayout
           Size="174,42"
           Id="Package\Transform Load - Case Notes\Staging  Case Notes"
           TopLeft="547,77" />
-        <EdgeLayout
-          Id="Package\Transform Load - Case Notes.Paths[ADO NET Source Output]"
-          TopLeft="635,119">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,64"
-              Start="0,0"
-              End="0,56.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,56.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Transform Load - Case Notes.Paths[ADO NET Destination Error Output]"
-          TopLeft="634.25,434">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,90"
-              Start="0,0"
-              End="0,82.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,82.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-77.214453125,35.533203125,154.42890625,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Transform Load - Case Notes\dbo Case Notes"
+          TopLeft="555,392" />
         <NodeLayout
           Size="156,42"
           Id="Package\Transform Load - Case Notes\Data Conversion"
@@ -2119,7 +2073,7 @@
           TopLeft="637,225">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,62"
               Start="0,0"
               End="0,54.5">
@@ -2143,7 +2097,7 @@
           TopLeft="634.5,329">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,63"
               Start="0,0"
               End="0,55.5">
@@ -2160,11 +2114,57 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Load - Case Notes.Paths[ADO NET Source Output]"
+          TopLeft="635,119">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform Load - Case Notes.Paths[ADO NET Destination Error Output]"
+          TopLeft="634.25,434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,90"
+              Start="0,0"
+              End="0,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-77.214453125,35.533203125,154.42890625,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Transform Load - Case Notes\dbo Case Notes">
+    design-time-name="Package\Transform Load - Case Notes\Staging  Case Notes">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2172,7 +2172,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Transform Load - Case Notes\Staging  Case Notes">
+    design-time-name="Package\Transform Load - Case Notes\dbo Case Notes">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
