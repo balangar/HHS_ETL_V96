@@ -24,8 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">2.2.0</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6dktdkLAlQ==" SSIS:IV="4/dXCEiuq+U=">ifobtl/MRMh82563zL9fAtcIglOXSa3Rf1Wq7yWmryJKXzfIQnOQzYMHfFBj8dw8RTcHXJqqOcqg1CIl/tY5N1vbea8JjP3/DbaXGdC8f9d3l7nGABrVI5umGWF6mz6dlVE9U1Gz1osWzTUy5l6Gc2Kln2JWzWC0KTUC1h4sfPiSP85FEC7k/g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">2.2.1</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6Jg+mMgCjw==" SSIS:IV="BU5kc/Yp25c=">3RkhEq9OIgAbWyS4QMRZ0xHfBCQGAbbzBRx//EC9x67vf/Xfxj2PIsc7i/ih36vFHvyQEwbPcNqpXRC6Hl06iUZvnurO0kj453ezB0YKVlXDEhKMWXbUAY+mh0HUC/wZh0Fw4bMEFaxlZ1Ql+BFe5nWwlNKM/psBiRsGlFFU5NhN0k2g8DDXww==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1207,10 +1207,10 @@
                 <SSIS:Property SSIS:Name="Name">Stage-Cases</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{988589CE-9DD1-4880-A91B-774E7C0A5C24}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{795ABCC5-BA6F-43B1-8A9D-3D807BF91097}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

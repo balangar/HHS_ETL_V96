@@ -25,6 +25,7 @@
     [Approximate_Age__c]               DECIMAL(4,2)   NULL,
     [Caretaker_Neglect__c]             BIT            NOT NULL,
     [Client_Address__c]                VARCHAR (255)  NULL,
+	[Case_Closed_Reason__c]			   VARCHAR (255)  NULL,
     [Client_Name__c]                   VARCHAR (18)   NULL,
     [Client_s_Age__c]                  VARCHAR (50)   NULL,
     [Client_s_Home_Phone_Number__c]    VARCHAR (255)  NULL,

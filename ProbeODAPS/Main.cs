@@ -322,6 +322,7 @@ namespace ProbeODAPS
                             Name,
                             Approximate_Age__c,
                             Caretaker_Neglect__c,
+                            Case_Closed_Reason__c,
                             Client_Address__c,
                             Client_Name__c,
                             Client_s_Age__c	,
