@@ -24,8 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">2.2.0</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="ry2PsX6JkQ==" SSIS:IV="xX9PbdYsgvw=">QMLtz5Ir73p0Fa2e+XE61RVys8Pbl+0pS4YbRovTeP065IMr3Ngq5VBqJL+9kcs7AhU0fAWYaoe4YRaEvbS9wg8faU34sFjSAxK+G+WGvZP61N+0vJqkcG6aoU6vnlmn/fotRqckj2NThOY1iKNjaY5RCFZ64qYXQBmDJnii0mKmVo3tZvUYKA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">2.2.2</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="7vJoqPD3Iw==" SSIS:IV="ZCJZxQojmTU=">oLG0r4iRcHMzvpMXyO1VejHRaTPBJcmyFTqx9ZNkqIDod8luyfoDEAB5o7fMH4baXmr0Yo1NCcJ9/546zG4jVRS4Xr9qcLjrJhbj0D8FYJq3RHTHE/dV2TFExcgCXWh3wE3LEGSTyxi6Dj1w0o3lLpwngB8cnCw/cqe1A4M5YPtbVfl9OBTCvQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1292,10 +1292,10 @@
                 <SSIS:Property SSIS:Name="Name">Validate-Cases</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4A906328-4352-4A1F-A1DA-FB5971EBEAA3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1FB92338-96B0-41FB-9FCA-7509CFF5659C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
