@@ -1502,7 +1502,7 @@ public class ScriptMain : UserComponent
             isValid = false;
             runningComments += " IsDeleted is required.";
         }
-        if (Row.CreatedById_IsNull  || Row.CreatedById.Trim() == string.Empty)
+        if (Row.CreatedById_IsNull || Row.CreatedById.Trim() == string.Empty)
         {
             isValid = false;
             runningComments += " CreatedByID is required.";
@@ -1522,7 +1522,7 @@ public class ScriptMain : UserComponent
             isValid = false;
             runningComments += " LastModifiedDate is required.";
         }
-        if (Row.SystemModStamp_IsNull  || Row.SystemModStamp.Trim() == string.Empty || !DateTime.TryParse(Row.SystemModStamp, out dumbDate))
+        if (Row.SystemModStamp_IsNull || Row.SystemModStamp.Trim() == string.Empty || !DateTime.TryParse(Row.SystemModStamp, out dumbDate))
         {
             isValid = false;
             runningComments += " SystemModstamp is required.";
@@ -1556,12 +1556,12 @@ public class ScriptMain : UserComponent
         }
         #endregion
         #region Nullable Reference Fields
-        if(!Row.ReportingPartyNamec_IsNull && Row.ReportingPartyNamec.Trim() != string.Empty &&  Row.ReportingPartyNamec.Length != REFERENCE_FIELD_LENGTH)
+        if (!Row.ReportingPartyNamec_IsNull && Row.ReportingPartyNamec.Trim() != string.Empty && Row.ReportingPartyNamec.Length != REFERENCE_FIELD_LENGTH)
         {
             isValid = false;
             runningComments += string.Format(" Reporting_Party_Name__c invalid length {0}. Reference types must have length of {1}.", Row.ReportingPartyNamec.Length, REFERENCE_FIELD_LENGTH);
         }
-        if (!Row.Supervisorc_IsNull  &&  Row.Supervisorc.Trim() != string.Empty  &&  Row.Supervisorc.Length != REFERENCE_FIELD_LENGTH)
+        if (!Row.Supervisorc_IsNull && Row.Supervisorc.Trim() != string.Empty && Row.Supervisorc.Length != REFERENCE_FIELD_LENGTH)
         {
             isValid = false;
             runningComments += string.Format(" Supervisor__c invalid length {0}.  Reference types must have length of {1}.", Row.Supervisorc.Length, REFERENCE_FIELD_LENGTH);
