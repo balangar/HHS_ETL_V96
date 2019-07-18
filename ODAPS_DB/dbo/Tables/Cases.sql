@@ -22,7 +22,7 @@
     [Name]                             VARCHAR (80)   NULL,
     [ContactPersonID]                  VARCHAR (50)   NULL,
     [CaseSeqNo]                        VARCHAR (30)   NULL,
-    [Approximate_Age__c]               DECIMAL(4,2)   NULL,
+    [Approximate_Age__c]               DECIMAL(5,2)   NULL,
     [Caretaker_Neglect__c]             BIT            NOT NULL,
 	[Case_Closed_Reason__c]			   VARCHAR(255)	  NULL,
     [Client_Address__c]                VARCHAR (255)  NULL,

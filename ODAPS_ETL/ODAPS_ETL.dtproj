@@ -24,8 +24,8 @@
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">2.2.1</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="6Jg+mMgCjw==" SSIS:IV="BU5kc/Yp25c=">3RkhEq9OIgAbWyS4QMRZ0xHfBCQGAbbzBRx//EC9x67vf/Xfxj2PIsc7i/ih36vFHvyQEwbPcNqpXRC6Hl06iUZvnurO0kj453ezB0YKVlXDEhKMWXbUAY+mh0HUC/wZh0Fw4bMEFaxlZ1Ql+BFe5nWwlNKM/psBiRsGlFFU5NhN0k2g8DDXww==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">2.3.0</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="DRySZaJmXw==" SSIS:IV="Bw7umTQjfR4=">UxguGvCwD0zrIZwzyWcuMBDzWye3HBeRgWg6g37a4x0t7QeGuhFbo5X84yPDuRUZU1Xwk7jIf6cFhYN0pGbOvS/9P6qCkzyuCDaxvqVSNJtC4h/fns4A7OhnHxNoMeSJXjLRAJ+jfWrfjeEcINqDR7P9bE5+ZaLqftEHOD8iQ93Dce07n6rwng==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1292,10 +1292,10 @@
                 <SSIS:Property SSIS:Name="Name">Validate-Cases</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4A906328-4352-4A1F-A1DA-FB5971EBEAA3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1FB92338-96B0-41FB-9FCA-7509CFF5659C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1411,10 +1411,10 @@
                 <SSIS:Property SSIS:Name="Name">TransformLoad-Cases</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">17</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{28236745-D846-4CB3-9C0F-45C84FF5D57E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{3C6D232D-5579-4C3F-A67B-C2EF45EE9584}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
