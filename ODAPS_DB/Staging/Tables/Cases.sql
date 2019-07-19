@@ -46,6 +46,7 @@
     [Substance_abuse__c]               BIT            NULL,
     [Diagnosed_Mental_Illness_Info__c] VARCHAR (4096) NULL,
     [Diagnosed_Mental_Illness__c]      VARCHAR (255)  NULL,
+	[Case_Decision_Date_Time__c]	   DATETIME		  NULL,
 
     [IsValid]                          BIT            CONSTRAINT [DF__Cases__IsValid__367C1819] DEFAULT ((1)) NOT NULL,
     [IsLoaded]                         BIT            CONSTRAINT [DF__Cases__IsLoaded__37703C52] DEFAULT ((0)) NOT NULL,
