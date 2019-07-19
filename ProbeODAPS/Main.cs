@@ -345,7 +345,8 @@ namespace ProbeODAPS
                             Bed_Bugs__c,
                             Substance_abuse__c,
                             Diagnosed_Mental_Illness_Info__c,	 
-                            Diagnosed_Mental_Illness__c
+                            Diagnosed_Mental_Illness__c,
+                            Case_Decision_Date_Time__c
                         FROM
                             APS_Case__c
                         Where
