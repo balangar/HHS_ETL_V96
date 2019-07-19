@@ -138,8 +138,6 @@
     <Folder Include="_Auxiliary" />
     <Folder Include="_Documents" />
     <Folder Include="_Ancillary" />
-    <Folder Include="POD" />
-    <Folder Include="POD\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\CaseNotes.sql" />
@@ -166,6 +164,22 @@
     <Build Include="dbo\Views\vw_Worker_Sup.sql" />
     <Build Include="dbo\Views\vw_DSAS_POD_Live.sql" />
     <Build Include="dbo\Views\vw_Carol_Beese_Live_Cases.sql" />
+    <Build Include="dbo\Views\vw_User_Phone_Number_Patterns.sql" />
+    <Build Include="dbo\Views\vw_Sup_Sw_List.sql" />
+    <Build Include="dbo\Views\vw_Sup_Sw_Contact_Info.sql" />
+    <Build Include="dbo\Views\vw_ODAPS_ClientSearch.sql" />
+    <Build Include="dbo\Views\VW_DSAS_POD_Staging.sql" />
+    <Build Include="dbo\Views\vw_Case_to_CaseNotes_Staging.sql" />
+    <Build Include="dbo\Views\vw_Case_to_Casenotes.sql" />
+    <Build Include="dbo\Views\vw_Beese_Cases_Live.sql" />
+    <Build Include="dbo\Views\View_8.sql" />
+    <Build Include="dbo\Views\View_6.sql" />
+    <Build Include="dbo\Views\View_5.sql" />
+    <Build Include="dbo\Views\View_4.sql" />
+    <Build Include="dbo\Views\View_3.sql" />
+    <Build Include="dbo\Views\View_2.sql" />
+    <Build Include="dbo\Views\View_11.sql" />
+    <Build Include="dbo\Views\View_1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />
