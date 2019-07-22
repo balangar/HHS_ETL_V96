@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceModel;
 
+using System.Configuration;
+using System.Linq;
+
 using ProbeODAPS.sforce;
 
 namespace ProbeODAPS
@@ -52,6 +55,21 @@ namespace ProbeODAPS
             }
 
             return returnStatus;
+        }
+        public static bool Login(string Configuration, out SoapClient EndPointClient)
+        {
+            string configurationName = "SFConnection_" + Configuration;
+            string connectionString =  ConfigurationManager.ConnectionStrings[configurationName].ConnectionString;
+
+            var userName =
+                connectionString
+                .Split(';')
+                .Select(pair => pair.Split('='))
+                .ToDictionary(keyValue => keyValue[0].Trim(), keyValue => keyValue[1].Trim())
+                ["UserName"];
+
+            EndPointClient = null;
+            return false;
         }
         public static void Logout(SoapClient EndpointClient)
         {

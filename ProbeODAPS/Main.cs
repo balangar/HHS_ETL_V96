@@ -371,6 +371,8 @@ namespace ProbeODAPS
             int exitStatus = 0;
             try
             {
+                SoapClient EndPointClient = null;
+                var t = SF.Login("Production", out EndPointClient);
                 if (SF.Login(SF_USER_NAME, SF_PASS_WORD, out SoapClient EndpointClient))
                 {
                     exitStatus = CommandLine.Parser.Default.ParseArguments<DocumentOptions, ExtractOptions, ListOptions, CountOptions, ReplOptions>(args)
