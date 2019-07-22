@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{795ABCC5-BA6F-43B1-8A9D-3D807BF91097}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{62F3BF97-4020-4B56-A86C-B5511BD5E990}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1763,6 +1763,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                           name="UseBinaryFormat">false</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Decision_Date_Time__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Case_Decision_Date_Time__c]"
+                      length="50"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Decision_Date_Time__c]"
+                      name="Case_Decision_Date_Time__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1968,6 +1990,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="str"
                       length="255"
                       name="Case_Closed_Reason__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Case_Decision_Date_Time__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Case_Decision_Date_Time__c" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2325,6 +2353,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Closed_Reason__c]"
                       lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Closed_Reason__c]" />
                     <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Case_Decision_Date_Time__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Case_Decision_Date_Time__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Decision_Date_Time__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Decision_Date_Time__c]" />
+                    <inputColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[ContactPersonID]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -2547,6 +2583,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       length="255"
                       name="Diagnosed_Mental_Illness__c" />
                     <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Decision_Date_Time__c]"
+                      dataType="dbTimeStamp"
+                      name="Case_Decision_Date_Time__c" />
+                    <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
                       dataType="bool"
                       name="IsValid" />
@@ -2673,13 +2713,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\Import Staging Cases\SF Case Extract"
           TopLeft="608,122" />
         <NodeLayout
-          Size="145,42"
-          Id="Package\Import Staging Cases\Staging Cases"
-          TopLeft="601,356" />
-        <NodeLayout
           Size="174,42"
           Id="Package\Import Staging Cases\Parse Contact Name"
           TopLeft="609,233" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Import Staging Cases\Staging Cases"
+          TopLeft="601,356" />
         <EdgeLayout
           Id="Package\Import Staging Cases.Paths[Output 0]"
           TopLeft="675.75,275">

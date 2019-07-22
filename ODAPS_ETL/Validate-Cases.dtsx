@@ -12,8 +12,8 @@
   DTS:ObjectName="Validate-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{1FB92338-96B0-41FB-9FCA-7509CFF5659C}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{AFDD3754-B428-49D5-91BF-A86B323F50D1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -417,6 +417,16 @@
                       name="SysInsertDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      length="8000"
+                      lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      name="HashSignature"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[ID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -563,6 +573,16 @@
                       externalMetadataColumnId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Caretaker_Neglect__c]"
                       lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Caretaker_Neglect__c]"
                       name="Caretaker_Neglect__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Case_Closed_Reason__c]"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Closed_Reason__c]"
+                      name="Case_Closed_Reason__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Client_Address__c]"
@@ -786,6 +806,15 @@
                       name="Diagnosed_Mental_Illness__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Decision_Date_Time__c]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Case_Decision_Date_Time__c]"
+                      lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[Case_Decision_Date_Time__c]"
+                      name="Case_Decision_Date_Time__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].Columns[IsValid]"
                       dataType="bool"
                       errorOrTruncationOperation="Conversion"
@@ -838,6 +867,11 @@
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
                     <externalMetadataColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[ID]"
                       dataType="wstr"
@@ -911,6 +945,11 @@
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Caretaker_Neglect__c]"
                       dataType="bool"
                       name="Caretaker_Neglect__c" />
+                    <externalMetadataColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Case_Closed_Reason__c" />
                     <externalMetadataColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Client_Address__c]"
                       dataType="wstr"
@@ -1018,6 +1057,10 @@
                       length="255"
                       name="Diagnosed_Mental_Illness__c" />
                     <externalMetadataColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[Case_Decision_Date_Time__c]"
+                      dataType="dbTimeStamp"
+                      name="Case_Decision_Date_Time__c" />
+                    <externalMetadataColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
                       dataType="bool"
                       name="IsValid" />
@@ -1057,6 +1100,12 @@
                       dataType="dbTimeStamp"
                       lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
                       name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      name="HashSignature" />
                     <outputColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[ID]"
                       dataType="wstr"
@@ -1145,6 +1194,12 @@
                       dataType="bool"
                       lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Caretaker_Neglect__c]"
                       name="Caretaker_Neglect__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Case_Closed_Reason__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Case_Closed_Reason__c]"
+                      name="Case_Closed_Reason__c" />
                     <outputColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Client_Address__c]"
                       dataType="wstr"
@@ -1274,6 +1329,11 @@
                       length="255"
                       lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Diagnosed_Mental_Illness__c]"
                       name="Diagnosed_Mental_Illness__c" />
+                    <outputColumn
+                      refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Case_Decision_Date_Time__c]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[Case_Decision_Date_Time__c]"
+                      name="Case_Decision_Date_Time__c" />
                     <outputColumn
                       refId="Package\Validate Syntax - Cases\Staging Cases.Outputs[ADO NET Source Error Output].Columns[IsValid]"
                       dataType="bool"
@@ -2853,28 +2913,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
           Id="Package\Validate Syntax - Cases\Convert  Comments to ASCII"
           TopLeft="538,433" />
         <EdgeLayout
-          Id="Package\Validate Syntax - Cases.Paths[Output 0]"
-          TopLeft="649.5,224">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,86"
-              Start="0,0"
-              End="0,78.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Validate Syntax - Cases.Paths[Invalid]"
           TopLeft="647,352">
           <EdgeLayout.Curve>
@@ -2934,6 +2972,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Validate Syntax - Cases.Paths[Output 0]"
+          TopLeft="649.5,224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
