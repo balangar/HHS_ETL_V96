@@ -65,7 +65,7 @@ namespace ProbeODAPS
                 connectionString
                 .Split(';')
                 .Select(pair => pair.Split('='))
-                .ToDictionary(keyValue => keyValue[0].Trim(), keyValue => keyValue[1].Trim());
+                .ToDictionary(valuePair => valuePair[0].Trim(), valuePair => valuePair[1].Trim());
 
             return Login(t["UserName"], t["Password"], t["Token"], out EndpointClient);
         }
