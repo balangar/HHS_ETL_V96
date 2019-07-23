@@ -12,6 +12,7 @@ namespace ProbeODAPS
 {
     internal class SF
     {
+        #region Class level. Private
         private static SessionHeader Header;
         private static EndpointAddress EndpointAddress;
 
@@ -56,6 +57,7 @@ namespace ProbeODAPS
 
             return returnStatus;
         }
+        #endregion
         public static bool Login(out SoapClient EndpointClient, string Configuration = "Default")
         {
             string configurationName = "SFConnection_" + Configuration;
