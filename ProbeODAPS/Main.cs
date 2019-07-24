@@ -212,9 +212,6 @@ namespace ProbeODAPS
         }
         internal static int Work(string[] args)
         {
-            const string SF_USER_NAME = "api.integration@jfs.ohio.gov";
-            const string SF_PASS_WORD = "CuyahogaCounty@@@444" + "fb1X6XO7inGgrjdozs7f5W9a"; //Combined password and token.
-
             Dictionary<string, string> sfObjectQueries = new Dictionary<string, string>()
                 {
                     {"Contact",
@@ -345,7 +342,8 @@ namespace ProbeODAPS
                             Bed_Bugs__c,
                             Substance_abuse__c,
                             Diagnosed_Mental_Illness_Info__c,	 
-                            Diagnosed_Mental_Illness__c
+                            Diagnosed_Mental_Illness__c,
+                            Case_Decision_Date_Time__c
                         FROM
                             APS_Case__c
                         Where
@@ -370,7 +368,7 @@ namespace ProbeODAPS
             int exitStatus = 0;
             try
             {
-                if (SF.Login(SF_USER_NAME, SF_PASS_WORD, out SoapClient EndpointClient))
+                if (SF.Login(out SoapClient EndpointClient))    // Use "default" SF connection info
                 {
                     exitStatus = CommandLine.Parser.Default.ParseArguments<DocumentOptions, ExtractOptions, ListOptions, CountOptions, ReplOptions>(args)
                         .MapResult(

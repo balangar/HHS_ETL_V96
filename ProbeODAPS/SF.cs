@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceModel;
 
+using System.Configuration;
+using System.Linq;
+
 using ProbeODAPS.sforce;
 
 namespace ProbeODAPS
 {
     internal class SF
     {
+        #region Class level. Private
         private static SessionHeader Header;
         private static EndpointAddress EndpointAddress;
 
-        public static bool Login(string UserName, string Password, out SoapClient EndPointClient)
+        private static bool Login(string UserName, string Password, string Token, out SoapClient EndPointClient)
         {
             EndPointClient = null;
             bool returnStatus = false;
@@ -23,11 +27,11 @@ namespace ProbeODAPS
             LoginResult lr;
             try
             {
-                lr = loginClient.login(null, null, UserName, Password);
+                lr = loginClient.login(null, null, UserName, Password + Token);
                 if (lr.passwordExpired)
                 {
                     Program.Logger.Warn("Password has expired");
-                    Program.Logger.Debug(string.Format("User Name: {0}  Password: {1}", UserName, Password));
+                    Program.Logger.Debug(string.Format("User Name: {0}  Password: {1}  Token: {2}", UserName, Password, Token));
 
                     returnStatus = false;
                 }
@@ -52,6 +56,20 @@ namespace ProbeODAPS
             }
 
             return returnStatus;
+        }
+        #endregion
+        public static bool Login(out SoapClient EndpointClient, string Configuration = "Default")
+        {
+            string configurationName = "SFConnection_" + Configuration;
+            string connectionString =  ConfigurationManager.ConnectionStrings[configurationName].ConnectionString;
+
+            Dictionary<string, string> t =
+                connectionString
+                .Split(';')
+                .Select(pair => pair.Split('='))
+                .ToDictionary(valuePair => valuePair[0].Trim(), valuePair => valuePair[1].Trim());
+
+            return Login(t["UserName"], t["Password"], t["Token"], out EndpointClient);
         }
         public static void Logout(SoapClient EndpointClient)
         {

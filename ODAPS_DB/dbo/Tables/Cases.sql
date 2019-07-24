@@ -48,6 +48,7 @@
     [Substance_abuse__c]               BIT            NOT NULL,
     [Diagnosed_Mental_Illness_Info__c] VARCHAR (4096) NULL,
     [Diagnosed_Mental_Illness__c]      VARCHAR (255)  NULL,
+	[Case_Decision_Date_Time__c]	   DATETIME		  NULL,
 
 	CONSTRAINT [PK_Cases] PRIMARY KEY CLUSTERED ([CaseKey] ASC)
 
