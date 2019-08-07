@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[Contacts]
 (
-    [ContactKey]                     INT            IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]                  VARCHAR (18)   NOT NULL DEFAULT 'Sys_ETL',
-    [SysInsertDate]                  DATETIME       NOT NULL DEFAULT  getdate(),
-	[SysModifyUser]					 VARCHAR(50)	NULL,
-	[SysModifyDate]					 DATETIME		NULL,
-    [HashSignature]                  AS             (hashbytes('SHA1',(((((((((((((((((((((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([OwnerID],''))+isnull([AccountId],''))+isnull([MasterRecordId],''))+isnull([Salutation],''))+isnull([FirstName],''))+isnull([LastName],''))+isnull([Name],''))+isnull([MailingStreet],''))+isnull([MailingCity],''))+isnull([MailingStateCode],''))+isnull([MailingPostalCode],''))+isnull([MailingAddress],''))+isnull([Phone],''))+isnull([HomePhone],''))+isnull([Email],''))+CONVERT([varchar],isnull([Birthdate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Approx_Age__c],'0.0')))+isnull([Gender_Code__c],''))+isnull([Gender__c],''))+CONVERT([varchar],isnull([Hoarding_or_animal_hoarding__c],(0))))+isnull([Income_Source__c],''))+isnull([Marital_Status__c],''))+isnull([Medicaid__c],''))+isnull([Medicare__c],''))+isnull([Race__c],''))+isnull([SSN__c],''))+isnull([Person_Id__c],''))+isnull([Veteran_Status__c],''))+CONVERT([varchar],isnull([Bed_Bugs__c],(0))))),
+    [ContactKey]                     INT				IDENTITY (1, 1) NOT NULL,
+    [SysInsertUser]                  VARCHAR (18)		NOT NULL DEFAULT 'Sys_ETL',
+    [SysInsertDate]                  DATETIME			NOT NULL DEFAULT  getdate(),
+	[SysModifyUser]					 VARCHAR(50)		NULL,
+	[SysModifyDate]					 DATETIME			NULL,
+	[HashSignature]					 VARBINARY(8000)	NULL,
 
     [ID]                             CHAR(18)   NOT NULL,
     [CreatedByID]                    CHAR(18)   NOT NULL,

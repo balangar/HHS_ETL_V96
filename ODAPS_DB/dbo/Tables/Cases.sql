@@ -1,12 +1,11 @@
 ﻿CREATE TABLE [dbo].[Cases]
 (
 	[CaseKey] INT IDENTITY(1,1) NOT NULL,
-	[SysInsertUser] VARCHAR(50) NOT NULL DEFAULT 'Sys_ETL',
-	[SysInsertDate] DATETIME NOT NULL DEFAULT getdate(),
-	[SysModifyUser]	VARCHAR(50)	NULL,
-	[SysModifyDate]	DATETIME	NULL,
-	[HashSignature]  AS (hashbytes('SHA1',((((((((((((((((((((((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([OwnerID],''))+isnull([RecordTypeID],''))+isnull([Owner_County__c],''))+isnull([Name],''))+isnull([ContactPersonID],''))+isnull([CaseSeqNo],''))+CONVERT([varchar],isnull([Approximate_Age__c],'')))+CONVERT([varchar],isnull([Caretaker_Neglect__c],'')))+isnull([Client_Address__c],''))+isnull([Client_s_Age__c],''))+isnull([Client_s_Home_Phone_Number__c],''))+CONVERT([varchar],isnull([Date_of_Birth__c],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Exploitation__c],(0))))+isnull([Gender_Code__c],''))+isnull([Marital_Status_Code__c],''))+CONVERT([varchar],isnull([Physical_Abuse__c],(0))))+isnull([Reporting_Party_Agency_Name__c],''))+isnull([Reporting_Party_Name__c],''))+CONVERT([varchar],isnull([Self_Neglect__c],(0))))+CONVERT([varchar],isnull([Sexual_Abuse__c],(0))))+isnull([Supervisor_E_mail__c],''))+isnull([Supervisor_Name__c],''))+isnull([Supervisor__c],''))+CONVERT([varchar],isnull([Hoarding_or_animal_hoarding__c],(0))))+CONVERT([varchar],isnull([Emotional_Verbal_Abuse__c],(0))))+CONVERT([varchar],isnull([Referral_Submitted_Date_Time__c],'1900-01-01'),(121)))+CONVERT([varchar],isnull([Bed_Bugs__c],(0))))+CONVERT([varchar],isnull([Substance_abuse__c],(0))))+isnull([Diagnosed_Mental_Illness_Info__c],''))+isnull([Diagnosed_Mental_Illness__c],''))),
-
+	[SysInsertUser] VARCHAR(50)		NOT NULL DEFAULT 'Sys_ETL',
+	[SysInsertDate] DATETIME		NOT NULL DEFAULT getdate(),
+	[SysModifyUser] VARCHAR(50)		NOT NULL DEFAULT 'Sys_Etl',
+	[SysModifyDate]	DATETIME		NOT NULL DEFAULT getdate(),
+	[HashSignature]	VARBINARY(8000)	NULL,
 
 	[ID] CHAR(18) NOT NULL,
 	[CreatedByID] CHAR(18) NOT NULL,
