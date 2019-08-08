@@ -33,7 +33,7 @@
     [Email]                          VARCHAR (80)   NULL,
 
     [Birthdate]                      DATE			NULL,
-    [Approx_Age__c]                  DECIMAL(4,2)	NULL,
+    [Approx_Age__c]                  DECIMAL(4,1)	NULL,
     [Gender_Code__c]                 VARCHAR (1500) NULL,
     [Gender__c]                      VARCHAR (255)  NULL,
 

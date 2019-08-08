@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/14/2019 1:15:03 PM"
@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Users"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{4680C6BB-08AF-4684-8880-6911224650C4}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{FE30B70D-F3C7-4CD8-B8A7-E6DD873D4395}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -85,8 +85,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Users\dbo Users.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -97,6 +97,13 @@
                   hasSideEffects="true"
                   name="ADO NET Destination Input">
                   <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].Columns[HashSignature]"
+                      cachedDataType="bytes"
+                      cachedLength="8000"
+                      cachedName="HashSignature"
+                      externalMetadataColumnId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[HashSignature]" />
                     <inputColumn
                       refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].Columns[ID]"
                       cachedDataType="wstr"
@@ -113,8 +120,7 @@
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[CreatedByID]" />
                     <inputColumn
                       refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].Columns[CreatedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedDataType="dbDate"
                       cachedName="CreatedDate"
                       externalMetadataColumnId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[CreatedDate]"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[CreatedDate]" />
@@ -127,15 +133,13 @@
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[LastModifiedById]" />
                     <inputColumn
                       refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].Columns[LastModifiedDate]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedDataType="dbDate"
                       cachedName="LastModifiedDate"
                       externalMetadataColumnId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[LastModifiedDate]"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[LastModifiedDate]" />
                     <inputColumn
                       refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].Columns[SystemModstamp]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedDataType="dbTimeStamp"
                       cachedName="SystemModstamp"
                       externalMetadataColumnId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[SystemModstamp]"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[SystemModstamp]" />
@@ -225,6 +229,20 @@
                       refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[SysModifyUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="SysModifyUser" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[SysModifyDate]"
+                      dataType="dbTimeStamp"
+                      name="SysModifyDate" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Users\dbo Users.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
                       dataType="wstr"
@@ -363,8 +381,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Users\Mark Unloaded.Connections[OleDbConnection]"
-                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
-                  connectionManagerRefId="{092EB4A9-963C-4427-B035-E559179E78E5}:invalid"
+                  connectionManagerID="{092EB4A9-963C-4427-B035-E559179E78E5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -566,8 +584,8 @@
               <connections>
                 <connection
                   refId="Package\Transform Load - Users\Staging Users.Connections[IDbConnection]"
-                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
-                  connectionManagerRefId="{7856EB34-71E4-475D-8EC9-70043F980BF7}:invalid"
+                  connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -605,6 +623,16 @@
                       name="SysInsertDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      length="8000"
+                      lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      name="HashSignature"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[ID]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -626,11 +654,10 @@
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[CreatedDate]"
-                      dataType="wstr"
+                      dataType="dbDate"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
-                      length="50"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[CreatedDate]"
                       name="CreatedDate"
                       truncationRowDisposition="FailComponent" />
@@ -646,21 +673,19 @@
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
-                      dataType="wstr"
+                      dataType="dbDate"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
-                      length="50"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[LastModifiedDate]"
                       name="LastModifiedDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
-                      dataType="wstr"
+                      dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
-                      length="50"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].Columns[SystemModstamp]"
                       name="SystemModstamp"
                       truncationRowDisposition="FailComponent" />
@@ -818,6 +843,11 @@
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
                     <externalMetadataColumn
+                      refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
+                    <externalMetadataColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[ID]"
                       dataType="wstr"
                       length="18"
@@ -829,8 +859,7 @@
                       name="CreatedByID" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbDate"
                       name="CreatedDate" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedById]"
@@ -839,13 +868,11 @@
                       name="LastModifiedById" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[LastModifiedDate]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbDate"
                       name="LastModifiedDate" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[SystemModstamp]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbTimeStamp"
                       name="SystemModstamp" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Output].ExternalColumns[AccountID]"
@@ -938,6 +965,12 @@
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
                       name="SysInsertDate" />
                     <outputColumn
+                      refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      name="HashSignature" />
+                    <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[ID]"
                       dataType="wstr"
                       length="18"
@@ -951,8 +984,7 @@
                       name="CreatedByID" />
                     <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbDate"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
                       name="CreatedDate" />
                     <outputColumn
@@ -963,14 +995,12 @@
                       name="LastModifiedById" />
                     <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbDate"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[LastModifiedDate]"
                       name="LastModifiedDate" />
                     <outputColumn
                       refId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
-                      dataType="wstr"
-                      length="50"
+                      dataType="dbTimeStamp"
                       lineageId="Package\Transform Load - Users\Staging Users.Outputs[ADO NET Source Error Output].Columns[SystemModstamp]"
                       name="SystemModstamp" />
                     <outputColumn
