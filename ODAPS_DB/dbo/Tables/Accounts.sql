@@ -4,7 +4,7 @@
 	[SysInsertDate] DATETIME		NOT NULL DEFAULT getdate(),
 	[SysModifyUser] VARCHAR(50)		NOT NULL DEFAULT 'Sys_Etl',
 	[SysModifyDate]	DATETIME		NOT NULL DEFAULT getdate(),
-	[HashSignature]	VARBINARY(8000)	NULL,
+	[HashSignature]		VARBINARY(8000)	NULL,
 
 	[ID] [varchar](18) NULL,
 	[CreatedByID] [char](18) NULL,
