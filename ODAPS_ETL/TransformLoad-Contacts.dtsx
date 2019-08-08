@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{A4E242D2-B8B6-496F-A62B-AA2F36F67CC5}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{B139E19E-B80B-46EB-89F2-7FA298AF8894}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -97,6 +97,13 @@
                   hasSideEffects="true"
                   name="ADO NET Destination Input">
                   <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].Columns[HashSignature]"
+                      cachedDataType="bytes"
+                      cachedLength="8000"
+                      cachedName="HashSignature"
+                      externalMetadataColumnId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
+                      lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[HashSignature]" />
                     <inputColumn
                       refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].Columns[ID]"
                       cachedDataType="wstr"
@@ -254,6 +261,13 @@
                       externalMetadataColumnId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Birthdate]"
                       lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Birthdate]" />
                     <inputColumn
+                      refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].Columns[Approx_Age__c]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Approx_Age__c"
+                      externalMetadataColumnId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Approx_Age__c]"
+                      lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[Approx_Age__c]" />
+                    <inputColumn
                       refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].Columns[Gender_Code__c]"
                       cachedDataType="wstr"
                       cachedLength="1500"
@@ -344,12 +358,21 @@
                     <externalMetadataColumn
                       refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertUser]"
                       dataType="wstr"
-                      length="18"
+                      length="500"
                       name="SysInsertUser" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SysInsertDate]"
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SysModifyUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="SysModifyUser" />
+                    <externalMetadataColumn
+                      refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[SysModifyDate]"
+                      dataType="dbTimeStamp"
+                      name="SysModifyDate" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[HashSignature]"
                       dataType="bytes"
@@ -470,7 +493,7 @@
                       dataType="numeric"
                       name="Approx_Age__c"
                       precision="4"
-                      scale="2" />
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Transform Load - Contacts\dbo Contacts.Inputs[ADO NET Destination Input].ExternalColumns[Gender_Code__c]"
                       dataType="wstr"
@@ -729,6 +752,16 @@
                       externalMetadataColumnId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[SysInsertDate]"
                       lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[SysInsertDate]"
                       name="SysInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      length="8000"
+                      lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[HashSignature]"
+                      name="HashSignature"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].Columns[ID]"
@@ -1136,6 +1169,11 @@
                       dataType="dbTimeStamp"
                       name="SysInsertDate" />
                     <externalMetadataColumn
+                      refId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      name="HashSignature" />
+                    <externalMetadataColumn
                       refId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Output].ExternalColumns[ID]"
                       dataType="wstr"
                       length="18"
@@ -1347,6 +1385,12 @@
                       dataType="dbTimeStamp"
                       lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[SysInsertDate]"
                       name="SysInsertDate" />
+                    <outputColumn
+                      refId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      dataType="bytes"
+                      length="8000"
+                      lineageId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[HashSignature]"
+                      name="HashSignature" />
                     <outputColumn
                       refId="Package\Transform Load - Contacts\Staging Contacts.Outputs[ADO NET Source Error Output].Columns[ID]"
                       dataType="wstr"
@@ -2528,6 +2572,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\Transform Load - Contacts\Transform Staging Columns"
           TopLeft="538,340" />
         <EdgeLayout
+          Id="Package\Transform Load - Contacts.Paths[ADO NET Source Output]"
+          TopLeft="649,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85"
+              Start="0,0"
+              End="0,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Transform Load - Contacts.Paths[Valid]"
           TopLeft="645,262">
           <EdgeLayout.Curve>
@@ -2565,28 +2631,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,86.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Transform Load - Contacts.Paths[ADO NET Source Output]"
-          TopLeft="649,135">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,85"
-              Start="0,0"
-              End="0,77.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,77.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
