@@ -1,7 +1,11 @@
 ﻿CREATE TABLE [dbo].[Users] (
-    [UserKey]          INT           IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]    VARCHAR (50)  DEFAULT ('Sys_ETL') NOT NULL,
-    [SysInsertDate]    DATETIME      DEFAULT (getdate()) NOT NULL,
+    [UserKey]						 INT				IDENTITY (1, 1) NOT NULL,
+    [SysInsertUser]                  VARCHAR (18)		NOT NULL DEFAULT 'Sys_ETL',
+    [SysInsertDate]                  DATETIME			NOT NULL DEFAULT  getdate(),
+	[SysModifyUser]					 VARCHAR(50)		NULL,
+	[SysModifyDate]					 DATETIME			NULL,
+	[HashSignature]					 VARBINARY(8000)	NULL,
+
     [ID]               CHAR (18)     NOT NULL,
     [CreatedByID]      CHAR (18)     NULL,
     [CreatedDate]      DATE          NOT NULL,

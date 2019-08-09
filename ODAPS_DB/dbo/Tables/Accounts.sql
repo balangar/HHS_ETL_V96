@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Accounts](
-	[AccountKey] [int] IDENTITY(1,1) NOT NULL,
-	[SysInsertUser] [varchar](50) NOT NULL DEFAULT  'Sys_ETL',
-	[SysInsertDate] [datetime] NOT NULL DEFAULT getdate(),
-	[SysModifyUser] VARCHAR(50) NULL,
-	[SysModifyDate]	DATETIME	NULL,
-	[HashSignature]  AS (hashbytes('SHA1',((((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+CONVERT([varchar],isnull([IsDeleted],(0))))+isnull([MasterRecordID],''))+isnull([OwnerID],''))+isnull([ParentID],''))+isnull([RecordTypeID],''))+isnull([Name],''))+isnull([Type],''))+isnull([Description],''))+CONVERT([varchar],isnull([LastActivityDate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([LastViewedDate],'1900-01-01'),(121)))+CONVERT([varchar],isnull([LastReferencedDate],'1900-01-01'),(121)))),
+	[AccountKey] INT IDENTITY(1,1)  NOT NULL,
+	[SysInsertUser] VARCHAR(50)		NOT NULL DEFAULT 'Sys_ETL',
+	[SysInsertDate] DATETIME		NOT NULL DEFAULT getdate(),
+	[SysModifyUser] VARCHAR(50)		NOT NULL DEFAULT 'Sys_Etl',
+	[SysModifyDate]	DATETIME		NOT NULL DEFAULT getdate(),
+	[HashSignature]		VARBINARY(8000)	NULL,
 
 	[ID] [varchar](18) NULL,
 	[CreatedByID] [char](18) NULL,
