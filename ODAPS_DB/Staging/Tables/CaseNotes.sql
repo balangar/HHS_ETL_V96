@@ -39,7 +39,8 @@
 													ISNULL(Case_Note__c, '') +
 													ISNULL(Status__c, '') +
 													ISNULL(Supervisor_Email__c, '') +
-													ISNULL(Created_in_Error_Formatted__c, '')
+													ISNULL(Created_in_Error_Formatted__c, '') +
+													ISNULL(Parent__c, '')
 													),
 
 	[Id]										VARCHAR(18) NULL,
