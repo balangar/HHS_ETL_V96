@@ -6,7 +6,7 @@ MERGE
 
 	WHEN MATCHED And
 		[Source].IsValid = 1 And [Source].IsLoaded != 1 And
-		Target.SysModifyDate < [Source].SysInsertDate And
+		Target.SysModifyDate <= [Source].SysInsertDate And
 		Target.HashSignature != [Source].HashSignature
 	THEN
 		UPDATE
