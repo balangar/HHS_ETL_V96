@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Users"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{D387010A-2757-4C77-9693-1BE72276C3B2}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{C5EB6970-7B56-4B1A-A216-C3F5DFEB60FF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
