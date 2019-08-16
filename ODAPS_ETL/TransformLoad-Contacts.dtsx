@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Contacts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{7CB68C28-1C5E-4779-9173-9C420C2AA0D8}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{6C2D66D6-4DE0-406E-BC7E-6767954953B2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

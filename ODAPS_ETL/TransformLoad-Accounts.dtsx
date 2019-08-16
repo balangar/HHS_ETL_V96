@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Accounts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{EBD15471-1678-4D2B-A02C-3C80D101D8C1}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{17C80501-63DA-46F0-AEA6-21FA80B1ACEB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

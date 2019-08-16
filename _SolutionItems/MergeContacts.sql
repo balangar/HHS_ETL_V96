@@ -44,7 +44,7 @@ MERGE
 				,[Target].[Email]		= [Source].[Email] 
 				                                            
 				,[Target].[Birthdate]		= [Source].[Birthdate] 
-				,[Target].[Approx_Age__c]	= CASE ISNUMERIC([Source].APPROX_AGE__C) WHEN 1 THEN CONVERT(DECIMAL(4,1), [Source].APPROX_AGE__C) END
+				,[Target].[Approx_Age__c]	= CASE ISNUMERIC([Source].APPROX_AGE__C) WHEN 1 THEN CONVERT(DECIMAL(4,1), [Source].APPROX_AGE__C) ELSE NULL END
 				,[Target].[Gender_Code__c]	= [Source].[Gender_Code__c]
 				,[Target].[Gender__c]		= [Source].[Gender__c] 
 				                                            
