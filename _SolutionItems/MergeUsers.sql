@@ -20,19 +20,19 @@ MERGE
 				,Target.[LastModifiedDate]	= [Source].LastModifiedDate
 				,Target.[SystemModstamp]	= [Source].SystemModstamp
 				
-				,Target.[ID]			= Source.[ID]	
-				,Target.[AccountID]		= Source.[AccountID]	
-				,Target.[ContactID]		= Source.[ContactID]
+				,Target.[ID]			= [Source].[ID]	
+				,Target.[AccountID]		= [Source].[AccountID]	
+				,Target.[ContactID]		= [Source].[ContactID]
 				
-				,Target.[UserName]	= Source.[UserName]	
-				,Target.[FirstName]	= Source.[FirstName]	
-				,Target.[LastName]	= Source.[LastName]	
-				,Target.[Name]		= Source.[Name]	
-				,Target.[EMail]		= Source.[EMail]	
-				,Target.[Phone]		= Source.[Phone]
+				,Target.[UserName]	= [Source].[UserName]	
+				,Target.[FirstName]	= [Source].[FirstName]	
+				,Target.[LastName]	= [Source].[LastName]	
+				,Target.[Name]		= [Source].[Name]	
+				,Target.[EMail]		= [Source].[EMail]	
+				,Target.[Phone]		= [Source].[Phone]
 				
-				,Target.[ManagerID]		= Source.[ManagerID]	
-				,Target.[SupervisorID]	= Source.[Supervisor__c]
+				,Target.[ManagerID]		= [Source].[ManagerID]	
+				,Target.[SupervisorID]	= [Source].[Supervisor__c]
 
 	WHEN NOT MATCHED By Target And [Source].IsValid = 1
 	THEN
