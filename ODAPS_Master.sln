@@ -32,6 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{743905DF-E3EF-4C49-8AB2-57C702D03F04}"
 	ProjectSection(SolutionItems) = preProject
 		_SolutionItems\ProbeODAPS.bat = _SolutionItems\ProbeODAPS.bat
+		_SolutionItems\ProbeODAPS_IncrementalLoad.sql = _SolutionItems\ProbeODAPS_IncrementalLoad.sql
 	EndProjectSection
 EndProject
 Global

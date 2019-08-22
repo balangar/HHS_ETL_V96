@@ -18,14 +18,13 @@
           <SSIS:Property SSIS:Name="Name">ODAPS_ETL</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionComments">
-          </SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionComments">Implement incremental load from staging tables</SSIS:Property>
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">2.4.0</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="2llDbox6fw==" SSIS:IV="H21CPYZqkeA=">7KvixjxOtYAmt6A36H6ACNop9wRsKJtXabSDDnn3b9rhLQlq5QFUQktI6AxTO6LKIzwt61qzyppYL2A1bGBprxEotsavnw92pII/ahHGBCjEmgPMpMS6k7szwvasfd5FZBfLywmFlJ28BAlxPjnub1Ro8biNxr0zF16aAg3yLOUCXXmSK2mPEw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">3.0.0</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="k8YsxW8Thg==" SSIS:IV="kxnqYDDKjVA=">fXpCBOPoI65Ua7AcWwqkItEPVjB6PtQ/i9djZl8gXqxMK/8qgVF62hpjenDZEcONFJ9x3lJ6q9mSWo43C9iY1qA/mUOUf3+qz+jWQ1kdAn5LcBoAE1GTmmUdbIM/QaUsHfEi7ue6ocOC9Ct7ui9nf2rNC6+XkuHyUFOn9SKgz27VQZ9MhnlKHQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1360,10 +1359,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-TransformLoad</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{AD6E2BFE-A9B7-42EA-956C-0F396B2C8B42}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DC4415FF-70F0-47C5-8754-C28B3B731AD3}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1394,10 +1393,10 @@
                 <SSIS:Property SSIS:Name="Name">TransformLoad-Users</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">22</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{FE30B70D-F3C7-4CD8-B8A7-E6DD873D4395}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C5EB6970-7B56-4B1A-A216-C3F5DFEB60FF}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

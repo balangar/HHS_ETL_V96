@@ -2,8 +2,30 @@
     [UserKey]          INT            IDENTITY (1, 1) NOT NULL,
     [SysInsertUser]    VARCHAR (50)   CONSTRAINT [DF__Users__SysInsert__5812160E] DEFAULT ('System') NOT NULL,
     [SysInsertDate]    DATETIME       CONSTRAINT [DF__Users__SysInsert__59063A47] DEFAULT (getdate()) NOT NULL,
-    [HashSignature]    AS             (hashbytes('SHA1',(((((((((((((isnull([ID],'')+isnull([CreatedByID],''))+CONVERT([varchar],isnull([CreatedDate],'1900-01-01'),(121)))+isnull([LastModifiedById],''))+CONVERT([varchar],isnull([SystemModstamp],'1900-01-01'),(121)))+isnull([AccountID],''))+isnull([ContactID],''))+isnull([UserName],''))+isnull([FirstName],''))+isnull([LastName],''))+isnull([Name],''))+isnull([EMail],''))+isnull([Phone],''))+isnull([ManagerID],''))+isnull([Supervisor__c],''))),
-
+	[HashSignature]								AS	HashBytes('SHA1', 
+													IsNull(ID, '') +
+													Convert(varchar, ISNull(CreatedDate, '1900-01-01')) +
+													IsNull(CreatedByID, '') +
+													CONVERT(VARCHAR, ISNULL(LastModifiedDate, '1900-01-01')) +
+													ISNULL(LastModifiedById, '') +
+													CONVERT(VARCHAR, ISNULL(SystemModstamp, '')) +
+													ISNULL([ID], '') +
+													ISNULL([CreatedByID], '') +
+													ISNULL([CreatedDate], '') +
+													ISNULL([LastModifiedById], '') +
+													CONVERT(VARCHAR, ISNULL([LastModifiedDate], '1900-01-01')) +
+													ISNULL([SystemModstamp], '') +
+													ISNULL([AccountID], '') +
+													ISNULL([ContactID], '') +
+													ISNULL([UserName], '') +
+													ISNULL([FirstName], '') +
+													ISNULL([LastName], '') +
+													ISNULL([Name], '') +
+													ISNULL([EMail], '') +
+													ISNULL([Phone], '') +
+													ISNULL([ManagerID], '') +
+													ISNULL([Supervisor__c], '')
+													),
     [ID]               VARCHAR (18)   NULL,
     [CreatedByID]      CHAR (18)      NULL,
     [CreatedDate]      DATE   NULL,
