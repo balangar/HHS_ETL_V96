@@ -1,1 +1,1 @@
-\\MS-CJFS-SIS\Source\Production\Packages\Extract-ODAPS\ReplaceNonPrintableCharacters.exe \\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\APS_Case__c.csv \\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\CaseNotes.csv
+\\MS-CJFS-SIS\Source\Production\Packages\Extract-ODAPS\ReplaceNonPrintableCharacters.exe \\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\Case_Notes__c.csv \\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\CaseNotes.csv
