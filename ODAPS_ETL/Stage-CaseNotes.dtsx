@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-CaseNotes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{3F042287-40C9-464D-AD85-E15690F10B55}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{744EAA13-D9F6-4332-AD86-1AC4459943FD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1310,6 +1310,14 @@
                       externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[RecordTypeId]"
                       lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[RecordTypeId]" />
                     <inputColumn
+                      refId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].Columns[Name]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[Name]" />
+                    <inputColumn
                       refId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].Columns[LastActivityDate]"
                       cachedCodepage="65001"
                       cachedDataType="str"
@@ -1537,14 +1545,6 @@
                       cachedName="Parent__c"
                       externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[Parent__c]"
                       lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[Parent__c]" />
-                    <inputColumn
-                      refId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].Columns[Name]"
-                      cachedCodepage="65001"
-                      cachedDataType="str"
-                      cachedLength="255"
-                      cachedName="Name"
-                      externalMetadataColumnId="Package\Import Staging CaseNotes\Staging CaseNotes.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
-                      lineageId="Package\Import Staging CaseNotes\SF CaseNotes Extract.Outputs[Flat File Source Output].Columns[Name]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1946,7 +1946,7 @@
         <NodeLayout
           Size="202,42"
           Id="Package\Import Staging CaseNotes"
-          TopLeft="439,299" />
+          TopLeft="439,302" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="534.5,99">
@@ -1975,14 +1975,14 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,87"
+              EndConnector="0,90"
               Start="0,0"
-              End="0,79.5">
+              End="0,82.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.5" />
+                    End="0,82.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2002,7 +2002,7 @@
         <NodeLayout
           Size="121,42"
           Id="Package\Import Staging CaseNotes\Union All"
-          TopLeft="908,41" />
+          TopLeft="892,40" />
         <NodeLayout
           Size="167,42"
           Id="Package\Import Staging CaseNotes\Staging CaseNotes"
@@ -2035,25 +2035,25 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import Staging CaseNotes.Paths[Flat File Source Error Output]"
-          TopLeft="677,65">
+          TopLeft="677,64.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="231,0"
+              EndConnector="215,0"
               Start="0,0"
-              End="223.5,0">
+              End="207.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="223.5,0" />
+                    End="207.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="48.12361328125,5,127.2527734375,11.609375"
+              BoundingBox="31.2549609375,5,144.990078125,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_Solution
 	ProjectSection(SolutionItems) = preProject
 		_SolutionItems\ProbeODAPS.bat = _SolutionItems\ProbeODAPS.bat
 		_SolutionItems\ProbeODAPS_IncrementalLoad.sql = _SolutionItems\ProbeODAPS_IncrementalLoad.sql
+		_SolutionItems\ReplaceNonPrintableCharacters.bat = _SolutionItems\ReplaceNonPrintableCharacters.bat
 	EndProjectSection
 EndProject
 Global
