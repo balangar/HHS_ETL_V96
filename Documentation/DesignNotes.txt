@@ -1,0 +1,13 @@
+Directory _SCAS
+	Extract from IMS database.
+	Root matches directory name (in this case "SCAS")
+	All others down one from the root.
+	No need to process SBPT or SCOL files.
+		These describe the running notes (aka "case notes") and, possibily, the financial files ("OFIN") which will be handled separately
+
+The "Scrape\SBPT" directory contains ~227K files.
+	o Files are basically CaseNotes or "Running Notes" for the OCSS Cases
+	o A new note begins with the word "System"
+	o Each record contains key info
+	o May be more than one note on a given day
+Marc says there's no need to parse these files.
