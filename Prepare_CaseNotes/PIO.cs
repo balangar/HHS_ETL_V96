@@ -12,7 +12,8 @@ namespace Prepare_CaseNotes
         public string CustodialParentID;
         public string AbsentParentID;
         public string EventDate;
-        public List<string> Contents = new List<string>();
+        internal List<string> Lines = new List<string>(); // Used to consume lines of actual case note
+        public string SingleLine;
     }
 }
 
@@ -28,7 +29,12 @@ namespace Prepare_CaseNotes
             {
                 if (l.Substring(36, 6).Equals("SYSTEM", StringComparison.Ordinal))    // Start of new Case Note.  NB: Case-sensitive comparison
                 {
-                    if (note != null) yield return note;
+                    if (note != null)
+                    {
+                        note.SingleLine = string.Join(" ", note.Lines);
+                        yield return note;
+                    }
+
                     note = new CaseNote
                     {
                         CustodialParentID = l.Substring(0, 9),
@@ -38,10 +44,14 @@ namespace Prepare_CaseNotes
                 }
                 else
                 {
-                    note.Contents.Add(l.Substring(39));
+                    note.Lines.Add(l.Substring(39));
                 }
             }
-            if (note != null) yield return note;    //Return the last note
+            if (note != null)
+            {
+                note.SingleLine = string.Join(string.Empty, note.Lines);
+                yield return note;    //Return the last note
+            }
             yield break;
         }
     }

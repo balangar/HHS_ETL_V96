@@ -47,6 +47,11 @@ namespace Prepare_CaseNotes
         {
             int exitStatus = 0;
 
+            foreach(CaseNote c in PIO.GetNextCaseNote(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT\000070235A00111460.txt"))
+            {
+                Logger.InfoFormat("Custodial Parent ID: {0}  AbsentParentID: {1}  EventDate: {2}  Contents: {3}  FileSpec: {4}", c.CustodialParentID, c.AbsentParentID, c.EventDate, c.SingleLine, "SomeSpec");
+            }
+
 
             return exitStatus;
         }
