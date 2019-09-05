@@ -30,9 +30,6 @@ namespace Prepare_CaseNotes
             [Option('v', "Verbose", Required = false, Default = false, HelpText = "Set output to verbose messages")]
             public bool Verbose { get; set; }
 
-            [Option("FileName", Required = false,  HelpText = "Source file name")]
-            public string FileName { get; set; }
-
             [Option("SourcePath", Required = false, Default = @"C:\Temp", HelpText = "Source file path")]
             public string SourcePath { get; set; }
 
@@ -46,16 +43,12 @@ namespace Prepare_CaseNotes
 
         }
 
-        internal static async Task Work(string[] args)
+        internal static int Work(string[] args)
         {
+            int exitStatus = 0;
 
-            await Task.FromResult(0);
 
-            Logger.Info("Hello GREENG! Framework:net472, CLR:4.0.30319.42000");
-            Logger.Warn("Goodbye.");
-            Logger.Error("我爱你。 愛してます。 사랑해요. 🌏");
-
-            1.UpTo(8).ForEach(i => Logger.Debug("_".JoinArray("^".Times(i))));
+            return exitStatus;
         }
     }
 }

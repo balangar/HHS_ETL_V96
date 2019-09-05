@@ -13,7 +13,7 @@
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private static async Task Main(string[] args)
+        private static int Main(string[] args)
         {
             var logRepository = LogManager.GetRepository(Assembly.GetExecutingAssembly());
             var processName = Process.GetCurrentProcess().ProcessName;
@@ -28,7 +28,7 @@
             var stopWatch = Stopwatch.StartNew();
             try
             {
-                await Prepare_CaseNotes.Main.Work(args);
+                exitCode = Prepare_CaseNotes.Main.Work(args);
             }
             catch (AggregateException ae)
             {
@@ -56,6 +56,8 @@
             Console.ReadKey();
 #endif
             Environment.ExitCode = exitCode;
+
+            return exitCode;
         }
     }
 }
