@@ -13,7 +13,7 @@ namespace Prepare_CaseNotes
         internal static int ABSENT_PARENT_ID_OFFSET => 9; internal static int ABSENT_PARENT_ID_LENGTH => 9;
         internal static int EVENT_DATE_OFFSET => 25; internal static int EVENT_DATE_LENGTH => 10;
         internal static int NEW_NOTE_MARKER_OFFSET => 36; internal static int NEW_NOTE_MARKER_LENGTH => 3;
-        internal static int ORDER_NUMBER_OFFSET => 71; internal static int ORDER_NUMBER_LENGTH => 19;
+        internal static int ORDER_NUMBER_OFFSET => 70; internal static int ORDER_NUMBER_LENGTH => 19;
         internal static int NOTE_OFFSET => 39;
 
         public string CustodialParentID { get; set; }
@@ -22,6 +22,18 @@ namespace Prepare_CaseNotes
         public string OrderNo { get; set; }
         internal List<string> Lines = new List<string>(); // Used to consume lines of actual case note
         public string SingleLine { get; set; }
+
+        public CaseNote()
+        {
+
+        }
+        public CaseNote(string NewCaseNoteHeader)
+        {
+            CustodialParentID = NewCaseNoteHeader.Substring(CUSTODIAL_PARENT_ID_OFFSET, CUSTODIAL_PARENT_ID_LENGTH);
+            AbsentParentID = NewCaseNoteHeader.Substring(ABSENT_PARENT_ID_OFFSET, ABSENT_PARENT_ID_LENGTH);
+            EventDate = NewCaseNoteHeader.Substring(EVENT_DATE_OFFSET, EVENT_DATE_LENGTH);
+            OrderNo = NewCaseNoteHeader.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH).Trim() != string.Empty ? NewCaseNoteHeader.Substring(CaseNote.ORDER_NUMBER_OFFSET, CaseNote.ORDER_NUMBER_LENGTH) : null;
+        }
     }
 }
 
@@ -36,6 +48,17 @@ namespace Prepare_CaseNotes
             foreach(string l in lines)
             {
                 if (l.Substring(CaseNote.NEW_NOTE_MARKER_OFFSET, CaseNote.NEW_NOTE_MARKER_LENGTH).Trim() == string.Empty)    // Start of new Case Note.
+                //{
+                //    if(note != null)
+                //    {
+                //        note.SingleLine = string.Join(string.Empty, note.Lines);
+                //        yield return note;
+                //    }
+                //    note = new CaseNote(l);
+                //}
+
+
+
                 {
                     if (note != null)
                     {
@@ -43,13 +66,7 @@ namespace Prepare_CaseNotes
                         yield return note;
                     }
 
-                    note = new CaseNote
-                    {
-                        CustodialParentID = l.Substring(CaseNote.CUSTODIAL_PARENT_ID_OFFSET, CaseNote.CUSTODIAL_PARENT_ID_LENGTH),
-                        AbsentParentID = l.Substring(CaseNote.ABSENT_PARENT_ID_OFFSET, CaseNote.ABSENT_PARENT_ID_LENGTH),
-                        EventDate = l.Substring(CaseNote.EVENT_DATE_OFFSET, CaseNote.EVENT_DATE_LENGTH),
-                        OrderNo = l.Substring(CaseNote.ORDER_NUMBER_OFFSET, CaseNote.ORDER_NUMBER_LENGTH).Trim() != string.Empty ? l.Substring(CaseNote.ORDER_NUMBER_OFFSET, CaseNote.ORDER_NUMBER_LENGTH) : string.Empty
-                    };
+                    note = new CaseNote(l);
                 }
                 else
                 {
@@ -63,5 +80,6 @@ namespace Prepare_CaseNotes
             }
             yield break;
         }
+
     }
 }
