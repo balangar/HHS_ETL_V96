@@ -16,12 +16,12 @@ namespace Prepare_CaseNotes
         internal static int ORDER_NUMBER_OFFSET => 71; internal static int ORDER_NUMBER_LENGTH => 19;
         internal static int NOTE_OFFSET => 39;
 
-
-        public string CustodialParentID;
-        public string AbsentParentID;
-        public string EventDate;
+        public string CustodialParentID { get; set; }
+        public string AbsentParentID { get; set; }
+        public string EventDate { get; set; }
+        public string OrderNo { get; set; }
         internal List<string> Lines = new List<string>(); // Used to consume lines of actual case note
-        public string SingleLine;
+        public string SingleLine { get; set; }
     }
 }
 
@@ -45,9 +45,10 @@ namespace Prepare_CaseNotes
 
                     note = new CaseNote
                     {
-                        CustodialParentID = l.Substring(0, 9),
-                        AbsentParentID = l.Substring(9, 9),
-                        EventDate = l.Substring(25, 10)
+                        CustodialParentID = l.Substring(CaseNote.CUSTODIAL_PARENT_ID_OFFSET, CaseNote.CUSTODIAL_PARENT_ID_LENGTH),
+                        AbsentParentID = l.Substring(CaseNote.ABSENT_PARENT_ID_OFFSET, CaseNote.ABSENT_PARENT_ID_LENGTH),
+                        EventDate = l.Substring(CaseNote.EVENT_DATE_OFFSET, CaseNote.EVENT_DATE_LENGTH),
+                        OrderNo = l.Substring(CaseNote.ORDER_NUMBER_OFFSET, CaseNote.ORDER_NUMBER_LENGTH).Trim() != string.Empty ? l.Substring(CaseNote.ORDER_NUMBER_OFFSET, CaseNote.ORDER_NUMBER_LENGTH) : string.Empty
                     };
                 }
                 else
