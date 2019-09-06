@@ -9,8 +9,13 @@ namespace Prepare_CaseNotes
 {
     public class CaseNote
     {
-        internal static int NEW_NOTE_MARKER_OFFSET => 36;
-        internal static int NEW_NOTE_MARKER_LENGTH => 3;
+        internal static int CUSTODIAL_PARENT_ID_OFFSET => 0; internal static int CUSTODIAL_PARENT_ID_LENGTH => 9;
+        internal static int ABSENT_PARENT_ID_OFFSET => 9; internal static int ABSENT_PARENT_ID_LENGTH => 9;
+        internal static int EVENT_DATE_OFFSET => 25; internal static int EVENT_DATE_LENGTH => 10;
+        internal static int NEW_NOTE_MARKER_OFFSET => 36; internal static int NEW_NOTE_MARKER_LENGTH => 3;
+        internal static int ORDER_NUMBER_OFFSET => 71; internal static int ORDER_NUMBER_LENGTH => 19;
+        internal static int NOTE_OFFSET => 39;
+
 
         public string CustodialParentID;
         public string AbsentParentID;
