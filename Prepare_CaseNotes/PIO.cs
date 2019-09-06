@@ -9,6 +9,9 @@ namespace Prepare_CaseNotes
 {
     public class CaseNote
     {
+        internal static int NEW_NOTE_MARKER_OFFSET => 36;
+        internal static int NEW_NOTE_MARKER_LENGTH => 3;
+
         public string CustodialParentID;
         public string AbsentParentID;
         public string EventDate;
@@ -27,7 +30,7 @@ namespace Prepare_CaseNotes
             var lines = File.ReadAllLines(SourceFileSpec);
             foreach(string l in lines)
             {
-                if (l.Substring(36, 6).Equals("SYSTEM", StringComparison.Ordinal))    // Start of new Case Note.  NB: Case-sensitive comparison
+                if (l.Substring(CaseNote.NEW_NOTE_MARKER_OFFSET, CaseNote.NEW_NOTE_MARKER_LENGTH).Trim() == string.Empty)    // Start of new Case Note.
                 {
                     if (note != null)
                     {
