@@ -18,37 +18,27 @@ namespace Prepare_CaseNotes
     using System.Linq;
     using System.Reflection;
     using System.Text;
-    using System.Threading.Tasks;
+
     using log4net;
 
     internal class Main
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        [Verb("Process", HelpText = "Processing options")]
-        internal class DocumentOptions
-        {
-            [Option('v', "Verbose", Required = false, Default = false, HelpText = "Set output to verbose messages")]
-            public bool Verbose { get; set; }
-
-            [Option("SourcePath", Required = false, Default = @"C:\Temp", HelpText = "Source file path")]
-            public string SourcePath { get; set; }
-
-            [Option("DestinationPath", Required = false, Default = @"C:\Temp", HelpText = "Destination path")]
-            public string DestinationPath { get; set; }
-
-        }
-        [Verb("Repl", HelpText = "Read Execute Print Loop")]
-        internal class ReplOptions
+        private static void WriteCaseNoteRecord(CaseNote Note, string DestFileSpec)
         {
 
         }
-
         internal static int Work(string[] args)
         {
+            string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT";
+            string destPath = @"\\ms-hhs-san\ITS\_Archive\OCSS\CaseNotes";
+            string fileName = string.Empty;
+            string destFileSpec = string.Empty;
+
             int exitStatus = 0;
             int tempCount = 0;
 
-            foreach(string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT", "*.txt", SearchOption.TopDirectoryOnly))
+            foreach(string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
                 if (tempCount > 2)
                 {
@@ -56,15 +46,19 @@ namespace Prepare_CaseNotes
                 }
                 else
                 {
-                    int caseNoteCount = 0;
+                    destFileSpec = Path.Combine(destPath, fileName);
+                    fileName = Path.GetFileName(s);
                     foreach (CaseNote c in PIO.GetNextCaseNote(s))
                     {
-                        caseNoteCount++;
+
+                        WriteCaseNoteRecord(c, destFileSpec);
                         Logger.InfoFormat(
                             "FileSpec: {0}\tCreated By: {6}" + "\n\r" + "Custodial Parent ID: {1}  Absent Parent ID: {2}  Event Date: {3}  Order Number: {4}" + "\n\r" + "Contents:\t {5} \n\r",
                             s, c.CustodialParentID, c.AbsentParentID, c.EventDate, c.OrderNo, c.SingleLine, c.CreatedBy);
                     }
                     tempCount++;
+
+                    File.Copy(s, destFileSpec, true);
                 }
 
             }

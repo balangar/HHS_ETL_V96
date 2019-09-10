@@ -51,17 +51,6 @@ namespace Prepare_CaseNotes
             foreach(string l in lines)
             {
                 if (l.Substring(CaseNote.NEW_NOTE_MARKER_OFFSET, CaseNote.NEW_NOTE_MARKER_LENGTH).Trim() != string.Empty)    // Start of new Case Note.
-                //{
-                //    if(note != null)
-                //    {
-                //        note.SingleLine = string.Join(string.Empty, note.Lines);
-                //        yield return note;
-                //    }
-                //    note = new CaseNote(l);
-                //}
-
-
-
                 {
                     if (note != null)
                     {
