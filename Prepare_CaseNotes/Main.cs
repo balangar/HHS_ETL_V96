@@ -19,35 +19,38 @@ namespace Prepare_CaseNotes
     using System.Reflection;
     using System.Text;
 
+    using System.Data.SqlClient;
+
     using log4net;
 
     internal class Main
     {
+        private static bool firstCall = true;
+        private static SqlConnection conn = Database.SqlConnection();
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static void WriteCaseNoteRecord(CaseNote Note, string DestFileSpec)
         {
+
 
         }
         internal static int Work(string[] args)
         {
             string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT";
             string destPath = @"\\ms-hhs-san\ITS\_Archive\OCSS\CaseNotes";
-            string fileName = string.Empty;
-            string destFileSpec = string.Empty;
 
             int exitStatus = 0;
             int tempCount = 0;
 
             foreach(string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
-                if (tempCount > 2)
+                if (tempCount > 1)
                 {
                     break;
                 }
                 else
                 {
-                    destFileSpec = Path.Combine(destPath, fileName);
-                    fileName = Path.GetFileName(s);
+                    string destFileSpec = Path.Combine(destPath, Path.GetFileName(s));
+
                     foreach (CaseNote c in PIO.GetNextCaseNote(s))
                     {
 
@@ -63,7 +66,7 @@ namespace Prepare_CaseNotes
 
             }
 
-
+            conn.Close();
             return exitStatus;
         }
     }
