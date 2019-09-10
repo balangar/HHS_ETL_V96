@@ -50,17 +50,19 @@ namespace Prepare_CaseNotes
 
             foreach(string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT", "*.txt", SearchOption.TopDirectoryOnly))
             {
-                if (tempCount > 4)
+                if (tempCount > 2)
                 {
                     break;
                 }
                 else
                 {
+                    int caseNoteCount = 0;
                     foreach (CaseNote c in PIO.GetNextCaseNote(s))
                     {
+                        caseNoteCount++;
                         Logger.InfoFormat(
-                            "FileSpec: {4} /n/r /t Custodial Parent ID: {0}  AbsentParentID: {1}  EventDate: {2}  Contents: {3}",
-                            c.CustodialParentID, c.AbsentParentID, c.EventDate, c.SingleLine, s);
+                            "FileSpec: {0}\tCreated By: {6}" + "\n\r" + "Custodial Parent ID: {1}  Absent Parent ID: {2}  Event Date: {3}  Order Number: {4}" + "\n\r" + "Contents:\t {5} \n\r",
+                            s, c.CustodialParentID, c.AbsentParentID, c.EventDate, c.OrderNo, c.SingleLine, c.CreatedBy);
                     }
                     tempCount++;
                 }
