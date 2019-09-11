@@ -10,7 +10,7 @@ namespace Prepare_CaseNotes
     public class CaseNote
     {
         internal static int NEW_NOTE_MARKER_OFFSET => 36; internal static int NEW_NOTE_MARKER_LENGTH => 3;
-        internal static int CREATED_BY_OFFSET => 36; internal static int CREATED_BY_LENGTH = 64;
+        internal static int CREATED_BY_OFFSET => 36; internal static int CREATED_BY_LENGTH = 20;
         internal static int CUSTODIAL_PARENT_ID_OFFSET => 0; internal static int CUSTODIAL_PARENT_ID_LENGTH => 9;
         internal static int ABSENT_PARENT_ID_OFFSET => 9; internal static int ABSENT_PARENT_ID_LENGTH => 9;
         internal static int EVENT_DATE_OFFSET => 25; internal static int EVENT_DATE_LENGTH => 10;

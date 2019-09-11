@@ -25,12 +25,26 @@ namespace Prepare_CaseNotes
 
     internal class Main
     {
-        private static bool firstCall = true;
-        private static SqlConnection conn = Database.SqlConnection();
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static void WriteCaseNoteRecord(CaseNote Note, string DestFileSpec)
         {
+            using(var cn = Database.SqlConnection())
+            {
+                var command = new SqlCommand(
+                    @"INSERT INTO dbo.CaseNotes(CreatedBy, EventDate, CustodialParentID, AbsentParentID, OrderNo, Contents, FilePath, FileName)" + " " +
+                    @"VALUES(@CreatedBy, @EventDate, @CustodialParentID, @AbsentParentID, @OrderNo, @Contents, @FilePath, @FileName)",
+                    cn);
+                command.Parameters.AddWithValue("@CreatedBy", Note.CreatedBy);
+                command.Parameters.AddWithValue("@EventDate", Note.EventDate);
+                command.Parameters.AddWithValue("@CustodialParentID", Note.CustodialParentID == null ? "UnknownCP" : Note.CustodialParentID);
+                command.Parameters.AddWithValue("@AbsentParentID", Note.AbsentParentID == null ? "UnknownAP" : Note.AbsentParentID);
+                command.Parameters.AddWithValue("@OrderNo", Note.OrderNo == null ? (object)DBNull.Value : Note.OrderNo);
+                command.Parameters.AddWithValue("@Contents", Note.SingleLine);
+                command.Parameters.AddWithValue("@FilePath", Path.GetDirectoryName(DestFileSpec));
+                command.Parameters.AddWithValue("@FileName", Path.GetFileName(DestFileSpec));
 
+                command.ExecuteNonQuery();
+            }
 
         }
         internal static int Work(string[] args)
@@ -66,7 +80,6 @@ namespace Prepare_CaseNotes
 
             }
 
-            conn.Close();
             return exitStatus;
         }
     }
