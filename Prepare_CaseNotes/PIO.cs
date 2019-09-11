@@ -35,7 +35,15 @@ namespace Prepare_CaseNotes
             CustodialParentID = NewCaseNoteHeader.Substring(CUSTODIAL_PARENT_ID_OFFSET, CUSTODIAL_PARENT_ID_LENGTH);
             AbsentParentID = NewCaseNoteHeader.Substring(ABSENT_PARENT_ID_OFFSET, ABSENT_PARENT_ID_LENGTH);
             EventDate = NewCaseNoteHeader.Substring(EVENT_DATE_OFFSET, EVENT_DATE_LENGTH);
-            OrderNo = NewCaseNoteHeader.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH).Trim() != string.Empty ? NewCaseNoteHeader.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH) : null;
+            if(NewCaseNoteHeader.Length < ORDER_NUMBER_OFFSET + ORDER_NUMBER_LENGTH)
+            {
+                OrderNo = null;
+            }
+            else
+            {
+                OrderNo = NewCaseNoteHeader.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH).Trim() != string.Empty ? NewCaseNoteHeader.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH) : null;
+            }
+
         }
     }
 }
