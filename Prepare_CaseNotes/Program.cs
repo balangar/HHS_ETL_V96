@@ -28,7 +28,7 @@
             var stopWatch = Stopwatch.StartNew();
             try
             {
-                exitCode = Prepare_CaseNotes.Main.Work(args);
+                exitCode = Prepare_CaseNotes.Main.Work();
             }
             catch (AggregateException ae)
             {
