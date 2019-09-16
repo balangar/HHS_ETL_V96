@@ -41,10 +41,9 @@ namespace Prepare_CaseNotes
         }
         private static void WriteCaseNoteRecord(CaseNote Note, string DestFileSpec)
         {
-            using (var command = new SqlCommand(
-                    @"INSERT INTO dbo.CaseNotes(CreatedBy, EventDate, CustodialParentID, AbsentParentID, OrderNo, Contents, FilePath, FileName)" + " " +
-                    @"VALUES(@CreatedBy, @EventDate, @CustodialParentID, @AbsentParentID, @OrderNo, @Contents, @FilePath, @FileName)",
-                    cn))
+            const string cmdText = @"INSERT INTO dbo.CaseNotes(CreatedBy, EventDate, CustodialParentID, AbsentParentID, OrderNo, Contents, FilePath, FileName)" + " " +
+                                   @"VALUES(@CreatedBy, @EventDate, @CustodialParentID, @AbsentParentID, @OrderNo, @Contents, @FilePath, @FileName)";
+            using (var command = new SqlCommand(cmdText, cn))
             {
                 command.Parameters.AddWithValue("@CreatedBy", Note.CreatedBy);
                 command.Parameters.AddWithValue("@EventDate", Note.EventDate);
