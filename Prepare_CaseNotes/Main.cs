@@ -11,9 +11,34 @@ namespace Prepare_CaseNotes
 {
     internal class Main
     {
+        private static int CaseFileCount { get; set; }
+       
+
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private static SqlConnection cn = Database.SqlConnection();
+        private static readonly SqlConnection cn = Database.SqlConnection();
+
+
+        private static string GetDestinationFileSpec(string SourceFileSpec)
+        {
+            const int NEW_SUBDIRECTORY_COUNT = 1000;
+
+            string destParent = @"\\ms-hhs-san\ITS\_Archive\OCSS\CaseNotes";
+            string destFilePath = string.Empty;
+
+
+            if (CaseFileCount % NEW_SUBDIRECTORY_COUNT == 0)
+            {
+                destFilePath = string.Format(@"{0}\{1}", destParent, CaseFileCount.ToString().PadLeft(6, '0'));
+                Directory.CreateDirectory(destFilePath);
+
+                Logger.InfoFormat("Case File Count:\t{0}  Destination File Path: {1}", CaseFileCount.ToString(), destFilePath);
+
+            }
+
+            return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
+
+        }
         private static void WriteCaseNoteRecord(CaseNote Note, string DestFileSpec)
         {
             using (var command = new SqlCommand(
@@ -34,20 +59,23 @@ namespace Prepare_CaseNotes
             }
 
         }
+        private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec)
+        {
+
+            File.Move(SourceFileSpec, DestinationFileSpec);
+        }
+
         internal static int Work()
         {
-            string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT";
-            string destPath = @"\\ms-hhs-san\ITS\_Archive\OCSS\CaseNotes";
-
             int exitStatus = 0;
+            string destFileSpec;
 
-            foreach (string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
-            //string s = @"S:\IS\Databases\Marc\Scrape\SBPT\054441151377444127.txt";
+            foreach (string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT", "*.txt", SearchOption.TopDirectoryOnly))
             {
+                destFileSpec = GetDestinationFileSpec(s);
 #if DEBUG
                 Logger.InfoFormat("Processing : {0}", Path.GetFileName(s));
 #endif
-                string destFileSpec = Path.Combine(destPath, Path.GetFileName(s));
 
                 foreach (CaseNote c in PIO.GetNextCaseNote(s))
                 {
@@ -58,7 +86,8 @@ namespace Prepare_CaseNotes
                     //    s, c.CustodialParentID, c.AbsentParentID, c.EventDate, c.OrderNo, c.SingleLine, c.CreatedBy);
                 }
 
-                File.Copy(s, destFileSpec, true);
+                MoveCaseNoteFile(s, destFileSpec);
+                CaseFileCount++;
 #if DEBUG
                 Logger.Info("Complete\n\r");
 #endif
