@@ -32,7 +32,7 @@ namespace Prepare_CaseNotes
                 destFilePath = string.Format(@"{0}\{1}", destParent, CaseFileCount.ToString().PadLeft(6, '0'));
                 Directory.CreateDirectory(destFilePath);
 
-                Logger.InfoFormat("Case File Count:\t{0}  Destination File Path: {1}", CaseFileCount.ToString(), destFilePath);
+                Logger.InfoFormat("Case File Count: {0}  Destination File Path: {1}", CaseFileCount.ToString(), destFilePath);
 
             }
 
@@ -73,9 +73,6 @@ namespace Prepare_CaseNotes
             foreach (string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT", "*.txt", SearchOption.TopDirectoryOnly))
             {
                 destFileSpec = GetDestinationFileSpec(s);
-#if DEBUG
-                Logger.InfoFormat("Processing : {0}", Path.GetFileName(s));
-#endif
 
                 foreach (CaseNote c in PIO.GetNextCaseNote(s))
                 {
@@ -88,9 +85,6 @@ namespace Prepare_CaseNotes
 
                 MoveCaseNoteFile(s, destFileSpec);
                 CaseFileCount++;
-#if DEBUG
-                Logger.Info("Complete\n\r");
-#endif
 
             }
             cn.Close();
