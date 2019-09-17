@@ -54,11 +54,7 @@ namespace Prepare_CaseNotes
             }
 
         }
-        private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec)
-        {
-
-            File.Move(SourceFileSpec, DestinationFileSpec);
-        }
+        private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Move(SourceFileSpec, DestinationFileSpec);
 
         internal static int Work()
         {

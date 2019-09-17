@@ -51,10 +51,9 @@
             }
 
             Logger.Info($"{processName} finished! Time taken: {(double)stopWatch.ElapsedMilliseconds / 1000:0.000} secs");
-#if DEBUG
+
             Console.Write("\nAny key to exit: ");
             Console.ReadKey();
-#endif
             Environment.ExitCode = exitCode;
 
             return exitCode;
