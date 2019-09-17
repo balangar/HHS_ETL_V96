@@ -12,28 +12,24 @@ namespace Prepare_CaseNotes
     internal class Main
     {
         private static int CaseFileCount { get; set; }
-       
-
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private static readonly SqlConnection cn = Database.SqlConnection();
 
-
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static string GetDestinationFileSpec(string SourceFileSpec)
         {
             const int NEW_SUBDIRECTORY_COUNT = 1000;
+            const string DESTINATION_ROOT = @"\\ms-hhs-san\ITS\_Archive\OCSS\CaseNotes";
 
-            string destParent = @"\\ms-hhs-san\ITS\_Archive\OCSS\CaseNotes";
-            string destFilePath = string.Empty;
+            int destSubFolder = (CaseFileCount / NEW_SUBDIRECTORY_COUNT) * NEW_SUBDIRECTORY_COUNT;
+            string destFilePath = string.Format(@"{0}\{1}", DESTINATION_ROOT, destSubFolder.ToString().PadLeft(6, '0'));
 
 
             if (CaseFileCount % NEW_SUBDIRECTORY_COUNT == 0)
             {
-                destFilePath = string.Format(@"{0}\{1}", destParent, CaseFileCount.ToString().PadLeft(6, '0'));
                 Directory.CreateDirectory(destFilePath);
 
                 Logger.InfoFormat("Case File Count: {0}  Destination File Path: {1}", CaseFileCount.ToString(), destFilePath);
-
             }
 
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
@@ -67,12 +63,10 @@ namespace Prepare_CaseNotes
         internal static int Work()
         {
             int exitStatus = 0;
-            string destFileSpec;
 
             foreach (string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\SBPT", "*.txt", SearchOption.TopDirectoryOnly))
             {
-                destFileSpec = GetDestinationFileSpec(s);
-
+                string destFileSpec = GetDestinationFileSpec(s); 
                 foreach (CaseNote c in PIO.GetNextCaseNote(s))
                 {
 
