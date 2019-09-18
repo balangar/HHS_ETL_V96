@@ -1,14 +1,13 @@
-﻿namespace Prepare_FinancialNotes
-{
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Reflection;
-    using System.Text;
-    using System.Threading.Tasks;
-    using log4net;
-    using log4net.Config;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using log4net;
+using log4net.Config;
 
+namespace Prepare_FinancialNotes
+{
     internal class Program
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -28,7 +27,7 @@
             var stopWatch = Stopwatch.StartNew();
             try
             {
-                exitCode = Prepare_FinancialNotes.Main.Work(args);
+                exitCode = Prepare_FinancialNotes.Main.Work();
             }
             catch (AggregateException ae)
             {
