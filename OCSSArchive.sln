@@ -1,12 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{9C1A3B3C-E5ED-4548-B884-E2ABD17CE87E}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\DesignNotes.txt = Documentation\DesignNotes.txt
 		Documentation\FileDefinitions.xlsx = Documentation\FileDefinitions.xlsx
+		Documentation\OFIN.CPY = Documentation\OFIN.CPY
 	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_OCSSArchive", "DB_OCSSArchive\DB_OCSSArchive.sqlproj", "{53D93373-75C2-4A3A-AABA-5F1A3134E4F9}"
@@ -15,7 +16,7 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_OCSSArchive", "ETL_OCSS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_CaseNotes", "Prepare_CaseNotes\Prepare_CaseNotes.csproj", "{CC257F9A-3F8D-4BCE-A682-8FC7DCDBA65A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prepare_FinancialNotes", "Prepare_FinancialNotes\Prepare_FinancialNotes.csproj", "{B2B3AE27-E042-4AFE-A568-8C10CB90870E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_FinancialNotes", "Prepare_FinancialNotes\Prepare_FinancialNotes.csproj", "{B2B3AE27-E042-4AFE-A568-8C10CB90870E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
