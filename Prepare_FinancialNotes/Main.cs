@@ -11,6 +11,9 @@ namespace Prepare_FinancialNotes
 
     internal class Main
     {
+        private const int ENTRY_TYPE_OFFSET = 34;
+        private const int ENTRY_TYPE_LENGTH = 7;
+
         private static int FileCount { get; set; }
 
         private static readonly SqlConnection cn = Database.SqlConnection();
@@ -46,16 +49,106 @@ namespace Prepare_FinancialNotes
             foreach (string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN", "*.txt", SearchOption.TopDirectoryOnly))
             {
                 string destFileSpec = GetDestinationFileSpec(s);
-                foreach (FinancialNote c in PIO.GetNextFinancialNote(s))
+                string[] lines = File.ReadAllLines(s);
+
+                foreach (string l in lines)
                 {
-                    Logger.InfoFormat(@"{0}", c);
-                    //WriteFinancialNoteRecord(c, destFileSpec);
-                    //Logger.InfoFormat(
-                    //    "FileSpec: {0}\tCreated By: {6}" + "\n\r" + "Custodial Parent ID: {1}  Absent Parent ID: {2}  Event Date: {3}  Order Number: {4}" + "\n\r" + "Contents:\t {5} \n\r",
-                    //    s, c.CustodialParentID, c.AbsentParentID, c.EventDate, c.OrderNo, c.SingleLine, c.CreatedBy);
+                    string t = l.Substring(ENTRY_TYPE_OFFSET, ENTRY_TYPE_LENGTH).ToUpper();
+                    switch (t)
+                    {
+                        case "RECEIPT":
+                            break;
+
+                        case "MANUAL ":
+                            break;
+
+                        case "APPLIED":
+                            break;
+
+                        case "DISBURS":
+                            break;
+
+                        case "DISTRIB":
+                            break;
+
+                        case "DELETED":
+                            break;
+
+                        case "ADJ-BKO":
+                            break;
+
+                        case "ADJ-CAN":
+                            break;
+
+                        case "ADJAPP ":
+                            break;
+
+                        case "ADJMAPP":
+                            break;
+
+                        case "ADJMAP ":
+                            break;
+
+                        case "ADJMNSF":
+                            break;
+
+                        case "ADJNAF ":
+                            break;
+
+                        case "ADJ-NSF":
+                            break;
+
+                        case "ADJ-RIS":
+                            break;
+
+                        case "ADJ-RSP":
+                            break;
+
+                        case "ADJ-RTN":
+                            break;
+
+                        case "ADJ-STP":
+                            break;
+
+                        case "BKO-APP":
+                            break;
+
+                        case "HELD RC":
+                            break;
+
+                        case "RCT-BND":
+                            break;
+
+                        case "RCT-RPL":
+                            break;
+
+                        case "RCT-RTN":
+                            break;
+
+                        case "RCT-URB":
+                            break;
+
+                        case "RETURN ":
+                            break;
+
+                        case "TRANSFE":
+                            break;
+
+                        case "COMMENT":
+                            break;
+
+                        case "       ":      //A comment.
+                            break;
+
+
+                        default:
+                            throw new InvalidDataException(string.Format("{0} contains unknown log-entry type {1}", s, t));
+                    }
+
                 }
 
-                CopyFinancialNoteFile(s, destFileSpec);
+                //CopyFinancialNoteFile(s, destFileSpec);
+                //Logger.InfoFormat(@"{0}", s);
                 FileCount++;
 
             }
