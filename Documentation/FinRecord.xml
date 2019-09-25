@@ -1,0 +1,7 @@
+<FinRecord>
+  <RECEIPT PayType="0" Amount="350.61"/>
+  
+  <DISBURSE> Amount="350.60"> 
+    <Detail> Payee="George Jetson"</Detail>
+  </DISBURSE>
+</FinRecord>
