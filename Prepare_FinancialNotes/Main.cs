@@ -41,9 +41,11 @@ namespace Prepare_FinancialNotes
         
         internal static int Work()
         {
+            const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN";
+
             int exitStatus = 0;
 
-            foreach (string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN", "*.txt", SearchOption.TopDirectoryOnly))
+            foreach (string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
                 string destFileSpec = GetDestinationFileSpec(s);
 
