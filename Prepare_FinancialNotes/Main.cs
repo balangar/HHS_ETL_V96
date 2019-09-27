@@ -47,16 +47,12 @@ namespace Prepare_FinancialNotes
             {
                 string destFileSpec = GetDestinationFileSpec(s);
 
-                if (FileCount > 2) break;
-                Logger.Info(s);
-
-                int lineCount = 0;
-                foreach(LogBlock b in PIO.GetNextLogBlock(s))
+                foreach (LogBlock b in LogBlock.GetNextLogBlock(s))
                 {
+#if DEBUG
                     Logger.InfoFormat(@"Order Number: {0}  BlockDate : {1}  Number of Entries: {2}", b.OrderNo, b.BlockDate, b.Entries.Count);
-                    lineCount += b.Entries.Count;
+#endif
                 }
-                Logger.InfoFormat(@"{0} line count: {1}", s, lineCount);
                 
                 
                 //CopyFinancialNoteFile(s, destFileSpec);
