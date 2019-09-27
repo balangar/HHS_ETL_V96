@@ -5,15 +5,12 @@ using System.Reflection;
 using System.Data.SqlClient;
 
 using log4net;
+using System.Collections.Generic;
 
 namespace Prepare_FinancialNotes
 {
-
     internal class Main
     {
-        private const int ENTRY_TYPE_OFFSET = 34;
-        private const int ENTRY_TYPE_LENGTH = 7;
-
         private static int FileCount { get; set; }
 
         private static readonly SqlConnection cn = Database.SqlConnection();
@@ -41,7 +38,7 @@ namespace Prepare_FinancialNotes
         }
         private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
 
-
+        
         internal static int Work()
         {
             int exitStatus = 0;
@@ -49,104 +46,19 @@ namespace Prepare_FinancialNotes
             foreach (string s in Directory.EnumerateFiles(@"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN", "*.txt", SearchOption.TopDirectoryOnly))
             {
                 string destFileSpec = GetDestinationFileSpec(s);
-                string[] lines = File.ReadAllLines(s);
 
-                foreach (string l in lines)
+                if (FileCount > 2) break;
+                Logger.Info(s);
+
+                int lineCount = 0;
+                foreach(LogBlock b in PIO.GetNextLogBlock(s))
                 {
-                    string t = l.Substring(ENTRY_TYPE_OFFSET, ENTRY_TYPE_LENGTH).ToUpper();
-                    switch (t)
-                    {
-                        case "RECEIPT":
-                            break;
-
-                        case "MANUAL ":
-                            break;
-
-                        case "APPLIED":
-                            break;
-
-                        case "DISBURS":
-                            break;
-
-                        case "DISTRIB":
-                            break;
-
-                        case "DELETED":
-                            break;
-
-                        case "ADJ-BKO":
-                            break;
-
-                        case "ADJ-CAN":
-                            break;
-
-                        case "ADJAPP ":
-                            break;
-
-                        case "ADJMAPP":
-                            break;
-
-                        case "ADJMAP ":
-                            break;
-
-                        case "ADJMNSF":
-                            break;
-
-                        case "ADJNAF ":
-                            break;
-
-                        case "ADJ-NSF":
-                            break;
-
-                        case "ADJ-RIS":
-                            break;
-
-                        case "ADJ-RSP":
-                            break;
-
-                        case "ADJ-RTN":
-                            break;
-
-                        case "ADJ-STP":
-                            break;
-
-                        case "BKO-APP":
-                            break;
-
-                        case "HELD RC":
-                            break;
-
-                        case "RCT-BND":
-                            break;
-
-                        case "RCT-RPL":
-                            break;
-
-                        case "RCT-RTN":
-                            break;
-
-                        case "RCT-URB":
-                            break;
-
-                        case "RETURN ":
-                            break;
-
-                        case "TRANSFE":
-                            break;
-
-                        case "COMMENT":
-                            break;
-
-                        case "       ":      //A comment.
-                            break;
-
-
-                        default:
-                            throw new InvalidDataException(string.Format("{0} contains unknown log-entry type {1}", s, t));
-                    }
-
+                    Logger.InfoFormat(@"Order Number: {0}  BlockDate : {1}  Number of Entries: {2}", b.OrderNo, b.BlockDate, b.Entries.Count);
+                    lineCount += b.Entries.Count;
                 }
-
+                Logger.InfoFormat(@"{0} line count: {1}", s, lineCount);
+                
+                
                 //CopyFinancialNoteFile(s, destFileSpec);
                 //Logger.InfoFormat(@"{0}", s);
                 FileCount++;
