@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\FileDefinitions.xlsx = Documentation\FileDefinitions.xlsx
 		Documentation\FinancialAuditInquiry.jpg = Documentation\FinancialAuditInquiry.jpg
 		Documentation\OFIN.CPY = Documentation\OFIN.CPY
+		Documentation\WIP_ParseLogEntryType.txt = Documentation\WIP_ParseLogEntryType.txt
 	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_OCSSArchive", "DB_OCSSArchive\DB_OCSSArchive.sqlproj", "{53D93373-75C2-4A3A-AABA-5F1A3134E4F9}"
