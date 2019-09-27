@@ -3,13 +3,6 @@ using System.IO;
 
 namespace Prepare_FinancialNotes
 {
-    internal class LogEntry
-    {
-        internal static int ORDER_NUMBER_OFFSET => 0; internal static int ORDER_NUMBER_LENGTH => 16;
-        internal static int BLOCK_DATE_OFFSET => 23; internal static int BLOCK_DATE_LENGTH => 10;
-        internal static int LOG_BODY_OFFSET => 34;  // No "Length" specified since the length is variable ... in particular, "Comment" lines are variable length.
-
-    }
     internal class LogBlock
     {
         internal string OrderNo { get; set; }
@@ -26,6 +19,7 @@ namespace Prepare_FinancialNotes
         {
             string currentBlockDate = string.Empty;
             LogBlock block = null;
+            LogEntry currentEntry = null;
 
             var lines = File.ReadAllLines(SourceFileSpec);  //NB:  All of the lines in a given OFIN file will have the same Order Number. [geg]
             foreach (string l in lines)
@@ -36,16 +30,12 @@ namespace Prepare_FinancialNotes
                     {
                         yield return block;
                     }
+                    currentEntry = new LogEntry(l);
 
-                    block = new LogBlock(
-                        l.Substring(LogEntry.ORDER_NUMBER_OFFSET, LogEntry.ORDER_NUMBER_LENGTH),
-                        l.Substring(LogEntry.BLOCK_DATE_OFFSET, LogEntry.BLOCK_DATE_LENGTH),
-                        new List<string>()
-                        );
-
+                    block = new LogBlock(currentEntry.OrderNo, currentEntry.BlockDate, new List<string>());
                     currentBlockDate = block.BlockDate;
                 }
-                block.Entries.Add(l.Substring(LogEntry.LOG_BODY_OFFSET));
+                block.Entries.Add(currentEntry.Entry);
             }
 
             if (block != null)
@@ -56,5 +46,4 @@ namespace Prepare_FinancialNotes
         }
 
     }
-
 }

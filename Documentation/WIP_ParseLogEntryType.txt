@@ -1,0 +1,95 @@
+                foreach (string l in lines)
+                {
+                    string t = l.Substring(ENTRY_TYPE_OFFSET, ENTRY_TYPE_LENGTH).ToUpper();
+                    switch (t)
+                    {
+                        case "RECEIPT":
+                            break;
+
+                        case "MANUAL ":
+                            break;
+
+                        case "APPLIED":
+                            break;
+
+                        case "DISBURS":
+                            break;
+
+                        case "DISTRIB":
+                            break;
+
+                        case "DELETED":
+                            break;
+
+                        case "ADJ-BKO":
+                            break;
+
+                        case "ADJ-CAN":
+                            break;
+
+                        case "ADJAPP ":
+                            break;
+
+                        case "ADJMAPP":
+                            break;
+
+                        case "ADJMAP ":
+                            break;
+
+                        case "ADJMNSF":
+                            break;
+
+                        case "ADJNAF ":
+                            break;
+
+                        case "ADJ-NSF":
+                            break;
+
+                        case "ADJ-RIS":
+                            break;
+
+                        case "ADJ-RSP":
+                            break;
+
+                        case "ADJ-RTN":
+                            break;
+
+                        case "ADJ-STP":
+                            break;
+
+                        case "BKO-APP":
+                            break;
+
+                        case "HELD RC":
+                            break;
+
+                        case "RCT-BND":
+                            break;
+
+                        case "RCT-RPL":
+                            break;
+
+                        case "RCT-RTN":
+                            break;
+
+                        case "RCT-URB":
+                            break;
+
+                        case "RETURN ":
+                            break;
+
+                        case "TRANSFE":
+                            break;
+
+                        case "COMMENT":
+                            break;
+
+                        case "       ":      //A comment.
+                            break;
+
+
+                        default:
+                            throw new InvalidDataException(string.Format("{0} contains unknown log-entry type {1}", s, t));
+                    }
+
+                }
