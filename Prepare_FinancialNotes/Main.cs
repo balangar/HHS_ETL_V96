@@ -54,6 +54,7 @@ namespace Prepare_FinancialNotes
 #if DEBUG
                     Logger.InfoFormat(@"Order Number: {0}  BlockDate : {1}  Number of Entries: {2}", b.OrderNo, b.BlockDate, b.Entries.Count);
 #endif
+
                 }
                 
                 
