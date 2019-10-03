@@ -3,6 +3,34 @@ using System.IO;
 
 namespace Prepare_FinancialNotes
 {
+    internal class LogRecord
+    {
+        internal static int ORDER_NUMBER_OFFSET => 0; internal static int ORDER_NUMBER_LENGTH => 16;
+        internal static int SEQUENCE_NUMBER_OFFSET => 17; internal static int SEQUENCE_NUMBER_LENGTH => 5;
+        internal static int BLOCK_DATE_OFFSET => 23; internal static int BLOCK_DATE_LENGTH => 10;
+        internal static int RECORD_TYPE_OFFSET => 34; internal static int RECORD_TYPE_LENGTH => 7;
+        internal static int RECORD_SUBTYPE_OFFSET => 42; internal static int RECORD_SUBTYPE_LENGTH => 2;
+        internal static int LOG_BODY_OFFSET => 44;  // No "Length" specified since the length is variable ... in particular, "Comment" lines are variable length.
+
+        internal string OrderNo { get; }
+        internal string SequenceNo { get; }
+        internal string BlockDate { get; }
+        internal string RecordType { get; }
+        internal string RecordSubtype { get; }
+        internal string Entry { get; }
+
+        internal LogRecord(string EntryLine)
+        {
+            OrderNo = EntryLine.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH);
+            SequenceNo = EntryLine.Substring(SEQUENCE_NUMBER_OFFSET, SEQUENCE_NUMBER_LENGTH);
+            BlockDate = EntryLine.Substring(BLOCK_DATE_OFFSET, BLOCK_DATE_LENGTH);
+            RecordType = EntryLine.Substring(RECORD_TYPE_OFFSET, RECORD_TYPE_LENGTH);
+            RecordSubtype = EntryLine.Substring(RECORD_SUBTYPE_OFFSET, RECORD_SUBTYPE_LENGTH) == "00" ? "Master" : "Detail";
+            Entry = EntryLine.Substring(LOG_BODY_OFFSET);
+
+        }
+    }
+
     internal class LogBlock
     {
         internal string OrderNo { get; set; }
@@ -19,18 +47,18 @@ namespace Prepare_FinancialNotes
         {
             string currentBlockDate = string.Empty;
             LogBlock block = null;
-            LogEntry currentEntry = null;
+            LogRecord currentEntry = null;
 
             var lines = File.ReadAllLines(SourceFileSpec);  //NB:  All of the lines in a given OFIN file will have the same Order Number. [geg]
             foreach (string l in lines)
             {
-                if (l.Substring(LogEntry.BLOCK_DATE_OFFSET, LogEntry.BLOCK_DATE_LENGTH).Trim() != currentBlockDate)    // Start of new LogBlock
+                if (l.Substring(LogRecord.BLOCK_DATE_OFFSET, LogRecord.BLOCK_DATE_LENGTH).Trim() != currentBlockDate)    // Start of new LogBlock
                 {
                     if (block != null)
                     {
                         yield return block;
                     }
-                    currentEntry = new LogEntry(l);
+                    currentEntry = new LogRecord(l);
 
                     block = new LogBlock(currentEntry.OrderNo, currentEntry.BlockDate, new List<string>());
                     currentBlockDate = block.BlockDate;

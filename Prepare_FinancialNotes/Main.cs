@@ -52,7 +52,9 @@ namespace Prepare_FinancialNotes
                 foreach (LogBlock b in LogBlock.GetNextLogBlock(s))
                 {
 #if DEBUG
-                    Logger.InfoFormat(@"Order Number: {0}  BlockDate : {1}  Number of Entries: {2}", b.OrderNo, b.BlockDate, b.Entries.Count);
+                    Logger.InfoFormat(
+                        @"Order Number: {0}  BlockDate : {1}   Number of Entries: {2}", 
+                        b.OrderNo,b.BlockDate, b.Entries.Count);
 #endif
 
                 }
