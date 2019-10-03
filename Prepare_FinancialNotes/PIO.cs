@@ -41,7 +41,7 @@ namespace Prepare_FinancialNotes
                 .Attribute("Date", Block.BlockDate);
 
 
-            foreach (string s in Block.Entries)
+            foreach (LogRecord r in Block.LogRecords)
             {
 
             }

@@ -35,35 +35,34 @@ namespace Prepare_FinancialNotes
     {
         internal string OrderNo { get; set; }
         internal string BlockDate { get; set; }
-        internal List<string> Entries { get; set; }
+        internal List<LogRecord> LogRecords { get; set; }
 
-        internal LogBlock(string OrderNumber, string NewBlockDate, List<string> NewBlockEntries)
+        internal LogBlock(string OrderNumber, string NewBlockDate, List<LogRecord> NewLogRecords)
         {
             OrderNo = OrderNumber;
             BlockDate = NewBlockDate;
-            Entries = NewBlockEntries;
+            LogRecords = NewLogRecords;
         }
         internal static IEnumerable<LogBlock> GetNextLogBlock(string SourceFileSpec)
         {
             string currentBlockDate = string.Empty;
             LogBlock block = null;
-            LogRecord currentEntry = null;
+            LogRecord currentLogRecord = null;
 
             var lines = File.ReadAllLines(SourceFileSpec);  //NB:  All of the lines in a given OFIN file will have the same Order Number. [geg]
             foreach (string l in lines)
             {
-                if (l.Substring(LogRecord.BLOCK_DATE_OFFSET, LogRecord.BLOCK_DATE_LENGTH).Trim() != currentBlockDate)    // Start of new LogBlock
+                currentLogRecord = new LogRecord(l);
+                if (currentLogRecord.BlockDate.Trim() != currentBlockDate)    // Start of new LogBlock
                 {
                     if (block != null)
                     {
                         yield return block;
                     }
-                    currentEntry = new LogRecord(l);
-
-                    block = new LogBlock(currentEntry.OrderNo, currentEntry.BlockDate, new List<string>());
+                    block = new LogBlock(currentLogRecord.OrderNo, currentLogRecord.BlockDate, new List<LogRecord>());
                     currentBlockDate = block.BlockDate;
                 }
-                block.Entries.Add(currentEntry.Entry);
+                block.LogRecords.Add(currentLogRecord);
             }
 
             if (block != null)
