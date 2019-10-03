@@ -5,19 +5,20 @@ namespace Prepare_FinancialNotes
 {
     internal class LogRecord
     {
+        //TODO: Log body offset may need to be adjusted.
         internal static int ORDER_NUMBER_OFFSET => 0; internal static int ORDER_NUMBER_LENGTH => 16;
         internal static int SEQUENCE_NUMBER_OFFSET => 17; internal static int SEQUENCE_NUMBER_LENGTH => 5;
         internal static int BLOCK_DATE_OFFSET => 23; internal static int BLOCK_DATE_LENGTH => 10;
         internal static int RECORD_TYPE_OFFSET => 34; internal static int RECORD_TYPE_LENGTH => 7;
         internal static int RECORD_SUBTYPE_OFFSET => 42; internal static int RECORD_SUBTYPE_LENGTH => 2;
-        internal static int LOG_BODY_OFFSET => 44;  // No "Length" specified since the length is variable ... in particular, "Comment" lines are variable length.
+        internal static int LOG_TEXT_OFFSET => 0;  // Take the whole record. No "Length" specified since the length is variable ... in particular, "Comment" lines are variable length.
 
         internal string OrderNo { get; }
         internal string SequenceNo { get; }
         internal string BlockDate { get; }
         internal string RecordType { get; }
         internal string RecordSubtype { get; }
-        internal string Entry { get; }
+        internal string Text { get; }
 
         internal LogRecord(string EntryLine)
         {
@@ -26,7 +27,7 @@ namespace Prepare_FinancialNotes
             BlockDate = EntryLine.Substring(BLOCK_DATE_OFFSET, BLOCK_DATE_LENGTH);
             RecordType = EntryLine.Substring(RECORD_TYPE_OFFSET, RECORD_TYPE_LENGTH);
             RecordSubtype = EntryLine.Substring(RECORD_SUBTYPE_OFFSET, RECORD_SUBTYPE_LENGTH) == "00" ? "Master" : "Detail";
-            Entry = EntryLine.Substring(LOG_BODY_OFFSET);
+            Text = EntryLine.Substring(LOG_TEXT_OFFSET);
 
         }
     }
