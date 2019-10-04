@@ -36,6 +36,23 @@ namespace Prepare_FinancialNotes
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
 
         }
+
+        private static XmlOutput GetBlockXML(LogBlock FinLogBlock)
+        {
+            LogRecord logHeader = new LogRecord(FinLogBlock.OrderNo + FinLogBlock.BlockDate + "FinRecord" + "Master");
+
+
+            XmlOutput BlockXO = new XmlOutput();
+
+            foreach(LogRecord r in FinLogBlock.LogRecords)
+            {
+
+            }
+
+
+
+            return BlockXO;
+        }
         private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
 
         
@@ -51,15 +68,10 @@ namespace Prepare_FinancialNotes
 
                 foreach (LogBlock b in LogBlock.GetNextLogBlock(s))
                 {
-#if DEBUG
-                    Logger.InfoFormat(
-                        @"Order Number: {0}  BlockDate : {1}   Number of Entries: {2}", 
-                        b.OrderNo,b.BlockDate, b.LogRecords.Count);
-#endif
 
                 }
-                
-                
+
+
                 //CopyFinancialNoteFile(s, destFileSpec);
                 //Logger.InfoFormat(@"{0}", s);
                 FileCount++;
