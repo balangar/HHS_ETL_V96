@@ -39,11 +39,11 @@ namespace Prepare_FinancialNotes
         internal List<LogRecord> LogRecords { get; set; }
         internal List<BaseLogEntry> LogEntries { get; set; }
 
-        internal LogBlock(string OrderNumber, string NewBlockDate, List<LogRecord> NewLogRecords)
+        internal LogBlock(string OrderNumber, string NewBlockDate)
         {
             OrderNo = OrderNumber;
             BlockDate = NewBlockDate;
-            LogRecords = NewLogRecords;
+            LogRecords = new List<LogRecord>();
             LogEntries = new List<BaseLogEntry>();
         }
         internal static IEnumerable<LogBlock> GetNextLogBlock(string SourceFileSpec)
@@ -62,7 +62,8 @@ namespace Prepare_FinancialNotes
                     {
                         yield return block;
                     }
-                    block = new LogBlock(currentLogRecord.OrderNo, currentLogRecord.BlockDate, new List<LogRecord>());
+                    block = new LogBlock(currentLogRecord.OrderNo, currentLogRecord.BlockDate);
+                    block.LogEntries.Add(BaseLogEntry.CreateEntry(new LogRecord(currentLogRecord.OrderNo + "|00001|" + currentLogRecord.BlockDate + "|FinRecord|00")));   // Insert Block Header Log Entry
                     currentBlockDate = block.BlockDate;
                 }
                 block.LogRecords.Add(currentLogRecord);

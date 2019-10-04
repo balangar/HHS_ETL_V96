@@ -8,6 +8,8 @@ namespace Prepare_FinancialNotes
         private static Dictionary<string, Func<string, BaseLogEntry>> Factories;        
         internal string RecordType { get; }
         internal string RecordSubtype { get; }
+        internal string OrderNo { get; }
+        internal string BlockDate { get; }
         internal abstract XmlOutput GetXML(XmlOutput XO);
 
         internal static BaseLogEntry CreateEntry(LogRecord Record)
@@ -29,9 +31,19 @@ namespace Prepare_FinancialNotes
                 { "RECEIPTMaster", s => new ReceiptLogEntry(s) }
             };
         }
-        internal BaseLogEntry(string RecordText)
+        internal BaseLogEntry(string LogRecordText)
         {
-            // consts that do offset
+            const int ORDER_NUMBER_OFFSET = 0; const  int ORDER_NUMBER_LENGTH = 16;
+            const int BLOCK_DATE_OFFSET = 23; const int BLOCK_DATE_LENGTH = 10;
+
+
+
+
+            OrderNo = LogRecordText.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH);
+            BlockDate = LogRecordText.Substring(BLOCK_DATE_OFFSET, BLOCK_DATE_LENGTH);
+            RecordType = "FinRecord";
+            RecordSubtype = string.Empty;
+
         }
     }
     internal class LogHeader : BaseLogEntry
@@ -43,17 +55,12 @@ namespace Prepare_FinancialNotes
          * Done this way for the sack of consistency
          */
 
-        const int ORDER_NUMBER_OFFSET = 0; const int ORDER_NUMBER_LENGTH = 16;
-        const int BLOCK_DATE_OFFSET = 17; const int BLOCK_DATE_LENGTH = 10;
-        const int RECORD_TYPE_OFFSET = 27; const int RECORD_TYPE_LENGTH = 8; //"FinRecord".Length;
-        string OrderNo { get; }
-        string BlockDate { get; }
         internal override XmlOutput GetXML(XmlOutput XO)
         {
             return (
                 XO
                 .XmlDeclaration()
-                .Node(RecordType).Within()
+                .Node("FinRecord").Within()
                 .Attribute("OrderNumber", OrderNo)
                 .Attribute("Date", BlockDate)
                 );
@@ -61,8 +68,6 @@ namespace Prepare_FinancialNotes
         }
         internal LogHeader(string LogHeaderText) : base(LogHeaderText)
         {
-            OrderNo = LogHeaderText.Substring(ORDER_NUMBER_OFFSET, ORDER_NUMBER_LENGTH);
-            BlockDate = LogHeaderText.Substring(BLOCK_DATE_OFFSET, BLOCK_DATE_LENGTH);
         }
     }
     internal class ReceiptLogEntry : BaseLogEntry

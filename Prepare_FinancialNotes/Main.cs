@@ -39,7 +39,6 @@ namespace Prepare_FinancialNotes
 
         private static XmlOutput GetBlockXML(LogBlock FinLogBlock)
         {
-            LogRecord logHeader = new LogRecord(FinLogBlock.OrderNo + FinLogBlock.BlockDate + "FinRecord" + "Master");
 
 
             XmlOutput BlockXO = new XmlOutput();
