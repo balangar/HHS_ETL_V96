@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CCLoad", "CCLoad\CCLoad.dtproj", "{22330D71-D7E8-4D2F-B42E-A0D4AED8F13D}"
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LoadHVR", "SafetyNetLoad\LoadHVR.dtproj", "{8DEAA0FC-6DE8-46D0-AAFB-866A234DF2A2}"
-EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SetsIVRLoad", "SetsIVRLoad\SetsIVRLoad.dtproj", "{DADC40E3-5016-4B24-827C-FED6CD14BE20}"
 EndProject
 Global
@@ -16,8 +14,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{22330D71-D7E8-4D2F-B42E-A0D4AED8F13D}.Development|Default.ActiveCfg = Development
 		{22330D71-D7E8-4D2F-B42E-A0D4AED8F13D}.Development|Default.Build.0 = Development
-		{8DEAA0FC-6DE8-46D0-AAFB-866A234DF2A2}.Development|Default.ActiveCfg = Development
-		{8DEAA0FC-6DE8-46D0-AAFB-866A234DF2A2}.Development|Default.Build.0 = Development
 		{DADC40E3-5016-4B24-827C-FED6CD14BE20}.Development|Default.ActiveCfg = Development
 		{DADC40E3-5016-4B24-827C-FED6CD14BE20}.Development|Default.Build.0 = Development
 	EndGlobalSection
