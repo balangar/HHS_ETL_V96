@@ -28,7 +28,8 @@ namespace Prepare_FinancialNotes
             Factories = new Dictionary<string, Func<string, BaseLogEntry>>
             {
                 { "FinRecord", s => new LogHeader(s) },
-                { "RECEIPTMaster", s => new ReceiptLogEntry(s) }
+                { "RECEIPTMaster", s => new ReceiptLogEntry(s) },
+                {"APPLIEDMaster", s => new AppliedMasterLogEntry(s) }
             };
         }
         internal BaseLogEntry(string LogRecordText)
@@ -95,5 +96,36 @@ namespace Prepare_FinancialNotes
             AlternatePayee = RecordText.Substring(ALTERNATE_PAYEE_OFFSET, ALTERNATE_PAYEE_LENGTH);
         }
 
+    }
+    internal class AppliedMasterLogEntry : BaseLogEntry
+    {
+        const int APPLIED_AMOUNT_OFFSET = 61; const int APPLIED_AMOUNT_LENGTH = 8;
+        const int TRANSACTION_CODE_OFFSET = 43; const int TRANSACTION_CODE_LENGTH = 4;
+        const int RECEIPT_DATE_OFFSET = 47; const int RECEIPT_DATE_LENGTH = 6;
+        const int DESCRIPTION_OFFSET = 76; const int DESCRIPTION_LENGTH = 10;
+
+        string AppliedAmount { get; }
+        string TransactionCode { get; }
+        string ReceiptDate { get; }
+        string Description { get; }
+
+        internal override XmlOutput GetXML(XmlOutput XO)
+        {
+            return (
+                XO
+                .Node(RecordType)
+                .Attribute("AppliedAmount", AppliedAmount)
+                .Attribute("TransactionCode", TransactionCode)
+                .Attribute("ReceiptDate", ReceiptDate)
+                .Attribute("Description", Description)
+                );
+        }
+        internal AppliedMasterLogEntry(string RecordText) : base(RecordText)
+        {
+            AppliedAmount = RecordText.Substring(APPLIED_AMOUNT_OFFSET, APPLIED_AMOUNT_LENGTH);
+            TransactionCode = RecordText.Substring(TRANSACTION_CODE_OFFSET, TRANSACTION_CODE_LENGTH);
+            ReceiptDate = RecordText.Substring(RECEIPT_DATE_OFFSET, RECEIPT_DATE_LENGTH);
+            Description = RecordText.Substring(DESCRIPTION_OFFSET, DESCRIPTION_LENGTH);
+        }
     }
 }
