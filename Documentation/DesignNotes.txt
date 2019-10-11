@@ -1,3 +1,5 @@
+Fri 2019-10-11 :	Mothballing this project as I'm being reassigned to DoIT for work on ERP project.
+
 Directory _SCAS
 	Extract from IMS database.
 	Root matches directory name (in this case "SCAS")

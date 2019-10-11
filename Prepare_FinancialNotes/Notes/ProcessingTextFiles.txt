@@ -1,5 +1,3 @@
-Fri 2019-10-11 :	Mothballing this project as I'm being reassigned to DoIT for work on ERP project.
-
 Thu 2019-10-10 :	I'm going to have to back off from XML portion of LogEntry.  There's just too much variability in distinguishing Master from associated detail records.
 
 Fri 2019-09-29 :	Try to think of the contents of each FinLog file as a set of transactions.  Not trying to duplicate some sort of GL; more like SQL Server's TLog.
