@@ -60,15 +60,21 @@ namespace ProbeODAPS
         #endregion
         public static bool Login(out SoapClient EndpointClient, string Configuration = "Default")
         {
+            /*    HACK ALERT:  08 Nov 2019.  [geg]
+             * There's a bug in processing the connection string that occurs if the connection string contains the "Split =" character
+             * Fix required but for now, I'll just use a "Split =" character which is not in either password or token.
+             * 
+             */
             string configurationName = "SFConnection_" + Configuration;
             string connectionString =  ConfigurationManager.ConnectionStrings[configurationName].ConnectionString;
+
 
             Dictionary<string, string> t =
                 connectionString
                 .Split(';')
-                .Select(pair => pair.Split('='))
+                .Select(pair => pair.Split(':'))
                 .ToDictionary(valuePair => valuePair[0].Trim(), valuePair => valuePair[1].Trim());
-
+                
             return Login(t["UserName"], t["Password"], t["Token"], out EndpointClient);
         }
         public static void Logout(SoapClient EndpointClient)
