@@ -16,15 +16,15 @@
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{56ecc2a5-5763-4668-8fdd-2c22a2e897ee}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">ODAPS_ETL</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMinor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionComments">Increase SOAP binding timeout to 5 minutes</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionComments">Added error handler to Master-Extract</SSIS:Property>
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">3.0.1</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="D9uuPDjVbw==" SSIS:IV="zts6CIxckdI=">b8GqAtn0hQ+DbXilbq83X2sC2nTxhSrQfPP5HRvJy3Dw7OSsbTM+vUqXzoigFTz5/EXolD/7toH8GVy0xfUtuGmVeRj42RKM19lS1epwk5+7c59ji4KlTV/jiFkHFujA7lMrc0HQJYFihpCZlPTcKiA9G8nR1+JcSluq3tbJg4nPr4rJ105Z5A==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="kUW4QVnOfA==" SSIS:IV="nil3qttqCMg=">spR2m2HoaLQbtIl+X5fFIzNLTBxwjHtR2lPB9zqOyO6sGCKaFjbLxa9PiAxAIpuJFwa/RaEPdJYC5yrwA6T8fGaXVKXDqCmf8BY8qSJo0v49iBWe/ZyGfkNQIBFcbMhr65suI0Ob8UrurVjipmXXswaJY0+gXoJLb/QjgbFtfM1gPjx6CUNtng==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1368,10 +1368,10 @@
                 <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">19</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">24</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B94058E3-89E3-4CDC-A16E-9706A31F1112}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D7B3B4D1-4C97-4004-AB2C-6D80A9C29AF1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1623,10 +1623,10 @@
                 <SSIS:Property SSIS:Name="Name">Master-Extract</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{43A1F694-44FF-4C71-AF5A-ECA0A7E2A53F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1A080E47-C60E-4B30-9685-8B1A87F24FD3}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
