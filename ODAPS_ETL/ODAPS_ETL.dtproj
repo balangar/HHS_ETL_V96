@@ -19,12 +19,12 @@
           <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionComments">Added error handler to Master-Extract</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionComments">Detect and notify when error with ODAPS extract</SSIS:Property>
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">3.0.1</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="kUW4QVnOfA==" SSIS:IV="nil3qttqCMg=">spR2m2HoaLQbtIl+X5fFIzNLTBxwjHtR2lPB9zqOyO6sGCKaFjbLxa9PiAxAIpuJFwa/RaEPdJYC5yrwA6T8fGaXVKXDqCmf8BY8qSJo0v49iBWe/ZyGfkNQIBFcbMhr65suI0Ob8UrurVjipmXXswaJY0+gXoJLb/QjgbFtfM1gPjx6CUNtng==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">X 3.1.0 </SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="vtYjtwYkPA==" SSIS:IV="BaZp3Jwiicw=">afpswmAWbKFW0LtIyLmwZGiWkx8Wz4rEOwDKPPsUAO/pTSdPG0gYipThOKy+wWB5UJucSkJOgT0EsxpkH8thqFGcnqTEDu/7jbfLkCcIRlVXjqNcn8QojHHFt3YvqBp2NhYJxxksvYFABiLXwD3FkArmxX3uBPcYrZ4wsFhE4ZhEDyJEGpZmmw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1341,7 +1341,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">120</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
