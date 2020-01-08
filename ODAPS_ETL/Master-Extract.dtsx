@@ -12,8 +12,8 @@
   DTS:ObjectName="Master-Extract"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{974488EC-214B-4510-97D7-13D8E1894D98}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{4F7B2E7D-7136-465E-87EB-B00617911D9C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -71,8 +71,8 @@
               SendMailTask:From="ODAPS_ETL@MS-CJFS-AptSQL.info"
               SendMailTask:To="Bharathi.Alangar@jfs.ohio.gov"
               SendMailTask:CC="Richard.Schmittgen@jfs.ohio.gov;Gary.Green@jfs.ohio.gov"
-              SendMailTask:Subject="TEST:  ODAPS Extract Failed"
-              SendMailTask:MessageSource="Test -- error handler when ODAPS extract fails." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              SendMailTask:Subject="ODAPS Extract Failed"
+              SendMailTask:MessageSource="Check MS-CJFS-AptSQL Integration Services Catalogs -- ODAPS_ETL project for additional information" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
