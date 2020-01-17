@@ -60,8 +60,8 @@ namespace ProbeODAPS
             Console.ReadKey();
 #endif
 
-            //Environment.ExitCode = exitCode;
-            return 0;
+            Environment.ExitCode = exitCode;
+            return exitCode;
         }
 
     }

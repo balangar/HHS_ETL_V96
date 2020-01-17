@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", 
 		_Documents\Notes.txt = _Documents\Notes.txt
 		_Documents\ObjectsAndFields.xlsx = _Documents\ObjectsAndFields.xlsx
 		_Documents\ODAPS_Objects.txt = _Documents\ODAPS_Objects.txt
+		_Documents\PackageDocumentation.txt = _Documents\PackageDocumentation.txt
 		_Documents\SF_Contact_Full.txt = _Documents\SF_Contact_Full.txt
 	EndProjectSection
 EndProject
