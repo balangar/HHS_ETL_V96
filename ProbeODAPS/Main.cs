@@ -6,6 +6,7 @@ using log4net;
 
 using CommandLine;
 
+using System.Configuration;
 using System.IO;
 
 using ProbeODAPS.sforce;
@@ -109,7 +110,6 @@ namespace ProbeODAPS
 			}
 			catch (Exception)
 			{
-				returnStatus = -1;
 				throw;
 			}
 
@@ -154,21 +154,32 @@ namespace ProbeODAPS
 		private static int ExtractSFObjects(ExtractOptions Options, Dictionary<string, string> SFObjectQueries, SoapClient EndPoint)
 		{
 			int exitStatus = 0;
+			int retryCount;
 
-			try
+			int maxRetries = Int32.Parse(ConfigurationManager.AppSettings["MaxRetries"]);
+			int retryIntervalSeconds = Int32.Parse(ConfigurationManager.AppSettings["RetryIntervalSeconds"]);
+
+			Program.Logger.DebugFormat("Maximum ExtractSFObjects retries: {0}    Retry Interval (seconds): {1}", maxRetries.ToString(), retryIntervalSeconds.ToString());
+
+			for (retryCount = 0; retryCount < maxRetries; retryCount++)
 			{
-				foreach (var q in from o in Options.SFObjectNames from q in SFObjectQueries where o == q.Key select q)
+				try
 				{
-					Program.Logger.InfoFormat("Extract : {0}", q.Key);
-					Program.Logger.DebugFormat("SF Object Name: {0}   Verbose: {1}  OutPath: {2}.", q.Key, Options.Verbose, Options.OutPath);
-					exitStatus = ExtractSFObjectRecords(q.Key, q.Value, Options.OutPath, EndPoint);
+					foreach (var q in from o in Options.SFObjectNames from q in SFObjectQueries where o == q.Key select q)
+					{
+						Program.Logger.InfoFormat("Extract : {0}", q.Key);
+						Program.Logger.DebugFormat("SF Object Name: {0}   Verbose: {1}  OutPath: {2}.", q.Key, Options.Verbose, Options.OutPath);
+						exitStatus = ExtractSFObjectRecords(q.Key, q.Value, Options.OutPath, EndPoint);
+					}
+					break;
 				}
-			}
-			catch (Exception ex)
-			{
-				Program.Logger.Error(ex.Message);
-				exitStatus = -1;
-				throw;
+				catch (Exception ex)
+				{
+					Program.Logger.ErrorFormat("Attempt {0} failed.\r\n{1}", (retryCount + 1).ToString(), (ex.Message) );
+					exitStatus = -1;
+					System.Threading.Thread.Sleep(retryIntervalSeconds * 1000);
+
+				}
 			}
 			return exitStatus;
 		}
