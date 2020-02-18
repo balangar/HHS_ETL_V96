@@ -335,6 +335,7 @@ namespace ProbeODAPS
 							Client_Name__c,
 							Client_s_Age__c	,
 							Client_s_Home_Phone_Number__c,
+							Date_Case_Closed__c,
 							Date_of_Birth__c,
 							Exploitation__c,
 							Gender_Code__c,
