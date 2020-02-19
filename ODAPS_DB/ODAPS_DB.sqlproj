@@ -172,13 +172,11 @@
     <Build Include="dbo\Views\vw_Case_to_CaseNotes_Staging.sql" />
     <Build Include="dbo\Views\vw_Case_to_Casenotes.sql" />
     <Build Include="dbo\Views\vw_Beese_Cases_Live.sql" />
-    <Build Include="dbo\Views\View_8.sql" />
     <Build Include="dbo\Views\View_6.sql" />
     <Build Include="dbo\Views\View_5.sql" />
     <Build Include="dbo\Views\View_4.sql" />
     <Build Include="dbo\Views\View_3.sql" />
     <Build Include="dbo\Views\View_2.sql" />
-    <Build Include="dbo\Views\View_11.sql" />
     <Build Include="dbo\Views\View_1.sql" />
   </ItemGroup>
   <ItemGroup>
