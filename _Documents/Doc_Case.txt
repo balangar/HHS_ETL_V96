@@ -1,4 +1,4 @@
-APS_Case__c: 	398 fields	IS_Custom  	05/24/2019 07:21:35
+APS_Case__c: 	398 fields	IS_Custom  	02/19/2020 07:33:41
 Id	: 	Type: id	Length :18	Label :Record ID 
 OwnerId	: 	Type: reference	Length :18	Label :Owner ID 		References :  Group User
 IsDeleted	: 	Type: boolean		Label :Deleted 
