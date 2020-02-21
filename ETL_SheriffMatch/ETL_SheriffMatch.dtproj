@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DeploymentModel>Project</DeploymentModel>
+  <ProductVersion>15.0.2000.71</ProductVersion>
+  <SchemaVersion>9.0.1.0</SchemaVersion>
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
+  <Database>
+    <Name>ETL_SheriffMatch.database</Name>
+    <FullPath>ETL_SheriffMatch.database</FullPath>
+  </Database>
+  <DataSources />
+  <DataSourceViews />
+  <DeploymentModelSpecificContent>
+    <Manifest>
+      <SSIS:Project SSIS:Salt="EoqiRgZoa7M=" SSIS:IV="QwvK08z9xTdf/ZvzbuAXUg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" SSIS:ProtectionLevel="EncryptAllWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">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</SSIS:Project>
+    </Manifest>
+  </DeploymentModelSpecificContent>
+  <ControlFlowParts />
+  <Miscellaneous />
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2017</TargetServerVersion>
+        <AzureMode>false</AzureMode>
+        <LinkedAzureTenantId />
+        <LinkedAzureAccountId />
+        <LinkedAzureSSISIR />
+        <LinkedAzureStorage />
+        <RemoteExecutionFolder />
+        <ParameterConfigurationValues />
+      </Options>
+    </Configuration>
+  </Configurations>
+</Project>
