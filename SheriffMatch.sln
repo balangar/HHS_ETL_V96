@@ -15,6 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{5CC140BA-F26B-4298-8B4D-68ED9C5B4EDF}"
+	ProjectSection(SolutionItems) = preProject
+		_SolutionItems\WatcherScript.cs = _SolutionItems\WatcherScript.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
