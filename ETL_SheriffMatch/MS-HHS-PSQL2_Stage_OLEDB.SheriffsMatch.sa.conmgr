@@ -1,0 +1,8 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="MS-HHS-PSQL2_Stage_OLEDB SheriffsMatch sa"
+  DTS:DTSID="{F14AC9AA-547C-4A2F-BAC2-CBD29A915795}"
+  DTS:CreationName="OLEDB"
+  p1:Salt="RB8wn0YNTPc="
+  p1:IV="IgjqXJczjw7vQlOVHKQ9fQ=="
+  p1:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p1="www.microsoft.com/SqlServer/SSIS">wXHjwE4LctB0szNTmsL7rd8rOvnuyywwW0D0YlvGIGHASl5jOUKuwDJ+K8sbD7zb6j6zIb+zjO82jRGVxfoELtnGF3WJ6t7jvWQvhSwUYMd9cXF7Nd3eJOYSsV7gNiLYBhXUOncXhL4cvXpPkQ+FypMxNOihNgq5y5sISNw4uH3dLQku/42G28Gyau3p53x0oUdfRKn7GpIO9O3k8oPm7/os3SaN/jGTM3/fUT5U37Ow/n+shMg+lKLWDt/AsIGo/9M6b+pnJRRMvjem3d7KHV4183uGqCOsbvg6mnrj6B5sDPvuzTILUtRUOpjWWnEnfgQ28vd4Tdh/UbGnDs1Os3L+KjbLAJI2rM7C30YDRkhgbHG3IxkxrgjYWizTkcdTgyDewzOBHuK0mEMoUBgBygNBbN8TRNhiOk/MEomZhO8ty6VKjSiFnx1y9qHG/vfmKqrmtWQkBCtEPJMm5UQpVcubTMsCehc1lG86IDbpp4rlGS6JW3Mejq09/jhgxaFrPZGgLUtOVtr2zgmiF30WyNMctuM0sy6uLjTEWUgRTnns5wk5gzNS1gEf2JfIXTmrw+jHnvChAegPVrHCFcihMIe+Ev/XLatksxaH08dpG+ScIOn2B58fTjd7eVzNA6IOfzhC4DR6Pvjlt9XEPvqHyNNSQVoqsAoIZZK7zzmjyksqZGgD7C2gp6YdX4WGYELiA97nplFXDcWetHAYs0XaXQ9JAKL4EhwaGfi4/mAfUuU=</DTS:ConnectionManager>

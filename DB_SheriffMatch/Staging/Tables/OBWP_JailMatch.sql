@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [Staging].[OBWP_JailMatch] (
-    [ID]                        INT              IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]             VARCHAR (50)     CONSTRAINT [DF_OBWP_JailMatch_SysInsertUser] DEFAULT ('System') NOT NULL,
-    [SysInsertDate]             DATETIME         CONSTRAINT [DF_OBWP_JailMatch_SysInsertDate] DEFAULT (getdate()) NOT NULL,
+    [ID]                        INT              NOT NULL IDENTITY (1, 1) PRIMARY KEY,
+    [SysInsertUser]             VARCHAR (50)     NULL,
+    [SysInsertDate]             DATETIME         NOT NULL DEFAULT getdate(),
     [HashSignature]             VARBINARY (8000) NULL,
-    [ResidenceCountyCode]       CHAR (2)         CONSTRAINT [DF_OBWP_JailMatch_ResidenceCountyCode] DEFAULT ('2') NOT NULL,
+    [ResidenceCountyCode]       CHAR (2)         NOT NULL DEFAULT '18', 
     [SocSecNo]                  CHAR (9)         NULL,
     [ApplicantStatusCode]       VARCHAR (50)     NULL,
     [FirstName]                 VARCHAR (50)     NULL,
@@ -19,9 +19,9 @@
     [ApplicantID]               VARCHAR (50)     NULL,
     [BillingNumber]             VARCHAR (50)     NULL,
     [LivingArrangementTypeCode] VARCHAR (50)     NULL,
-    [IsValid]                   BIT              CONSTRAINT [DF_OBWP_JailMatch_IsValid] DEFAULT ((1)) NOT NULL,
-    [IsLoaded]                  BIT              CONSTRAINT [DF_OBWP_JailMatch_IsLoaded] DEFAULT ((0)) NOT NULL,
-    [LoadDate]                  DATETIME         CONSTRAINT [DF_OBWP_JailMatch_LoadDate] DEFAULT ('1900-01-01') NOT NULL,
+    [IsValid]                   BIT              NOT NULL DEFAULT 1, 
+    [IsLoaded]                  BIT              NOT NULL DEFAULT 0, 
+    [LoadDate]                  DATETIME         NOT NULL DEFAULT '1900-01-01',
     [Comments]                  VARCHAR (1024)   NULL
 );
 
