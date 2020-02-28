@@ -150,7 +150,6 @@
     <Build Include="Security\Permissions.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DB_SheriffMatch.publish.xml" />
     <None Include="_Auxiliary\DB_SheriffMatch_STAGE_REPLACE.publish.xml" />
   </ItemGroup>
 </Project>
