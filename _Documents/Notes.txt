@@ -1,0 +1,16 @@
+An interesting thought: 
+https://www.sqlservercentral.com/articles/using-the-script-task-in-ssis-to-process-data-files-when-they-arrive-1
+
+To create a string variable in SSIS package with embedded backslashes, double up each backslash
+
+Calculating age as of today given birthdate:
+Select
+	ImportantDate, 
+	getdate() As Today,
+	DATEDIFF(YY, ImportantDate, getdate())-
+	CASE
+		When DATEADD(YY, DATEDIFF(YY, ImportantDate, getdate()) > getdate() Then 1
+		Else 0
+	End
+From
+		Some table
