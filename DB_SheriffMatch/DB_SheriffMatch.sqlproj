@@ -151,5 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\DB_SheriffMatch_STAGE_REPLACE.publish.xml" />
+    <None Include="_Auxiliary\DB_SheriffMatch_DEV_REPLACE.publish.xml" />
   </ItemGroup>
 </Project>
