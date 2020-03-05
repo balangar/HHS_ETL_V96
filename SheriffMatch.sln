@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1022
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_SheriffMatch", "DB_SheriffMatch\DB_SheriffMatch.sqlproj", "{E9313D49-142D-49F3-8B74-103AA44FC9CA}"
 EndProject
@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", "{7715ED34-49B0-48A3-B4DA-B47EFF8CB25D}"
 	ProjectSection(SolutionItems) = preProject
 		_Documents\Notes.txt = _Documents\Notes.txt
+		_Documents\Sheriffs Match Required Fields 03-05-20.xlsx = _Documents\Sheriffs Match Required Fields 03-05-20.xlsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{5CC140BA-F26B-4298-8B4D-68ED9C5B4EDF}"
