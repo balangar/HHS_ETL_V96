@@ -4,7 +4,7 @@
     [SysInsertDate]             DATETIME         DEFAULT (getdate()) NOT NULL,
     [HashSignature]             VARBINARY (8000) NULL,
     [ResidenceCountyCode]       CHAR (2)         NULL,
-    [SocSecNo]                  CHAR (9)         NULL,
+    [SocSecNo]                  VARCHAR (9)      NULL,
     [ApplicantStatusCode]       VARCHAR (50)     NULL,
     [FirstName]                 VARCHAR (50)     NULL,
     [LastName]                  VARCHAR (50)     NULL,
