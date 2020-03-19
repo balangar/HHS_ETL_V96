@@ -1,0 +1,12 @@
+Please add the following fields to the ODAPS extract at your convenience.
+
+All these come from Cases table/collection - 
+
+Date_Case_Closed__c				:	Type	: date						Label	: Date Case Closed				IS_Nullable
+Days_open__C					:	Type	: double					Label	: Days Open						IS_Nullable 
+Screened_Out_Date_Time__c		:	Type	: datetime					Label	: Screened Out Date/Time		IS_Nullable
+Screen_Out_Reason__c			:	Type	: picklist	Length	: 255	Label	: Screen Out Reason				IS_Nullable
+Case_Stage__c					:	Type	: picklist	Length	: 255	Label	: Case Stage					IS_Nullable
+Status__C						:	Type	: picklist	Length	: 255	Label	: Status						IS_Nullable
+Report_Effective_Date_Time__c	:	Type	: datetime					Label	: Report Effective Date/Time	IS_Nullable         
+***** 13 Feb 2020 (See eMail from Bharathi "RE: Additional fields from ODAPS" on 2/13/2020) *****
