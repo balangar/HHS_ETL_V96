@@ -27,7 +27,7 @@
                                                     ISNULL(Client_Name__c, '') +
                                                     ISNULL(Client_s_Age__c, '') +
                                                     ISNULL(Client_s_Home_Phone_Number__c, '') +
-                                                    ISNULL(Date_of_Birth__c, '') +
+                                                    CONVERT(VARCHAR, ISNULL(Date_of_Birth__c, '1900-01-01')) +
                                                     CONVERT(VARCHAR, ISNULL(Exploitation__c, 0)) +
                                                     ISNULL(Gender_Code__c, '') +
                                                     ISNULL(Marital_Status_Code__c, '') +
@@ -36,7 +36,7 @@
                                                     ISNULL(Reporting_Party_Agency_Name__c, '') +
                                                     ISNULL(Reporting_Party_Name__c, '') +
                                                     ISNULL(Screen_Out_Reason__c, '') +
-                                                    ISNULL(Screened_Out_Date_Time__c, '') +
+                                                    CONVERT(VARCHAR, ISNULL(Screened_Out_Date_Time__c, '1900-01-01')) +
                                                     CONVERT(VARCHAR, ISNULL(Self_Neglect__c, 0)) +
                                                     CONVERT(VARCHAR, ISNULL(Sexual_Abuse__c, 0)) +
                                                     ISNULL(Supervisor_E_mail__c, '') +
@@ -44,7 +44,7 @@
                                                     ISNULL(Supervisor__c, '') +
                                                     CONVERT(VARCHAR, ISNULL(Hoarding_or_animal_hoarding__c, 0)) +
                                                     CONVERT(VARCHAR, ISNULL(Emotional_Verbal_Abuse__c, 0)) +
-                                                    ISNULL(Referral_Submitted_Date_Time__c, '') +
+                                                    CONVERT(VARCHAR, ISNULL(Referral_Submitted_Date_Time__c, '1900-01-01')) +
                                                     CONVERT(VARCHAR, ISNULL(Bed_Bugs__c, 0)) +
                                                     CONVERT(VARCHAR, ISNULL(Substance_abuse__c, 0)) +
                                                     ISNULL(Diagnosed_Mental_Illness_Info__c, '') +
