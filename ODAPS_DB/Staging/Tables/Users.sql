@@ -1,31 +1,32 @@
 ﻿CREATE TABLE [Staging].[Users] (
-    [UserKey]          INT            IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]    VARCHAR (50)   CONSTRAINT [DF__Users__SysInsert__5812160E] DEFAULT ('System') NOT NULL,
-    [SysInsertDate]    DATETIME       CONSTRAINT [DF__Users__SysInsert__59063A47] DEFAULT (getdate()) NOT NULL,
-	[HashSignature]								AS	HashBytes('SHA1', 
-													IsNull(ID, '') +
-													Convert(varchar, ISNull(CreatedDate, '1900-01-01')) +
-													IsNull(CreatedByID, '') +
-													CONVERT(VARCHAR, ISNULL(LastModifiedDate, '1900-01-01')) +
-													ISNULL(LastModifiedById, '') +
-													CONVERT(VARCHAR, ISNULL(SystemModstamp, '')) +
-													ISNULL([ID], '') +
-													ISNULL([CreatedByID], '') +
-													ISNULL([CreatedDate], '') +
-													ISNULL([LastModifiedById], '') +
-													CONVERT(VARCHAR, ISNULL([LastModifiedDate], '1900-01-01')) +
-													ISNULL([SystemModstamp], '') +
-													ISNULL([AccountID], '') +
-													ISNULL([ContactID], '') +
-													ISNULL([UserName], '') +
-													ISNULL([FirstName], '') +
-													ISNULL([LastName], '') +
-													ISNULL([Name], '') +
-													ISNULL([EMail], '') +
-													ISNULL([Phone], '') +
-													ISNULL([ManagerID], '') +
-													ISNULL([Supervisor__c], '')
-													),
+    [UserKey]          INT            IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+    [SysInsertUser]    VARCHAR (50)   DEFAULT ('System') NOT NULL,
+    [SysInsertDate]    DATETIME       DEFAULT (getdate()) NOT NULL,
+    [HashSignature]    AS
+                            Hashbytes
+                                (
+                                    'SHA1',
+                                    ISNULL(ID, '') +
+                                    ISNULL(CreatedByID, '') +
+                                    CONVERT(VARCHAR, ISNull(CreatedDate, '1900-01-01')) +
+ 									ISNULL([LastModifiedById], '') +
+                                    CONVERT(VARCHAR, ISNULL(LastModifiedDate, '1900-01-01')) +
+                                    CONVERT(VARCHAR, ISNULL(SystemModStamp, '1900-01-01')) +
+
+									ISNULL([AccountID], '') +
+									ISNULL([ContactID], '') +
+
+									ISNULL([UserName], '') +
+									ISNULL([FirstName], '') +
+									ISNULL([LastName], '') +
+									ISNULL([Name], '') +
+									ISNULL([EMail], '') +
+									ISNULL([Phone], '') +
+
+									ISNULL([ManagerID], '') +
+									ISNULL([Supervisor__c], '')                                   
+                                ),
+
     [ID]               VARCHAR (18)   NULL,
     [CreatedByID]      CHAR (18)      NULL,
     [CreatedDate]      DATE   NULL,
@@ -45,12 +46,12 @@
 
     [ManagerID]        VARCHAR (18)   NULL,
     [Supervisor__c]    VARCHAR (18)   NULL,
-    [IsValid]          BIT            CONSTRAINT [DF_Users_IsValid] DEFAULT ((1)) NOT NULL,
-    [IsLoaded]         BIT            CONSTRAINT [DF_Users_IsLoaded] DEFAULT ((0)) NOT NULL,
-    [LoadDate]         DATETIME       CONSTRAINT [DF_Users_LoadDate] DEFAULT ('1900-01-01') NULL,
-    [Comments]         VARCHAR (1024) NULL,
+	
+    [IsValid]          BIT            NOT NULL DEFAULT 1,
+    [IsLoaded]         BIT            NOT NULL DEFAULT 0,
+    [LoadDate]         DATETIME       NOT NULL DEFAULT '1900-01-01',
 
-    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([UserKey] ASC)
+    [Comments]         VARCHAR (1024) NULL
 );
 
 
