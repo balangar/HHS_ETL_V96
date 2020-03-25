@@ -46,9 +46,10 @@
 
     [ManagerID]        VARCHAR (18)   NULL,
     [Supervisor__c]    VARCHAR (18)   NULL,
+	
     [IsValid]          BIT            NOT NULL DEFAULT 1,
     [IsLoaded]         BIT            NOT NULL DEFAULT 0,
-    [LoadDate]         DATETIME       NOT NULL DEFAULT   '1900-01-01',
+    [LoadDate]         DATETIME       NOT NULL DEFAULT '1900-01-01',
 
     [Comments]         VARCHAR (1024) NULL
 );

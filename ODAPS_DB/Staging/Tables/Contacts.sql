@@ -48,12 +48,11 @@
     [LastModifiedById]               VARCHAR (18)   NULL,
     [LastModifiedDate]               DATETIME       NULL,
     [SystemModstamp]                 DATETIME       NULL,
+    [IsDeleted]                      BIT            NULL,
 
     [OwnerId]                        VARCHAR (18)   NULL,
     [AccountId]                      VARCHAR (18)   NULL,
     [MasterRecordId]                 VARCHAR (18)   NULL,
-
-    [IsDeleted]                      BIT            NULL,
 
     [Salutation]                     VARCHAR (40)   NULL,
     [FirstName]                      VARCHAR (40)   NULL,
