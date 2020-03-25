@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [Staging].[Cases] (
-    [CaseKey]                          INT            IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]                    VARCHAR (50)   CONSTRAINT [DF__Cases__SysInsert__3493CFA7] DEFAULT ('System') NOT NULL,
-    [SysInsertDate]                    DATETIME       CONSTRAINT [DF__Cases__SysInsert__3587F3E0] DEFAULT (getdate()) NOT NULL,
-    [HashSignature]								AS	HashBytes('SHA1', 
+    [CaseKey]                           INT            IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+    [SysInsertUser]                     VARCHAR (50)   DEFAULT ('System') NOT NULL,
+    [SysInsertDate]                     DATETIME       DEFAULT (getdate()) NOT NULL,
+    [HashSignature]                     AS  HashBytes('SHA1', 
                                                     IsNull(ID, '') +
                                                     IsNull(CreatedByID, '') +
                                                     Convert(varchar, ISNull(CreatedDate, '1900-01-01')) +
@@ -104,12 +104,11 @@
     [Diagnosed_Mental_Illness__c]      VARCHAR (255)  NULL,
     [Case_Decision_Date_Time__c]	   DATETIME		  NULL,
 
-    [IsValid]                          BIT            CONSTRAINT [DF__Cases__IsValid__367C1819] DEFAULT ((1)) NOT NULL,
-    [IsLoaded]                         BIT            CONSTRAINT [DF__Cases__IsLoaded__37703C52] DEFAULT ((0)) NOT NULL,
-    [LoadDate]                         DATETIME       CONSTRAINT [DF_Cases_LoadDate] DEFAULT ('1900-01-01') NOT NULL,
+    [IsValid]                          BIT            NOT NULL DEFAULT 1,
+    [IsLoaded]                         BIT            NOT NULL DEFAULT 0,
+    [LoadDate]                         DATETIME       NOT NULL DEFAULT '1900-01-01',
 
-    [Comments]                         VARCHAR (1024) NULL,
-    CONSTRAINT [PK_Cases] PRIMARY KEY CLUSTERED ([CaseKey] ASC)
+    [Comments]                         VARCHAR (1024) NULL
 );
 
 
