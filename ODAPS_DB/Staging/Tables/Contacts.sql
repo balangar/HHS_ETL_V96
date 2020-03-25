@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Staging].[Contacts] (
-    [ContactKey]                     INT            IDENTITY (1, 1) NOT NULL,
+    [ContactKey]                     INT            IDENTITY (1, 1) NOT NULL PRIMARY KEY,
     [SysInsertUser]                  VARCHAR (18)   CONSTRAINT [DF__tmp_ms_xx__SysIn__4CA06362] DEFAULT ('System') NOT NULL,
     [SysInsertDate]                  DATETIME       CONSTRAINT [DF__tmp_ms_xx__SysIn__4D94879B] DEFAULT (getdate()) NOT NULL,
     [HashSignature]                  AS             HashBytes('SHA1', 
@@ -82,12 +82,11 @@
     [Veteran_Status__c]              VARCHAR (255)  NULL,
     [Bed_Bugs__c]                    BIT            NULL,
 
-    [IsValid]                        BIT            CONSTRAINT [DF_Contacts_IsValid] DEFAULT ((1)) NOT NULL,
-    [IsLoaded]                       BIT            CONSTRAINT [DF_Contacts_IsLoaded_1] DEFAULT ((0)) NOT NULL,
-    [LoadDate]                       DATETIME       CONSTRAINT [DF_Contacts_IsLoaded] DEFAULT ((0)) NULL,
-    [Comments]                       VARCHAR (1024) NULL,
+    [IsValid]                        BIT            NOT NULL DEFAULT 1,
+    [IsLoaded]                       BIT            NOT NULL DEFAULT 0,
+    [LoadDate]                       DATETIME       NOT NULL DEFAULT '1900-01-01',
 
-    CONSTRAINT [PK_Contacts] PRIMARY KEY CLUSTERED ([ContactKey] ASC)
+    [Comments]                       VARCHAR (1024) NULL
 );
 
 

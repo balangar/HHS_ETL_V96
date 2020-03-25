@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Staging].[CaseNotes](
-	[CaseNoteKey]								[int] IDENTITY(1,1) NOT NULL,
+	[CaseNoteKey]								[int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[SysInsertUser]								[varchar](50) NOT NULL DEFAULT 'System',
 	[SysInsertDate]								[datetime] NOT NULL DEFAULT getdate(),
 	[HashSignature]								AS	HashBytes('SHA1', 
@@ -90,7 +90,5 @@
     [IsValid]									BIT				NOT NULL	DEFAULT 1,									
     [IsLoaded]									BIT				NOT NULL	DEFAULT 0,
     [LoadDate]									DATETIME		NOT NULL	DEFAULT '1900-01-01',
-    [Comments]									VARCHAR (1024) NULL,
-
- CONSTRAINT [PK_CaseNotes] PRIMARY KEY CLUSTERED ([CaseNoteKey] ASC)
+    [Comments]									VARCHAR (1024) NULL
  );

@@ -46,9 +46,10 @@
 
     [ManagerID]        VARCHAR (18)   NULL,
     [Supervisor__c]    VARCHAR (18)   NULL,
-    [IsValid]          BIT            CONSTRAINT [DF_Users_IsValid] DEFAULT ((1)) NOT NULL,
-    [IsLoaded]         BIT            CONSTRAINT [DF_Users_IsLoaded] DEFAULT ((0)) NOT NULL,
-    [LoadDate]         DATETIME       CONSTRAINT [DF_Users_LoadDate] DEFAULT ('1900-01-01') NULL,
+    [IsValid]          BIT            NOT NULL DEFAULT 1,
+    [IsLoaded]         BIT            NOT NULL DEFAULT 0,
+    [LoadDate]         DATETIME       NOT NULL DEFAULT   '1900-01-01',
+
     [Comments]         VARCHAR (1024) NULL
 );
 
