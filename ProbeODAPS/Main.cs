@@ -10,7 +10,6 @@ using System.Configuration;
 using System.IO;
 
 using ProbeODAPS.sforce;
-using System.Text;
 
 namespace ProbeODAPS
 {
@@ -183,8 +182,8 @@ namespace ProbeODAPS
 			}
 			return exitStatus;
 		}
-		private static int RunRepl(ReplOptions o, SoapClient endPointClient)
-		{
+		private static int RunRepl(SoapClient endPointClient)
+        {
 			while (true)
 			{
 				bool needHeader;
@@ -394,7 +393,7 @@ namespace ProbeODAPS
 							(ExtractOptions o) => ExtractSFObjects(o, sfObjectQueries, EndpointClient),
 							(ListOptions o) => ListSFObjects(o, EndpointClient),
 							(CountOptions o) => CountSFObjects(o, EndpointClient),
-							(ReplOptions o) => RunRepl(o, EndpointClient),
+							(ReplOptions o) => RunRepl(EndpointClient),
 							errs => 1);
 
 				}
