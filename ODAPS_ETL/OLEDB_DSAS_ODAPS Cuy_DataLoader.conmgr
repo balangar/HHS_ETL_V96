@@ -1,16 +1,18 @@
 <?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
-  DTS:ObjectName="OLEDB_MS-DCFS-PSQL1 DSAS_ODAPS"
+  DTS:ObjectName="OLEDB_DSAS_ODAPS Cuy_DataLoader"
   DTS:DTSID="{092EB4A9-963C-4427-B035-E559179E78E5}"
   DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=DSAS_ODAPS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
         Sensitive="1"
-        p4:Salt="VGjBFIQBCg=="
-        p4:IV="HrviHLw5GL4=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">mn+9RQGb5pHrhsfi7pHMw46iUB4OjJ8L7MHrz9q0UgGACPY+EBInJfH4ZdnYSU1jFmi8veGRfbCEXHHO0QdTaOz+JQ5VXrG9D+M4zKIgoYmoAZqhHZosxERb2GhH91a9Gzq1oyXkym9nU4JFFqdY3qveRfQeZo+v9JBNidEEdzChD6R+4HiadQ==</DTS:Password>
+        p4:Salt="+BEpmrY/jA=="
+        p4:IV="CAUqiKyVra4=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">i9a4svLw9/ctbrNe4ojAKZ6aVLcI28XwADiDpaNLEXeYnVg7ofov8vibWN5Tj71+1p+yQ0BmxqsmKhX0OVkHM4g4gnYy1Vsa3tygFdbKAP7THb+QFWEXzFPUtlvQUs1nSxkW6yqC3bQfVT1jtMpdeUsbTynhkvzaTOLG8lcjxOLwuSgEypgrhg==</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

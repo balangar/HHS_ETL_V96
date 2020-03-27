@@ -7,16 +7,36 @@
   DTS:CreatorName="CUYAHOGA\GREENG"
   DTS:DTSID="{C3AB7866-291D-4A9D-A0DF-1AA62773E7C2}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="Stage-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{62F3BF97-4020-4B56-A86C-B5511BD5E990}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{C88DB35E-F798-4C17-95A4-42B8FA5D7213}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C68E7CD-E860-4ED8-B4AB-8318CC0691E1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">APS_Case__c.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59261AC2-D872-4D64-B269-DC68362BBAA3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::WorkingDirectory] +&quot;\\&quot;+ @[User::ExtractFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractFileSpec">
+      <DTS:VariableValue
+        DTS:DataType="8">\\MS-CJFS-SIS\Source\Staging\Working\Extract-ODAPS\APS_Case__c.csv</DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{D3C4484B-34CE-449E-81F1-D10BF4751343}"
@@ -2065,7 +2085,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 <connection
                   refId="Package\Import Staging Cases\Staging Cases.Connections[IDbConnection]"
                   connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerRefId="Project.ConnectionManagers[DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -2675,12 +2695,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\Conditional Truncate Staging Cases"
           TopLeft="533,81" />
         <NodeLayout
-          Size="180,42"
+          Size="185,42"
           Id="Package\Import Staging Cases"
           TopLeft="564,198" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="654.75,123">
+          TopLeft="656,123">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2709,6 +2729,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="145,42"
+          Id="Package\Import Staging Cases\Staging Cases"
+          TopLeft="601,356" />
+        <NodeLayout
           Size="152,42"
           Id="Package\Import Staging Cases\SF Case Extract"
           TopLeft="608,122" />
@@ -2716,32 +2740,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Size="174,42"
           Id="Package\Import Staging Cases\Parse Contact Name"
           TopLeft="609,233" />
-        <NodeLayout
-          Size="145,42"
-          Id="Package\Import Staging Cases\Staging Cases"
-          TopLeft="601,356" />
-        <EdgeLayout
-          Id="Package\Import Staging Cases.Paths[Output 0]"
-          TopLeft="675.75,275">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,81"
-              Start="0,0"
-              End="0,73.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,73.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Import Staging Cases.Paths[Flat File Source Output]"
           TopLeft="681,164">
@@ -2756,6 +2754,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import Staging Cases.Paths[Output 0]"
+          TopLeft="675.75,275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
