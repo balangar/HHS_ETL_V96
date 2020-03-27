@@ -12,8 +12,8 @@
   DTS:ObjectName="Stage-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{C88DB35E-F798-4C17-95A4-42B8FA5D7213}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{D95C785C-B8F9-453B-8D50-D5281208A64B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1805,6 +1805,160 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                           name="UseBinaryFormat">false</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Stage__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Case_Stage__c]"
+                      length="255"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Stage__c]"
+                      name="Case_Stage__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Days_Open__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Days_Open__c]"
+                      length="50"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Days_Open__c]"
+                      name="Days_Open__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Date_Case_Closed__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Date_Case_Closed__c]"
+                      length="50"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Date_Case_Closed__c]"
+                      name="Date_Case_Closed__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Report_Effective_Date_Time__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Report_Effective_Date_Time__c]"
+                      length="50"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Report_Effective_Date_Time__c]"
+                      name="Report_Effective_Date_Time__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Screen_Out_Reason__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Screen_Out_Reason__c]"
+                      length="255"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Screen_Out_Reason__c]"
+                      name="Screen_Out_Reason__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Screened_Out_Date_Time__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Screened_Out_Date_Time__c]"
+                      length="50"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Screened_Out_Date_Time__c]"
+                      name="Screened_Out_Date_Time__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Status__c]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Status__c]"
+                      length="255"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Status__c]"
+                      name="Status__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2016,6 +2170,48 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="str"
                       length="50"
                       name="Case_Decision_Date_Time__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Case_Stage__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="Case_Stage__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Days_Open__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Days_Open__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Date_Case_Closed__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Date_Case_Closed__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Report_Effective_Date_Time__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Report_Effective_Date_Time__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Screen_Out_Reason__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="Screen_Out_Reason__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Screened_Out_Date_Time__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Screened_Out_Date_Time__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].ExternalColumns[Status__c]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="Status__c" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2381,6 +2577,62 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Decision_Date_Time__c]"
                       lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Decision_Date_Time__c]" />
                     <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Case_Stage__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Case_Stage__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Stage__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Case_Stage__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Days_Open__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Days_Open__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Days_Open__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Days_Open__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Date_Case_Closed__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date_Case_Closed__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Date_Case_Closed__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Date_Case_Closed__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Report_Effective_Date_Time__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Report_Effective_Date_Time__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Report_Effective_Date_Time__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Report_Effective_Date_Time__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Screen_Out_Reason__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Screen_Out_Reason__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Screen_Out_Reason__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Screen_Out_Reason__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Screened_Out_Date_Time__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Screened_Out_Date_Time__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Screened_Out_Date_Time__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Screened_Out_Date_Time__c]" />
+                    <inputColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[Status__c]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Status__c"
+                      externalMetadataColumnId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Status__c]"
+                      lineageId="Package\Import Staging Cases\SF Case Extract.Outputs[Flat File Source Output].Columns[Status__c]" />
+                    <inputColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].Columns[ContactPersonID]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -2467,6 +2719,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="bool"
                       name="IsDeleted" />
                     <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Status__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Case_Stage__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="Case_Stage__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Date_Case_Closed__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Date_Case_Closed__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Days_Open__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Days_Open__c" />
+                    <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
                       dataType="wstr"
                       length="80"
@@ -2539,6 +2811,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="bool"
                       name="Physical_Abuse__c" />
                     <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Report_Effective_Date_Time__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Report_Effective_Date_Time__c" />
+                    <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Reporting_Party_Agency_Name__c]"
                       dataType="wstr"
                       length="255"
@@ -2548,6 +2825,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="wstr"
                       length="18"
                       name="Reporting_Party_Name__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Screen_Out_Reason__c]"
+                      dataType="wstr"
+                      length="1300"
+                      name="Screen_Out_Reason__c" />
+                    <externalMetadataColumn
+                      refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Screened_Out_Date_Time__c]"
+                      dataType="wstr"
+                      length="50"
+                      name="Screened_Out_Date_Time__c" />
                     <externalMetadataColumn
                       refId="Package\Import Staging Cases\Staging Cases.Inputs[ADO NET Destination Input].ExternalColumns[Self_Neglect__c]"
                       dataType="bool"
