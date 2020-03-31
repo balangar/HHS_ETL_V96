@@ -17,7 +17,14 @@
     [OwnerId]                          CHAR (18)   NOT NULL,
     [RecordTypeID]                     CHAR (18)   NULL,
     [Owner_County__c]                  VARCHAR (255)  NULL,
+
     [IsDeleted]                        BIT            NOT NULL,
+
+    [Status__c]						   VARCHAR (255)  NULL,
+    [Case_Stage__c]					   VARCHAR (255)  NULL,
+    [Date_Case_Closed__c]			   VARCHAR (50)	  NULL,
+    [Days_Open__c]					   VARCHAR (50)	  NULL,
+
     [Name]                             VARCHAR (80)   NULL,
     [ContactPersonID]                  VARCHAR (50)   NULL,
     [CaseSeqNo]                        VARCHAR (30)   NULL,
