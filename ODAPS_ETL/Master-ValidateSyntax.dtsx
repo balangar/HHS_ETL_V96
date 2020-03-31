@@ -7,32 +7,17 @@
   DTS:CreatorName="CUYAHOGA\GREENG"
   DTS:DTSID="{EA569011-A8D7-417B-BD30-73ACF8169238}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LastModifiedProductVersion="14.0.3002.106"
   DTS:LocaleID="1033"
   DTS:ObjectName="Master-ValidateSyntax"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{CC658C08-EA12-4345-A232-4318FDECB134}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{8D364F0E-11C0-4207-89BF-6C0BABBFF7CE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Placeholder"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{7B8EDAFF-3B08-4900-BB5F-1F87AEB5C236}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Placeholder"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1" />
-      </DTS:ObjectData>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Validate Accounts"
       DTS:CreationName="Microsoft.ExecutePackageTask"
@@ -121,14 +106,6 @@
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
-      DTS:CreationName=""
-      DTS:DTSID="{55255747-64C9-4EB7-85B0-E08D00E7786E}"
-      DTS:From="Package\Placeholder"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
-      DTS:To="Package\Validate Accounts" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{F46A20BF-C2A8-4971-97A4-318243181B71}"
@@ -172,55 +149,33 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="133,42"
-          Id="Package\Placeholder"
-          TopLeft="590,65" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="162,42"
           Id="Package\Validate Accounts"
-          TopLeft="579,197" />
+          TopLeft="574,34" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Validate CaseNotes"
+          TopLeft="572,306" />
         <NodeLayout
           Size="183,42"
           Id="Package\Validate Casses"
-          TopLeft="382,468" />
+          TopLeft="377,305" />
         <NodeLayout
           Size="160,42"
           Id="Package\Validate Contacts"
-          TopLeft="577,325" />
+          TopLeft="572,162" />
         <NodeLayout
           Size="192,42"
           Id="Package\Validate Users"
-          TopLeft="764,465" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="658.25,107">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,90"
-              Start="0,0"
-              End="0,82.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,82.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="759,302" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="658.5,239">
+          TopLeft="653.5,76">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,86"
               Start="0,0"
               End="0,78.5">
@@ -239,10 +194,10 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="657,367">
+          TopLeft="652,204">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-183.5,101"
               Start="0,0"
               End="-183.5,93.5">
@@ -273,10 +228,10 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="656.333333333333,367">
+          TopLeft="651.333333333333,204">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="203.666666666667,98"
               Start="0,0"
               End="203.666666666667,90.5">
@@ -305,16 +260,12 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="169,42"
-          Id="Package\Validate CaseNotes"
-          TopLeft="577,469" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="659.25,367">
+          TopLeft="654.25,204">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,102"
               Start="0,0"
               End="0,94.5">

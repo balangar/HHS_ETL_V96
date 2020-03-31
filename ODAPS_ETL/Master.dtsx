@@ -7,13 +7,13 @@
   DTS:CreatorName="CUYAHOGA\GREENG"
   DTS:DTSID="{E8F78E30-F937-4549-B9DE-A3A29C55D204}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{789FB829-08A1-4716-B871-2DBAFBFDF332}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{7774ED78-9B49-4B12-A283-F0DBDE6FE7AB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />

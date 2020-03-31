@@ -7,16 +7,36 @@
   DTS:CreatorName="CUYAHOGA\GREENG"
   DTS:DTSID="{732CB6D7-8CA0-4ED6-826D-EA3F5F755CD6}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1033"
   DTS:ObjectName="Stage_Accounts"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{094BB7C9-8B49-4693-9222-07E83B3E4CDD}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{A79C3E19-0044-458A-A8CB-343392970885}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56C50C7A-6D16-41C4-BC21-F79DC7246B82}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Account.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5262A973-543D-4381-9C13-EB57DEE515B6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::WorkingDirectory] +&quot;\\&quot;+ @[User::ExtractFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractFileSpec">
+      <DTS:VariableValue
+        DTS:DataType="8">\\MS-CJFS-SIS\Source\Staging\Working\Extract-ODAPS\Account.csv</DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{79208ED9-17B6-40A1-A4E1-2292FF9005CE}"
@@ -640,7 +660,7 @@
                 <connection
                   refId="Package\Import Staging Accounts\Staging Accounts.Connections[IDbConnection]"
                   connectionManagerID="{7856EB34-71E4-475D-8EC9-70043F980BF7}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[MS-DCFS-PSQL1 DSAS_ODAPS  Cuy_DataLoader]"
+                  connectionManagerRefId="Project.ConnectionManagers[DSAS_ODAPS  Cuy_DataLoader]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
