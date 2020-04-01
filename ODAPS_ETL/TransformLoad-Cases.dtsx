@@ -12,8 +12,8 @@
   DTS:ObjectName="TransformLoad-Cases"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{4C62423C-3CA2-44FD-96E5-FA4CB19B0A3E}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{BAC01DC7-1008-4116-B772-82D9EA4812E1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -78,23 +78,23 @@
           Id="Package\Merge Cases"
           TopLeft="427,70" />
         <NodeLayout
-          Size="222,42"
+          Size="189,42"
           Id="Package\Set Staging Cases Load Status"
-          TopLeft="389,217" />
+          TopLeft="400,201" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="498.25,112">
+          TopLeft="495.5,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,105"
+              EndConnector="0,89"
               Start="0,0"
-              End="0,97.5">
+              End="0,81.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,97.5" />
+                    End="0,81.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
