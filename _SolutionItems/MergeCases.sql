@@ -22,6 +22,11 @@ MERGE
 				
 				,Target.[IsDeleted]	= [Source].IsDeleted
 				
+				,Target.[Status__c]				= [Source].[Status__c]
+				,Target.[Case_Stage__c]			= [Source].[Case_Stage__c]
+				,Target.[Date_Case_Closed__c]	= [Source].[Date_Case_Closed__c]
+				,Target.Days_Open__c			= [Source].[Days_Open__c]
+
 				,Target.[Referral_Submitted_Date_Time__c]	= [Source].Referral_Submitted_Date_Time__c
 				,Target.[Case_Decision_Date_Time__c]		= [Source].Case_Decision_Date_Time__c
 				
@@ -49,8 +54,13 @@ MERGE
 				,Target.[Gender_Code__c]					= [Source].Gender_Code__c
 				,Target.[Marital_Status_Code__c]			= [Source].Marital_Status_Code__c
 				,Target.[Physical_Abuse__c]					= [Source].Physical_Abuse__c
+
+				,Target.[Report_Effective_Date_Time__c]		= [Source].[Report_Effective_Date_Time__c]
 				,Target.[Reporting_Party_Agency_Name__c]	= [Source].Reporting_Party_Agency_Name__c
 				,Target.[Reporting_Party_Name__c]			= [Source].Reporting_Party_Name__c
+
+				,Target.[Screen_Out_Reason__c]		= [Source].[Screen_Out_Reason__c]
+				,Target.[Screened_Out_Date_Time__c]	= [Source].[Screened_Out_Date_Time__c]
 				
 				,Target.[Self_Neglect__c]					= [Source].Self_Neglect__c
 				,Target.[Sexual_Abuse__c]					= [Source].Sexual_Abuse__c
@@ -74,13 +84,17 @@ MERGE
 		( ID,SysInsertDate,SysModifyDate,HashSignature,
 		  CreatedByID,CreatedDate,LastModifiedByID,LastModifiedDate,SystemModstamp,
 		  IsDeleted,
+		  Status__C,Case_Stage__c,Date_Case_Closed__c,Days_Open__c,
 		  OwnerId,RecordTypeID,Owner_County__c,[Name],
 		  ContactPersonID,CaseSeqNo,
 		  Approximate_Age__c,
 		  Caretaker_Neglect__c,Case_Closed_Reason__c,	  
 		  Client_Address__c,Client_Name__c,Client_s_Age__c,Client_s_Home_Phone_Number__c,Date_of_Birth__c,
-		  Exploitation__c,Gender_Code__c,Marital_Status_Code__c,Physical_Abuse__c,Reporting_Party_Agency_Name__c,
-		  Reporting_Party_Name__c,Self_Neglect__c,Sexual_Abuse__c,Supervisor_E_mail__c,Supervisor_Name__c,Supervisor__c,
+		  Exploitation__c,Gender_Code__c,Marital_Status_Code__c,Physical_Abuse__c,
+		  Report_Effective_Date_Time__c,Reporting_Party_Agency_Name__c,
+		  Reporting_Party_Name__c,
+		  Screen_Out_Reason__c,Screened_Out_Date_Time__c,
+		  Self_Neglect__c,Sexual_Abuse__c,Supervisor_E_mail__c,Supervisor_Name__c,Supervisor__c,
 		  Hoarding_or_animal_hoarding__c,Emotional_Verbal_Abuse__c,Referral_Submitted_Date_Time__c,Bed_Bugs__c,
 		  Substance_abuse__c,Diagnosed_Mental_Illness_Info__c,Diagnosed_Mental_Illness__c,Case_Decision_Date_Time__c
 		)
@@ -89,13 +103,17 @@ MERGE
 			[Source].ID, [Source].SysInsertDate, [Source].SysInsertDate, [Source].HashSignature,
 			[Source].CreatedById, [Source].CreatedDate, [Source].LastModifiedById, [Source].LastModifiedDate,[Source].SystemModstamp, 
 			[Source].IsDeleted,	
+			[Source].Status__c,[Source].Case_Stage__c,[Source].Date_Case_Closed__c,[Source].Days_Open__c,
 			[Source].OwnerId,[Source].RecordTypeID,[Source].Owner_County__c,[Source].[Name],
 			[Source].ContactPersonID,[Source].CaseSeqNo,
 			[Source].Approximate_Age__c,
 			[Source].Caretaker_Neglect__c,[Source].Case_Closed_Reason__c,
 			[Source].Client_Address__c,[Source].Client_Name__c,[Source].Client_s_Age__c,[Source].Client_s_Home_Phone_Number__c,[Source].Date_of_Birth__c,
-			[Source].Exploitation__c,[Source].Gender_Code__c,[Source].Marital_Status_Code__c,[Source].Physical_Abuse__c,[Source].Reporting_Party_Agency_Name__c,
-			[Source].Reporting_Party_Name__c,[Source].Self_Neglect__c,[Source].Sexual_Abuse__c,[Source].Supervisor_E_mail__c,[Source].Supervisor_Name__c,[Source].Supervisor__c,
+			[Source].Exploitation__c,[Source].Gender_Code__c,[Source].Marital_Status_Code__c,[Source].Physical_Abuse__c,
+			[Source].Report_Effective_Date_Time__c,[Source].Reporting_Party_Agency_Name__c,
+			[Source].Reporting_Party_Name__c,
+			[Source].Screen_Out_Reason__c,[Source].Screened_Out_Date_Time__c,
+			[Source].Self_Neglect__c,[Source].Sexual_Abuse__c,[Source].Supervisor_E_mail__c,[Source].Supervisor_Name__c,[Source].Supervisor__c,
 			[Source].Hoarding_or_animal_hoarding__c,[Source].Emotional_Verbal_Abuse__c,[Source].Referral_Submitted_Date_Time__c,[Source].Bed_Bugs__c,
 			[Source].Substance_abuse__c,[Source].Diagnosed_Mental_Illness_Info__c,[Source].Diagnosed_Mental_Illness__c,[Source].Case_Decision_Date_Time__c
 		)
