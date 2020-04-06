@@ -172,6 +172,8 @@
     <Build Include="dbo\Views\vw_Case_to_CaseNotes_Staging.sql" />
     <Build Include="dbo\Views\vw_Case_to_Casenotes.sql" />
     <Build Include="dbo\Views\vw_Beese_Cases_Live.sql" />
+    <Build Include="_Auxiliary\AddColumns,dbo_Cases.sql" />
+    <Build Include="_Auxiliary\Recreate_Staging_Cases.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\ODAPS_DEV_Recreate.publish.xml" />
