@@ -16,16 +16,16 @@
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{56ecc2a5-5763-4668-8fdd-2c22a2e897ee}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">ODAPS_ETL</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMinor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionComments">
           </SSIS:Property>
           <SSIS:Property SSIS:Name="CreationDate">2019-04-30T11:08:46.9536851-04:00</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
-          <SSIS:Property SSIS:Name="Description">3.1.1</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="7J1PawXTXA==" SSIS:IV="whK9XaTfKoQ=">UWR+m+TriKe04u1n0jKzIBRfuMgGpQPlhhC4WWX7dxJEaWwFMe2E7Y8tr3RN+0Wq2QzHQjvBN3PZZCnafZe4i7p6UIsxvaooYTEXruzq0dAFkMeSQv9uiA1XUo5vWKE+xoTf53t2Hg4tE2WK0kAyZp66N0pU7v/DKNdWsiemFkAM+87yuD8E9g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="Description">X 4.0.0</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="Ox8nOHkyXw==" SSIS:IV="vUN0hEUl11s=">gc1f9v67MZzJvL4YnhZgGz8I8wqgMhJesENNBqe6nXujhG47OJQ4zN3O20ffB43YTpCMW33BgkCLN2dXhtwx6Wjhp1CPVCNAK7/OYdhrENWECGa+pi3XgVF8ekRvO0Fwtx+yJEmgG+3bfSqHidJ+vRYjZX1DMk5I74sl6twfxHb+GHrQtn+w6w==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -528,7 +528,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Production\Working\Extract-ODAPS\APS_Case__c.csv</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">\\MS-CJFS-SIS\Source\Staging\Working\Extract-ODAPS\APS_Case__c.csv</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -1339,10 +1339,10 @@
                 <SSIS:Property SSIS:Name="Name">Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">27</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{7774ED78-9B49-4B12-A283-F0DBDE6FE7AB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{98E6AB12-FF46-4516-B01E-0E7795149ED8}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
