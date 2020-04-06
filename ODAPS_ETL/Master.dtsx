@@ -12,8 +12,8 @@
   DTS:ObjectName="Master"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{7774ED78-9B49-4B12-A283-F0DBDE6FE7AB}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{98E6AB12-FF46-4516-B01E-0E7795149ED8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -22,7 +22,6 @@
       DTS:refId="Package\Master Extract"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{A99CCC3C-09F1-4837-94D9-251D4E6FC01D}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
