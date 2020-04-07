@@ -28,7 +28,6 @@ namespace Prepare_FinancialNotes
             .Attribute("Date", BlockDate);
 
         }
-
         internal static string GetXMLColumn(LogBlock Block)
         {
             XmlOutput xOut;

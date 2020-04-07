@@ -36,7 +36,6 @@ namespace Prepare_FinancialNotes
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
 
         }
-
         private static XmlOutput GetBlockXML(LogBlock FinLogBlock)
         {
 
