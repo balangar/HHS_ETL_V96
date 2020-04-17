@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 
 using log4net;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Prepare_FinancialNotes
 {
@@ -36,22 +38,8 @@ namespace Prepare_FinancialNotes
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
 
         }
-        private static XmlOutput GetBlockXML(LogBlock FinLogBlock)
-        {
-
-
-            XmlOutput BlockXO = new XmlOutput();
-
-            foreach(LogRecord r in FinLogBlock.LogRecords)
-            {
-
-            }
-
-
-
-            return BlockXO;
-        }
         private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
+
 
         
         internal static int Work()
@@ -62,13 +50,12 @@ namespace Prepare_FinancialNotes
 
             foreach (string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
+
+                PIO.GetArchiveInfo(s);
+
                 string destFileSpec = GetDestinationFileSpec(s);
 
-                foreach (LogBlock b in LogBlock.GetNextLogBlock(s))
-                {
-
-                }
-
+                // Put archive entry
 
                 //CopyFinancialNoteFile(s, destFileSpec);
                 //Logger.InfoFormat(@"{0}", s);

@@ -7,53 +7,48 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Xml.Linq;
 
-
-
 namespace Prepare_FinancialNotes
 {
+    public struct FinFileInfo
+    {
+        public int RecordCount { get; set; }
+        public string CourtIdentifier { get; set; }
+        public string OrderNo { get; set; }
+        public string FirstSequenceNumber { get; set; }
+        public string FirstDate { get; set; }
+        public string LastSequenceNumber { get; set; }
+        public string LastDate { get; set; }
+        public string Order => CourtIdentifier.Trim() + OrderNo.Trim();
+    }
+
     internal class PIO
     {
-        internal static XmlOutput GetRoot(string OrderNumber, string BlockDate)
+
+        internal static FinFileInfo GetArchiveInfo(string FinFileSpec)
         {
+            string l;
 
-            //var dict = new Dictionary<string, Func<string, LogEntry>>();
-            //dict.Add("RECIPT", s => new ReciptLogEntry(s));
-            //var entry = dict["RECPT"]("ABC");
- 
+            FinFileInfo f = new FinFileInfo();
 
-            return new XmlOutput()
-            .XmlDeclaration()
-            .Node("FinRecord").Within()
-            .Attribute("OrderNumber", OrderNumber)
-            .Attribute("Date", BlockDate);
+            f.RecordCount = File.ReadLines(FinFileSpec).Count();
 
+            l = File.ReadLines(FinFileSpec).First();
+            f.CourtIdentifier = l.Substring(0, 1);
+            f.OrderNo = l.Substring(1, 15);
+            f.FirstSequenceNumber = l.Substring(17, 5);
+            f.FirstDate = l.Substring(23, 10);
+
+            l = File.ReadLines(FinFileSpec).Last();
+            f.LastSequenceNumber = l.Substring(17, 5);
+            f.LastDate = l.Substring(23, 10);
+
+
+            return f;
         }
-        internal static string GetXMLColumn(LogBlock Block)
-        {
-            XmlOutput xOut;
 
-            //Root
-            xOut = new XmlOutput()      
-                .XmlDeclaration()
-                .Node("FinRecord").Within()
-                .Attribute("OrderNumber", Block.OrderNo)
-                .Attribute("Date", Block.BlockDate);
+        //internal static void PutLogBlock(LogBlock ThisBlock, SqlConnection Conn)
+        //{
 
-
-            foreach (LogRecord r in Block.LogRecords)
-            {
-
-            }
-
-
-            return xOut.GetOuterXml();
-        }
-        internal static void PutLogBlock(LogBlock ThisBlock, SqlConnection Conn)
-        {
-            string xColumn;
-
-            xColumn = GetXMLColumn(ThisBlock);
-
-        }
+        //}
     }
 }
