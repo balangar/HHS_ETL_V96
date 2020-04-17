@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Prepare_FinancialNotes
 {
-    public struct FinFileInfo
+    public struct FineRecordInfo
     {
         public int RecordCount { get; set; }
         public string CourtIdentifier { get; set; }
@@ -24,16 +24,16 @@ namespace Prepare_FinancialNotes
     internal class PIO
     {
 
-        internal static FinFileInfo GetArchiveInfo(string FinFileSpec)
+        internal static FineRecordInfo GetArchiveInfo(string FinFileSpec)
         {
             string l;
 
-            FinFileInfo f = new FinFileInfo();
+            FineRecordInfo f = new FineRecordInfo();
 
             f.RecordCount = File.ReadLines(FinFileSpec).Count();
 
             l = File.ReadLines(FinFileSpec).First();
-            f.CourtIdentifier = l.Substring(0, 1);
+            f.CourtIdentifier = l.Substring(0, 1).Trim();
             f.OrderNo = l.Substring(1, 15);
             f.FirstSequenceNumber = l.Substring(17, 5);
             f.FirstDate = l.Substring(23, 10);
