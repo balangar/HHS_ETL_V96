@@ -6,37 +6,24 @@ namespace Prepare_WIPS
 {
     public struct WIPSRecordInfo
     {
-        public int RecordCount { get; set; }
-        public string CourtIdentifier { get; set; }
-        public string OrderNo { get; set; }
-        public string FirstSequenceNumber { get; set; }
-        public string FirstDate { get; set; }
-        public string LastSequenceNumber { get; set; }
-        public string LastDate { get; set; }
-        public string Order => CourtIdentifier.Trim() + OrderNo.Trim();
+        public string SocSecNo { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
     }
 
     internal class PIO
     {
 
-        internal static WIPSRecordInfo GetArchiveInfo(string FinFileSpec)
+        internal static WIPSRecordInfo GetArchiveInfo(string WipsFileSpec)
         {
             string l;
 
             WIPSRecordInfo f = new WIPSRecordInfo();
 
-            f.RecordCount = File.ReadLines(FinFileSpec).Count();
-
-            l = File.ReadLines(FinFileSpec).First();
-            f.CourtIdentifier = l.Substring(0, 1).Trim();
-            f.OrderNo = l.Substring(1, 15);
-            f.FirstSequenceNumber = l.Substring(17, 5);
-            f.FirstDate = l.Substring(23, 10);
-
-            l = File.ReadLines(FinFileSpec).Last();
-            f.LastSequenceNumber = l.Substring(17, 5);
-            f.LastDate = l.Substring(23, 10);
-
+            l = File.ReadLines(WipsFileSpec).First();
+            f.SocSecNo = l.Substring(0, 9);
+            f.LastName = l.Substring(19, 19).Trim();
+            f.FirstName = l.Substring(42, 16).Trim();
 
             return f;
         }
