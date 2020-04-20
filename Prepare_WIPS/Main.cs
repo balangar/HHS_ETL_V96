@@ -8,8 +8,7 @@ using log4net;
 using System.Collections.Generic;
 using System.Linq;
 
-
-namespace Prepare_FinancialNotes
+namespace Prepare_WIPS
 {
     internal class Main
     {
@@ -22,7 +21,7 @@ namespace Prepare_FinancialNotes
         private static string GetDestinationFileSpec(string SourceFileSpec)
         {
             const int NEW_SUBDIRECTORY_COUNT = 1000;
-            const string DESTINATION_ROOT = @"\\ms-hhs-san\ITS\_Archive\OCSS\FinancialNotes";
+            const string DESTINATION_ROOT = @"\\ms-hhs-san\ITS\_Archive\OCSS\WIPS";
 
             int destSubFolder = (FileCount / NEW_SUBDIRECTORY_COUNT) * NEW_SUBDIRECTORY_COUNT;
             string destFilePath = string.Format(@"{0}\{1}", DESTINATION_ROOT, destSubFolder.ToString().PadLeft(6, '0'));
@@ -32,26 +31,24 @@ namespace Prepare_FinancialNotes
             {
                 Directory.CreateDirectory(destFilePath);
 
-                Logger.InfoFormat("Financial File Count: {0}  Destination File Path: {1}", FileCount.ToString(), destFilePath);
+                Logger.InfoFormat("WIPS File Count: {0}  Destination File Path: {1}", FileCount.ToString(), destFilePath);
             }
 
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
 
         }
-        private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
-        private static void WriteFinancialNoteRecord(FineRecordInfo FinInfo, string DestFileSpec)
+        private static void CopyWIPFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
+
+
+        private static void WriteWIPRecord(WIPSRecordInfo WipsInfo, string DestFileSpec)
         {
-            const string cmdText = @"INSERT INTO dbo.FinancialTransactions(RecordCount, CourtIdentifier, OrderNo, FirstSequenceNumber, FirstDate, LastSequenceNumber, LastDate, FilePath, FileName)" + " " +
-                                   @"VALUES(@RecordCount, @CourtIdentifier, @OrderNo, @FirstSequenceNumber, @FirstDate, @LastSequenceNumber, @LastDate,  @FilePath, @FileName)";
+            const string cmdText = @"INSERT INTO dbo.WIPS(SSN, FirstName, LastName, FilePath, FileName)" + " " +
+                                   @"VALUES(@SSN, @FirstName, @LastName, @FilePath, @FileName)";
             using (var command = new SqlCommand(cmdText, cn))
             {
-                command.Parameters.AddWithValue("@RecordCount", FinInfo.RecordCount);
-                command.Parameters.AddWithValue("@CourtIdentifier", FinInfo.CourtIdentifier);
-                command.Parameters.AddWithValue("@OrderNo", FinInfo.OrderNo);
-                command.Parameters.AddWithValue("@FirstSequenceNumber", FinInfo.FirstSequenceNumber);
-                command.Parameters.AddWithValue("@FirstDate", FinInfo.FirstDate);
-                command.Parameters.AddWithValue("@LastSequenceNumber", FinInfo.LastSequenceNumber);
-                command.Parameters.AddWithValue("@LastDate", FinInfo.LastDate);
+                command.Parameters.AddWithValue("@SSN", WipsInfo.SocSecNo);
+                command.Parameters.AddWithValue("@FirstName", WipsInfo.FirstName);
+                command.Parameters.AddWithValue("@LastName", WipsInfo.LastName);
 
                 command.Parameters.AddWithValue("@FilePath", Path.GetDirectoryName(DestFileSpec));
                 command.Parameters.AddWithValue("@FileName", Path.GetFileName(DestFileSpec));
@@ -61,9 +58,11 @@ namespace Prepare_FinancialNotes
 
         }
         private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec);
+
+
         internal static int Work()
         {
-            const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN";
+            const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\WIPS";
 
             int exitStatus = 0;
 
@@ -74,8 +73,8 @@ namespace Prepare_FinancialNotes
                 string destFileSpec = GetDestinationFileSpec(s);
                 //Logger.InfoFormat(@"{0}", s);
 
-                WriteFinancialNoteRecord(PIO.GetArchiveInfo(s), destFileSpec);
-                CopyFinancialNoteFile(s, destFileSpec);
+                WriteWIPRecord(PIO.GetArchiveInfo(s), destFileSpec);
+                CopyWIPFile(s, destFileSpec);
 
                 if (FileCount++ > 1001) break;
 
