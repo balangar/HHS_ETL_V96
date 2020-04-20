@@ -39,8 +39,6 @@ namespace Prepare_FinancialNotes
 
         }
         private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
-
-
         private static void WriteFinancialNoteRecord(FineRecordInfo FinInfo, string DestFileSpec)
         {
             const string cmdText = @"INSERT INTO dbo.FinancialTransactions(RecordCount, CourtIdentifier, OrderNo, FirstSequenceNumber, FirstDate, LastSequenceNumber, LastDate, FilePath, FileName)" + " " +
@@ -63,7 +61,6 @@ namespace Prepare_FinancialNotes
 
         }
         private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec);
-
         internal static int Work()
         {
             const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN";
@@ -75,10 +72,11 @@ namespace Prepare_FinancialNotes
 
 
                 string destFileSpec = GetDestinationFileSpec(s);
+                //Logger.InfoFormat(@"{0}", s);
+
                 WriteFinancialNoteRecord(PIO.GetArchiveInfo(s), destFileSpec);
                 CopyFinancialNoteFile(s, destFileSpec);
 
-                //Logger.InfoFormat(@"{0}", s);
                 if (FileCount++ > 1001) break;
 
             }
