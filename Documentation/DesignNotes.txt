@@ -1,4 +1,25 @@
-Fri 2019-10-11 :	Mothballing this project as I'm being reassigned to DoIT for work on ERP project.
+Tue 2020-04-14	: Financial note layout (from Marc Alvarez.  See eMail this date, subject "RE: OCSS Archive ...  Financial records") (Best hint EVER!!!)
+
+
+The fields are : 
+	order number+|
+	line number+|
+	date+|
+	type+|
+	formatted data
+
+The copy book for this record type has so many overlays that it's very difficult (at least for me) to make hide or hair of the formatted data.  So, I'm just going to use the bit of info that's invariant.
+In particular, I intend to fetch info from only the first and the last line
+
+
+
+
+Wed 2020-04-08	: Reactivation
+	For Financial notes:
+		embedded in the file name is the order number + a space + number of lines in the file (left pad, zero-filled 4 character string)
+		a given file contains info one and only one order number
+
+Fri 2019-10-11	:	Mothballing this project as I'm being reassigned to DoIT for work on ERP project.
 
 Directory _SCAS
 	Extract from IMS database.

@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 
 using log4net;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Prepare_FinancialNotes
 {
@@ -36,25 +38,32 @@ namespace Prepare_FinancialNotes
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
 
         }
-
-        private static XmlOutput GetBlockXML(LogBlock FinLogBlock)
-        {
-
-
-            XmlOutput BlockXO = new XmlOutput();
-
-            foreach(LogRecord r in FinLogBlock.LogRecords)
-            {
-
-            }
-
-
-
-            return BlockXO;
-        }
         private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
 
-        
+
+        private static void WriteFinancialNoteRecord(FineRecordInfo FinInfo, string DestFileSpec)
+        {
+            const string cmdText = @"INSERT INTO dbo.FinancialTransactions(RecordCount, CourtIdentifier, OrderNo, FirstSequenceNumber, FirstDate, LastSequenceNumber, LastDate, FilePath, FileName)" + " " +
+                                   @"VALUES(@RecordCount, @CourtIdentifier, @OrderNo, @FirstSequenceNumber, @FirstDate, @LastSequenceNumber, @LastDate,  @FilePath, @FileName)";
+            using (var command = new SqlCommand(cmdText, cn))
+            {
+                command.Parameters.AddWithValue("@RecordCount", FinInfo.RecordCount);
+                command.Parameters.AddWithValue("@CourtIdentifier", FinInfo.CourtIdentifier);
+                command.Parameters.AddWithValue("@OrderNo", FinInfo.OrderNo);
+                command.Parameters.AddWithValue("@FirstSequenceNumber", FinInfo.FirstSequenceNumber);
+                command.Parameters.AddWithValue("@FirstDate", FinInfo.FirstDate);
+                command.Parameters.AddWithValue("@LastSequenceNumber", FinInfo.LastSequenceNumber);
+                command.Parameters.AddWithValue("@LastDate", FinInfo.LastDate);
+
+                command.Parameters.AddWithValue("@FilePath", Path.GetDirectoryName(DestFileSpec));
+                command.Parameters.AddWithValue("@FileName", Path.GetFileName(DestFileSpec));
+
+                command.ExecuteNonQuery();
+            }
+
+        }
+        private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec);
+
         internal static int Work()
         {
             const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN";
@@ -63,17 +72,14 @@ namespace Prepare_FinancialNotes
 
             foreach (string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
+
+
                 string destFileSpec = GetDestinationFileSpec(s);
+                WriteFinancialNoteRecord(PIO.GetArchiveInfo(s), destFileSpec);
+                CopyFinancialNoteFile(s, destFileSpec);
 
-                foreach (LogBlock b in LogBlock.GetNextLogBlock(s))
-                {
-
-                }
-
-
-                //CopyFinancialNoteFile(s, destFileSpec);
                 //Logger.InfoFormat(@"{0}", s);
-                FileCount++;
+                if (FileCount++ > 1001) break;
 
             }
             cn.Close();
