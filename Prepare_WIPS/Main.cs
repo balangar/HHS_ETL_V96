@@ -1,12 +1,9 @@
 ﻿using System.IO;
-using System;
 using System.Reflection;
 
 using System.Data.SqlClient;
 
 using log4net;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Prepare_WIPS
 {
@@ -37,7 +34,8 @@ namespace Prepare_WIPS
             return Path.Combine(destFilePath, Path.GetFileName(SourceFileSpec));
 
         }
-        private static void CopyWIPFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
+        private static void CopyFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
+        private static void MoveFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec);
 
 
         private static void WriteWIPRecord(WIPSRecordInfo WipsInfo, string DestFileSpec)
@@ -57,9 +55,6 @@ namespace Prepare_WIPS
             }
 
         }
-        private static void MoveCaseNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec);
-
-
         internal static int Work()
         {
             const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\WIPS";
@@ -74,10 +69,10 @@ namespace Prepare_WIPS
                 //Logger.InfoFormat(@"{0}", s);
 
                 WriteWIPRecord(PIO.GetArchiveInfo(s), destFileSpec);
-                CopyWIPFile(s, destFileSpec);
+                MoveFile(s, destFileSpec);
 
-                if (FileCount++ > 1001) break;
-
+                //if (FileCount++ > 1001) break;
+                FileCount++;
             }
             cn.Close();
             return exitStatus;
