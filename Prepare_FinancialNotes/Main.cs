@@ -39,6 +39,7 @@ namespace Prepare_FinancialNotes
 
         }
         private static void CopyFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
+        private static void MoveFinancialNoteFile(string SourceFileSpec, string DestinationFileSpec) => File.Move(SourceFileSpec, DestinationFileSpec);
         private static void WriteFinancialNoteRecord(FineRecordInfo FinInfo, string DestFileSpec)
         {
             const string cmdText = @"INSERT INTO dbo.FinancialTransactions(RecordCount, CourtIdentifier, OrderNo, FirstSequenceNumber, FirstDate, LastSequenceNumber, LastDate, FilePath, FileName)" + " " +
@@ -66,6 +67,7 @@ namespace Prepare_FinancialNotes
             const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\OFIN";
 
             int exitStatus = 0;
+            FileCount = 751;    // Trying to speed things up with "copy" rather than move.  When I stopped, I had copied 751 files and am about to move the 752nd.  [geg]
 
             foreach (string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
@@ -77,7 +79,8 @@ namespace Prepare_FinancialNotes
                 WriteFinancialNoteRecord(PIO.GetArchiveInfo(s), destFileSpec);
                 CopyFinancialNoteFile(s, destFileSpec);
 
-                if (FileCount++ > 1001) break;
+                //if (FileCount++ > 1001) break;
+                FileCount++;
 
             }
             cn.Close();
