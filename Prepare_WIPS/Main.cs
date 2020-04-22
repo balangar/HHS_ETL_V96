@@ -35,7 +35,7 @@ namespace Prepare_WIPS
 
         }
         private static void CopyFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec, true);
-        private static void MoveFile(string SourceFileSpec, string DestinationFileSpec) => File.Copy(SourceFileSpec, DestinationFileSpec);
+        private static void MoveFile(string SourceFileSpec, string DestinationFileSpec) => File.Move(SourceFileSpec, DestinationFileSpec);
 
 
         private static void WriteWIPRecord(WIPSRecordInfo WipsInfo, string DestFileSpec)
@@ -60,6 +60,7 @@ namespace Prepare_WIPS
             const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\WIPS";
 
             int exitStatus = 0;
+            FileCount = 0;
 
             foreach (string s in Directory.EnumerateFiles(sourcePath, "*.txt", SearchOption.TopDirectoryOnly))
             {
