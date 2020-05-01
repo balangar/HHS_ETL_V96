@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_CaseNotes", "Prepar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_FinancialNotes", "Prepare_FinancialNotes\Prepare_FinancialNotes.csproj", "{B2B3AE27-E042-4AFE-A568-8C10CB90870E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prepare_WIPS", "Prepare_WIPS\Prepare_WIPS.csproj", "{CC16442E-D51B-42BF-AE21-038D457DE7D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,12 @@ Global
 		{B2B3AE27-E042-4AFE-A568-8C10CB90870E}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{B2B3AE27-E042-4AFE-A568-8C10CB90870E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B3AE27-E042-4AFE-A568-8C10CB90870E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC16442E-D51B-42BF-AE21-038D457DE7D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC16442E-D51B-42BF-AE21-038D457DE7D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC16442E-D51B-42BF-AE21-038D457DE7D5}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC16442E-D51B-42BF-AE21-038D457DE7D5}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{CC16442E-D51B-42BF-AE21-038D457DE7D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC16442E-D51B-42BF-AE21-038D457DE7D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
