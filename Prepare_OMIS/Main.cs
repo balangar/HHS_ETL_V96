@@ -19,10 +19,7 @@ namespace Prepare_OMIS
 
             PIO.Open(sourceFileSpec);
 
-            foreach(var s in PIO.GetNextRecord())
-            {
-                Logger.Info(s);
-            }
+            PIO.GetNextRecord();
 
             PIO.Close();
 
