@@ -15,7 +15,16 @@ namespace Prepare_OMIS
 
         internal static int Work()
         {
-            const string sourcePath = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\_ORDR\DATAOMIS_CleansedAndDelimited.csv";
+            const string sourceFileSpec = @"\\ms-hhs-psql2\c$\SqlDB\SIS\Source\Stage\Working\LoadOCSS-Archive\_ORDR\DATAOMIS_CleansedAndDelimited.csv";
+
+            PIO.Open(sourceFileSpec);
+
+            foreach(var s in PIO.GetNextRecord())
+            {
+                Logger.Info(s);
+            }
+
+            PIO.Close();
 
             return 1;
         }
