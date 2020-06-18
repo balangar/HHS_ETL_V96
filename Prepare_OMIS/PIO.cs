@@ -12,6 +12,7 @@ using CsvHelper.Configuration;
 using System.Globalization;
 using System.Security.Cryptography;
 using log4net.Repository.Hierarchy;
+using CsvHelper.Expressions;
 
 namespace Prepare_OMIS
 {
@@ -35,6 +36,8 @@ namespace Prepare_OMIS
             };
 
             config.RegisterClassMap<OT01Map>();
+            config.RegisterClassMap<OT02Map>();
+            config.RegisterClassMap<OT03Map>();
 
 
             StrReader = new StreamReader(InputFileSpec);
@@ -52,6 +55,8 @@ namespace Prepare_OMIS
         internal static void GetRecordLists(out List<OT01> Type1Records)
         {
             var r1 = new List<OT01>();
+            var r2 = new List<OT02>();
+            var r3 = new List<OT03>();
 
             while (CsReader.Read())
             {
@@ -60,6 +65,14 @@ namespace Prepare_OMIS
                     {
                         case "01":
                             r1.Add(CsReader.GetRecord<OT01>());
+                            break;
+
+                        case "02":
+                            r2.Add(CsReader.GetRecord<OT02>());
+                            break;
+
+                        case "03":
+                            r3.Add(CsReader.GetRecord<OT03>());
                             break;
 
                         default:
@@ -119,6 +132,43 @@ namespace Prepare_OMIS
             Map(m => m.AbeyanceIndicator).Index(9);
             Map(m => m.OutOfStateSONum).Index(10);
 
+        }
+    }
+    public class OT02
+    {
+        public string CaseNumber { get; set; }
+        public string AmountOrderHold { get; set; }
+        public string AmountODTHold { get; set; }
+        public string AmountIRSHold { get; set; }
+        public string AmountIRSJointHold { get; set; }
+        public string AmountLumpHold { get; set; }
+        public string LastCalcDate { get; set; }
+    }
+    public sealed class OT02Map : ClassMap<OT02>
+    {
+        OT02Map()
+        {
+            Map(m => m.CaseNumber).Index(1);
+            Map(m => m.AmountOrderHold).Index(4);
+            Map(m => m.AmountODTHold).Index(5);
+            Map(m => m.AmountIRSHold).Index(6);
+            Map(m => m.AmountIRSJointHold).Index(7);
+            Map(m => m.AmountLumpHold).Index(8);
+            Map(m => m.LastCalcDate).Index(9);
+
+        }
+    }
+    public class OT03
+    {
+        public string CaseNumber { get; set; }
+        public string Comment { get; set; }
+    }
+    public sealed class OT03Map : ClassMap<OT03>
+    {
+        OT03Map()
+        {
+            Map(m => m.CaseNumber).Index(1);
+            Map(m => m.Comment).Index(4);
         }
     }
 
