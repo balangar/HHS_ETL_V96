@@ -130,6 +130,11 @@ namespace Prepare_OMIS
 
         public static void GetNextRecord()
         {
+            /*
+             * Separate the file into three "piles" -- one for each type of record in the file.
+             * Somehow combine these three "piles' into just one "pile" -- of OMIS (staging) records
+             * Return these (one at a time) to Main
+             */
 
             var r1 = new List<OT01>();
             var r2 = new List<OT02>();
