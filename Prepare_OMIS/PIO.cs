@@ -16,6 +16,7 @@ using CsvHelper.Expressions;
 
 namespace Prepare_OMIS
 {
+
     class PIO
     {
         public static StreamReader StrReader { get; private set; }
@@ -52,55 +53,64 @@ namespace Prepare_OMIS
             StrReader = null;
         }
 
-        internal static void GetSeparatedRecordTypes(out List<OT01> T1Records, out List<OT02> T2Records, out List<OT03> T3Records )
+        internal static void GetSeparatedRecordTypes(out List<OT01> T1Records, out List<OT02> T2Records, out List<OT03> T3Records)
         {
             var r1 = new List<OT01>();
             var r2 = new List<OT02>();
             var r3 = new List<OT03>();
 
-            var dr1 = new Dictionary<string, OT01>();
-            var dup = new Dictionary<string, int>();
+            var dr1 = new Dictionary<int, OT01>();
+            var dr2 = new Dictionary<int, OT02>();
+            var dr3 = new Dictionary<int, OT03>();
 
             string previousCaseNumber = string.Empty;
-            string currentCaseNumber = string.Empty;
+            bool addType3Entry = false;
 
-            //TODO:  Use Case Number + sequence number as key to avoid "duplicates".
-
-            while (CsReader.Read())
+            try
             {
-                currentCaseNumber = CsReader.GetField(1);
-                switch (CsReader.GetField(3))
+                for (int currentGroupNumber = 0; CsReader.Read();)
                 {
-                    case "01":
-                        if(!dr1.TryGetValue(currentCaseNumber, out _))
-                        {
-                            dr1.Add(currentCaseNumber, CsReader.GetRecord<OT01>());
-                        }
-                        else
-                        {
-                            Console.WriteLine(currentCaseNumber);
-                        }
-                       r1.Add(CsReader.GetRecord<OT01>());
-                       break;
+                    if (previousCaseNumber != CsReader.GetField(1))
+                    {
+                        previousCaseNumber = CsReader.GetField(1);
+                        addType3Entry = true;
+                        currentGroupNumber++;
+                    }
+                    else    // possible to have distinct groups for the same consecutive case number.  Example:  A000835801
+                    {
+                        addType3Entry = true;
+                        currentGroupNumber++;
+                    }
 
-                    //case "02":  // For reasons I don't understand, we miss the first (and only the first) type 02 record.  [geg] 2020-06-18
-                    //    r2.Add(CsReader.GetRecord<OT02>());
-                    //    break;
+                    switch (CsReader.GetField(3))
+                    {
+                        case "01":
+                            dr1.Add(currentGroupNumber, CsReader.GetRecord<OT01>());
+                            break;
 
-                    //case "03":  // spot checking file suggests that when there are multiple 03 records all are duplicates of the first. [geg] 2020-06-18
-                    //    if(currentCaseNumber != previousCaseNumber)
-                    //    {
-                    //        previousCaseNumber = currentCaseNumber;
-                    //        r3.Add(CsReader.GetRecord<OT03>());
-                    //    }
-                    //    break;
+                        case "02":  // For reasons I don't understand, we miss the first (and only the first) type 02 record.  [geg] 2020-06-18
+                            dr2.Add(currentGroupNumber, CsReader.GetRecord<OT02>());
+                            break;
 
-                    default:
-                        break;
-                        //throw new InvalidOperationException("Unknown record type: " + CsReader.GetField(3));
+                        case "03":  // Don't add  what will be, as far as I can tell, any duplicate type 3 records for the same group. [geg]
+                            if (addType3Entry)
+                            {
+                                dr3.Add(currentGroupNumber, CsReader.GetRecord<OT03>());
+                                addType3Entry = false;
+                            }
+                            break;
+
+                        default:
+                            throw new InvalidOperationException("Unknown record type: " + CsReader.GetField(3));
+                    }
                 }
-                
+
             }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
             T1Records = r1;
             T2Records = r2;
             T3Records = r3;
