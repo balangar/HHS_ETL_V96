@@ -13,7 +13,7 @@
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private static int Main(string[] args)
+        private static int Main()
         {
             var logRepository = LogManager.GetRepository(Assembly.GetExecutingAssembly());
             var processName = Process.GetCurrentProcess().ProcessName;

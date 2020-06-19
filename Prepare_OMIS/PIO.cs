@@ -65,6 +65,7 @@ namespace Prepare_OMIS
 
             string previousCaseNumber = string.Empty;
             bool addType3Entry = false;
+            bool addType2Entry = false;
 
             try
             {
@@ -74,22 +75,31 @@ namespace Prepare_OMIS
                     {
                         previousCaseNumber = CsReader.GetField(1);
                         addType3Entry = true;
-                        currentGroupNumber++;
-                    }
-                    else    // possible to have distinct groups for the same consecutive case number.  Example:  A000835801
-                    {
-                        addType3Entry = true;
+                        addType2Entry = true;
                         currentGroupNumber++;
                     }
 
                     switch (CsReader.GetField(3))
                     {
-                        case "01":
+                        case "01":       // possible to have distinct groups for the same consecutive case number.  Example:  A000835801.  I am assuming that each new record group always starts with a type 01 record. [geg] 2020-06-19
+                            if (dr1.ContainsKey(currentGroupNumber))
+                            {
+                                addType3Entry = true;
+                                currentGroupNumber++;
+                            }
                             dr1.Add(currentGroupNumber, CsReader.GetRecord<OT01>());
                             break;
 
-                        case "02":  // For reasons I don't understand, we miss the first (and only the first) type 02 record.  [geg] 2020-06-18
-                            dr2.Add(currentGroupNumber, CsReader.GetRecord<OT02>());
+                        /*
+                         * For reasons I don't understand, we miss the first (and only the first) type 02 record.  [geg] 2020-06-18
+                         * It's possible to have multiple 02 records in the same record group. I spot checked a (very) few.  They appear to be duplicates.  Example:  D008935503.    [geg] 2020-06-19.
+                         */
+                        case "02":
+                            if (addType2Entry)
+                            {
+                                dr2.Add(currentGroupNumber, CsReader.GetRecord<OT02>());
+                                addType2Entry = false;
+                            }
                             break;
 
                         case "03":  // Don't add  what will be, as far as I can tell, any duplicate type 3 records for the same group. [geg]
@@ -106,142 +116,119 @@ namespace Prepare_OMIS
                 }
 
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception ex)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
-                throw;
+                throw;  // Gives me a chance to bug hunt before all of the context is lost. [geg]
             }
-            
+
             T1Records = r1;
             T2Records = r2;
             T3Records = r3;
         }
 
-        internal static void CreateRecordsDictionary()
+        public static void GetNextRecord()
         {
+
             var r1 = new List<OT01>();
             var r2 = new List<OT02>();
             var r3 = new List<OT03>();
 
-            var r = new Dictionary<string, OMISRecord>();
 
-            GetSeparatedRecordTypes(out r1, out r2, out r3 );
+            GetSeparatedRecordTypes(out r1, out r2, out r3);
 
-            var dr01 = r1
-                .GroupBy(p => p.CaseNumber, StringComparer.OrdinalIgnoreCase)
-                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+            //public static IEnumerable<string> GetNextRecord()
+            //{
+            //    string currentCaseNumber = string.Empty;
+            //    string previousCaseNumber = null;
 
-            List<string> c1List = new List<string>();
-            foreach (var e in r1)
+
+            //}
+        }
+        public class OT01
+        {
+            public string CaseNumber { get; set; }
+            public string OrderFilingDate { get; set; }
+            public string LastModifyDate { get; set; }
+            public string WageAttStartDate { get; set; }
+            public string WageAttEndDate { get; set; }
+            public string OrderReviewDate { get; set; }
+            public string AbeyanceIndicator { get; set; }
+            public string OutOfStateSONum { get; set; }
+
+        }
+        public sealed class OT01Map : ClassMap<OT01>
+        {
+            OT01Map()
             {
-                c1List.Add(e.CaseNumber);
+                Map(m => m.CaseNumber).Index(1);
+                Map(m => m.OrderFilingDate).Index(4);
+                Map(m => m.LastModifyDate).Index(5);
+                Map(m => m.WageAttStartDate).Index(6);
+                Map(m => m.WageAttEndDate).Index(7);
+                Map(m => m.OrderReviewDate).Index(8);
+                Map(m => m.AbeyanceIndicator).Index(9);
+                Map(m => m.OutOfStateSONum).Index(10);
+
             }
-
-            var keyList = dr01.Keys.ToList();
-
-            var list3 = c1List.Except(keyList);
-
-
-
-            var dr02 = r2
-                .GroupBy(p => p.CaseNumber, StringComparer.OrdinalIgnoreCase)
-                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-       
         }
-
-        public static void GetNextRecord()
+        public class OT02
         {
-            CreateRecordsDictionary();
+            public string CaseNumber { get; set; }
+            public string AmountOrderHold { get; set; }
+            public string AmountODTHold { get; set; }
+            public string AmountIRSHold { get; set; }
+            public string AmountIRSJointHold { get; set; }
+            public string AmountLumpHold { get; set; }
+            public string LastCalcDate { get; set; }
         }
-        //public static IEnumerable<string> GetNextRecord()
-        //{
-        //    string currentCaseNumber = string.Empty;
-        //    string previousCaseNumber = null;
-
-
-        //}
-    }
-    public class OT01
-    {
-        public string CaseNumber { get; set; }
-        public string OrderFilingDate { get; set; }
-        public string LastModifyDate { get; set; }
-        public string WageAttStartDate { get; set; }
-        public string WageAttEndDate { get; set; }
-        public string OrderReviewDate { get; set; }
-        public string AbeyanceIndicator { get; set; }
-        public string OutOfStateSONum { get; set; }
-
-    }
-    public sealed class OT01Map : ClassMap<OT01>
-    {
-        OT01Map()
+        public sealed class OT02Map : ClassMap<OT02>
         {
-            Map(m => m.CaseNumber).Index(1);
-            Map(m => m.OrderFilingDate).Index(4);
-            Map(m => m.LastModifyDate).Index(5);
-            Map(m => m.WageAttStartDate).Index(6);
-            Map(m => m.WageAttEndDate).Index(7);
-            Map(m => m.OrderReviewDate).Index(8);
-            Map(m => m.AbeyanceIndicator).Index(9);
-            Map(m => m.OutOfStateSONum).Index(10);
+            OT02Map()
+            {
+                Map(m => m.CaseNumber).Index(1);
+                Map(m => m.AmountOrderHold).Index(4);
+                Map(m => m.AmountODTHold).Index(5);
+                Map(m => m.AmountIRSHold).Index(6);
+                Map(m => m.AmountIRSJointHold).Index(7);
+                Map(m => m.AmountLumpHold).Index(8);
+                Map(m => m.LastCalcDate).Index(9);
 
+            }
         }
-    }
-    public class OT02
-    {
-        public string CaseNumber { get; set; }
-        public string AmountOrderHold { get; set; }
-        public string AmountODTHold { get; set; }
-        public string AmountIRSHold { get; set; }
-        public string AmountIRSJointHold { get; set; }
-        public string AmountLumpHold { get; set; }
-        public string LastCalcDate { get; set; }
-    }
-    public sealed class OT02Map : ClassMap<OT02>
-    {
-        OT02Map()
+        public class OT03
         {
-            Map(m => m.CaseNumber).Index(1);
-            Map(m => m.AmountOrderHold).Index(4);
-            Map(m => m.AmountODTHold).Index(5);
-            Map(m => m.AmountIRSHold).Index(6);
-            Map(m => m.AmountIRSJointHold).Index(7);
-            Map(m => m.AmountLumpHold).Index(8);
-            Map(m => m.LastCalcDate).Index(9);
-
+            public string CaseNumber { get; set; }
+            public string Comment { get; set; }
         }
-    }
-    public class OT03
-    {
-        public string CaseNumber { get; set; }
-        public string Comment { get; set; }
-    }
-    public sealed class OT03Map : ClassMap<OT03>
-    {
-        OT03Map()
+        public sealed class OT03Map : ClassMap<OT03>
         {
-            Map(m => m.CaseNumber).Index(1);
-            Map(m => m.Comment).Index(4);
+            OT03Map()
+            {
+                Map(m => m.CaseNumber).Index(1);
+                Map(m => m.Comment).Index(4);
+            }
         }
+        public class OMISRecord
+        {
+            public string OrderFilingDate { get; set; }
+            public string LastModifyDate { get; set; }
+            public string WageAttStartDate { get; set; }
+            public string WageAttEndDate { get; set; }
+            public string OrderReviewDate { get; set; }
+            public string AbeyanceIndicator { get; set; }
+            public string OutOfStateSONum { get; set; }
+
+            public string AmountOrderHold { get; set; }
+            public string AmountODTHold { get; set; }
+            public string AmountIRSHold { get; set; }
+            public string AmountIRSJointHold { get; set; }
+            public string AmountLumpHold { get; set; }
+            public string LastCalcDate { get; set; }
+
+            public string Comments { get; set; }
+        }
+
     }
-    public class OMISRecord
-    {
-        public string OrderFilingDate { get; set; }
-        public string LastModifyDate { get; set; }
-        public string WageAttStartDate { get; set; }
-        public string WageAttEndDate { get; set; }
-        public string OrderReviewDate { get; set; }
-        public string AbeyanceIndicator { get; set; }
-        public string OutOfStateSONum { get; set; }
-
-        public string AmountOrderHold { get; set; }
-        public string AmountODTHold { get; set; }
-        public string AmountIRSHold { get; set; }
-        public string AmountIRSJointHold { get; set; }
-        public string AmountLumpHold { get; set; }
-        public string LastCalcDate { get; set; }
-
-        public string Comments { get; set; }
-    }
-
 }
