@@ -64,9 +64,8 @@ namespace Prepare_OMIS
             var dr3 = new Dictionary<int, OT03>();
 
             string previousCaseNumber = string.Empty;
-            bool addType3Entry = false;
-            bool addType2Entry = false;
-
+            bool addType3Entry = true;
+            bool addType2Entry = true;
             try
             {
                 for (int currentGroupNumber = 0; CsReader.Read();)
@@ -84,8 +83,9 @@ namespace Prepare_OMIS
                         case "01":       // possible to have distinct groups for the same consecutive case number.  Example:  A000835801.  I am assuming that each new record group always starts with a type 01 record. [geg] 2020-06-19
                             if (dr1.ContainsKey(currentGroupNumber))
                             {
-                                addType3Entry = true;
                                 currentGroupNumber++;
+                                addType2Entry = true;
+                                addType3Entry = true;
                             }
                             dr1.Add(currentGroupNumber, CsReader.GetRecord<OT01>());
                             break;
