@@ -22,6 +22,10 @@ namespace Prepare_OMIS
         public static StreamReader StrReader { get; private set; }
         public static CsvReader CsReader { get; private set; }
 
+        internal static Dictionary<int, OT01> dr1 = new Dictionary<int, OT01>();
+        internal static Dictionary<int, OT02> dr2 = new Dictionary<int, OT02>();
+        internal static Dictionary<int, OT03> dr3 = new Dictionary<int, OT03>();
+
         public static void Open(string InputFileSpec = null)
         {
             var config = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"))
@@ -53,15 +57,8 @@ namespace Prepare_OMIS
             StrReader = null;
         }
 
-        internal static void GetSeparatedRecordTypes(out List<OT01> T1Records, out List<OT02> T2Records, out List<OT03> T3Records)
+        internal static void GetSeparatedRecordTypes()
         {
-            var r1 = new List<OT01>();
-            var r2 = new List<OT02>();
-            var r3 = new List<OT03>();
-
-            var dr1 = new Dictionary<int, OT01>();
-            var dr2 = new Dictionary<int, OT02>();
-            var dr3 = new Dictionary<int, OT03>();
 
             string previousCaseNumber = string.Empty;
             bool addType3Entry = true;
@@ -122,26 +119,63 @@ namespace Prepare_OMIS
             {
                 throw;  // Gives me a chance to bug hunt before all of the context is lost. [geg]
             }
+        }
+        internal static List<OMIS> GetOMISRecords()
+        {
+            List<OMIS> orecs = new List<OMIS>();
 
-            T1Records = r1;
-            T2Records = r2;
-            T3Records = r3;
+            GetSeparatedRecordTypes();
+
+            foreach(var e1 in dr1)
+            {
+                OMIS nr = new OMIS
+                {
+                    GroupNumber = e1.Key,
+                    OrderFilingDate = e1.Value.OrderFilingDate,
+                    LastModifyDate = e1.Value.LastModifyDate,
+                    WageAttStartDate = e1.Value.WageAttStartDate,
+                    WageAttEndDate = e1.Value.WageAttEndDate,
+                    OrderReviewDate = e1.Value.OrderReviewDate,
+                    AbeyanceIndicator = e1.Value.AbeyanceIndicator,
+                    OutOfStateSONum = e1.Value.OutOfStateSONum
+                };
+
+                int eKey = e1.Key;
+
+                if (dr2.ContainsKey(e1.Key))
+                {
+                    nr.AmountOrderHold = $"{dr2[eKey].AmountOrderHold.Take(7)}.{dr2[eKey].AmountOrderHold.Substring(7, 2)}";    // I believe these fields are always exactly of length 9.  [geg]
+                    nr.AmountODTHold = $"{dr2[eKey].AmountODTHold.Take(7)}.{dr2[eKey].AmountODTHold.Substring(7, 2)}";
+                    nr.AmountIRSHold = $"{dr2[eKey].AmountIRSHold.Take(7)}.{dr2[eKey].AmountIRSHold.Substring(7, 2)}";
+                    nr.AmountIRSJointHold = $"{dr2[eKey].AmountIRSJointHold.Take(7)}.{dr2[eKey].AmountIRSJointHold.Substring(7, 2)}";
+                    nr.AmountLumpHold = $"{dr2[eKey].AmountLumpHold.Take(7)}.{dr2[eKey].AmountLumpHold.Substring(7, 2)}";
+
+                    nr.LastCalcDate = dr2[eKey].LastCalcDate;
+                }
+
+                if (dr3.ContainsKey(eKey))
+                {
+                    nr.Comments = dr3[eKey].Comment;
+                }
+
+                orecs.Add(nr);
+            }
+
+            return orecs;
+
         }
 
-        public static void GetNextRecord()
+        public static IEnumerable<OMIS> GetNextRecord()
         {
             /*
              * Separate the file into three "piles" -- one for each type of record in the file.
              * Somehow combine these three "piles' into just one "pile" -- of OMIS (staging) records
              * Return these (one at a time) to Main
              */
-
-            var r1 = new List<OT01>();
-            var r2 = new List<OT02>();
-            var r3 = new List<OT03>();
-
-
-            GetSeparatedRecordTypes(out r1, out r2, out r3);
+            foreach( var e in GetOMISRecords())
+            {
+                yield return e;
+            }
 
             //public static IEnumerable<string> GetNextRecord()
             //{
@@ -215,8 +249,10 @@ namespace Prepare_OMIS
                 Map(m => m.Comment).Index(4);
             }
         }
-        public class OMISRecord
+        public class OMIS
         {
+            public int GroupNumber { get; set; }
+
             public string OrderFilingDate { get; set; }
             public string LastModifyDate { get; set; }
             public string WageAttStartDate { get; set; }

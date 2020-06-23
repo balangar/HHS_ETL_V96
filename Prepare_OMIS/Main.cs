@@ -26,7 +26,10 @@ namespace Prepare_OMIS
 
             PIO.Open(sourceFileSpec);
 
-            PIO.GetNextRecord();
+            foreach(var r in PIO.GetNextRecord())
+            {
+                int idumb = 0;
+            }
 
             PIO.Close();
 
