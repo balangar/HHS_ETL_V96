@@ -5,6 +5,7 @@ using System.Text;
 
 
 using System.IO;
+using System.Data.SqlClient;
 
 
 using CsvHelper;
@@ -19,8 +20,10 @@ namespace Prepare_OMIS
 
     class PIO
     {
-        public static StreamReader StrReader { get; private set; }
-        public static CsvReader CsReader { get; private set; }
+        internal static readonly SqlConnection cn = Database.SqlConnection();
+
+        internal static StreamReader StrReader { get; private set; }
+        internal static CsvReader CsReader { get; private set; }
 
         internal static Dictionary<int, OT01> dr1 = new Dictionary<int, OT01>();
         internal static Dictionary<int, OT02> dr2 = new Dictionary<int, OT02>();
@@ -55,6 +58,9 @@ namespace Prepare_OMIS
 
             CsReader = null;
             StrReader = null;
+
+            cn.Close();
+            cn.Dispose();
         }
 
         internal static void GetSeparatedRecordTypes()
@@ -165,7 +171,6 @@ namespace Prepare_OMIS
             return orecs;
 
         }
-
         public static IEnumerable<OMIS> GetNextRecord()
         {
             /*
@@ -185,6 +190,27 @@ namespace Prepare_OMIS
 
 
             //}
+        }
+
+        public static void PutRecord(OMIS ORec)
+        {
+            Main.Logger.Info(ORec.GroupNumber.ToString() + ": " + ORec.CaseNumber);
+            //const string cmdText = @"INSERT INTO dbo.CaseNotes(CreatedBy, EventDate, CustodialParentID, AbsentParentID, OrderNo, Contents, FilePath, FileName)" + " " +
+            //                       @"VALUES(@CreatedBy, @EventDate, @CustodialParentID, @AbsentParentID, @OrderNo, @Contents, @FilePath, @FileName)";
+            //using (var command = new SqlCommand(cmdText, cn))
+            //{
+            //    command.Parameters.AddWithValue("@CreatedBy", Note.CreatedBy);
+            //    command.Parameters.AddWithValue("@EventDate", Note.EventDate);
+            //    command.Parameters.AddWithValue("@CustodialParentID", Note.CustodialParentID ?? "UnknownCP");
+            //    command.Parameters.AddWithValue("@AbsentParentID", Note.AbsentParentID ?? "UnknownAP");
+            //    command.Parameters.AddWithValue("@OrderNo", Note.OrderNo ?? (object)DBNull.Value);
+            //    command.Parameters.AddWithValue("@Contents", Note.SingleLine);
+            //    command.Parameters.AddWithValue("@FilePath", Path.GetDirectoryName(DestFileSpec));
+            //    command.Parameters.AddWithValue("@FileName", Path.GetFileName(DestFileSpec));
+
+            //    command.ExecuteNonQuery();
+            //}
+
         }
         public class OT01
         {
