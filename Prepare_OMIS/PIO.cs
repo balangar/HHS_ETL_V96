@@ -62,7 +62,6 @@ namespace Prepare_OMIS
             cn.Close();
             cn.Dispose();
         }
-
         internal static void GetSeparatedRecordTypes()
         {
 
@@ -83,7 +82,10 @@ namespace Prepare_OMIS
 
                     switch (CsReader.GetField(3))
                     {
-                        case "01":       // possible to have distinct groups for the same consecutive case number.  Example:  A000835801.  I am assuming that each new record group always starts with a type 01 record. [geg] 2020-06-19
+                        /* Possible to have distinct groups for the same consecutive case number.  Example:  A000835801. 
+                         * Each new record group does not necessarily start with a type 01 record. Example:  A000781701
+                         */
+                        case "01":
                             if (dr1.ContainsKey(currentGroupNumber))
                             {
                                 currentGroupNumber++;
