@@ -18,7 +18,7 @@ namespace Prepare_OMIS
 {
     internal class Main
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        internal static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         internal static int Work()
         {
@@ -28,6 +28,7 @@ namespace Prepare_OMIS
 
             foreach(var r in PIO.GetNextRecord())
             {
+                PIO.PutRecord(r);
             }
 
             PIO.Close();

@@ -5,6 +5,7 @@ using System.Text;
 
 
 using System.IO;
+using System.Data.SqlClient;
 
 
 using CsvHelper;
@@ -19,8 +20,10 @@ namespace Prepare_OMIS
 
     class PIO
     {
-        public static StreamReader StrReader { get; private set; }
-        public static CsvReader CsReader { get; private set; }
+        internal static readonly SqlConnection cn = Database.SqlConnection();
+
+        internal static StreamReader StrReader { get; private set; }
+        internal static CsvReader CsReader { get; private set; }
 
         internal static Dictionary<int, OT01> dr1 = new Dictionary<int, OT01>();
         internal static Dictionary<int, OT02> dr2 = new Dictionary<int, OT02>();
@@ -55,6 +58,9 @@ namespace Prepare_OMIS
 
             CsReader = null;
             StrReader = null;
+
+            cn.Close();
+            cn.Dispose();
         }
 
         internal static void GetSeparatedRecordTypes()
@@ -165,7 +171,6 @@ namespace Prepare_OMIS
             return orecs;
 
         }
-
         public static IEnumerable<OMIS> GetNextRecord()
         {
             /*
@@ -185,6 +190,37 @@ namespace Prepare_OMIS
 
 
             //}
+        }
+
+        public static void PutRecord(OMIS R)
+        {
+            const string cmdText = "INSERT INTO Staging.OMIS(GroupNumber,CaseNumber,OrderFilingDate,LastModifyDate,WageAttStartDate,WageAttEndDate,OrderReviewDate,AbeyanceIndicator,OutOfStateSONum,AmountOrderHold,AmountODTHold,AmountIRSHold,AmountIRSJointHold,AmountLumpHold,LastCalcDate,Comments) VALUES(@GroupNumber,@CaseNumber,@OrderFilingDate,@LastModifyDate,@WageAttStartDate,@WageAttEndDate,@OrderReviewDate,@AbeyanceIndicator,@OutOfStateSONum,@AmountOrderHold,@AmountODTHold,@AmountIRSHold,@AmountIRSJointHold,@AmountLumpHold,@LastCalcDate,@Comments)";
+            using (var command = new SqlCommand(cmdText, cn))
+            {
+                command.Parameters.AddWithValue("@GroupNumber", R.GroupNumber);
+                command.Parameters.AddWithValue("@CaseNumber", R.CaseNumber);
+
+                command.Parameters.AddWithValue("@OrderFilingDate", R.OrderFilingDate);
+                command.Parameters.AddWithValue("@LastModifyDate", R.LastModifyDate);
+                command.Parameters.AddWithValue("@WageAttStartDate", R.WageAttStartDate);
+                command.Parameters.AddWithValue("@WageAttEndDate", R.WageAttEndDate);
+                command.Parameters.AddWithValue("@OrderReviewDate", R.OrderReviewDate);
+                command.Parameters.AddWithValue("@AbeyanceIndicator", R.AbeyanceIndicator);
+                command.Parameters.AddWithValue("@OutOfStateSONum", R.OutOfStateSONum);
+
+                command.Parameters.AddWithValue("@AmountOrderHold", R.AmountOrderHold.IsNull() ? string.Empty : R.AmountOrderHold);
+                command.Parameters.AddWithValue("@AmountODTHold", R.AmountODTHold.IsNull() ? string.Empty : R.AmountODTHold);
+                command.Parameters.AddWithValue("@AmountIRSHold", R.AmountIRSHold.IsNull() ? string.Empty : R.AmountIRSHold);
+                command.Parameters.AddWithValue("@AmountIRSJointHold", R.AmountIRSJointHold.IsNull() ? string.Empty : R.AmountIRSJointHold);
+                command.Parameters.AddWithValue("@AmountLumpHold", R.AmountLumpHold.IsNull() ? string.Empty : R.AmountLumpHold);
+                command.Parameters.AddWithValue("@LastCalcDate", R.LastCalcDate.IsNull() ? string.Empty : R.LastCalcDate);
+
+                command.Parameters.AddWithValue("@Comments", R.Comments.IsNull() ? string.Empty : R.Comments);
+
+
+                command.ExecuteNonQuery();
+            }
+
         }
         public class OT01
         {
