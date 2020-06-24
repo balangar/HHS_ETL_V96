@@ -131,6 +131,7 @@ namespace Prepare_OMIS
                 OMIS nr = new OMIS
                 {
                     GroupNumber = e1.Key,
+                    CaseNumber = e1.Value.CaseNumber,
                     OrderFilingDate = e1.Value.OrderFilingDate,
                     LastModifyDate = e1.Value.LastModifyDate,
                     WageAttStartDate = e1.Value.WageAttStartDate,
@@ -144,11 +145,11 @@ namespace Prepare_OMIS
 
                 if (dr2.ContainsKey(e1.Key))
                 {
-                    nr.AmountOrderHold = $"{dr2[eKey].AmountOrderHold.Take(7)}.{dr2[eKey].AmountOrderHold.Substring(7, 2)}";    // I believe these fields are always exactly of length 9.  [geg]
-                    nr.AmountODTHold = $"{dr2[eKey].AmountODTHold.Take(7)}.{dr2[eKey].AmountODTHold.Substring(7, 2)}";
-                    nr.AmountIRSHold = $"{dr2[eKey].AmountIRSHold.Take(7)}.{dr2[eKey].AmountIRSHold.Substring(7, 2)}";
-                    nr.AmountIRSJointHold = $"{dr2[eKey].AmountIRSJointHold.Take(7)}.{dr2[eKey].AmountIRSJointHold.Substring(7, 2)}";
-                    nr.AmountLumpHold = $"{dr2[eKey].AmountLumpHold.Take(7)}.{dr2[eKey].AmountLumpHold.Substring(7, 2)}";
+                    nr.AmountOrderHold = dr2[eKey].AmountOrderHold.Substring(0,7) + "." + dr2[eKey].AmountOrderHold.Substring(7, 2);    // I believe these fields are always exactly of length 9.  [geg]
+                    nr.AmountODTHold = dr2[eKey].AmountODTHold.Substring(0, 7) + "." + dr2[eKey].AmountODTHold.Substring(7, 2);
+                    nr.AmountIRSHold = dr2[eKey].AmountIRSHold.Substring(0,7) + "." + dr2[eKey].AmountIRSHold.Substring(7, 2);
+                    nr.AmountIRSJointHold = dr2[eKey].AmountIRSJointHold.Substring(0, 7) + "." + dr2[eKey].AmountIRSJointHold.Substring(7, 2);
+                    nr.AmountLumpHold = dr2[eKey].AmountLumpHold.Substring(0, 7) + "." + dr2[eKey].AmountLumpHold.Substring(0, 2);
 
                     nr.LastCalcDate = dr2[eKey].LastCalcDate;
                 }
@@ -252,6 +253,7 @@ namespace Prepare_OMIS
         public class OMIS
         {
             public int GroupNumber { get; set; }
+            public string CaseNumber { get; set; }
 
             public string OrderFilingDate { get; set; }
             public string LastModifyDate { get; set; }

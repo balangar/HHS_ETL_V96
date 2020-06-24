@@ -28,7 +28,6 @@ namespace Prepare_OMIS
 
             foreach(var r in PIO.GetNextRecord())
             {
-                int idumb = 0;
             }
 
             PIO.Close();
