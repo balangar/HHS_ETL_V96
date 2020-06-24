@@ -192,24 +192,34 @@ namespace Prepare_OMIS
             //}
         }
 
-        public static void PutRecord(OMIS ORec)
+        public static void PutRecord(OMIS R)
         {
-            Main.Logger.Info(ORec.GroupNumber.ToString() + ": " + ORec.CaseNumber);
-            //const string cmdText = @"INSERT INTO dbo.CaseNotes(CreatedBy, EventDate, CustodialParentID, AbsentParentID, OrderNo, Contents, FilePath, FileName)" + " " +
-            //                       @"VALUES(@CreatedBy, @EventDate, @CustodialParentID, @AbsentParentID, @OrderNo, @Contents, @FilePath, @FileName)";
-            //using (var command = new SqlCommand(cmdText, cn))
-            //{
-            //    command.Parameters.AddWithValue("@CreatedBy", Note.CreatedBy);
-            //    command.Parameters.AddWithValue("@EventDate", Note.EventDate);
-            //    command.Parameters.AddWithValue("@CustodialParentID", Note.CustodialParentID ?? "UnknownCP");
-            //    command.Parameters.AddWithValue("@AbsentParentID", Note.AbsentParentID ?? "UnknownAP");
-            //    command.Parameters.AddWithValue("@OrderNo", Note.OrderNo ?? (object)DBNull.Value);
-            //    command.Parameters.AddWithValue("@Contents", Note.SingleLine);
-            //    command.Parameters.AddWithValue("@FilePath", Path.GetDirectoryName(DestFileSpec));
-            //    command.Parameters.AddWithValue("@FileName", Path.GetFileName(DestFileSpec));
+            const string cmdText = "INSERT INTO Staging.OMIS(GroupNumber,CaseNumber,OrderFilingDate,LastModifyDate,WageAttStartDate,WageAttEndDate,OrderReviewDate,AbeyanceIndicator,OutOfStateSONum,AmountOrderHold,AmountODTHold,AmountIRSHold,AmountIRSJointHold,AmountLumpHold,LastCalcDate,Comments) VALUES(@GroupNumber,@CaseNumber,@OrderFilingDate,@LastModifyDate,@WageAttStartDate,@WageAttEndDate,@OrderReviewDate,@AbeyanceIndicator,@OutOfStateSONum,@AmountOrderHold,@AmountODTHold,@AmountIRSHold,@AmountIRSJointHold,@AmountLumpHold,@LastCalcDate,@Comments)";
+            using (var command = new SqlCommand(cmdText, cn))
+            {
+                command.Parameters.AddWithValue("@GroupNumber", R.GroupNumber);
+                command.Parameters.AddWithValue("@CaseNumber", R.CaseNumber);
 
-            //    command.ExecuteNonQuery();
-            //}
+                command.Parameters.AddWithValue("@OrderFilingDate", R.OrderFilingDate);
+                command.Parameters.AddWithValue("@LastModifyDate", R.LastModifyDate);
+                command.Parameters.AddWithValue("@WageAttStartDate", R.WageAttStartDate);
+                command.Parameters.AddWithValue("@WageAttEndDate", R.WageAttEndDate);
+                command.Parameters.AddWithValue("@OrderReviewDate", R.OrderReviewDate);
+                command.Parameters.AddWithValue("@AbeyanceIndicator", R.AbeyanceIndicator);
+                command.Parameters.AddWithValue("@OutOfStateSONum", R.OutOfStateSONum);
+
+                command.Parameters.AddWithValue("@AmountOrderHold", R.AmountOrderHold.IsNull() ? string.Empty : R.AmountOrderHold);
+                command.Parameters.AddWithValue("@AmountODTHold", R.AmountODTHold.IsNull() ? string.Empty : R.AmountODTHold);
+                command.Parameters.AddWithValue("@AmountIRSHold", R.AmountIRSHold.IsNull() ? string.Empty : R.AmountIRSHold);
+                command.Parameters.AddWithValue("@AmountIRSJointHold", R.AmountIRSJointHold.IsNull() ? string.Empty : R.AmountIRSJointHold);
+                command.Parameters.AddWithValue("@AmountLumpHold", R.AmountLumpHold.IsNull() ? string.Empty : R.AmountLumpHold);
+                command.Parameters.AddWithValue("@LastCalcDate", R.LastCalcDate.IsNull() ? string.Empty : R.LastCalcDate);
+
+                command.Parameters.AddWithValue("@Comments", R.Comments.IsNull() ? string.Empty : R.Comments);
+
+
+                command.ExecuteNonQuery();
+            }
 
         }
         public class OT01
