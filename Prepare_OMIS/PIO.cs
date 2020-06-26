@@ -135,48 +135,52 @@ namespace Prepare_OMIS
             GetSeparatedRecordTypes();
 
             // I realize the following is clunky.  I expect, though, that once this code works, it will only ever be executed once.  [geg]  2020-06-25
-            OMIS nr = new OMIS();
 
-            foreach(var e1 in dr1)      // Consolidate all record groups s.t. group begins with a type 01 record. This is not always the case. Example:  A000781701 [geg]
+            OMIS nr; 
+            //foreach(var e1 in dr1)      // Consolidate all record groups s.t. group begins with a type 01 record. This is not always the case. Example:  A000781701 [geg]
+            //{
+            //    nr = new OMIS();
+            //    int e1Key = e1.Key;
+
+            //    nr.GroupNumber = e1Key;
+            //    nr.CaseNumber = e1.Value.CaseNumber;
+
+            //    nr.OrderFilingDate = e1.Value.OrderFilingDate;
+            //    nr.LastModifyDate = e1.Value.LastModifyDate;
+            //    nr.WageAttStartDate = e1.Value.WageAttStartDate;
+            //    nr.WageAttEndDate = e1.Value.WageAttEndDate;
+            //    nr.OrderReviewDate = e1.Value.OrderReviewDate;
+            //    nr.AbeyanceIndicator = e1.Value.AbeyanceIndicator;
+            //    nr.OutOfStateSONum = e1.Value.OutOfStateSONum;
+
+
+            //    if (dr2.ContainsKey(e1Key))
+            //    {
+            //        nr.AmountOrderHold = dr2[e1Key].AmountOrderHold.Substring(0,7) + "." + dr2[e1Key].AmountOrderHold.Substring(7, 2);    // I believe these fields are always exactly of length 9.  [geg]
+            //        nr.AmountODTHold = dr2[e1Key].AmountODTHold.Substring(0, 7) + "." + dr2[e1Key].AmountODTHold.Substring(7, 2);
+            //        nr.AmountIRSHold = dr2[e1Key].AmountIRSHold.Substring(0,7) + "." + dr2[e1Key].AmountIRSHold.Substring(7, 2);
+            //        nr.AmountIRSJointHold = dr2[e1Key].AmountIRSJointHold.Substring(0, 7) + "." + dr2[e1Key].AmountIRSJointHold.Substring(7, 2);
+            //        nr.AmountLumpHold = dr2[e1Key].AmountLumpHold.Substring(0, 7) + "." + dr2[e1Key].AmountLumpHold.Substring(0, 2);
+
+            //        nr.LastCalcDate = dr2[e1Key].LastCalcDate;
+            //    }
+
+            //    if (dr3.ContainsKey(e1Key))
+            //    {
+            //        nr.Comments = dr3[e1Key].Comment;
+            //    }
+
+            //    orecs.Add(nr);
+            //}
+
+            foreach (var e2 in dr2)
             {
-                int e1Key = e1.Key;
-
-                nr.GroupNumber = e1Key;
-                nr.CaseNumber = e1.Value.CaseNumber;
-
-                nr.OrderFilingDate = e1.Value.OrderFilingDate;
-                nr.LastModifyDate = e1.Value.LastModifyDate;
-                nr.WageAttStartDate = e1.Value.WageAttStartDate;
-                nr.WageAttEndDate = e1.Value.WageAttEndDate;
-                nr.OrderReviewDate = e1.Value.OrderReviewDate;
-                nr.AbeyanceIndicator = e1.Value.AbeyanceIndicator;
-                nr.OutOfStateSONum = e1.Value.OutOfStateSONum;
-
-
-                if (dr2.ContainsKey(e1Key))
-                {
-                    nr.AmountOrderHold = dr2[e1Key].AmountOrderHold.Substring(0,7) + "." + dr2[e1Key].AmountOrderHold.Substring(7, 2);    // I believe these fields are always exactly of length 9.  [geg]
-                    nr.AmountODTHold = dr2[e1Key].AmountODTHold.Substring(0, 7) + "." + dr2[e1Key].AmountODTHold.Substring(7, 2);
-                    nr.AmountIRSHold = dr2[e1Key].AmountIRSHold.Substring(0,7) + "." + dr2[e1Key].AmountIRSHold.Substring(7, 2);
-                    nr.AmountIRSJointHold = dr2[e1Key].AmountIRSJointHold.Substring(0, 7) + "." + dr2[e1Key].AmountIRSJointHold.Substring(7, 2);
-                    nr.AmountLumpHold = dr2[e1Key].AmountLumpHold.Substring(0, 7) + "." + dr2[e1Key].AmountLumpHold.Substring(0, 2);
-
-                    nr.LastCalcDate = dr2[e1Key].LastCalcDate;
-                }
-
-                if (dr3.ContainsKey(e1Key))
-                {
-                    nr.Comments = dr3[e1Key].Comment;
-                }
-
-                orecs.Add(nr);
-            }
-
-            foreach(var e2 in dr2)
-            {
+                nr = new OMIS();
                 int e2Key = e2.Key;
                 if (!dr1.ContainsKey(e2Key))
                 {
+
+
                     nr.GroupNumber = e2Key;
                     nr.CaseNumber = dr2[e2Key].CaseNumber;
 
@@ -198,43 +202,44 @@ namespace Prepare_OMIS
                     nr.LastCalcDate = dr2[e2Key].LastCalcDate;
                 }
 
-                if (dr3.ContainsKey(e2Key))
-                {
-                    nr.Comments = dr3[e2Key].Comment;
-                }
+                //if (dr3.ContainsKey(e2Key))
+                //{
+                //    nr.Comments = dr3[e2Key].Comment;
+                //}
 
                 orecs.Add(nr);
             }
 
-            foreach (var e3 in dr3)
-            {
-                int e3Key = e3.Key;
-                if (!dr1.ContainsKey(e3Key) && !dr2.ContainsKey(e3Key))
-                {
-                    nr.GroupNumber = e3Key;
-                    nr.CaseNumber = dr3[e3Key].CaseNumber;
+            //foreach (var e3 in dr3)
+            //{
+            //    nr = new OMIS();
+            //    int e3Key = e3.Key;
+            //    if (!dr1.ContainsKey(e3Key) && !dr2.ContainsKey(e3Key))
+            //    {
+            //        nr.GroupNumber = e3Key;
+            //        nr.CaseNumber = dr3[e3Key].CaseNumber;
 
-                    nr.CaseNumber = string.Empty;
-                    nr.OrderFilingDate = string.Empty;
-                    nr.LastModifyDate = string.Empty;
-                    nr.WageAttStartDate = string.Empty;
-                    nr.WageAttEndDate = string.Empty;
-                    nr.OrderReviewDate = string.Empty;
-                    nr.AbeyanceIndicator = string.Empty;
-                    nr.OutOfStateSONum = string.Empty;
+            //        nr.CaseNumber = string.Empty;
+            //        nr.OrderFilingDate = string.Empty;
+            //        nr.LastModifyDate = string.Empty;
+            //        nr.WageAttStartDate = string.Empty;
+            //        nr.WageAttEndDate = string.Empty;
+            //        nr.OrderReviewDate = string.Empty;
+            //        nr.AbeyanceIndicator = string.Empty;
+            //        nr.OutOfStateSONum = string.Empty;
 
-                    nr.AmountOrderHold = string.Empty;
-                    nr.AmountODTHold = string.Empty;
-                    nr.AmountIRSHold = string.Empty;
-                    nr.AmountIRSJointHold = string.Empty;
-                    nr.AmountLumpHold = string.Empty;
-                    nr.LastCalcDate = string.Empty;
+            //        nr.AmountOrderHold = string.Empty;
+            //        nr.AmountODTHold = string.Empty;
+            //        nr.AmountIRSHold = string.Empty;
+            //        nr.AmountIRSJointHold = string.Empty;
+            //        nr.AmountLumpHold = string.Empty;
+            //        nr.LastCalcDate = string.Empty;
 
-                    nr.Comments = dr3[e3Key].Comment;
+            //        nr.Comments = dr3[e3Key].Comment;
 
-                    orecs.Add(nr);
-                }
-            }
+            //        orecs.Add(nr);
+            //    }
+            //}
 
             return orecs;
         }
@@ -261,6 +266,7 @@ namespace Prepare_OMIS
 
         public static void PutRecord(OMIS R)
         {
+            //ToDo:  Maybe I need a merge statement here
             const string cmdText = "INSERT INTO Staging.OMIS(GroupNumber,CaseNumber,OrderFilingDate,LastModifyDate,WageAttStartDate,WageAttEndDate,OrderReviewDate,AbeyanceIndicator,OutOfStateSONum,AmountOrderHold,AmountODTHold,AmountIRSHold,AmountIRSJointHold,AmountLumpHold,LastCalcDate,Comments) VALUES(@GroupNumber,@CaseNumber,@OrderFilingDate,@LastModifyDate,@WageAttStartDate,@WageAttEndDate,@OrderReviewDate,@AbeyanceIndicator,@OutOfStateSONum,@AmountOrderHold,@AmountODTHold,@AmountIRSHold,@AmountIRSJointHold,@AmountLumpHold,@LastCalcDate,@Comments)";
             using (var command = new SqlCommand(cmdText, cn))
             {
