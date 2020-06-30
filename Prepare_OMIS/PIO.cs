@@ -62,7 +62,6 @@ namespace Prepare_OMIS
             cn.Close();
             cn.Dispose();
         }
-
         internal static void GetSeparatedRecordTypes()
         {
 
@@ -83,7 +82,10 @@ namespace Prepare_OMIS
 
                     switch (CsReader.GetField(3))
                     {
-                        case "01":       // possible to have distinct groups for the same consecutive case number.  Example:  A000835801.  I am assuming that each new record group always starts with a type 01 record. [geg] 2020-06-19
+                        /* Possible to have distinct groups for the same consecutive case number.  Example:  A000835801. 
+                         * 
+                         */
+                        case "01":
                             if (dr1.ContainsKey(currentGroupNumber))
                             {
                                 currentGroupNumber++;
@@ -132,44 +134,113 @@ namespace Prepare_OMIS
 
             GetSeparatedRecordTypes();
 
-            foreach(var e1 in dr1)
+            // I realize the following is clunky.  I expect, though, that once this code works, it will only ever be executed once.  [geg]  2020-06-25
+
+            OMIS nr;
+            foreach (var e1 in dr1)      // Consolidate all record groups s.t. group begins with a type 01 record. This is not always the case. Example:  A000781701 [geg]
             {
-                OMIS nr = new OMIS
+                nr = new OMIS();
+                int e1Key = e1.Key;
+
+                nr.GroupNumber = e1Key;
+                nr.CaseNumber = e1.Value.CaseNumber;
+
+                nr.OrderFilingDate = e1.Value.OrderFilingDate;
+                nr.LastModifyDate = e1.Value.LastModifyDate;
+                nr.WageAttStartDate = e1.Value.WageAttStartDate;
+                nr.WageAttEndDate = e1.Value.WageAttEndDate;
+                nr.OrderReviewDate = e1.Value.OrderReviewDate;
+                nr.AbeyanceIndicator = e1.Value.AbeyanceIndicator;
+                nr.OutOfStateSONum = e1.Value.OutOfStateSONum;
+
+
+                if (dr2.ContainsKey(e1Key))
                 {
-                    GroupNumber = e1.Key,
-                    CaseNumber = e1.Value.CaseNumber,
-                    OrderFilingDate = e1.Value.OrderFilingDate,
-                    LastModifyDate = e1.Value.LastModifyDate,
-                    WageAttStartDate = e1.Value.WageAttStartDate,
-                    WageAttEndDate = e1.Value.WageAttEndDate,
-                    OrderReviewDate = e1.Value.OrderReviewDate,
-                    AbeyanceIndicator = e1.Value.AbeyanceIndicator,
-                    OutOfStateSONum = e1.Value.OutOfStateSONum
-                };
+                    nr.AmountOrderHold = dr2[e1Key].AmountOrderHold.Substring(0, 7) + "." + dr2[e1Key].AmountOrderHold.Substring(7, 2);    // I believe these fields are always exactly of length 9.  [geg]
+                    nr.AmountODTHold = dr2[e1Key].AmountODTHold.Substring(0, 7) + "." + dr2[e1Key].AmountODTHold.Substring(7, 2);
+                    nr.AmountIRSHold = dr2[e1Key].AmountIRSHold.Substring(0, 7) + "." + dr2[e1Key].AmountIRSHold.Substring(7, 2);
+                    nr.AmountIRSJointHold = dr2[e1Key].AmountIRSJointHold.Substring(0, 7) + "." + dr2[e1Key].AmountIRSJointHold.Substring(7, 2);
+                    nr.AmountLumpHold = dr2[e1Key].AmountLumpHold.Substring(0, 7) + "." + dr2[e1Key].AmountLumpHold.Substring(0, 2);
 
-                int eKey = e1.Key;
-
-                if (dr2.ContainsKey(e1.Key))
-                {
-                    nr.AmountOrderHold = dr2[eKey].AmountOrderHold.Substring(0,7) + "." + dr2[eKey].AmountOrderHold.Substring(7, 2);    // I believe these fields are always exactly of length 9.  [geg]
-                    nr.AmountODTHold = dr2[eKey].AmountODTHold.Substring(0, 7) + "." + dr2[eKey].AmountODTHold.Substring(7, 2);
-                    nr.AmountIRSHold = dr2[eKey].AmountIRSHold.Substring(0,7) + "." + dr2[eKey].AmountIRSHold.Substring(7, 2);
-                    nr.AmountIRSJointHold = dr2[eKey].AmountIRSJointHold.Substring(0, 7) + "." + dr2[eKey].AmountIRSJointHold.Substring(7, 2);
-                    nr.AmountLumpHold = dr2[eKey].AmountLumpHold.Substring(0, 7) + "." + dr2[eKey].AmountLumpHold.Substring(0, 2);
-
-                    nr.LastCalcDate = dr2[eKey].LastCalcDate;
+                    nr.LastCalcDate = dr2[e1Key].LastCalcDate;
                 }
 
-                if (dr3.ContainsKey(eKey))
+                if (dr3.ContainsKey(e1Key))
                 {
-                    nr.Comments = dr3[eKey].Comment;
+                    nr.Comments = dr3[e1Key].Comment;
                 }
 
                 orecs.Add(nr);
             }
 
-            return orecs;
+            foreach (var e2 in dr2)
+            {
+                int e2Key = e2.Key;
+                if (!dr1.ContainsKey(e2Key))
+                {
+                    nr = new OMIS();
 
+                    nr.GroupNumber = e2Key;
+                    nr.CaseNumber = dr2[e2Key].CaseNumber;
+
+                    nr.OrderFilingDate = string.Empty;
+                    nr.LastModifyDate = string.Empty;
+                    nr.WageAttStartDate = string.Empty;
+                    nr.WageAttEndDate = string.Empty;
+                    nr.OrderReviewDate = string.Empty;
+                    nr.AbeyanceIndicator = string.Empty;
+                    nr.OutOfStateSONum = string.Empty;
+
+                    nr.AmountOrderHold = dr2[e2Key].AmountOrderHold.Substring(0, 7) + "." + dr2[e2Key].AmountOrderHold.Substring(7, 2);    // I believe these fields are always exactly of length 9.  [geg]
+                    nr.AmountODTHold = dr2[e2Key].AmountODTHold.Substring(0, 7) + "." + dr2[e2Key].AmountODTHold.Substring(7, 2);
+                    nr.AmountIRSHold = dr2[e2Key].AmountIRSHold.Substring(0, 7) + "." + dr2[e2Key].AmountIRSHold.Substring(7, 2);
+                    nr.AmountIRSJointHold = dr2[e2Key].AmountIRSJointHold.Substring(0, 7) + "." + dr2[e2Key].AmountIRSJointHold.Substring(7, 2);
+                    nr.AmountLumpHold = dr2[e2Key].AmountLumpHold.Substring(0, 7) + "." + dr2[e2Key].AmountLumpHold.Substring(0, 2);
+
+                    nr.LastCalcDate = dr2[e2Key].LastCalcDate;
+
+                    if (dr3.ContainsKey(e2Key))
+                    {
+                        nr.Comments = dr3[e2Key].Comment;
+                    }
+
+                    orecs.Add(nr);
+
+                }
+
+            }
+
+            foreach (var e3 in dr3)
+            {
+                nr = new OMIS();
+                int e3Key = e3.Key;
+                if (!dr1.ContainsKey(e3Key) && !dr2.ContainsKey(e3Key))
+                {
+                    nr.GroupNumber = e3Key;
+                    nr.CaseNumber = dr3[e3Key].CaseNumber;
+
+                    nr.OrderFilingDate = string.Empty;
+                    nr.LastModifyDate = string.Empty;
+                    nr.WageAttStartDate = string.Empty;
+                    nr.WageAttEndDate = string.Empty;
+                    nr.OrderReviewDate = string.Empty;
+                    nr.AbeyanceIndicator = string.Empty;
+                    nr.OutOfStateSONum = string.Empty;
+
+                    nr.AmountOrderHold = string.Empty;
+                    nr.AmountODTHold = string.Empty;
+                    nr.AmountIRSHold = string.Empty;
+                    nr.AmountIRSJointHold = string.Empty;
+                    nr.AmountLumpHold = string.Empty;
+                    nr.LastCalcDate = string.Empty;
+
+                    nr.Comments = dr3[e3Key].Comment;
+
+                    orecs.Add(nr);
+                }
+            }
+
+            return orecs;
         }
         public static IEnumerable<OMIS> GetNextRecord()
         {
