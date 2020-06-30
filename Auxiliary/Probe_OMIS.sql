@@ -2,7 +2,7 @@
 
 Select Count(*) from Staging.OMIS;
 
-Select * from Staging.OMIS Where CaseNumber = 'P000833303'
+Select top 10 * from Staging.OMIS Where CaseNumber = 'A000835801'
 
 Select GroupNumber, Count(GroupNumber) as Groups from Staging.OMIS group by GroupNumber Having Count(GroupNumber) > 1 order by Groups desc
 
