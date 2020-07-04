@@ -40,11 +40,11 @@ namespace Prepare_WIPS
 
         private static void WriteWIPRecord(WIPSRecordInfo WipsInfo, string DestFileSpec)
         {
-            const string cmdText = @"INSERT INTO dbo.WIPS(SSN, FirstName, LastName, FilePath, FileName)" + " " +
-                                   @"VALUES(@SSN, @FirstName, @LastName, @FilePath, @FileName)";
+            const string cmdText = @"INSERT INTO dbo.WIPS(IndividualID, FirstName, LastName, FilePath, FileName)" + " " +
+                                   @"VALUES(@IndividualID, @FirstName, @LastName, @FilePath, @FileName)";
             using (var command = new SqlCommand(cmdText, cn))
             {
-                command.Parameters.AddWithValue("@SSN", WipsInfo.SocSecNo);
+                command.Parameters.AddWithValue("@IndividualID", WipsInfo.SocSecNo);
                 command.Parameters.AddWithValue("@FirstName", WipsInfo.FirstName);
                 command.Parameters.AddWithValue("@LastName", WipsInfo.LastName);
 
