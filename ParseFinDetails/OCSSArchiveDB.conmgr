@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OCSSArchiveDB"
+  DTS:DTSID="{4A372B41-6C08-4903-95F0-2B40A776C97B}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=OCSS_SCAS;Persist Security Info=True;Application Name=SSIS-ParseFinDetails-{4A372B41-6C08-4903-95F0-2B40A776C97B}MS-DCFS-PSQL1.OCSS_SCAS.Cuy_DataLoader;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="K/GwzeQM5aQ="
+        p4:IV="+Qn/d6uZvROqzW1kwm0KMw=="
+        p4:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p4="www.microsoft.com/SqlServer/SSIS">GPPAl1661dH7pMzQYZQAk+4smIunrcdj1LAjDwutFAKo25/Eoj2mJd/hyjjGBN4L+fk91mgP+/IMeDnGGUyPPVKMacZQGlQy6xC98nUBeUjjacIfvNklpJx5hzK75C1fIYosl+dy+gWeX+fXmYKuz7HrjQ6lvVtgJXPKPv1LToAZ0dJGWaRwFnK/7c8UshjC</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
