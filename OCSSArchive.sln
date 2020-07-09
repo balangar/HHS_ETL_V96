@@ -20,7 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_FinancialNotes", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_WIPS", "Prepare_WIPS\Prepare_WIPS.csproj", "{CC16442E-D51B-42BF-AE21-038D457DE7D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prepare_OMIS", "Prepare_OMIS\Prepare_OMIS.csproj", "{888E6C72-59DE-43D0-9C84-8769A45A217C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prepare_OMIS", "Prepare_OMIS\Prepare_OMIS.csproj", "{888E6C72-59DE-43D0-9C84-8769A45A217C}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ParseFinDetails", "ParseFinDetails\ParseFinDetails.dtproj", "{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,12 @@ Global
 		{888E6C72-59DE-43D0-9C84-8769A45A217C}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{888E6C72-59DE-43D0-9C84-8769A45A217C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{888E6C72-59DE-43D0-9C84-8769A45A217C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}.Debug|Any CPU.ActiveCfg = Development
+		{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}.Debug|Any CPU.Build.0 = Development
+		{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}.Development|Any CPU.ActiveCfg = Development
+		{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}.Development|Any CPU.Build.0 = Development
+		{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}.Release|Any CPU.ActiveCfg = Development
+		{ECA7F8CA-891F-4DB4-870A-9EF9633AE991}.Release|Any CPU.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
