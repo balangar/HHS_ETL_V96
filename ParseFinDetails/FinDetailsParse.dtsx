@@ -12,8 +12,8 @@
   DTS:ObjectName="FinDetailsParse"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{5DE15F6A-FD53-405B-A704-39ECA020BD18}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{66FCB78D-EEC1-4200-9183-D36ADA8C955C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -249,6 +249,37 @@
               </outputs>
             </component>
             <component
+              refId="Package\Parse\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Parse\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Parse\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Parse\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parse\Multicast.Outputs[Multicast Output 2]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Parse\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Parse\Sieve Applied records"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -338,185 +369,18 @@
                 </output>
               </outputs>
             </component>
-            <component
-              refId="Package\Parse\Union All"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All"
-              version="1">
-              <inputs>
-                <input
-                  refId="Package\Parse\Union All.Inputs[Union All Input 1]"
-                  name="Union All Input 1">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[ID]"
-                      cachedDataType="i4"
-                      cachedName="ID"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[ID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[ID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[SysInsertDate]"
-                      cachedDataType="dbDate"
-                      cachedName="SysInsertDate"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[SysInsertDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[OrderNumber]"
-                      cachedDataType="wstr"
-                      cachedLength="16"
-                      cachedName="OrderNumber"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[OrderNumber]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[OrderNumber]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[SequenceNumber]"
-                      cachedDataType="wstr"
-                      cachedLength="5"
-                      cachedName="SequenceNumber"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[SequenceNumber]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[SequenceNumber]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[TransactionDate]"
-                      cachedDataType="dbDate"
-                      cachedName="TransactionDate"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[TransactionDate]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[TransactionDate]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[TransactionType]"
-                      cachedDataType="wstr"
-                      cachedLength="8"
-                      cachedName="TransactionType"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[TransactionType]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[TransactionType]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Parse\Union All.Inputs[Union All Input 1].Columns[Contents]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="Contents"
-                      lineageId="Package\Parse\FinDetails.Outputs[ADO NET Source Output].Columns[Contents]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Parse\Union All.Outputs[Union All Output 1].Columns[Contents]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Parse\Union All.Inputs[Union All Input 2]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 2">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Parse\Union All.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[ID]"
-                      dataType="i4"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[ID]"
-                      name="ID" />
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[SysInsertDate]"
-                      name="SysInsertDate" />
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[OrderNumber]"
-                      dataType="wstr"
-                      length="16"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[OrderNumber]"
-                      name="OrderNumber" />
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[SequenceNumber]"
-                      dataType="wstr"
-                      length="5"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[SequenceNumber]"
-                      name="SequenceNumber" />
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[TransactionDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[TransactionDate]"
-                      name="TransactionDate" />
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[TransactionType]"
-                      dataType="wstr"
-                      length="8"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[TransactionType]"
-                      name="TransactionType" />
-                    <outputColumn
-                      refId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[Contents]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Parse\Union All.Outputs[Union All Output 1].Columns[Contents]"
-                      name="Contents" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
           </components>
           <paths>
             <path
               refId="Package\Parse.Paths[ADO NET Source Output]"
-              endId="Package\Parse\Sieve Applied records.Inputs[Conditional Split Input]"
+              endId="Package\Parse\Multicast.Inputs[Multicast Input 1]"
               name="ADO NET Source Output"
               startId="Package\Parse\FinDetails.Outputs[ADO NET Source Output]" />
             <path
-              refId="Package\Parse.Paths[Applied]"
-              endId="Package\Parse\Union All.Inputs[Union All Input 1]"
-              name="Applied"
-              startId="Package\Parse\Sieve Applied records.Outputs[Applied]" />
+              refId="Package\Parse.Paths[Multicast Output 1]"
+              endId="Package\Parse\Sieve Applied records.Inputs[Conditional Split Input]"
+              name="Multicast Output 1"
+              startId="Package\Parse\Multicast.Outputs[Multicast Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -545,7 +409,7 @@
     design-time-name="Package\Parse">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="128,42"
           Id="Package\Parse\FinDetails"
@@ -553,21 +417,25 @@
         <NodeLayout
           Size="200,42"
           Id="Package\Parse\Sieve Applied records"
-          TopLeft="555,178" />
+          TopLeft="1070,285" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Parse\Multicast"
+          TopLeft="592,180" />
         <EdgeLayout
           Id="Package\Parse.Paths[ADO NET Source Output]"
-          TopLeft="652.5,109">
+          TopLeft="651.75,109">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,69"
+              EndConnector="0,71"
               Start="0,0"
-              End="0,61.5">
+              End="0,63.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.5" />
+                    End="0,63.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -576,44 +444,38 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="123,42"
-          Id="Package\Parse\Union All"
-          TopLeft="769,378" />
         <EdgeLayout
-          Id="Package\Parse.Paths[Applied]"
-          TopLeft="655,220">
+          Id="Package\Parse.Paths[Multicast Output 1]"
+          TopLeft="653.5,222">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="175.5,158"
+              EndConnector="516.5,63"
               Start="0,0"
-              End="175.5,150.5">
+              End="516.5,55.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75" />
+                    End="0,27.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,75"
-                    Point2="0,79"
-                    Point3="4,79" />
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="4,31.5" />
                   <mssgle:LineSegment
-                    End="171.5,79" />
+                    End="512.5,31.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="171.5,79"
-                    Point2="175.5,79"
-                    Point3="175.5,83" />
+                    Point1="512.5,31.5"
+                    Point2="516.5,31.5"
+                    Point3="516.5,35.5" />
                   <mssgle:LineSegment
-                    End="175.5,150.5" />
+                    End="516.5,55.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="70.8439453125,84,33.812109375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
