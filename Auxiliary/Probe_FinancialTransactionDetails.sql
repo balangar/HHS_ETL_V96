@@ -30,7 +30,10 @@ Select top 1 * from dbo.FinancialTransActionDetails Where OrderNumber IN ('A0009
 UNION
 Select top 1 * From dbo.FinancialTransActionDetails  Where OrderNumber In ('A000040003606100') And TransactionType = 'RECEIPT' and TransactionSubType = '00' -- Where OrderNumber In ('TransactionType = 'RECEIPT' and TransactionSubType = '00' And TRY_CAST(substring(contents,4,24) as money) IS NULL'
 
-Select top 100  * from dbo.FinancialTransActionDetails Where TransactionType = 'receipt' and TransactionSubType = '00' and TRY_Cast(substring(Contents,4,24) as money) IS NULL
+Select count(*) from dbo.FinancialTransActionDetails Where TransactionType = 'receipt' and TransactionSubType = '00' and TRY_Cast(substring(Contents,4,24) as money) IS NULL
+
+Select count(*) From dbo.FinancialTransActionDetails Where TransactionType = 'receipt' and TransactionSubType = '00'
+
 
 Select top 100  * from dbo.FinancialTransActionDetails Where TransactionType = 'applied' and TransactionSubType = '00' and TRY_Cast(substring(Contents,4,24) as money) IS NULL
 
@@ -41,5 +44,27 @@ Select top 100  * from dbo.FinancialTransActionDetails Where TransactionType = '
 
 Select top 100  * from dbo.FinancialTransActionDetails Where TransactionType = 'receipt' and TransactionSubType = '00' --and TRY_Cast(substring(Contents,4,24) as money) IS NULL
 
+
+Select count(*) from dbo.FinancialTransActionDetails Where TransactionType = 'receipt' and TransactionSubType = '00' and TRY_Cast(substring(Contents,4,24) as money) IS NULL
+UNION ALL
+Select count(*) From dbo.FinancialTransActionDetails Where TransactionType = 'receipt' and TransactionSubType = '00'
+
+
+Select count(*) from dbo.FinancialTransActionDetails Where TransactionType = 'applied' and TransactionSubType = '00' and TRY_Cast(substring(Contents,4,24) as money) IS NULL
+UNION ALL
+Select count(*) From dbo.FinancialTransActionDetails Where TransactionType = 'applied' and TransactionSubType = '00'
+
+Select count(*) from dbo.FinancialTransActionDetails Where TransactionType = 'disburs' and TransactionSubType = '00' and TRY_Cast(substring(Contents,4,24) as money) IS NULL
+UNION ALL
+Select count(*) From dbo.FinancialTransActionDetails Where TransactionType = 'disburs' and TransactionSubType = '00'
+
+Select Top 5000
+	SUBSTRING(Contents, 5, 3), SUBSTRING(Contents, 9, 10), TRY_CAST(SUBSTRING(Contents, 20, 8) AS money) As Amount, *
+From dbo.FinancialTransActionDetails
+Where
+	TransactionType in ('receipt', 'applied', 'disburs') And
+	TransactionSubType IN ('01', '02', '03', 'FUT')
+Order by
+	Amount asc
 
 --Select distinct transactiontype from dbo.FinancialTransActionDetails
