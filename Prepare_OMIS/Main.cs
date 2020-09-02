@@ -26,7 +26,7 @@ namespace Prepare_OMIS
 
             PIO.Open(sourceFileSpec);
 
-            foreach(var r in PIO.GetNextRecord())
+            foreach (var r in PIO.GetNextRecord())
             {
                 PIO.PutRecord(r);
             }
