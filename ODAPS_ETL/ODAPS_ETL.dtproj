@@ -25,7 +25,7 @@
           <SSIS:Property SSIS:Name="CreatorName">CUYAHOGA\GREENG</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">JFS430619</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">X 4.0.0</SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="Ox8nOHkyXw==" SSIS:IV="vUN0hEUl11s=">gc1f9v67MZzJvL4YnhZgGz8I8wqgMhJesENNBqe6nXujhG47OJQ4zN3O20ffB43YTpCMW33BgkCLN2dXhtwx6Wjhp1CPVCNAK7/OYdhrENWECGa+pi3XgVF8ekRvO0Fwtx+yJEmgG+3bfSqHidJ+vRYjZX1DMk5I74sl6twfxHb+GHrQtn+w6w==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="iP7UaIGQow==" SSIS:IV="rWkvhpoeNCs=">3iK2Icr/YBztl7NCP2LXLRReRhbB2Nadkej9EPSq0DL7deoi4sp2q+FhID9lkdrm/IlU0nZQVasbXjpMHiX1U4R0InjN39Hc5cm89fUCDCm4ocXyRbxv4jKFhMGzZznxlsvYYyOCwBCD1ByiqFetcLi46PupTw9Uv+N91oiwcD+h71wDN/s/OQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1119,7 +1119,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">120</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -1149,7 +1149,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=MS-HHS-PSQL2\Stage;User ID=Cuy_DataLoader;Initial Catalog=DSAS_ODAPS;Persist Security Info=True;Application Name=SSIS-ODAPS_ETL-{7856EB34-71E4-475D-8EC9-70043F980BF7}MS-DCFS-PSQL1.HHS_Staging.Cuy_DataLoader;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=DSAS_ODAPS;Persist Security Info=True;Application Name=SSIS-ODAPS_ETL-{7856EB34-71E4-475D-8EC9-70043F980BF7}MS-DCFS-PSQL1.HHS_Staging.Cuy_DataLoader;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -1253,7 +1253,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=MS-HHS-PSQL2\Stage;User ID=Cuy_DataLoader;Initial Catalog=DSAS_ODAPS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=MS-DCFS-PSQL1;User ID=Cuy_DataLoader;Initial Catalog=DSAS_ODAPS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
