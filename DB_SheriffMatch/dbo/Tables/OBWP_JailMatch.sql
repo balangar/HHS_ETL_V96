@@ -1,9 +1,11 @@
-﻿CREATE TABLE [dbo].[OBWP_JailMatch] (
-    [ID]                        INT              IDENTITY (1, 1) NOT NULL,
-    [SysInsertUser]             VARCHAR (50)     CONSTRAINT [DF_OBWP_JailMatch_SysInsertUser] DEFAULT ('System') NOT NULL,
-    [SysInsertDate]             DATETIME         CONSTRAINT [DF_OBWP_JailMatch_SysInsertDate] DEFAULT (getdate()) NOT NULL,
+﻿CREATE TABLE dbo.[OBWP_JailMatch] (
+    [ID]                        INT              IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+    [SysInsertUser]             VARCHAR (50)     DEFAULT ('System') NOT NULL,
+    [SysInsertDate]             DATETIME         DEFAULT (getdate()) NOT NULL,
+	[SysModifyUser]				VARCHAR(50)		 DEFAULT ('System') NOT NULL,
+	[SysModifyDate]				DATETIME		 DEFAULT (getdate()) NOT NULL,
     [HashSignature]             VARBINARY (8000) NULL,
-    [ResidenceCountyCode]       CHAR (2)         CONSTRAINT [DF_OBWP_JailMatch_ResidenceCountyCode] DEFAULT ('2') NOT NULL,
+    [ResidenceCountyCode]       CHAR (2)         NULL,
     [SocSecNo]                  CHAR (9)         NULL,
     [ApplicantStatusCode]       VARCHAR (50)     NULL,
     [FirstName]                 VARCHAR (50)     NULL,
@@ -18,10 +20,8 @@
     [AidCodeEndDate]            DATE             NULL,
     [ApplicantID]               VARCHAR (50)     NULL,
     [BillingNumber]             VARCHAR (50)     NULL,
-    [LivingArrangementTypeCode] VARCHAR (50)     NULL,
-    [IsValid]                   BIT              CONSTRAINT [DF_OBWP_JailMatch_IsValid] DEFAULT ((1)) NOT NULL,
-    [IsLoaded]                  BIT              CONSTRAINT [DF_OBWP_JailMatch_IsLoaded] DEFAULT ((0)) NOT NULL,
-    [LoadDate]                  DATETIME         CONSTRAINT [DF_OBWP_JailMatch_LoadDate] DEFAULT ('1900-01-01') NOT NULL,
-    [Comments]                  VARCHAR (1024)   NULL
+    [LivingArrangementTypeCode] VARCHAR (50)     NULL
 );
+
+
 

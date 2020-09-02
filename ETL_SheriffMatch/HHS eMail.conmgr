@@ -1,0 +1,8 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="HHS eMail"
+  DTS:DTSID="{EC3F02B3-6BD2-437A-AA07-C186E3F30C4C}"
+  DTS:CreationName="SMTP"
+  p1:Salt="0KS17a79TtY="
+  p1:IV="+NjOrplT4UbCdo0mS2GhZg=="
+  p1:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" xmlns:p1="www.microsoft.com/SqlServer/SSIS">sEyVCSwSbGhoFHWzJYjNyg1OoZl/gsY/iio7ENOAY50PH0wmlgSCNNuWCuSk89uWbhoBBPbxLq41/tmJUpCMtWXJmAbIInwzeuxuy4gkK/vyC83BYpFwaGAzxoOMCYYriuCdbUjbV3YE/kqir5lhBLZBFKogKcG7enMrsho3Xf5YQGkwPdt8rQ4kmdnTQQZ052OFstYk/Ij1fsBuj72EGDdzS2F3dcX88dgt3iqVaJVid1xSOsuFjAtr0lsvzEUwXViQIDWNFslESoqAn7ZJTJp5eDbINabLimSx/qBDvJmYwRxcPlVPyL/NDZ521jjx8buIeuPd7Uq5RvTWqqVKMQvxhkCawiiAx9tcO2ve4oP2Z1/4y6VBEfmHmdO/fzAxSdSHJ0pBQ3F4d2Iv1d/W6m5E0Yue96fOnpyDxo36j4jcLdC4bU6XmR3fgC2y8kIr77MxcwcfXaepDKbvfWhnKA==</DTS:ConnectionManager>

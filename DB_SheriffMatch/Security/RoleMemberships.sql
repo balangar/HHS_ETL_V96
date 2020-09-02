@@ -12,3 +12,15 @@ ALTER ROLE [db_datareader] ADD MEMBER [Cuy_DataLoader];
 GO
 ALTER ROLE [db_datawriter] ADD MEMBER [Cuy_DataLoader];
 
+
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [CUYAHOGA\Role_DatabaseDevelopers];
+
+
+GO
+--ALTER ROLE [db_datareader] ADD MEMBER [Cuy_ReadAllData];
+
+
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [CUYAHOGA\Role_DatabaseDevelopers];
+
