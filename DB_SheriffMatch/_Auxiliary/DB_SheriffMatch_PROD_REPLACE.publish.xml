@@ -4,9 +4,9 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseName>SheriffsMatch</TargetDatabaseName>
     <DeployScriptFileName>DB_SheriffMatch.sql</DeployScriptFileName>
-    <TargetConnectionString>Data Source=localhost;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False</TargetConnectionString>
-    <BlockOnPossibleDataLoss>False</BlockOnPossibleDataLoss>
-    <CreateNewDatabase>True</CreateNewDatabase>
+    <TargetConnectionString>Data Source=MS-HHS-PSQL2;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False</TargetConnectionString>
     <ProfileVersionNumber>1</ProfileVersionNumber>
+    <BlockOnPossibleDataLoss>True</BlockOnPossibleDataLoss>
+    <CreateNewDatabase>True</CreateNewDatabase>
   </PropertyGroup>
 </Project>

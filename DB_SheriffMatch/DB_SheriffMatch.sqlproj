@@ -125,10 +125,6 @@
     <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\NFSC Zip Codes.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="Staging\Tables\OBWP_JailMatch.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -141,9 +137,19 @@
     <Build Include="Security\Staging.sql" />
     <Build Include="Security\Permissions.sql" />
     <Build Include="dbo\Tables\OBWP_JailMatch.sql" />
+    <Build Include="dbo\Tables\ZipCodes.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\CUYAHOGA_Role_DatabaseDevelopers.sql" />
+    <Build Include="Security\Cuy_ReadAllData.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Auxiliary\DB_SheriffMatch_STAGE_REPLACE.publish.xml" />
     <None Include="_Auxiliary\DB_SheriffMatch_DEV_REPLACE.publish.xml" />
+    <None Include="_Auxiliary\DB_SheriffMatch_PROD_REPLACE.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeployment.sql" />
   </ItemGroup>
 </Project>

@@ -28,3 +28,10 @@
 
 
 
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_OBWP_JailMatch_Valid]
+    ON [Staging].[OBWP_JailMatch]([IsValid] ASC);
+

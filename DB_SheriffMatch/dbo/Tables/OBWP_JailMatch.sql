@@ -16,8 +16,8 @@
     [CaseSerialNumber]          VARCHAR (50)     NULL,
     [ProgramCode]               VARCHAR (50)     NULL,
     [CaseWorkerNumber]          VARCHAR (50)     NULL,
-    [BDAAidBeginDate]           VARCHAR (50)     NULL,
-    [AidCodeEndDate]            VARCHAR (50)     NULL,
+    [BDAAidBeginDate]           DATE             NULL,
+    [AidCodeEndDate]            DATE             NULL,
     [ApplicantID]               VARCHAR (50)     NULL,
     [BillingNumber]             VARCHAR (50)     NULL,
     [LivingArrangementTypeCode] VARCHAR (50)     NULL
