@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="LoadSetsIVR"
   DTS:PackageType="5"
-  DTS:VersionBuild="77"
-  DTS:VersionGUID="{945B7C98-A872-4EC0-858F-8965C2AF7A79}">
+  DTS:VersionBuild="78"
+  DTS:VersionGUID="{76D1E362-FE86-4CB6-9E8F-1518A5A5F3C4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1835,20 +1835,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[DisbursementDate]"
                       lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[DisbursementDate]" />
                     <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[CreditAsOfDate]"
-                      cachedDataType="dbDate"
-                      cachedName="CreditAsOfDate"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[CreditAsOf]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[CreditAsOfDate]" />
-                    <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[TotalCreditAmount]"
-                      cachedDataType="numeric"
-                      cachedName="TotalCreditAmount"
-                      cachedPrecision="19"
-                      cachedScale="8"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[TotalCredit]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[TotalCreditAmount]" />
-                    <inputColumn
                       refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[OrderNumber]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -1856,14 +1842,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedName="OrderNumber"
                       externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[OrderNum]"
                       lineageId="Package\Stage SetsIVR Data Extract\SETSIvr Fixed Width File.Outputs[Flat File Source Output].Columns[OrderNumber]" />
-                    <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[CaretakerNumber]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="12"
-                      cachedName="CaretakerNumber"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ParticipantNumber]"
-                      lineageId="Package\Stage SetsIVR Data Extract\SETSIvr Fixed Width File.Outputs[Flat File Source Output].Columns[CaretakerNumber]" />
                     <inputColumn
                       refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[CaretakerMiddleInitial]"
                       cachedCodepage="1252"
@@ -1909,11 +1887,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ChildExpectedEmancipationDate]"
                       lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[ExpectedEmancipationDate]" />
                     <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[DateOfProcess]"
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[TotalAmount]"
+                      cachedDataType="numeric"
+                      cachedName="TotalAmount"
+                      cachedPrecision="19"
+                      cachedScale="8"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ObligorTotalArrearage]"
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[TotalAmount]" />
+                    <inputColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[PaymentReceivedDate]"
                       cachedDataType="dbDate"
-                      cachedName="DateOfProcess"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[DateProcessed]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[DateOfProcess]" />
+                      cachedName="PaymentReceivedDate"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[PaymentReceived]"
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[PaymentReceivedDate]" />
+                    <inputColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[DTEPrintDist]"
+                      cachedDataType="dbDate"
+                      cachedName="DTEPrintDist"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[DatePrintDisbursement]"
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[DTEPrintDist]" />
+                    <inputColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[CreditAsOfDate]"
+                      cachedDataType="dbDate"
+                      cachedName="CreditAsOfDate"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[CreditAsOf]"
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[CreditAsOfDate]" />
+                    <inputColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[TotalCreditAmount]"
+                      cachedDataType="numeric"
+                      cachedName="TotalCreditAmount"
+                      cachedPrecision="19"
+                      cachedScale="8"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[TotalCredit]"
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[TotalCreditAmount]" />
                     <inputColumn
                       refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[TotalBalanceDue]"
                       cachedDataType="numeric"
@@ -1923,41 +1929,27 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[TotalAmountDue]"
                       lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[TotalBalanceDue]" />
                     <inputColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[DateOfProcess]"
+                      cachedDataType="dbDate"
+                      cachedName="DateOfProcess"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[DateProcessed]"
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[DateOfProcess]" />
+                    <inputColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[CaretakerNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="CaretakerNumber"
+                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ParticipantNumber]"
+                      lineageId="Package\Stage SetsIVR Data Extract\SETSIvr Fixed Width File.Outputs[Flat File Source Output].Columns[CaretakerNumber]" />
+                    <inputColumn
                       refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[PaymentAmount]"
                       cachedDataType="numeric"
                       cachedName="PaymentAmount"
                       cachedPrecision="19"
                       cachedScale="8"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[TotalDisbursement]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[PaymentAmount]" />
-                    <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[DTEPrintDist]"
-                      cachedDataType="dbDate"
-                      cachedName="DTEPrintDist"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[DatePrintDisbursement]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[DTEPrintDist]" />
-                    <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[CaretakerType]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="3"
-                      cachedName="CaretakerType"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ParticipantType]"
-                      lineageId="Package\Stage SetsIVR Data Extract\SETSIvr Fixed Width File.Outputs[Flat File Source Output].Columns[CaretakerType]" />
-                    <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[PaymentReceivedDate]"
-                      cachedDataType="dbDate"
-                      cachedName="PaymentReceivedDate"
-                      externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[PaymentReceived]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates.Outputs[Output 0].Columns[PaymentReceivedDate]" />
-                    <inputColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].Columns[TotalAmount]"
-                      cachedDataType="numeric"
-                      cachedName="TotalAmount"
-                      cachedPrecision="19"
-                      cachedScale="8"
                       externalMetadataColumnId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ReceivedAmount]"
-                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[TotalAmount]" />
+                      lineageId="Package\Stage SetsIVR Data Extract\Convert RawPayment strings.Outputs[Derived Column Output].Columns[PaymentAmount]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2004,11 +1996,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       length="12"
                       name="ParticipantNumber" />
                     <externalMetadataColumn
-                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[ParticipantType]"
-                      dataType="wstr"
-                      length="3"
-                      name="ParticipantType" />
-                    <externalMetadataColumn
                       refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[SATNumber]"
                       dataType="wstr"
                       length="1"
@@ -2028,6 +2015,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       dataType="wstr"
                       length="1"
                       name="CaretakerMI" />
+                    <externalMetadataColumn
+                      refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[CareTakerBirthDate]"
+                      dataType="dbTimeStamp"
+                      name="CareTakerBirthDate" />
                     <externalMetadataColumn
                       refId="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR.Inputs[ADO NET Destination Input].ExternalColumns[CareTakerEMail]"
                       dataType="wstr"
@@ -3594,6 +3585,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="178,42"
+          Id="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR"
+          TopLeft="526,451" />
+        <NodeLayout
           Size="195,42"
           Id="Package\Stage SetsIVR Data Extract\SETSIvr Fixed Width File"
           TopLeft="518,54" />
@@ -3602,13 +3597,31 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           Id="Package\Stage SetsIVR Data Extract\Convert RawPayment strings"
           TopLeft="509,220" />
         <NodeLayout
-          Size="178,42"
-          Id="Package\Stage SetsIVR Data Extract\HHS Staging SetsIVR"
-          TopLeft="526,451" />
-        <NodeLayout
           Size="238,42"
           Id="Package\Stage SetsIVR Data Extract\Convert RawDate strings to Dates"
           TopLeft="490,338" />
+        <EdgeLayout
+          Id="Package\Stage SetsIVR Data Extract.Paths[Output 0]"
+          TopLeft="612,380">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Stage SetsIVR Data Extract.Paths[Flat File Source Output]"
           TopLeft="615.75,96">
@@ -3645,28 +3658,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,68.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Stage SetsIVR Data Extract.Paths[Output 0]"
-          TopLeft="612,380">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,71"
-              Start="0,0"
-              End="0,63.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
